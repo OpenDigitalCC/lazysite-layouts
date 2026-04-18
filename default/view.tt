@@ -10,6 +10,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  [% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+  <meta property="og:title" content="[% page_title | html %][% IF site_name %] - [% site_name | html %][% END %]">
+  [% IF page_subtitle %]<meta property="og:description" content="[% page_subtitle | html %]">[% END %]
+  <meta property="og:type" content="website">
+  [% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">[% END %]
+  [% IF site_url %]<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
   <title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
   [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
   <style>
@@ -284,6 +290,26 @@
       font-size: 13px;
     }
 
+    /* --- Site tools (auth, editor) --- */
+
+    .site-tools {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .auth-indicator { display: flex; align-items: center; gap: 0.5rem; }
+    .auth-user { color: #6a6a6a; }
+    .auth-link { text-decoration: none; color: #0056b3; }
+    .auth-link:hover { text-decoration: underline; }
+    .auth-logout { color: #6a6a6a; }
+    .auth-logout:hover { color: #1a1a1a; }
+    .editor-btn {
+      font-size: 0.8rem; padding: 0.15rem 0.5rem;
+      border: 1px solid #e0e0e0; border-radius: 3px;
+      background: #f8f8f8; color: #6a6a6a;
+      text-decoration: none;
+    }
+    .editor-btn:hover { background: #e0e0e0; color: #1a1a1a; }
+
     /* --- Theme switcher --- */
 
     #theme-switcher {
@@ -350,6 +376,22 @@
   <header class="site-header">
     <div class="wrapper">
       <h1 class="site-name"><a href="/">[% site_name %]</a></h1>
+      <div class="site-tools">
+        [% IF authenticated %]
+        <div class="auth-indicator">
+          <span class="auth-user">[% auth_name || auth_user %]</span>
+          <a href="/logout" class="auth-link auth-logout">Sign out</a>
+        </div>
+        [% ELSE %]
+        <a href="/login" class="auth-link auth-signin">Sign in</a>
+        [% END %]
+        [% SET edit_path = request_uri %]
+        [% IF edit_path == '/' %][% SET edit_path = '/index' %][% END %]
+        [% IF edit_path.match('/$') %][% SET edit_path = edit_path _ 'index' %][% END %]
+        [% IF editor %]
+        <a href="/editor/edit?path=[% edit_path | uri %].md" class="editor-btn" title="Edit this page">Edit</a>
+        [% END %]
+      </div>
       <nav class="site-nav">
         [% FOREACH item IN nav %]
           [% IF item.url %]
@@ -387,7 +429,7 @@
           [% content %]
         </div>
         [% IF page_modified %]
-        <p class="page-modified">Last updated: [% page_modified %]</p>
+        <time datetime="[% page_modified_iso %]" class="page-modified">Last updated: [% page_modified %]</time>
         [% END %]
       </article>
     </div>

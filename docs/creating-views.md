@@ -19,8 +19,63 @@ Every page render passes these variables to `view.tt`:
 | `request_uri` | string | Current page path, e.g. `/about`. |
 | `page_modified` | string | Human-readable mtime, e.g. "3 April 2026". |
 | `page_modified_iso` | string | ISO 8601 mtime, e.g. "2026-04-03". |
+| `theme_assets` | string | Asset path for remote themes, e.g. `/lazysite-assets/default`. Empty for local themes. |
+| `query` | hashref | URL query parameters declared in front matter `query_params:`. HTML-escaped. |
 
 Plus any additional variables defined in `lazysite.conf`.
+
+### Auth variables
+
+Set when auth is configured. Always check `[% IF authenticated %]`
+before using user-specific variables.
+
+| Variable | Type | Description |
+| -------- | ---- | ----------- |
+| `authenticated` | boolean | `1` if user is logged in, `0` otherwise. |
+| `auth_user` | string | Username from auth header. |
+| `auth_name` | string | Display name from auth header. May be empty. |
+| `auth_email` | string | Email from auth header. May be empty. |
+| `auth_groups` | arrayref | Group names. Iterate with `[% FOREACH g IN auth_groups %]`. |
+
+Example:
+
+```
+[% IF authenticated %]
+  <span>Signed in as [% auth_name || auth_user %]</span>
+  <a href="/logout">Sign out</a>
+[% ELSE %]
+  <a href="/login">Sign in</a>
+[% END %]
+```
+
+### Payment variables
+
+Set when a page has `payment: required` in front matter and the
+user has been granted access (by payment or group bypass).
+
+| Variable | Type | Description |
+| -------- | ---- | ----------- |
+| `payment_paid` | boolean | `1` if payment proof was verified. |
+| `payment_payer` | string | Payer wallet address if available. |
+| `payment_bypassed` | boolean | `1` if access via group membership. |
+| `payment_amount` | string | Amount from front matter. |
+| `payment_currency` | string | Currency from front matter. |
+| `payment_address` | string | Recipient wallet address. |
+
+### Editor and source variables
+
+| Variable | Type | Description |
+| -------- | ---- | ----------- |
+| `editor` | string | Editor path (e.g. `/editor`) when enabled and user authorised. Empty otherwise. |
+| `page_source` | string | Source `.md` path relative to docroot, e.g. `/about.md`. |
+
+Example edit button:
+
+```
+[% IF editor %]
+<a href="[% editor %]/edit?path=[% page_source %]">Edit</a>
+[% END %]
+```
 
 ### Checking for optional variables
 
@@ -122,6 +177,33 @@ Define CSS for these classes in your view's `<style>` block.
   ```css
   .include-error::before { content: "include failed: " attr(data-src); color: red; }
   ```
+
+### From forms
+
+- `form.lazysite-form` - form wrapper
+- `div.form-field` - field wrapper (label + input)
+- `div.form-submit` - submit button wrapper
+- `div.form-status` - AJAX status message area
+- `p.form-success` - success message after submission
+- `span.required` - asterisk on required fields
+- `p.auth-error` - login error message
+- `form.auth-form` - login form wrapper
+
+### From search
+
+- `div.search-result` - individual result wrapper
+- `span.search-tag` - tag badge
+- `time.search-date` - date display
+- `p.search-subtitle` - result subtitle
+- `p.search-excerpt` - result body excerpt
+- `mark` - highlighted search term in excerpts
+
+### From features index
+
+- `div.features-layout` - flex container (sidebar + content)
+- `nav.features-toc` - sticky sidebar table of contents
+- `div.features-content` - main content area
+- `div.feature-entry` - individual feature section
 
 ## Theme metadata
 
