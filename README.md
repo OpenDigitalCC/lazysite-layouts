@@ -44,11 +44,34 @@ Or per-page in front matter:
 
     layout: default
 
-## Available views
+## Available themes
 
-| View | Description |
-| ---- | ----------- |
+| Theme | Description |
+| ----- | ----------- |
 | default | Clean neutral light theme, no external dependencies |
+| dark | Dark theme, no external dependencies |
+
+## Downloads
+
+Pre-built zip packages are in the `releases/` directory:
+
+- [default.zip](releases/default.zip) — light theme
+- [dark.zip](releases/dark.zip) — dark theme
+
+Install manually:
+
+    curl -sL https://github.com/OpenDigitalCC/lazysite-views/raw/main/releases/default.zip \
+        -o /tmp/default.zip
+    mkdir -p public_html/lazysite/themes/default
+    unzip /tmp/default.zip -d public_html/lazysite/themes/default/
+    mkdir -p public_html/lazysite-assets/default
+    cp -r public_html/lazysite/themes/default/assets/* public_html/lazysite-assets/default/
+
+Or upload via the lazysite editor: Editor > Themes > Upload theme.
+
+Rebuild packages after updating themes:
+
+    bash tools/package-themes.sh
 
 ## nav.conf
 

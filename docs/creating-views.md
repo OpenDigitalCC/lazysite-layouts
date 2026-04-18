@@ -387,3 +387,29 @@ viewname/
 
 The `nav.conf` is a convenience for users - it shows the nav format
 but is not used by the processor directly.
+
+## Packaging a theme for distribution
+
+Use the packager script to build an installable zip:
+
+    bash tools/package-themes.sh
+
+This validates required files and creates `releases/THEMENAME.zip`
+in the correct format for the lazysite editor upload.
+
+### Manual packaging
+
+The zip must be flat (no containing directory) and include at minimum:
+
+    view.tt
+    theme.json
+
+Optionally:
+
+    nav.conf
+    assets/main.css
+    assets/ (other files)
+
+The `theme.json` `name` field must match the directory name. If the
+name conflicts with an existing theme during editor upload, the
+install directory is prefixed with the date.
