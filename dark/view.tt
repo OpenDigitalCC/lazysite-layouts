@@ -72,57 +72,65 @@
 
     /* --- Navigation --- */
 
-    .site-nav {
+    .site-nav { font-size: 15px; }
+    .site-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
       gap: 4px 0;
-      font-size: 15px;
     }
-
+    .site-nav li { position: relative; }
     .site-nav a {
+      display: block;
       color: #aaa;
       text-decoration: none;
       padding: 4px 12px;
       border-radius: 4px;
       transition: background-color 0.15s, color 0.15s;
     }
-
     .site-nav a:hover {
       color: #8ac7ff;
       background-color: #1e2d3d;
     }
-
     .site-nav a.active {
       color: #8ac7ff;
       font-weight: 600;
       background-color: #1e2d3d;
     }
-
-    .site-nav .nav-group {
+    .site-nav .nav-group-label {
+      display: block;
       color: #777;
-      font-weight: 600;
-      padding: 4px 12px 4px 16px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      cursor: default;
     }
 
+    /* Dropdown */
     .site-nav .nav-children {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      flex-direction: column;
+      gap: 0;
+      background: #232323;
+      border: 1px solid #333;
+      border-radius: 4px;
+      min-width: 160px;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
-
-    .site-nav .nav-children li {
-      margin: 0;
-    }
-
+    .site-nav .nav-group:hover .nav-children,
+    .site-nav .nav-group:focus-within .nav-children { display: flex; }
+    .site-nav .nav-children li { width: 100%; }
     .site-nav .nav-children a {
+      padding: 6px 12px;
       font-size: 14px;
+      border-radius: 0;
+      white-space: nowrap;
     }
+    .site-nav .nav-children a:hover { background-color: #1e2d3d; }
 
     /* --- Main content --- */
 
@@ -378,24 +386,29 @@
         [% END %]
       </div>
       <nav class="site-nav">
+        <ul>
         [% FOREACH item IN nav %]
-          [% IF item.url %]
-          <a href="[% item.url %]"
-            [% IF request_uri == item.url %]class="active"[% END %]>
-            [% item.label %]</a>
-          [% ELSE %]
-          <span class="nav-group">[% item.label %]</span>
-          [% END %]
           [% IF item.children.size %]
-          <ul class="nav-children">
-            [% FOREACH child IN item.children %]
-            <li><a href="[% child.url %]"
-              [% IF request_uri == child.url %]class="active"[% END %]>
-              [% child.label %]</a></li>
+          <li class="nav-group">
+            [% IF item.url %]
+            <a href="[% item.url %]"
+              [% IF request_uri == item.url %]class="active"[% END %]>[% item.label %]</a>
+            [% ELSE %]
+            <span class="nav-group-label">[% item.label %]</span>
             [% END %]
-          </ul>
+            <ul class="nav-children">
+            [% FOREACH child IN item.children %]
+              <li><a href="[% child.url %]"
+                [% IF request_uri == child.url %]class="active"[% END %]>[% child.label %]</a></li>
+            [% END %]
+            </ul>
+          </li>
+          [% ELSE %]
+          <li><a href="[% item.url %]"
+            [% IF request_uri == item.url %]class="active"[% END %]>[% item.label %]</a></li>
           [% END %]
         [% END %]
+        </ul>
       </nav>
     </div>
   </header>
