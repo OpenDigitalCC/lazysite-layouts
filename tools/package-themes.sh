@@ -1,103 +1,131 @@
 #!/bin/bash
-# package-themes.sh - Build installable zip packages for each theme
-# Usage: bash tools/package-themes.sh
+# package-themes.sh - Build installable theme zip packages for lazysite.
+#
+# Walks layouts/LAYOUT_NAME/themes/THEME_NAME/ and produces
+# releases/LAYOUT_NAME/THEME_NAME.zip with the D013 upload shape:
+#
+#   theme.json         (required, at zip root)
+#   assets/main.css    (required, web-accessible via theme_assets)
+#   assets/fonts/...   (optional, any extra assets the theme ships)
+#
+# Only the assets/ subtree is served from /lazysite-assets/LAYOUT/THEME/
+# on the live site; theme.json lives in the web-blocked theme dir and
+# is read by the manager UI + the processor on load.
+#
+# Releases are cleared and rebuilt from scratch each run. Layouts are
+# not packaged here - distributed by other means.
 
 set -e
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LAYOUTS_DIR="$REPO_ROOT/layouts"
 RELEASES_DIR="$REPO_ROOT/releases"
 
+if [ ! -d "$LAYOUTS_DIR" ]; then
+    echo "ERROR: $LAYOUTS_DIR does not exist" >&2
+    exit 1
+fi
+
+if command -v zip >/dev/null 2>&1; then
+    ZIPPER=zip
+elif command -v python3 >/dev/null 2>&1; then
+    ZIPPER=python3
+else
+    echo "ERROR: neither 'zip' nor 'python3' available" >&2
+    echo "Install with: apt-get install zip  (or your package manager)" >&2
+    exit 1
+fi
+
+# Rebuild releases/ from scratch so stale zips don't linger.
+rm -rf "$RELEASES_DIR"
 mkdir -p "$RELEASES_DIR"
 
 THEMES_BUILT=0
 THEMES_FAILED=0
+TOTAL_BYTES=0
 
-for THEME_DIR in "$REPO_ROOT"/*/; do
-    THEME_NAME="$(basename "$THEME_DIR")"
+# Walk layouts/LAYOUT/themes/THEME/ - two levels deep from $LAYOUTS_DIR.
+for LAYOUT_DIR in "$LAYOUTS_DIR"/*/; do
+    [ -d "$LAYOUT_DIR" ] || continue
+    LAYOUT_NAME="$(basename "$LAYOUT_DIR")"
 
-    # Skip non-theme directories
-    case "$THEME_NAME" in
-        docs|tools|releases|.git) continue ;;
-    esac
+    THEMES_ROOT="$LAYOUT_DIR/themes"
+    [ -d "$THEMES_ROOT" ] || continue
 
-    echo "Processing: $THEME_NAME"
+    for THEME_DIR in "$THEMES_ROOT"/*/; do
+        [ -d "$THEME_DIR" ] || continue
+        THEME_NAME="$(basename "$THEME_DIR")"
 
-    # Verify required files
-    MISSING=0
-    for REQUIRED in view.tt theme.json; do
-        if [ ! -f "$THEME_DIR/$REQUIRED" ]; then
-            echo "  ERROR: missing $REQUIRED"
-            MISSING=1
+        echo "Packaging: $LAYOUT_NAME/$THEME_NAME"
+
+        if [ ! -f "$THEME_DIR/theme.json" ]; then
+            echo "  SKIP: missing theme.json"
+            THEMES_FAILED=$((THEMES_FAILED + 1))
+            continue
         fi
-    done
 
-    if [ "$MISSING" -eq 1 ]; then
-        echo "  SKIP: $THEME_NAME (missing required files)"
-        THEMES_FAILED=$((THEMES_FAILED + 1))
-        continue
-    fi
-
-    # Read theme name from theme.json for validation
-    if command -v python3 >/dev/null 2>&1; then
-        JSON_NAME=$(python3 -c "
-import json, sys
-with open('$THEME_DIR/theme.json') as f:
-    d = json.load(f)
-print(d.get('name', ''))
-" 2>/dev/null)
-        if [ -z "$JSON_NAME" ]; then
-            echo "  WARNING: theme.json missing 'name' field"
-        elif [ "$JSON_NAME" != "$THEME_NAME" ]; then
-            echo "  WARNING: theme.json name '$JSON_NAME' differs from directory '$THEME_NAME'"
+        if [ ! -d "$THEME_DIR/assets" ] || [ ! -f "$THEME_DIR/assets/main.css" ]; then
+            echo "  WARNING: no assets/main.css - theme will have no web-served CSS"
         fi
-    fi
 
-    # Build zip from theme directory
-    ZIP_FILE="$RELEASES_DIR/$THEME_NAME.zip"
-    TEMP_DIR=$(mktemp -d)
+        # releases/LAYOUT/THEME.zip - mirrors source structure so
+        # two layouts each shipping a "default" theme don't collide.
+        mkdir -p "$RELEASES_DIR/$LAYOUT_NAME"
+        ZIP_FILE="$RELEASES_DIR/$LAYOUT_NAME/$THEME_NAME.zip"
 
-    # Copy theme files to temp dir (flat structure as editor expects)
-    cp "$THEME_DIR/view.tt"    "$TEMP_DIR/"
-    cp "$THEME_DIR/theme.json" "$TEMP_DIR/"
-
-    if [ -f "$THEME_DIR/nav.conf" ]; then
-        cp "$THEME_DIR/nav.conf" "$TEMP_DIR/"
-    fi
-
-    if [ -d "$THEME_DIR/assets" ]; then
-        mkdir -p "$TEMP_DIR/assets"
-        cp -r "$THEME_DIR/assets/." "$TEMP_DIR/assets/"
-    fi
-
-    # Create zip (try zip command, fall back to python3)
-    if command -v zip >/dev/null 2>&1; then
-        (cd "$TEMP_DIR" && zip -r "$ZIP_FILE" . -x "*.DS_Store" -x "__MACOSX/*")
-    elif command -v python3 >/dev/null 2>&1; then
-        python3 -c "
-import zipfile, os, sys
-zf = zipfile.ZipFile('$ZIP_FILE', 'w', zipfile.ZIP_DEFLATED)
-for root, dirs, files in os.walk('$TEMP_DIR'):
-    for f in files:
-        if f == '.DS_Store': continue
-        full = os.path.join(root, f)
-        arc = os.path.relpath(full, '$TEMP_DIR')
-        zf.write(full, arc)
-zf.close()
-"
-    else
-        echo "  ERROR: no zip tool available (install zip or python3)"
+        # Stage zip contents in a temp dir. $$ per CLAUDE.md (no mktemp).
+        TEMP_DIR="/tmp/package-themes-$$-$THEME_NAME"
         rm -rf "$TEMP_DIR"
-        THEMES_FAILED=$((THEMES_FAILED + 1))
-        continue
-    fi
-    rm -rf "$TEMP_DIR"
+        mkdir -p "$TEMP_DIR"
 
-    SIZE=$(du -sh "$ZIP_FILE" | cut -f1)
-    echo "  Built: releases/$THEME_NAME.zip ($SIZE)"
-    THEMES_BUILT=$((THEMES_BUILT + 1))
+        cp "$THEME_DIR/theme.json" "$TEMP_DIR/"
+
+        if [ -d "$THEME_DIR/assets" ]; then
+            mkdir -p "$TEMP_DIR/assets"
+            cp -r "$THEME_DIR/assets/." "$TEMP_DIR/assets/"
+        fi
+
+        # Build the zip. Excludes .DS_Store etc. Intentionally does
+        # NOT include layout.tt, layout.json, or nav.conf - those
+        # don't belong in a theme package.
+        if [ "$ZIPPER" = "zip" ]; then
+            ( cd "$TEMP_DIR" && zip -qr "$ZIP_FILE" . \
+                -x "*.DS_Store" -x "__MACOSX/*" -x "*.swp" )
+        else
+            python3 - "$TEMP_DIR" "$ZIP_FILE" <<'PY'
+import os, sys, zipfile
+src, out = sys.argv[1], sys.argv[2]
+skip_names = {".DS_Store"}
+skip_prefixes = ("__MACOSX/",)
+with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
+    for root, dirs, files in os.walk(src):
+        for f in files:
+            if f in skip_names or f.endswith(".swp"):
+                continue
+            full = os.path.join(root, f)
+            arc = os.path.relpath(full, src)
+            if any(arc.startswith(p) for p in skip_prefixes):
+                continue
+            zf.write(full, arc)
+PY
+        fi
+
+        rm -rf "$TEMP_DIR"
+
+        SIZE=$(stat -c '%s' "$ZIP_FILE")
+        TOTAL_BYTES=$((TOTAL_BYTES + SIZE))
+        echo "  Built: releases/$LAYOUT_NAME/$THEME_NAME.zip ($SIZE bytes)"
+        THEMES_BUILT=$((THEMES_BUILT + 1))
+    done
 done
 
+trap 'rm -rf /tmp/package-themes-$$-* 2>/dev/null' EXIT
+
 echo ""
-echo "Done: $THEMES_BUILT theme(s) built, $THEMES_FAILED failed"
-echo "Output: $RELEASES_DIR/"
-ls -lh "$RELEASES_DIR/"
+TOTAL_KB=$((TOTAL_BYTES / 1024))
+echo "Done: $THEMES_BUILT theme(s) packaged at ${TOTAL_KB}K total"
+if [ "$THEMES_FAILED" -gt 0 ]; then
+    echo "      $THEMES_FAILED theme(s) skipped"
+fi
+echo "Output: $RELEASES_DIR"
+find "$RELEASES_DIR" -name '*.zip' -printf '  %p\n' | sort

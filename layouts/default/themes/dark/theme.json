@@ -1,0 +1,30 @@
+{
+  "name": "dark",
+  "version": "1.0.0",
+  "description": "Dark theme. No external dependencies.",
+  "author": "OpenDigitalCC",
+  "layouts": ["default"],
+  "config": {
+    "colours": {
+      "primary": "#6db3f2",
+      "primary-hover": "#8ac7ff",
+      "text": "#e0e0e0",
+      "text-muted": "#aaaaaa",
+      "text-dim": "#777777",
+      "heading": "#f0f0f0",
+      "background": "#1a1a1a",
+      "background-alt": "#2a2a2a",
+      "background-accent": "#1e2d3d",
+      "background-dropdown": "#232323",
+      "border": "#333333"
+    },
+    "fonts": {
+      "body": "system-ui, -apple-system, sans-serif",
+      "code": "ui-monospace, Menlo, Consolas, monospace"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

@@ -1,85 +1,159 @@
-# lazysite-views
+# lazysite-layouts
 
-A collection of views for [lazysite](https://lazysite.io) -
-the Markdown-driven static site processor for Apache.
+Layouts and themes for [lazysite](https://lazysite.io) under
+the D013 architecture. Requires lazysite **0.2.10 or later** -
+earlier versions use a different (incompatible) theme format.
 
-A **view** is a Template Toolkit file (`view.tt`) that controls
-the visual presentation of every page on your lazysite site.
-lazysite includes a built-in fallback view, so a custom view
-is optional - install one when you want a specific design.
+## What's here
 
-## Documentation
+    lazysite-layouts/
+      layouts/
+        default/
+          layout.tt            <- structural HTML template
+          layout.json          <- layout metadata
+          themes/
+            default/           <- light theme (ships in releases/default/default.zip)
+              theme.json
+              assets/main.css
+            dark/              <- dark theme (ships in releases/default/dark.zip)
+              theme.json
+              assets/main.css
+      docs/
+        creating-layouts.md
+        creating-themes.md
+      tools/
+        package-themes.sh      <- rebuilds releases/*.zip from layouts/
+      releases/
+        default/              <- layout-scoped; mirrors source structure
+          default.zip
+          dark.zip
 
-- [Creating views](docs/creating-views.md) - complete view creation manual
+## The three-layer model
 
-## Installing a view
+Under D013, lazysite separates page rendering into three layers:
 
-### Option 1 - copy a single view file
+- **Layout** - HTML chrome. Owns `<head>`, header, nav, main,
+  footer. Installed at `{DOCROOT}/lazysite/layouts/NAME/`.
+  Brand-neutral: no colours or fonts baked in.
+- **Theme** - CSS + assets + design tokens. Installed nested at
+  `{DOCROOT}/lazysite/layouts/LAYOUT/themes/THEME/`. Declares
+  layout compatibility in `theme.json`'s `layouts[]` array.
+- **User content** - Markdown pages, `nav.conf`, favicon.
+  Unchanged by theme or layout switches.
 
-Download `view.tt` from the view directory and place it at:
+Layouts and themes are coupled at the contract level: a theme
+references CSS custom properties emitted from its own
+`theme.json.config`, and the layout emits those custom
+properties at `:root` via the `[% theme_css %]` TT variable.
 
-    public_html/lazysite/templates/view.tt
+## Installing
 
-Example using curl:
+### Layout (one-time, manual)
 
-    curl -o public_html/lazysite/templates/view.tt \
-      https://raw.githubusercontent.com/OpenDigitalCC/lazysite-views/main/default/view.tt
+Layouts are not currently shipped in release zips (themes are).
+Copy manually:
 
-### Option 2 - clone the repo and copy
+    mkdir -p /path/to/public_html/lazysite/layouts/default
+    cp layouts/default/layout.tt   /path/to/public_html/lazysite/layouts/default/
+    cp layouts/default/layout.json /path/to/public_html/lazysite/layouts/default/
 
-    git clone https://github.com/OpenDigitalCC/lazysite-views.git
-    cp lazysite-views/default/view.tt public_html/lazysite/templates/
-
-### Option 3 - use as a theme (per-page switching)
-
-Place the view in the themes directory:
-
-    public_html/lazysite/themes/default/view.tt
-
-Then set in `lazysite/lazysite.conf`:
-
-    theme: default
-
-Or per-page in front matter:
+Then in `lazysite.conf`:
 
     layout: default
 
+### Theme (via manager UI)
+
+With `layouts_repo` set to
+`OpenDigitalCC/lazysite-layouts` in `lazysite.conf`, the
+manager at `/manager/themes` offers "Install from Releases".
+Pick a tag; themes in that release install under the active
+layout.
+
+### Theme (manual zip)
+
+Download any `releases/*.zip` and upload it via
+`/manager/themes > Upload theme`, or extract it manually:
+
+    mkdir -p /path/to/public_html/lazysite/layouts/default/themes/default
+    unzip releases/default/default.zip \
+        -d /path/to/public_html/lazysite/layouts/default/themes/default/
+
+    mkdir -p /path/to/public_html/lazysite-assets/default/default
+    cp -r /path/to/public_html/lazysite/layouts/default/themes/default/assets/. \
+          /path/to/public_html/lazysite-assets/default/default/
+
+Then activate:
+
+    theme: default
+
+## Setting up nav.conf
+
+`nav.conf` is site content, not theme content. The processor
+reads it from `{DOCROOT}/lazysite/nav.conf`; themes and layouts
+don't ship one. Create yours:
+
+    # {DOCROOT}/lazysite/nav.conf
+    Home | /
+    About | /about
+    Docs | /docs
+
+See the upstream lazysite docs for the full format.
+
 ## Available themes
 
-| Theme | Description |
-| ----- | ----------- |
-| default | Clean neutral light theme, no external dependencies |
-| dark | Dark theme, no external dependencies |
+| Theme   | Description                                      |
+| ------- | ------------------------------------------------ |
+| default | Clean neutral light theme, no external assets    |
+| dark    | Dark theme, no external assets                   |
+
+Both ship under the `default` layout. Theme `config` values
+drive every meaningful colour in `main.css` via CSS custom
+properties - edit `theme.json`, get a recoloured theme, no
+CSS edits needed.
 
 ## Downloads
 
-Pre-built zip packages are in the `releases/` directory:
+Pre-built zip packages mirror the source structure:
+`releases/LAYOUT/THEME.zip`.
 
-- [default.zip](releases/default.zip) — light theme
-- [dark.zip](releases/dark.zip) — dark theme
+- [releases/default/default.zip](releases/default/default.zip) - light theme
+- [releases/default/dark.zip](releases/default/dark.zip) - dark theme
 
-Install manually:
+The layout-scoped nesting means future layouts (e.g. `studio`)
+can each ship a `default` theme without collision.
 
-    curl -sL https://github.com/OpenDigitalCC/lazysite-views/raw/main/releases/default.zip \
-        -o /tmp/default.zip
-    mkdir -p public_html/lazysite/themes/default
-    unzip /tmp/default.zip -d public_html/lazysite/themes/default/
-    mkdir -p public_html/lazysite-assets/default
-    cp -r public_html/lazysite/themes/default/assets/* public_html/lazysite-assets/default/
+## Rebuilding the packages
 
-Or upload via the lazysite editor: Editor > Themes > Upload theme.
+After editing a theme (or adding a new one), rebuild:
 
-Rebuild packages after updating themes:
+    tools/package-themes.sh
 
-    bash tools/package-themes.sh
+The script walks `layouts/*/themes/*/` and produces one zip per
+theme at `releases/LAYOUT/THEME.zip`. Each zip has the D013
+upload shape: `theme.json` at root, `assets/` subtree for
+web-served files.
 
-## nav.conf
+## Contributing
 
-Each view directory includes a `nav.conf` example. Copy it to
-`public_html/lazysite/nav.conf` and edit to match your site structure.
+### A new theme
 
-## Creating your own view
+See [docs/creating-themes.md](docs/creating-themes.md). Fork an
+existing theme directory, adjust `theme.json` config values,
+repackage.
 
-See [docs/creating-views.md](docs/creating-views.md) for the complete
-view creation manual - variables, navigation pattern, CSS classes, TT
-syntax, and a full working example.
+### A new layout
+
+See [docs/creating-layouts.md](docs/creating-layouts.md).
+Currently this repo ships one layout; new layouts are rare
+additions since themes are scoped per layout.
+
+## Compatibility
+
+- lazysite 0.2.10+ - required. Earlier lazysite versions use a
+  pre-D013 theme format with `view.tt` and no `layouts[]`/
+  `config{}` in `theme.json`. Themes from this repo won't install
+  there.
+
+## Licence
+
+MIT.

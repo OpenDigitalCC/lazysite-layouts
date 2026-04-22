@@ -1,0 +1,6 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "Default lazysite page layout: SEO/OG head, site-bar, nav, main, footer. Structural only; colours and fonts come from the active theme's config tokens.",
+  "author": "OpenDigitalCC"
+}

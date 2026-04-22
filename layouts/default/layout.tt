@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  [% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+  <meta property="og:title" content="[% page_title | html %][% IF site_name %] - [% site_name | html %][% END %]">
+  [% IF page_subtitle %]<meta property="og:description" content="[% page_subtitle | html %]">[% END %]
+  <meta property="og:type" content="website">
+  [% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">[% END %]
+  [% IF site_url %]<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+  <title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+  [%# D013: theme_css emits <style>:root { --theme-*-*: ...; } %]
+  [% theme_css %]
+  [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrapper">
+      <h1 class="site-name"><a href="/">[% site_name %]</a></h1>
+      <div class="site-tools">
+        [% IF authenticated %]
+        <div class="auth-indicator">
+          <span class="auth-user">[% auth_name || auth_user %]</span>
+          <a href="/logout" class="auth-link auth-logout">Sign out</a>
+        </div>
+        [% ELSE %]
+        <a href="/login" class="auth-link auth-signin">Sign in</a>
+        [% END %]
+      </div>
+      <nav class="site-nav">
+        <ul>
+        [% FOREACH item IN nav %]
+          [% IF item.children.size %]
+          <li class="nav-group">
+            [% IF item.url %]
+            <a href="[% item.url %]"
+              [% IF request_uri == item.url %]class="active"[% END %]>[% item.label %]</a>
+            [% ELSE %]
+            <span class="nav-group-label">[% item.label %]</span>
+            [% END %]
+            <ul class="nav-children">
+            [% FOREACH child IN item.children %]
+              <li><a href="[% child.url %]"
+                [% IF request_uri == child.url %]class="active"[% END %]>[% child.label %]</a></li>
+            [% END %]
+            </ul>
+          </li>
+          [% ELSE %]
+          <li><a href="[% item.url %]"
+            [% IF request_uri == item.url %]class="active"[% END %]>[% item.label %]</a></li>
+          [% END %]
+        [% END %]
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-content">
+    <div class="wrapper">
+      <article>
+        <header class="page-header">
+          <h1 class="page-title">[% page_title %]</h1>
+          [% IF page_subtitle %]
+          <p class="page-subtitle">[% page_subtitle %]</p>
+          [% END %]
+        </header>
+        <div class="page-body">
+          [% content %]
+        </div>
+        [% IF page_modified %]
+        <time datetime="[% page_modified_iso %]" class="page-modified">Last updated: [% page_modified %]</time>
+        [% END %]
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrapper">
+      <span>&copy; [% site_name %]</span>
+      <span>Powered by <a href="https://lazysite.io">lazysite</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
