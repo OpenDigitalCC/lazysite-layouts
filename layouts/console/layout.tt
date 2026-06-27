@@ -15,7 +15,7 @@
 <div class="scanlines"></div>
 <main class="crt">
   <div class="term" id="term">
-    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot g"></span><span class="term-title">guest@lazysite: ~/explorer</span></div>
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot g"></span><span class="term-title">guest@lazysite: ~/explorer</span><a href="/" class="term-exit">[ exit to explorer ]</a></div>
     <div class="term-body" id="term-body">
       <div id="term-out"></div>
       <div class="prompt-line" id="prompt-line">
@@ -49,7 +49,8 @@
     ls: 'list commands',
     clear: 'clear the screen',
     theme: 'switch palette: theme amber | theme green',
-    whoami: 'who you are'
+    whoami: 'who you are',
+    exit: 'back to the theme explorer'
   };
   function cmdList(){ var k = Object.keys(builtins).concat(Object.keys(pages)); return k.filter(function(v,i){return k.indexOf(v)===i;}).sort(); }
 
@@ -65,6 +66,7 @@
     }
     if (name === 'ls') { print('<span>' + cmdList().join('&nbsp;&nbsp;') + '</span>'); return; }
     if (name === 'whoami') { print('guest &mdash; a curious visitor exploring what a static site can be.'); return; }
+    if (name === 'exit' || name === 'home' || name === 'explorer') { print('<span class="muted">returning to the theme explorer ...</span>'); setTimeout(function(){ window.location.href = '/'; }, 250); return; }
     if (name === 'theme') { var m = (parts[1]||'').toLowerCase(); if (m==='amber'){document.documentElement.classList.add('amber');print('<span class="muted">palette &rarr; amber</span>');} else if (m==='green'){document.documentElement.classList.remove('amber');print('<span class="muted">palette &rarr; green</span>');} else {print('<span class="err">usage: theme amber | theme green</span>');} return; }
     if (pages[name]) { print(pages[name].html); return; }
     print('command not found: ' + name.replace(/</g,'&lt;') + ". type 'help'.", 'err');

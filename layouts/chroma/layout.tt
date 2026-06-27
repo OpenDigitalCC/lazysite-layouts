@@ -14,7 +14,7 @@
 <body>
 <div class="bar">
   <div class="inner">
-    <span class="brand">Chroma<b>.</b></span>
+    <a class="brand" href="/" title="Back to the theme explorer">Chroma<b>.</b></a>
     <div class="swatches" id="swatches" role="group" aria-label="Palette presets"></div>
     <button class="dock-btn" id="randomise" title="Generate a new palette">&#9856; Randomise</button>
     <span class="palette-name" id="palette-name">Midnight</span>
