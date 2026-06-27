@@ -1,0 +1,31 @@
+{
+  "name": "quill",
+  "version": "1.0.0",
+  "description": "Quill - a lazysite theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "quill"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#F6F3EC",
+      "surface": "#FFFFFF",
+      "surface-2": "#ECE7DC",
+      "text": "#2B2722",
+      "text-muted": "#7A7064",
+      "heading": "#211D18",
+      "accent": "#3C6E63",
+      "accent-2": "#9A5B3F",
+      "on-accent": "#FFFFFF",
+      "border": "#E2DBCD"
+    },
+    "fonts": {
+      "display": "'Lora', Georgia, serif",
+      "body": "'Lora', Georgia, serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

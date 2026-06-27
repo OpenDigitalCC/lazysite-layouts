@@ -1,0 +1,31 @@
+{
+  "name": "cadre",
+  "version": "1.0.0",
+  "description": "Cadre - a lazysite theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "cadre"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#F2F0EA",
+      "surface": "#FFFFFF",
+      "surface-2": "#E6E3DA",
+      "text": "#1A1815",
+      "text-muted": "#6B6660",
+      "heading": "#0E0D0B",
+      "accent": "#2B3BFF",
+      "accent-2": "#FF5E3A",
+      "on-accent": "#FFFFFF",
+      "border": "#DED9CD"
+    },
+    "fonts": {
+      "display": "'Space Grotesk', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "noir",
+  "version": "1.0.0",
+  "description": "Noir - a lazysite theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "noir"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#08080A",
+      "surface": "#131316",
+      "surface-2": "#1A1A1F",
+      "text": "#EDEDF0",
+      "text-muted": "#8A8A92",
+      "heading": "#FFFFFF",
+      "accent": "#C9A24B",
+      "accent-2": "#D4D4DC",
+      "on-accent": "#08080A",
+      "border": "#20202A"
+    },
+    "fonts": {
+      "display": "'Sora', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
