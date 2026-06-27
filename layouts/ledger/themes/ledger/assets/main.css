@@ -1,0 +1,56 @@
+/* LEDGER - a classic two-panel blog: plain white, system font, blue links.
+   Modelled on the structure of a TypePad-era personal archive, unshaded. */
+:root{
+  --bg:var(--theme-colours-bg,#FFFFFF);--text:var(--theme-colours-text,#222222);
+  --muted:var(--theme-colours-text-muted,#666666);--heading:var(--theme-colours-heading,#1A1A1A);
+  --accent:var(--theme-colours-accent,#1B4FAA);--accent-2:var(--theme-colours-accent-2,#333333);
+  --border:var(--theme-colours-border,#E2E2E2);--soft:var(--theme-colours-border-soft,#EEEEEE);
+  --fb:var(--theme-fonts-body,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif);
+  --fd:var(--theme-fonts-display,var(--fb))
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;font-size:16.5px;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+a:hover{text-decoration:none}
+.led-wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+/* banner */
+.led-banner{padding:30px 0 16px;border-bottom:2px solid var(--accent)}
+.led-banner .title{font-family:var(--fd);font-weight:800;font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.14;letter-spacing:-.01em}
+.led-banner .title a{color:var(--accent);text-decoration:none}
+.led-banner .desc{margin-top:7px;color:var(--accent-2);font-weight:600;font-size:1.05rem}
+.led-util{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.led-search{border:1px solid var(--border);padding:7px 12px;border-radius:4px;font:inherit;font-size:.9rem;color:var(--muted);width:230px;max-width:100%;background:var(--bg)}
+.led-nav{display:flex;gap:18px;font-size:.93rem}
+.led-nav a{color:var(--accent);text-decoration:none}.led-nav a:hover{text-decoration:underline}
+/* two panels */
+.led-body{display:grid;grid-template-columns:262px 1fr;gap:42px;padding:28px 0 0}
+/* sidebar modules - no shaded fill, header rule only */
+.led-mod{margin-bottom:26px}
+.led-mod h3{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--accent);padding-bottom:6px;margin-bottom:11px;border-bottom:1px solid var(--border)}
+.led-mod ul{list-style:none}
+.led-mod li{margin:7px 0;line-height:1.45;font-size:.95rem}
+.led-mod li .d{color:var(--muted);font-size:.84rem}
+.led-mod p{font-size:.95rem;margin:0 0 9px}
+.led-photo{border:1px solid var(--border);padding:5px;margin-bottom:8px}
+.led-photo .ph{display:block;width:100%;aspect-ratio:1/1;background:linear-gradient(160deg,#eef1f6,#dfe5ee);position:relative}
+.led-photo .ph svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:74%;height:88%;fill:#b9c2d4}
+.led-book{display:flex;gap:12px;align-items:flex-start}
+.led-book .cov{flex:0 0 64px;height:90px;background:linear-gradient(150deg,#3a5fa0,#1b4faa);border:1px solid var(--border);display:grid;place-items:center;color:#fff;font-weight:700;font-size:.7rem;text-align:center;padding:6px;line-height:1.2}
+/* main content */
+.led-main #content>*:first-child{margin-top:0}
+.entry{margin-bottom:30px;padding-bottom:28px;border-bottom:1px solid var(--soft)}
+.entry:last-child{border-bottom:0}
+.entry-title{font-family:var(--fd);font-size:1.55rem;font-weight:800;line-height:1.2;color:var(--heading)}
+.entry-title a{color:inherit;text-decoration:none}.entry-title a:hover{color:var(--accent)}
+.entry-meta{color:var(--muted);font-size:.9rem;margin:5px 0 13px}
+.entry-body>*+*{margin-top:1rem}
+.entry-body h2{font-size:1.2rem;margin-top:1.5rem;color:var(--heading)}
+.entry-body img{max-width:100%;height:auto;border:1px solid var(--border)}
+.entry-body blockquote{border-left:3px solid var(--accent);padding:2px 0 2px 16px;color:var(--muted)}
+.entry-body ul,.entry-body ol{padding-left:1.3em}
+.entry-body code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:#f5f6f8;border:1px solid var(--soft);padding:1px 5px;border-radius:4px}
+.read-more{font-weight:600;text-decoration:none}.read-more:hover{text-decoration:underline}
+/* footer */
+.led-foot{margin-top:42px;padding:18px 0 40px;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.led-foot a{color:var(--accent)}
+@media(max-width:760px){.led-body{grid-template-columns:1fr}.led-side{order:2;border-top:1px solid var(--soft);padding-top:22px}}

@@ -1,0 +1,18 @@
+{
+  "name": "ledger",
+  "version": "1.0.0",
+  "description": "Ledger - a classic two-panel blog theme. Plain white, system font, blue links.",
+  "author": "OpenDigitalCC",
+  "layouts": ["ledger"],
+  "config": {
+    "colours": {
+      "bg": "#FFFFFF", "text": "#222222", "text-muted": "#666666", "heading": "#1A1A1A",
+      "accent": "#1B4FAA", "accent-2": "#333333", "border": "#E2E2E2", "border-soft": "#EEEEEE"
+    },
+    "fonts": {
+      "body": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      "display": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}
