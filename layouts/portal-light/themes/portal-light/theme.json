@@ -1,0 +1,33 @@
+{
+  "name": "portal-light",
+  "version": "1.0.0",
+  "description": "Light dashboard - a lazysite system-dashboard theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "portal-light"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#EEF1F6",
+      "surface": "#FFFFFF",
+      "surface-2": "#F4F6FA",
+      "text": "#303A46",
+      "text-muted": "#6B7686",
+      "heading": "#141A22",
+      "accent": "#4F46E5",
+      "accent-2": "#0EA5E9",
+      "pos": "#16A34A",
+      "neg": "#DC2626",
+      "on-accent": "#FFFFFF",
+      "border": "#E3E8EF"
+    },
+    "fonts": {
+      "display": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

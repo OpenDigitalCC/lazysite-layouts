@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/portal-dark/portal-dark/main.css">
+</head>
+<body>
+<div class="dash-shell">
+<aside class="dash-side">
+<div class="dash-brand"><span class="dot">&#9683;</span>Sentry</div>
+<nav class="dash-nav">
+<a class="active"><span class="ic"></span>Overview</a>
+<a><span class="ic"></span>Analytics</a>
+<a><span class="ic"></span>Services</a>
+<a><span class="ic"></span>Alerts</a>
+<a><span class="ic"></span>Settings</a>
+</nav>
+<div class="spacer"></div>
+<a class="ex" href="/">&larr; Theme explorer</a>
+</aside>
+<div class="dash-main">
+<header class="dash-top"><h1>Overview</h1><div class="seg"><button class="on">Day</button><button>Week</button><button>Month</button></div><input class="search" placeholder="Search metrics..."><div class="who">JV</div></header>
+<main class="dash-content">[% content %]</main>
+</div>
+</div>
+</body>
+</html>

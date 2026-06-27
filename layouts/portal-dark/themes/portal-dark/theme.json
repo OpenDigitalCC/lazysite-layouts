@@ -1,0 +1,33 @@
+{
+  "name": "portal-dark",
+  "version": "1.0.0",
+  "description": "Dark dashboard - a lazysite system-dashboard theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "portal-dark"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#0B0F17",
+      "surface": "#131925",
+      "surface-2": "#1A2130",
+      "text": "#C4CCD8",
+      "text-muted": "#7E8A9C",
+      "heading": "#FFFFFF",
+      "accent": "#6366F1",
+      "accent-2": "#22D3EE",
+      "pos": "#34D399",
+      "neg": "#F87171",
+      "on-accent": "#0B0F17",
+      "border": "#232C3B"
+    },
+    "fonts": {
+      "display": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
