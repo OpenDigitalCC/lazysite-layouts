@@ -1,0 +1,27 @@
+{
+  "name": "pulse",
+  "version": "1.0.0",
+  "description": "PULSE - a generative, interactive statement theme: a live canvas flow-field hero that reacts to the cursor, on a refined dark glass UI. For the pulse layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["pulse"],
+  "config": {
+    "colours": {
+      "bg": "#06060B",
+      "surface": "#0E0E17",
+      "surface-2": "#15151F",
+      "text": "#E9E9F2",
+      "text-muted": "#9090A8",
+      "heading": "#FFFFFF",
+      "accent": "#5EEAD4",
+      "accent-2": "#A78BFA",
+      "accent-3": "#38BDF8",
+      "on-accent": "#06060B",
+      "border": "#20202F"
+    },
+    "fonts": {
+      "display": "'Syne', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}
