@@ -1,0 +1,30 @@
+{
+  "name": "atelier",
+  "version": "1.0.0",
+  "description": "Atelier - a lazysite theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "atelier"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FBFAF7",
+      "surface": "#FFFFFF",
+      "surface-2": "#F1EDE5",
+      "text": "#2A2620",
+      "text-muted": "#7A736A",
+      "heading": "#1A1714",
+      "accent": "#9A5B3F",
+      "on-accent": "#FFFFFF",
+      "border": "#E7E1D6"
+    },
+    "fonts": {
+      "display": "'Cormorant Garamond', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

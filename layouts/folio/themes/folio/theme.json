@@ -1,0 +1,30 @@
+{
+  "name": "folio",
+  "version": "1.0.0",
+  "description": "Folio - a lazysite theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "folio"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#F7F4EE",
+      "surface": "#FFFFFF",
+      "surface-2": "#EFEAE0",
+      "text": "#2A2620",
+      "text-muted": "#6E665A",
+      "heading": "#211D17",
+      "accent": "#36655E",
+      "on-accent": "#FFFFFF",
+      "border": "#E5DFD3"
+    },
+    "fonts": {
+      "display": "'Newsreader', Georgia, serif",
+      "body": "'Newsreader', Georgia, serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
