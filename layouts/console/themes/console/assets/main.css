@@ -20,6 +20,9 @@
 :root.amber { --accent: var(--theme-colours-accent-2, #FFB23E); --text: #FFD79A; --heading: #FFE9C8; --muted: #9a7a45; --border: #3a2c12; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* data blocks are read by JS and printed on command - never shown directly,
+   and hidden by attribute so a broken markdown wrapper can't leak them. */
+[data-cmd], [data-banner] { display: none !important; }
 html, body { height: 100%; }
 body { background: var(--bg); color: var(--text); font-family: var(--mono); line-height: 1.55; overflow: hidden; }
 a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
