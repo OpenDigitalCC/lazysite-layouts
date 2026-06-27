@@ -12,12 +12,13 @@ earlier versions use a different (incompatible) theme format.
           layout.tt            <- structural HTML template
           layout.json          <- layout metadata
           themes/
-            default/           <- light theme (ships in releases/default/default.zip)
+            default/           <- clean neutral light theme
               theme.json
               assets/main.css
-            dark/              <- dark theme (ships in releases/default/dark.zip)
-              theme.json
-              assets/main.css
+            dark/              <- dark theme
+            studio/            <- Swiss grid, red accent, square corners
+            warm/              <- parchment + sage, serif headings (token-only)
+            terminal/          <- dark monospace, green accent
       docs/
         creating-layouts.md
         creating-themes.md
@@ -25,8 +26,8 @@ earlier versions use a different (incompatible) theme format.
         package-themes.sh      <- rebuilds releases/*.zip from layouts/
       releases/
         default/              <- layout-scoped; mirrors source structure
-          default.zip
-          dark.zip
+          default.zip  dark.zip  studio.zip
+          warm.zip     terminal.zip
 
 ## The three-layer model
 
@@ -101,12 +102,15 @@ See the upstream lazysite docs for the full format.
 
 ## Available themes
 
-| Theme   | Description                                      |
-| ------- | ------------------------------------------------ |
-| default | Clean neutral light theme, no external assets    |
-| dark    | Dark theme, no external assets                   |
+| Theme    | Description                                       |
+| -------- | ------------------------------------------------- |
+| default  | Clean neutral light theme, no external assets     |
+| dark     | Dark theme, no external assets                    |
+| studio   | Swiss international: grotesk, red accent, square   |
+| warm     | Parchment + sage, serif headings (token-only)     |
+| terminal | Dark technical monospace, signal-green accent      |
 
-Both ship under the `default` layout. Theme `config` values
+All ship under the `default` layout, with no external assets. Theme `config` values
 drive every meaningful colour in `main.css` via CSS custom
 properties - edit `theme.json`, get a recoloured theme, no
 CSS edits needed.
@@ -118,6 +122,9 @@ Pre-built zip packages mirror the source structure:
 
 - [releases/default/default.zip](releases/default/default.zip) - light theme
 - [releases/default/dark.zip](releases/default/dark.zip) - dark theme
+- [releases/default/studio.zip](releases/default/studio.zip) - Swiss grid theme
+- [releases/default/warm.zip](releases/default/warm.zip) - warm minimal theme
+- [releases/default/terminal.zip](releases/default/terminal.zip) - monospace theme
 
 The layout-scoped nesting means future layouts (e.g. `studio`)
 can each ship a `default` theme without collision.

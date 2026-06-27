@@ -1,0 +1,41 @@
+{
+  "name": "warm",
+  "version": "1.0.0",
+  "description": "Warm minimal theme: parchment background, sage accent, serif headings. Token-only (shares the base stylesheet). No external dependencies.",
+  "author": "OpenDigitalCC",
+  "layouts": ["default"],
+  "config": {
+    "colours": {
+      "primary": "#5f6f4e",
+      "primary-hover": "#4a5a3a",
+      "primary-text": "#ffffff",
+      "text": "#33302a",
+      "text-muted": "#6b6359",
+      "text-dim": "#8a8175",
+      "heading": "#2a2722",
+      "background": "#faf6ee",
+      "background-alt": "#f1ebdd",
+      "background-accent": "#eef0e6",
+      "background-dropdown": "#fffdf8",
+      "border": "#e3dccd",
+      "success": "#3f7d4f",
+      "error": "#b4452f",
+      "mark": "#f6e7b8",
+      "mark-text": "#33302a",
+      "shadow": "rgba(60, 50, 30, 0.12)"
+    },
+    "fonts": {
+      "body": "system-ui, -apple-system, 'Segoe UI', sans-serif",
+      "heading": "Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif",
+      "code": "ui-monospace, Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "760px",
+      "radius": "10px"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

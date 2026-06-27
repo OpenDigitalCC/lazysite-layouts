@@ -1,0 +1,41 @@
+{
+  "name": "studio",
+  "version": "1.0.0",
+  "description": "Swiss international-style theme: neutral grid, grotesk type, one red accent, square corners. No external dependencies.",
+  "author": "OpenDigitalCC",
+  "layouts": ["default"],
+  "config": {
+    "colours": {
+      "primary": "#e2231a",
+      "primary-hover": "#b51a13",
+      "primary-text": "#ffffff",
+      "text": "#111111",
+      "text-muted": "#444444",
+      "text-dim": "#767676",
+      "heading": "#000000",
+      "background": "#ffffff",
+      "background-alt": "#f2f2f2",
+      "background-accent": "#fbeae9",
+      "background-dropdown": "#ffffff",
+      "border": "#111111",
+      "success": "#1a7f37",
+      "error": "#c1121f",
+      "mark": "#ffe8a3",
+      "mark-text": "#111111",
+      "shadow": "rgba(0, 0, 0, 0.18)"
+    },
+    "fonts": {
+      "body": "'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif",
+      "heading": "'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif",
+      "code": "ui-monospace, Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "820px",
+      "radius": "0"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "terminal",
+  "version": "1.0.0",
+  "description": "Technical monospace theme: dark, mono everywhere, signal-green accent, square corners. No external dependencies.",
+  "author": "OpenDigitalCC",
+  "layouts": ["default"],
+  "config": {
+    "colours": {
+      "primary": "#3fb950",
+      "primary-hover": "#56d364",
+      "primary-text": "#0d1117",
+      "text": "#c9d1d9",
+      "text-muted": "#8b949e",
+      "text-dim": "#6e7681",
+      "heading": "#e6edf3",
+      "background": "#0d1117",
+      "background-alt": "#161b22",
+      "background-accent": "#10231a",
+      "background-dropdown": "#161b22",
+      "border": "#30363d",
+      "success": "#3fb950",
+      "error": "#f85149",
+      "mark": "#3a3000",
+      "mark-text": "#f0e68c",
+      "shadow": "rgba(0, 0, 0, 0.7)"
+    },
+    "fonts": {
+      "body": "ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace",
+      "heading": "ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace",
+      "code": "ui-monospace, 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "820px",
+      "radius": "0"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
