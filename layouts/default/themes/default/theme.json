@@ -1,6 +1,6 @@
 {
   "name": "default",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Clean neutral light theme. No external dependencies.",
   "author": "OpenDigitalCC",
   "layouts": ["default"],
@@ -8,6 +8,7 @@
     "colours": {
       "primary": "#0056b3",
       "primary-hover": "#003d80",
+      "primary-text": "#ffffff",
       "text": "#1a1a1a",
       "text-muted": "#555555",
       "text-dim": "#777777",
@@ -16,11 +17,21 @@
       "background-alt": "#f0f0f0",
       "background-accent": "#e8f0fe",
       "background-dropdown": "#ffffff",
-      "border": "#e0e0e0"
+      "border": "#e0e0e0",
+      "success": "#198754",
+      "error": "#dc3545",
+      "mark": "#fff3cd",
+      "mark-text": "#1a1a1a",
+      "shadow": "rgba(0, 0, 0, 0.15)"
     },
     "fonts": {
       "body": "system-ui, -apple-system, sans-serif",
+      "heading": "system-ui, -apple-system, sans-serif",
       "code": "ui-monospace, Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "800px",
+      "radius": "6px"
     }
   },
   "files": [

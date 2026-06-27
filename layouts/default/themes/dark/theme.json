@@ -1,6 +1,6 @@
 {
   "name": "dark",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Dark theme. No external dependencies.",
   "author": "OpenDigitalCC",
   "layouts": ["default"],
@@ -8,6 +8,7 @@
     "colours": {
       "primary": "#6db3f2",
       "primary-hover": "#8ac7ff",
+      "primary-text": "#11212f",
       "text": "#e0e0e0",
       "text-muted": "#aaaaaa",
       "text-dim": "#777777",
@@ -16,11 +17,21 @@
       "background-alt": "#2a2a2a",
       "background-accent": "#1e2d3d",
       "background-dropdown": "#232323",
-      "border": "#333333"
+      "border": "#333333",
+      "success": "#5ad17a",
+      "error": "#ff6b6b",
+      "mark": "#4a3f00",
+      "mark-text": "#ffe9a8",
+      "shadow": "rgba(0, 0, 0, 0.6)"
     },
     "fonts": {
       "body": "system-ui, -apple-system, sans-serif",
+      "heading": "system-ui, -apple-system, sans-serif",
       "code": "ui-monospace, Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "800px",
+      "radius": "6px"
     }
   },
   "files": [
