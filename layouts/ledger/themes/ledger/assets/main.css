@@ -23,7 +23,7 @@ a:hover{text-decoration:none}
 .led-nav{display:flex;gap:18px;font-size:.93rem}
 .led-nav a{color:var(--accent);text-decoration:none}.led-nav a:hover{text-decoration:underline}
 /* two panels */
-.led-body{display:grid;grid-template-columns:262px 1fr;gap:42px;padding:28px 0 0}
+.led-body{display:grid;grid-template-columns:236px minmax(0,1fr) 224px;gap:38px;padding:28px 0 0}
 /* sidebar modules - no shaded fill, header rule only */
 .led-mod{margin-bottom:26px}
 .led-mod h3{font-family:var(--fd);font-size:1rem;font-weight:700;color:var(--accent);padding-bottom:6px;margin-bottom:11px;border-bottom:1px solid var(--border)}
@@ -53,4 +53,5 @@ a:hover{text-decoration:none}
 /* footer */
 .led-foot{margin-top:42px;padding:18px 0 40px;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .led-foot a{color:var(--accent)}
-@media(max-width:760px){.led-body{grid-template-columns:1fr}.led-side{order:2;border-top:1px solid var(--soft);padding-top:22px}}
+@media(max-width:1000px){.led-body{grid-template-columns:216px minmax(0,1fr)}.led-side2{grid-column:1/-1;border-top:1px solid var(--soft);padding-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0 36px;align-content:start}}
+@media(max-width:700px){.led-body{grid-template-columns:1fr}.led-side{order:2;border-top:1px solid var(--soft);padding-top:20px}.led-side2{order:3}}

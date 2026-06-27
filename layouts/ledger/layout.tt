@@ -12,44 +12,53 @@
 <div class="led-wrap">
 
   <header class="led-banner">
-    <h1 class="title"><a href="/">Fieldnotes: essays, talks &amp; work in progress</a></h1>
-    <p class="desc">A working archive on money, work and meaning.</p>
+    <h1 class="title"><a href="/">Fieldnotes: essays, notes &amp; work in progress</a></h1>
+    <p class="desc">A working archive on craft, ideas and attention.</p>
     <div class="led-util">
       <input class="led-search" type="search" placeholder="Search articles&hellip;" aria-label="Search">
-      <nav class="led-nav"><a href="/">Home</a><a href="#">Writing</a><a href="#">Seminars</a><a href="#">About</a></nav>
+      <nav class="led-nav"><a href="/">Home</a><a href="#">Essays</a><a href="#">Notes</a><a href="#">About</a></nav>
     </div>
   </header>
 
   <div class="led-body">
-    <aside class="led-side" aria-label="Sidebar">
+    <aside class="led-side" aria-label="About">
       <div class="led-mod led-photo">
         <span class="ph"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 16a17 17 0 1 1 0 34 17 17 0 0 1 0-34zM16 96c0-19 15-32 34-32s34 13 34 32z"/></svg></span>
       </div>
       <div class="led-mod">
-        <p>An independent researcher and facilitator. I write here about the patterns underneath money and work, and run occasional small-group seminars.</p>
+        <p>An independent writer and designer. I keep notes here on craft, the work of making things, and the ideas I want to come back to.</p>
         <p><a href="#">Email me</a></p>
       </div>
       <div class="led-mod">
         <h3>In print</h3>
         <div class="led-book"><span class="cov">FIELD NOTES</span><div><strong>Field Notes</strong><br><span class="d">A short book of essays. Out now.</span></div></div>
       </div>
+    </aside>
+
+    <main class="led-main" id="main">
+      <div id="content">
+        [% content %]
+      </div>
+    </main>
+
+    <aside class="led-side2" aria-label="More">
       <div class="led-mod">
         <h3>Recent writing</h3>
         <ul>
-          <li><a href="#">The quiet authority of the source</a></li>
-          <li><a href="#">Money as a mirror</a></li>
-          <li><a href="#">On letting go</a></li>
-          <li><a href="#">Specific value</a></li>
-          <li><a href="#">Enough</a></li>
+          <li><a href="#">What the margins are for</a></li>
+          <li><a href="#">On keeping a notebook</a></li>
+          <li><a href="#">The shape of a good question</a></li>
+          <li><a href="#">Reading twice</a></li>
+          <li><a href="#">Small things, done daily</a></li>
         </ul>
       </div>
       <div class="led-mod">
         <h3>Topics</h3>
         <ul>
-          <li><a href="#">Source principles</a> <span class="d">(12)</span></li>
-          <li><a href="#">The inner game of money</a> <span class="d">(9)</span></li>
-          <li><a href="#">Systemic work</a> <span class="d">(7)</span></li>
-          <li><a href="#">Seminars &amp; talks</a> <span class="d">(5)</span></li>
+          <li><a href="#">Essays</a> <span class="d">(14)</span></li>
+          <li><a href="#">Notes</a> <span class="d">(22)</span></li>
+          <li><a href="#">Reading</a> <span class="d">(9)</span></li>
+          <li><a href="#">Workshops &amp; talks</a> <span class="d">(5)</span></li>
         </ul>
       </div>
       <div class="led-mod">
@@ -60,13 +69,16 @@
           <li><a href="#">Reading list</a></li>
         </ul>
       </div>
-    </aside>
-
-    <main class="led-main" id="main">
-      <div id="content">
-        [% content %]
+      <div class="led-mod">
+        <h3>Archives</h3>
+        <ul>
+          <li><a href="#">June 2026</a></li>
+          <li><a href="#">May 2026</a></li>
+          <li><a href="#">April 2026</a></li>
+          <li><a href="#">March 2026</a></li>
+        </ul>
       </div>
-    </main>
+    </aside>
   </div>
 
   <footer class="led-foot">
