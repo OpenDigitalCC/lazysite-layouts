@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/lumen/lumen/main.css">
+</head>
+<body>
+<nav class="lumen-nav">
+  <div class="nav-inner">
+    <a href="/" class="lumen-logo">Lumen<b>.</b></a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#voices">Voices</a></li>
+      <li><a href="#essay">Essay</a></li>
+      <li><a href="/" class="nav-cta">Theme Explorer</a></li>
+    </ul>
+  </div>
+</nav>
+
+[% content %]
+
+<footer class="lumen-foot">
+  <div class="inner">
+    <div>
+      <div class="logo">Lumen<b style="color:var(--accent)">.</b></div>
+      <p class="blurb">A light editorial statement theme for lazysite - a big serif, electric accent, asymmetric grids and quiet motion. The bright counterpart to NOVA.</p>
+    </div>
+    <div>
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#voices">Voices</a></li>
+        <li><a href="#essay">The essay</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>lazysite</h4>
+      <ul>
+        <li><a href="/">Theme Explorer</a></li>
+        <li><a href="https://lazysite.io" target="_blank" rel="noopener">lazysite.io &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base">
+    <span>&copy; [% year %] Lumen - a lazysite statement theme.</span>
+    <span>Set in Fraunces &amp; Inter</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

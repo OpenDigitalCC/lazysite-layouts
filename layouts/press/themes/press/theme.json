@@ -1,0 +1,26 @@
+{
+  "name": "press",
+  "version": "1.0.0",
+  "description": "PRESS - a newsprint brutalist statement theme: cream stock, hard black rules, news-red accent, Anton masthead over Newsreader serif, a breaking ticker. For the press layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["press"],
+  "config": {
+    "colours": {
+      "bg": "#F4F1E8",
+      "surface": "#FFFFFF",
+      "surface-2": "#E9E5D8",
+      "text": "#161616",
+      "text-muted": "#555048",
+      "heading": "#000000",
+      "accent": "#E5341B",
+      "accent-2": "#1A1A1A",
+      "on-accent": "#FFFFFF",
+      "border": "#000000"
+    },
+    "fonts": {
+      "display": "'Anton', Impact, sans-serif",
+      "body": "'Newsreader', Georgia, serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

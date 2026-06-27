@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/press/press/main.css">
+</head>
+<body>
+<nav class="press-nav">
+  <div class="edition">
+    <div class="wrap"><span>Vol. I &middot; No. 1</span><span>The lazysite statement edition</span><span>Free</span></div>
+  </div>
+  <div class="bar">
+    <a href="/" class="press-logo">The&nbsp;Press<b>.</b></a>
+    <ul class="nav-links">
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#column">Column</a></li>
+      <li><a href="#opinion">Opinion</a></li>
+      <li><a href="/" class="nav-cta">Explorer</a></li>
+    </ul>
+  </div>
+</nav>
+
+[% content %]
+
+<footer class="press-foot">
+  <div class="inner">
+    <div>
+      <div class="logo">The Press<b style="color:var(--accent)">.</b></div>
+      <p class="blurb">A newsprint brutalist statement theme for lazysite - hard rules, a heavy masthead, a breaking ticker and one news-red accent. Built to prove a static site can shout.</p>
+    </div>
+    <div>
+      <h4>Sections</h4>
+      <ul>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#column">The column</a></li>
+        <li><a href="#opinion">Opinion</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>lazysite</h4>
+      <ul>
+        <li><a href="/">Theme Explorer</a></li>
+        <li><a href="https://lazysite.io" target="_blank" rel="noopener">lazysite.io &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base">
+    <span>&copy; [% year %] The Press - a lazysite statement theme</span>
+    <span>Set in Anton &amp; Newsreader</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

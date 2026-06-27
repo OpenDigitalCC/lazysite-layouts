@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/nova/nova/main.css">
+</head>
+<body>
+<nav class="nova-nav">
+  <div class="nav-inner">
+    <a href="/" class="nova-logo"><span class="dot"></span>NOVA</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#showcase">Showcase</a></li>
+      <li><a href="#start">Start</a></li>
+      <li><a href="/" class="nav-cta">Theme Explorer</a></li>
+    </ul>
+  </div>
+</nav>
+
+[% content %]
+
+<footer class="nova-foot">
+  <div class="inner">
+    <div>
+      <a href="/" class="nova-logo"><span class="dot"></span>NOVA</a>
+      <p class="blurb">A kinetic statement theme for lazysite - animated aurora, glass surfaces and motion. Built to show how far a lazysite layout and theme can go.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#showcase">Showcase</a></li>
+        <li><a href="#start">Get started</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>lazysite</h4>
+      <ul>
+        <li><a href="/">Theme Explorer</a></li>
+        <li><a href="https://lazysite.io" target="_blank" rel="noopener">lazysite.io &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base">
+    <span>&copy; [% year %] NOVA theme - a lazysite statement layout.</span>
+    <span>Built with lazysite</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if (!('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>

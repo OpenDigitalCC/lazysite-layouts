@@ -1,0 +1,26 @@
+{
+  "name": "lumen",
+  "version": "1.0.0",
+  "description": "LUMEN - a light editorial statement theme: warm paper, electric cobalt, a big Fraunces serif, asymmetric grids and drop caps. For the lumen layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["lumen"],
+  "config": {
+    "colours": {
+      "bg": "#FBF7EF",
+      "surface": "#FFFFFF",
+      "surface-2": "#F1E9DA",
+      "text": "#2A241E",
+      "text-muted": "#6F665A",
+      "heading": "#17120E",
+      "accent": "#2438FF",
+      "accent-2": "#E6531D",
+      "on-accent": "#FFFFFF",
+      "border": "#E5DCCB"
+    },
+    "fonts": {
+      "display": "'Fraunces', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

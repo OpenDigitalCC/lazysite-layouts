@@ -1,0 +1,27 @@
+{
+  "name": "nova",
+  "version": "1.0.0",
+  "description": "NOVA - a kinetic dark statement theme: animated aurora, glass panels, glow, big grotesk display. For the nova layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["nova"],
+  "config": {
+    "colours": {
+      "bg": "#0A0A12",
+      "surface": "#12121F",
+      "surface-2": "#1A1A2E",
+      "text": "#E7E7F2",
+      "text-muted": "#9A9AB4",
+      "heading": "#FFFFFF",
+      "accent": "#7C5CFF",
+      "accent-2": "#19E3C4",
+      "accent-3": "#FF4D8D",
+      "on-accent": "#0A0A12",
+      "border": "#26264A"
+    },
+    "fonts": {
+      "display": "'Space Grotesk', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}
