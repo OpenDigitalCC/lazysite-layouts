@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/bio-balanced/bio-balanced/main.css">
+</head>
+<body>
+<nav class="bio-nav"><div class="in"><a class="me" href="#top">Jordan Vale</a><a class="ex" href="/">&larr; Explorer</a></div></nav>
+[% content %]
+<footer class="bio-foot">A personal-site theme for lazysite. <a href="/">Back to the theme explorer</a> &middot; [% year %]</footer>
+</body>
+</html>

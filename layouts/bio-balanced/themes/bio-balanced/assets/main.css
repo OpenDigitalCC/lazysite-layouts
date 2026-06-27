@@ -1,0 +1,50 @@
+/* BIO / BALANCED - a tidy professional personal site: light, clean, confident. */
+:root {
+  --bg: var(--theme-colours-bg,#FBFBFD); --surface: var(--theme-colours-surface,#FFFFFF);
+  --surface-2: var(--theme-colours-surface-2,#F2F3F7); --text: var(--theme-colours-text,#2A2E37);
+  --muted: var(--theme-colours-text-muted,#6B7180); --heading: var(--theme-colours-heading,#11141B);
+  --accent: var(--theme-colours-accent,#4F46E5); --accent-2: var(--theme-colours-accent-2,#0EA5E9);
+  --on-accent: var(--theme-colours-on-accent,#FFFFFF); --border: var(--theme-colours-border,#E6E8EF);
+  --fd: var(--theme-fonts-display,'Plus Jakarta Sans',system-ui,sans-serif); --fb: var(--theme-fonts-body,'Inter',sans-serif);
+  --max:1000px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+.bio-nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(251,251,253,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.bio-nav .in{max-width:var(--max);margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between}
+.bio-nav .me{font-family:var(--fd);font-weight:800;color:var(--heading);font-size:1.05rem}
+.bio-nav .ex{color:var(--muted);font-size:.88rem;font-weight:600}
+.bio-nav .ex:hover{color:var(--accent)}
+
+/* hero: two columns */
+.bio-hero{padding:140px 24px 64px}
+.bio-hero .wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.avatar{grid-row:1/3;grid-column:2;width:150px;height:150px;border-radius:24px;display:grid;place-items:center;font-family:var(--fd);font-weight:800;font-size:3rem;color:var(--on-accent);background:linear-gradient(150deg,var(--accent),var(--accent-2));box-shadow:0 22px 50px -20px var(--accent)}
+.role{font-family:var(--fd);font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.name{font-family:var(--fd);font-weight:800;letter-spacing:-.025em;line-height:1.02;font-size:clamp(2.4rem,6vw,4rem);color:var(--heading)}
+.tagline{font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--muted);max-width:520px;margin-top:18px;line-height:1.5}
+.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.pill{font-family:var(--fd);font-weight:600;font-size:.88rem;padding:11px 20px;border-radius:10px;border:1.5px solid var(--border);color:var(--heading);transition:transform .2s var(--ease),border-color .2s,background .2s,color .2s}
+.pill:first-child{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.pill:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+.bio-about{padding:24px 24px 56px}
+.bio-about .wrap{max-width:680px}
+.bio-about p{font-size:1.12rem;line-height:1.75;margin-bottom:1rem}
+.bio-about p b{color:var(--heading)}
+.sec-h{font-family:var(--fd);font-weight:800;letter-spacing:-.02em;font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--heading);margin-bottom:26px}
+.bio-work{padding:56px 24px;background:var(--surface);border-block:1px solid var(--border)}
+.work-item{display:grid;grid-template-columns:5rem 1fr;gap:20px;padding:20px;border:1px solid var(--border);border-radius:14px;margin-bottom:14px;background:var(--bg);transition:transform .18s var(--ease),box-shadow .18s,border-color .18s}
+.work-item:hover{transform:translateY(-3px);box-shadow:0 16px 36px -22px rgba(0,0,0,.3);border-color:var(--accent)}
+.w-year{font-family:var(--fd);color:var(--accent);font-weight:700}
+.w-title{font-family:var(--fd);font-weight:700;color:var(--heading);font-size:1.12rem;margin-bottom:5px}
+.w-note{color:var(--muted);font-size:.95rem;line-height:1.6}
+.bio-contact{padding:56px 24px}
+.bio-foot{border-top:1px solid var(--border);padding:38px 24px;text-align:center;color:var(--muted);font-size:.86rem}
+.bio-foot a{color:var(--accent)}
+@media(max-width:720px){.bio-hero .wrap{grid-template-columns:1fr}.avatar{grid-row:auto;grid-column:auto;order:-1}.work-item{grid-template-columns:1fr;gap:6px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

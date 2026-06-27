@@ -1,0 +1,31 @@
+{
+  "name": "bio-modest",
+  "version": "1.0.0",
+  "description": "BIO - Modest bio: An understated calling card - quiet serif, lots of air. For the bio-modest layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-modest"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FAF8F3",
+      "surface": "#FFFFFF",
+      "surface-2": "#F2EEE6",
+      "text": "#33302A",
+      "text-muted": "#7A746A",
+      "heading": "#1F1C17",
+      "accent": "#8A5A44",
+      "accent-2": "#4A5568",
+      "on-accent": "#FFFFFF",
+      "border": "#E7E1D6"
+    },
+    "fonts": {
+      "display": "'Spectral', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "bio-balanced",
+  "version": "1.0.0",
+  "description": "BIO - Balanced bio: A tidy professional personal site - clean and confident. For the bio-balanced layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-balanced"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FBFBFD",
+      "surface": "#FFFFFF",
+      "surface-2": "#F2F3F7",
+      "text": "#2A2E37",
+      "text-muted": "#6B7180",
+      "heading": "#11141B",
+      "accent": "#4F46E5",
+      "accent-2": "#0EA5E9",
+      "on-accent": "#FFFFFF",
+      "border": "#E6E8EF"
+    },
+    "fonts": {
+      "display": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

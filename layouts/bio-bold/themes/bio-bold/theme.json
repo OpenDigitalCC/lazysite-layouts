@@ -1,0 +1,32 @@
+{
+  "name": "bio-bold",
+  "version": "1.0.0",
+  "description": "BIO - Bold bio: A loud personal site - big type, vivid gradient, photo-forward. For the bio-bold layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-bold"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#100F17",
+      "surface": "#1A1825",
+      "surface-2": "#221F33",
+      "text": "#D7D5E6",
+      "text-muted": "#8E8AA8",
+      "heading": "#FFFFFF",
+      "accent": "#FF4D6D",
+      "accent-2": "#7C5CFF",
+      "on-accent": "#100F17",
+      "border": "#2A2740",
+      "accent-3": "#FFB23E"
+    },
+    "fonts": {
+      "display": "'Unbounded', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
