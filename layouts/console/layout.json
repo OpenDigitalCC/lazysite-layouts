@@ -1,0 +1,6 @@
+{
+  "name": "console",
+  "version": "1.0.0",
+  "description": "CONSOLE statement layout: an interactive terminal shell. Commands are driven by the page's data-cmd blocks; CRT phosphor aesthetic. Pairs with the console theme.",
+  "author": "OpenDigitalCC"
+}

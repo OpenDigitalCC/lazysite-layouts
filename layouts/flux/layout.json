@@ -1,0 +1,6 @@
+{
+  "name": "flux",
+  "version": "1.0.0",
+  "description": "FLUX statement layout: a scroll progress meter, full-bleed content and a footer. The motion lives in the theme CSS (native scroll-driven animations). No JavaScript. Pairs with the flux theme.",
+  "author": "OpenDigitalCC"
+}

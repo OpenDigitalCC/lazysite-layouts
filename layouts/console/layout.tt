@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/console/console/main.css">
+</head>
+<body>
+<div class="scanlines"></div>
+<main class="crt">
+  <div class="term" id="term">
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot g"></span><span class="term-title">guest@lazysite: ~/explorer</span></div>
+    <div class="term-body" id="term-body">
+      <div id="term-out"></div>
+      <div class="prompt-line" id="prompt-line">
+        <span class="ps1">guest@lazysite:~$</span>
+        <input id="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="terminal input">
+      </div>
+    </div>
+  </div>
+  <div class="term-data" hidden>[% content %]</div>
+</main>
+
+<script>
+(function(){
+  var out = document.getElementById('term-out');
+  var input = document.getElementById('term-input');
+  var bodyEl = document.getElementById('term-body');
+  var data = document.querySelector('.term-data');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // content commands from the page
+  var pages = {};
+  data.querySelectorAll('[data-cmd]').forEach(function(el){ pages[el.getAttribute('data-cmd')] = { html: el.innerHTML, desc: el.getAttribute('data-desc') || '' }; });
+  var bannerEl = data.querySelector('[data-banner]');
+
+  function print(html, cls){ var d = document.createElement('div'); d.className = 'blk' + (cls ? ' ' + cls : ''); d.innerHTML = html; out.appendChild(d); scroll(); return d; }
+  function line(html, cls){ var d = document.createElement('div'); d.className = 'row' + (cls ? ' ' + cls : ''); d.innerHTML = html; out.appendChild(d); scroll(); return d; }
+  function scroll(){ bodyEl.scrollTop = bodyEl.scrollHeight; }
+
+  var builtins = {
+    help: 'list commands',
+    ls: 'list commands',
+    clear: 'clear the screen',
+    theme: 'switch palette: theme amber | theme green',
+    whoami: 'who you are'
+  };
+  function cmdList(){ var k = Object.keys(builtins).concat(Object.keys(pages)); return k.filter(function(v,i){return k.indexOf(v)===i;}).sort(); }
+
+  function run(raw){
+    var cmd = raw.trim(); if (!cmd) return;
+    line('<span class="echo"><b>guest@lazysite:~$</b> ' + cmd.replace(/</g,'&lt;') + '</span>');
+    var parts = cmd.split(/\s+/); var name = parts[0].toLowerCase();
+    if (name === 'clear') { out.innerHTML = ''; return; }
+    if (name === 'help') {
+      var rows = '<h3>available commands</h3><table>';
+      cmdList().forEach(function(c){ var d = builtins[c] || (pages[c] && pages[c].desc) || ''; rows += '<tr><td>' + c + '</td><td class="muted">' + d + '</td></tr>'; });
+      rows += '</table>'; print(rows); return;
+    }
+    if (name === 'ls') { print('<span>' + cmdList().join('&nbsp;&nbsp;') + '</span>'); return; }
+    if (name === 'whoami') { print('guest &mdash; a curious visitor exploring what a static site can be.'); return; }
+    if (name === 'theme') { var m = (parts[1]||'').toLowerCase(); if (m==='amber'){document.documentElement.classList.add('amber');print('<span class="muted">palette &rarr; amber</span>');} else if (m==='green'){document.documentElement.classList.remove('amber');print('<span class="muted">palette &rarr; green</span>');} else {print('<span class="err">usage: theme amber | theme green</span>');} return; }
+    if (pages[name]) { print(pages[name].html); return; }
+    print('command not found: ' + name.replace(/</g,'&lt;') + ". type 'help'.", 'err');
+  }
+
+  // history
+  var hist = [], hi = -1;
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') { var v = input.value; if (v.trim()) { hist.push(v); } hi = hist.length; run(v); input.value = ''; }
+    else if (e.key === 'ArrowUp') { if (hi > 0) { hi--; input.value = hist[hi] || ''; } e.preventDefault(); }
+    else if (e.key === 'ArrowDown') { if (hi < hist.length-1) { hi++; input.value = hist[hi] || ''; } else { hi = hist.length; input.value = ''; } e.preventDefault(); }
+    else if (e.key === 'l' && e.ctrlKey) { out.innerHTML = ''; e.preventDefault(); }
+  });
+  document.getElementById('term').addEventListener('click', function(){ input.focus(); });
+
+  // boot
+  function boot(){
+    if (bannerEl) print(bannerEl.innerHTML, 'banner');
+    var seq = [
+      '<span class="muted">lazysite console v1.0 &mdash; (c) ' + (new Date().getFullYear ? '' : '') + 'OpenDigitalCC</span>',
+      '<span class="muted">booting explorer shell ... ok</span>',
+      "<span>type <b style='color:var(--accent)'>help</b> to list commands, or try <b style='color:var(--accent)'>about</b>.</span>"
+    ];
+    var i = 0;
+    function next(){ if (i >= seq.length) { input.focus(); return; } line(seq[i]); i++; setTimeout(next, reduce ? 0 : 320); }
+    next();
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+[% theme_css %]
+<link rel="stylesheet" href="/lazysite-assets/chroma/chroma/main.css">
+</head>
+<body>
+<div class="bar">
+  <div class="inner">
+    <span class="brand">Chroma<b>.</b></span>
+    <div class="swatches" id="swatches" role="group" aria-label="Palette presets"></div>
+    <button class="dock-btn" id="randomise" title="Generate a new palette">&#9856; Randomise</button>
+    <span class="palette-name" id="palette-name">Midnight</span>
+  </div>
+</div>
+
+[% content %]
+
+<footer class="chroma-foot">
+  <div class="inner">
+    <span>Chroma &mdash; the theme is the interface. &copy; [% year %]</span>
+    <span><a href="/">Theme Explorer</a> &middot; <a href="https://lazysite.io">lazysite.io</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var K = ['bg','surface','surface-2','text','muted','heading','accent','accent-2','on-accent','border'];
+  var presets = [
+    {name:'Midnight', c:['#0E1016','#171A22','#1F2330','#D7DBE6','#8A90A2','#FFFFFF','#6D8BFF','#FF7AB6','#0E1016','#2A2F3D']},
+    {name:'Paper',    c:['#FBFAF7','#FFFFFF','#F1EFEA','#23201B','#6E685E','#15120D','#D6492B','#1B6CA8','#FFFFFF','#E4DFD5']},
+    {name:'Forest',   c:['#0C140F','#121C16','#16241B','#CFE8D6','#6E9079','#EAFBEF','#3FCF8E','#E7B53C','#06120B','#1E3327']},
+    {name:'Sunset',   c:['#FFF6F0','#FFFFFF','#FCE9DD','#3A2418','#8A6450','#2A160B','#F2683C','#B5377E','#FFFFFF','#F3DAC9']},
+    {name:'Mono',     c:['#FAFAFA','#FFFFFF','#EFEFEF','#1A1A1A','#6B6B6B','#000000','#111111','#777777','#FFFFFF','#E2E2E2']},
+    {name:'Neon',     c:['#080A12','#0E1120','#14182B','#C7D2FF','#6E76A8','#FFFFFF','#00E5FF','#FF2E97','#05060C','#1E2440']}
+  ];
+  var root = document.documentElement;
+  function apply(p){
+    for (var i=0;i<K.length;i++) root.style.setProperty('--c-'+K[i], p.c[i]);
+    var nm = document.getElementById('palette-name'); if (nm) nm.textContent = p.name;
+    // pressed state
+    document.querySelectorAll('#swatches .swatch').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.name === p.name ? 'true' : 'false'); b.style.color = p.c[6]; });
+    // hero strip
+    var strip = document.getElementById('swatch-strip');
+    if (strip){ var show = [[0,'Background'],[2,'Surface'],[6,'Accent'],[7,'Accent 2'],[5,'Heading']]; strip.innerHTML='';
+      show.forEach(function(s){ var d=document.createElement('div'); d.className='chip'; d.style.background=p.c[s[0]]; d.style.color=p.c[3]; d.textContent=s[1]; strip.appendChild(d); }); }
+    try { localStorage.setItem('chroma', JSON.stringify(p)); } catch(e){}
+  }
+  function hsl(h,s,l){ return 'hsl('+((h%360+360)%360).toFixed(0)+' '+s+'% '+l+'%)'; }
+  function randomise(){
+    var dark = Math.random() < 0.5;
+    var bh = Math.random()*360, ah = Math.random()*360, a2 = ah+140+Math.random()*60;
+    var c = dark
+      ? [hsl(bh,22,7), hsl(bh,20,11), hsl(bh,18,15), hsl(bh,15,88), hsl(bh,12,58), hsl(bh,15,98), hsl(ah,90,66), hsl(a2,85,68), hsl(bh,30,6), hsl(bh,18,20)]
+      : [hsl(bh,32,97), hsl(bh,0,100), hsl(bh,26,92), hsl(bh,28,15), hsl(bh,14,46), hsl(bh,30,9), hsl(ah,72,46), hsl(a2,60,46), hsl(bh,0,100), hsl(bh,24,87)];
+    apply({ name: (dark?'Dark ':'Light ')+'#'+(bh|0), c: c });
+  }
+  // build preset swatches
+  var sw = document.getElementById('swatches');
+  presets.forEach(function(p){ var b=document.createElement('button'); b.className='swatch'; b.dataset.name=p.name; b.title=p.name; b.setAttribute('aria-pressed','false'); b.style.background='linear-gradient(135deg, '+p.c[6]+' 0 50%, '+p.c[0]+' 50% 100%)'; b.addEventListener('click',function(){apply(p);}); sw.appendChild(b); });
+  document.getElementById('randomise').addEventListener('click', randomise);
+  // init
+  var saved; try { saved = JSON.parse(localStorage.getItem('chroma')); } catch(e){}
+  apply(saved && saved.c && saved.c.length===10 ? saved : presets[0]);
+})();
+</script>
+</body>
+</html>

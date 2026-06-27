@@ -1,0 +1,26 @@
+{
+  "name": "chroma",
+  "version": "1.0.0",
+  "description": "CHROMA - the visitor controls the theme. A live palette/mood switcher (and a generative randomiser) re-skins the whole site instantly via CSS custom properties. For the chroma layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["chroma"],
+  "config": {
+    "colours": {
+      "bg": "#0E1016",
+      "surface": "#171A22",
+      "surface-2": "#1F2330",
+      "text": "#D7DBE6",
+      "text-muted": "#8A90A2",
+      "heading": "#FFFFFF",
+      "accent": "#6D8BFF",
+      "accent-2": "#FF7AB6",
+      "on-accent": "#0E1016",
+      "border": "#2A2F3D"
+    },
+    "fonts": {
+      "display": "'Sora', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

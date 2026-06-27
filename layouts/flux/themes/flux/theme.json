@@ -1,0 +1,26 @@
+{
+  "name": "flux",
+  "version": "1.0.0",
+  "description": "FLUX - scroll-driven cinema. Native CSS scroll-driven animations: a progress meter, a scaling hero, view-timeline reveals and a scroll-linked horizontal band. Zero JS; degrades to a clean static layout. For the flux layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["flux"],
+  "config": {
+    "colours": {
+      "bg": "#F4F3EF",
+      "surface": "#FFFFFF",
+      "surface-2": "#ECEAE2",
+      "text": "#1A1A1B",
+      "text-muted": "#6A6A64",
+      "heading": "#0B0B0C",
+      "accent": "#2C2BFF",
+      "accent-2": "#FF4D2E",
+      "on-accent": "#FFFFFF",
+      "border": "#E2E0D7"
+    },
+    "fonts": {
+      "display": "'Bricolage Grotesque', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

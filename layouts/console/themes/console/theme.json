@@ -1,0 +1,26 @@
+{
+  "name": "console",
+  "version": "1.0.0",
+  "description": "CONSOLE - the site as a working terminal. Type commands to navigate; CRT phosphor aesthetic. Content comes from the page's data blocks. For the console layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["console"],
+  "config": {
+    "colours": {
+      "bg": "#0A0E0A",
+      "surface": "#0E140E",
+      "surface-2": "#121A12",
+      "text": "#9DF7B0",
+      "text-muted": "#4F7D5C",
+      "heading": "#E4FFEA",
+      "accent": "#39FF6A",
+      "accent-2": "#FFB23E",
+      "on-accent": "#06100A",
+      "border": "#1D2C20"
+    },
+    "fonts": {
+      "display": "'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace",
+      "body": "'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}
