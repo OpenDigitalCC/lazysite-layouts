@@ -1,0 +1,32 @@
+{
+  "name": "publicsector",
+  "version": "1.0.0",
+  "description": "Public-sector advisory - a lazysite professional-services theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "publicsector"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FFFFFF",
+      "surface": "#F5F8FB",
+      "surface-2": "#E9F1F6",
+      "text": "#2A3744",
+      "text-muted": "#5E6E7D",
+      "heading": "#08294D",
+      "accent": "#137A8C",
+      "accent-2": "#1E5BA8",
+      "on-accent": "#FFFFFF",
+      "border": "#D4E0EB",
+      "footer": "#08294D"
+    },
+    "fonts": {
+      "display": "'Public Sans', system-ui, sans-serif",
+      "body": "'Public Sans', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
