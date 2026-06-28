@@ -1,0 +1,31 @@
+{
+  "name": "bio-balanced-night",
+  "version": "1.0.0",
+  "description": "BIO - Balanced bio, night variant: the tidy professional personal site in a calm dark mode. For the bio-balanced layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-balanced"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#0E1016",
+      "surface": "#161922",
+      "surface-2": "#1E222D",
+      "text": "#D5D8E2",
+      "text-muted": "#8A90A1",
+      "heading": "#FFFFFF",
+      "accent": "#7B7DF6",
+      "accent-2": "#34C5F0",
+      "on-accent": "#0E1016",
+      "border": "#272B36"
+    },
+    "fonts": {
+      "display": "'Plus Jakarta Sans', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

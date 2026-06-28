@@ -1,0 +1,32 @@
+{
+  "name": "consultancy-slate",
+  "version": "1.0.0",
+  "description": "Business consultancy with a deep slate-teal accent - a lazysite professional-services theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "consultancy"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#11131A",
+      "surface": "#181B24",
+      "surface-2": "#1F2330",
+      "text": "#C9CDD6",
+      "text-muted": "#8A91A0",
+      "heading": "#FFFFFF",
+      "accent": "#4FA8A0",
+      "accent-2": "#6E8CB0",
+      "on-accent": "#11131A",
+      "border": "#2A2F3D",
+      "footer": "#0C0E13"
+    },
+    "fonts": {
+      "display": "'Fraunces', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

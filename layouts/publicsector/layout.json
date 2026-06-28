@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Public-sector advisory layout.",
   "author": "OpenDigitalCC",
-  "themes": ["publicsector"],
+  "themes": ["publicsector", "publicsector-green"],
   "default_theme": "publicsector"
 }

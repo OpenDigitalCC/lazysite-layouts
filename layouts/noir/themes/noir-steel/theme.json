@@ -1,0 +1,31 @@
+{
+  "name": "noir-steel",
+  "version": "1.0.0",
+  "description": "Noir Steel - the dark Noir gallery with a cool steel/azure accent in place of gold.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "noir"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#08090C",
+      "surface": "#12141A",
+      "surface-2": "#181B22",
+      "text": "#EDEDF0",
+      "text-muted": "#8A8E96",
+      "heading": "#FFFFFF",
+      "accent": "#5BA3D0",
+      "accent-2": "#C9D2DC",
+      "on-accent": "#08090C",
+      "border": "#1F2430"
+    },
+    "fonts": {
+      "display": "'Sora', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

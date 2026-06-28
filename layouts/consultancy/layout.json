@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Business consultancy layout.",
   "author": "OpenDigitalCC",
-  "themes": ["consultancy"],
+  "themes": ["consultancy", "consultancy-slate"],
   "default_theme": "consultancy"
 }

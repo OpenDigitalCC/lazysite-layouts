@@ -1,0 +1,30 @@
+{
+  "name": "folio-dusk",
+  "version": "1.0.0",
+  "description": "Folio Dusk - a warm dark-sepia dusk reading counterpart to Folio.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "folio"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#1A1712",
+      "surface": "#221E18",
+      "surface-2": "#2A251D",
+      "text": "#E8E0D2",
+      "text-muted": "#A99E8B",
+      "heading": "#F4ECDD",
+      "accent": "#79B0A4",
+      "on-accent": "#1A1712",
+      "border": "#352F25"
+    },
+    "fonts": {
+      "display": "'Newsreader', Georgia, serif",
+      "body": "'Newsreader', Georgia, serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

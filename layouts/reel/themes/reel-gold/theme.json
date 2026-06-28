@@ -1,0 +1,30 @@
+{
+  "name": "reel-gold",
+  "version": "1.0.0",
+  "description": "Reel Gold - a cinematic variant trading the teal for a warm cinematic gold.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "reel"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FFFFFF",
+      "surface": "#0A0A0A",
+      "surface-2": "#141414",
+      "text": "#1A1A1A",
+      "text-muted": "#8A8A8A",
+      "heading": "#0A0A0A",
+      "accent": "#B8860B",
+      "on-accent": "#FFFFFF",
+      "border": "#ECECEC"
+    },
+    "fonts": {
+      "display": "'Jost', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Light dashboard layout (app shell).",
   "author": "OpenDigitalCC",
-  "themes": ["portal-light"],
+  "themes": ["portal-light", "portal-light-violet"],
   "default_theme": "portal-light"
 }

@@ -1,0 +1,32 @@
+{
+  "name": "publicsector-green",
+  "version": "1.0.0",
+  "description": "Public-sector advisory with an official green palette - a lazysite professional-services theme.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "publicsector"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FFFFFF",
+      "surface": "#F4FAF6",
+      "surface-2": "#E6F2EA",
+      "text": "#243430",
+      "text-muted": "#5A6E64",
+      "heading": "#0B3D2E",
+      "accent": "#00703C",
+      "accent-2": "#1C6B5A",
+      "on-accent": "#FFFFFF",
+      "border": "#D2E5D9",
+      "footer": "#0B3D2E"
+    },
+    "fonts": {
+      "display": "'Public Sans', system-ui, sans-serif",
+      "body": "'Public Sans', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

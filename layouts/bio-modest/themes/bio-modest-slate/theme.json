@@ -1,0 +1,31 @@
+{
+  "name": "bio-modest-slate",
+  "version": "1.0.0",
+  "description": "BIO - Modest bio, slate variant: a cool ink-on-paper monochrome calling card. For the bio-modest layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-modest"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#F5F6F8",
+      "surface": "#FFFFFF",
+      "surface-2": "#E8EBEF",
+      "text": "#2C3038",
+      "text-muted": "#6E747E",
+      "heading": "#171A1F",
+      "accent": "#3F5266",
+      "accent-2": "#566273",
+      "on-accent": "#FFFFFF",
+      "border": "#DCE0E6"
+    },
+    "fonts": {
+      "display": "'Spectral', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

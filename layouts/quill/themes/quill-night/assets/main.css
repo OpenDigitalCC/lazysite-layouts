@@ -1,0 +1,45 @@
+/* QUILL NIGHT - a classic essayist blog: left side-menu, centred serif reading column. Dark night-reading mode. */
+:root{
+  --bg:var(--theme-colours-bg,#16140F);--surface:var(--theme-colours-surface,#1E1B15);
+  --surface-2:var(--theme-colours-surface-2,#26221B);--text:var(--theme-colours-text,#E7E0D4);
+  --muted:var(--theme-colours-text-muted,#A39A8A);--heading:var(--theme-colours-heading,#F4EEE2);
+  --accent:var(--theme-colours-accent,#6FB3A4);--accent-2:var(--theme-colours-accent-2,#C8896B);
+  --on-accent:var(--theme-colours-on-accent,#16140F);--border:var(--theme-colours-border,#322C23);
+  --fd:var(--theme-fonts-display,'Lora',Georgia,serif);--fb:var(--theme-fonts-body,'Lora',Georgia,serif);
+  --measure:680px;--ease:cubic-bezier(.2,.7,.2,1)
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.75;font-size:18px;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.q-shell{display:grid;grid-template-columns:280px 1fr;max-width:1200px;margin:0 auto;min-height:100vh}
+/* left side menu */
+.q-side{border-right:1px solid var(--border);padding:48px 30px;position:sticky;top:0;align-self:start;height:100vh;overflow:auto}
+.q-side .pub{font-family:var(--fd);font-weight:600;font-size:1.6rem;color:var(--heading);line-height:1.15}
+.q-side .tag{font-style:italic;color:var(--muted);margin-top:8px;font-size:.98rem;line-height:1.5}
+.q-side .av{width:60px;height:60px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border);display:grid;place-items:center;font-family:var(--fd);font-size:1.4rem;color:var(--accent);margin-bottom:20px}
+.q-menu{margin-top:32px}
+.q-menu h4{font-family:var(--fb);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);margin-bottom:12px}
+.q-menu ul{list-style:none}.q-menu li{margin-bottom:9px}
+.q-menu a{color:var(--text);font-size:1rem;border-bottom:1px solid transparent;transition:border-color .15s,color .15s}
+.q-menu a:hover,.q-menu a.active{color:var(--accent);border-color:var(--accent)}
+.q-side .ex{margin-top:36px;display:inline-block;font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.q-side .ex:hover{color:var(--accent);border-color:var(--accent)}
+/* centred reading column */
+.q-main{padding:64px 40px 80px}
+.q-inner{max-width:var(--measure);margin:0 auto}
+.q-lead{padding-bottom:36px;margin-bottom:36px;border-bottom:1px solid var(--border)}
+.q-lead .label{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.q-lead .meta{color:var(--muted);font-size:.88rem;margin:12px 0}
+.q-lead h1{font-family:var(--fd);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);line-height:1.15;color:var(--heading);letter-spacing:-.01em}
+.q-lead .dek{font-size:1.2rem;color:var(--text);margin-top:16px;line-height:1.6}
+.q-lead .dek::first-letter{initial-letter:2;font-family:var(--fd);color:var(--accent);font-weight:600;margin-right:8px}
+.q-lead .more{display:inline-block;margin-top:18px;font-style:italic;color:var(--accent);border-bottom:1px solid var(--accent)}
+.q-list .label{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-2);margin-bottom:18px}
+.post{padding:22px 0;border-bottom:1px solid var(--border)}
+.post:last-child{border-bottom:0}
+.post .when{color:var(--muted);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+.post h2{font-family:var(--fd);font-weight:600;font-size:1.4rem;line-height:1.25;color:var(--heading);margin:5px 0 6px}
+.post h2 a:hover{color:var(--accent)}
+.post .dek{color:var(--muted);font-size:1rem;line-height:1.6}
+@media(max-width:880px){.q-shell{grid-template-columns:1fr}.q-side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}.q-main{padding:40px 24px 60px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

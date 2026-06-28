@@ -1,0 +1,139 @@
+/* ===========================================================================
+   LUMEN ROSE - warm rose & amber editorial variant for the lumen layout.
+   Brand colours/fonts from theme.json (--theme-*-*), aliased here, plus the
+   component library, editorial motion, and layout constants.
+   ========================================================================= */
+
+:root {
+  --bg:       var(--theme-colours-bg, #FBF4EE);
+  --surface:  var(--theme-colours-surface, #FFFFFF);
+  --surface-2:var(--theme-colours-surface-2, #F6E6DC);
+  --text:     var(--theme-colours-text, #2A201C);
+  --muted:    var(--theme-colours-text-muted, #6F5F58);
+  --heading:  var(--theme-colours-heading, #1A1310);
+  --accent:   var(--theme-colours-accent, #BE4368);
+  --accent-2: var(--theme-colours-accent-2, #CF8230);
+  --on-accent:var(--theme-colours-on-accent, #FFFFFF);
+  --border:   var(--theme-colours-border, #ECDBCD);
+  --font-display: var(--theme-fonts-display, 'Fraunces', Georgia, serif);
+  --font-body:    var(--theme-fonts-body, 'Inter', system-ui, sans-serif);
+
+  --max-w: 1180px;
+  --pad: 112px 24px;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --t: .25s var(--ease);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ---- type --------------------------------------------------------------- */
+.display { font-family: var(--font-display); font-weight: 600; line-height: 1.0; letter-spacing: -0.025em; color: var(--heading); font-size: clamp(3rem, 9vw, 7rem); }
+.display em { font-style: italic; color: var(--accent); }
+.h2 { font-family: var(--font-display); font-weight: 600; line-height: 1.08; letter-spacing: -0.02em; color: var(--heading); font-size: clamp(2rem, 5vw, 3.6rem); }
+.h2 em { font-style: italic; color: var(--accent); }
+.lead { font-size: clamp(1.1rem, 1.7vw, 1.4rem); color: var(--muted); line-height: 1.55; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-2); }
+.eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--accent-2); }
+
+/* ---- primitives --------------------------------------------------------- */
+.wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+.section { padding: var(--pad); position: relative; }
+.btn { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 600; font-size: .9rem; padding: 14px 26px; border-radius: 2px; transition: transform var(--t), background var(--t), color var(--t); border: 1.5px solid var(--heading); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--heading); }
+.btn-ghost:hover { background: var(--heading); color: var(--bg); transform: translateY(-2px); }
+.btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+.rule { height: 2px; background: var(--heading); border: 0; }
+
+/* ---- nav ---------------------------------------------------------------- */
+nav.lumen-nav { position: fixed; inset: 0 0 auto 0; z-index: 100; background: rgba(251,244,238,.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+.lumen-nav .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+.lumen-logo { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; letter-spacing: -.02em; color: var(--heading); }
+.lumen-logo b { color: var(--accent); font-weight: 600; }
+.lumen-nav .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+.lumen-nav .nav-links a { color: var(--text); font-size: .92rem; font-weight: 500; border-bottom: 2px solid transparent; padding-bottom: 2px; transition: border-color var(--t), color var(--t); }
+.lumen-nav .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
+.lumen-nav .nav-cta { border: 1.5px solid var(--heading); padding: 8px 18px; border-radius: 2px; font-weight: 600 !important; }
+.lumen-nav .nav-cta:hover { background: var(--heading); color: var(--bg) !important; border-color: var(--heading) !important; }
+
+/* ---- hero (asymmetric editorial) --------------------------------------- */
+.hero { padding: 180px 24px 90px; }
+.hero .wrap { max-width: 1240px; }
+.hero .kicker { display: flex; gap: 18px; align-items: baseline; margin-bottom: 26px; color: var(--muted); font-size: .85rem; }
+.hero .kicker .no { font-family: var(--font-display); font-size: 1.1rem; color: var(--accent-2); }
+.hero .display { max-width: 14ch; }
+.hero-foot { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; margin-top: 40px; border-top: 2px solid var(--heading); padding-top: 26px; }
+.hero-foot .lead { max-width: 540px; }
+
+/* ---- marquee (serif italic) -------------------------------------------- */
+.marquee { border-block: 1px solid var(--border); overflow: hidden; padding: 22px 0; background: var(--surface); }
+.marquee-track { display: flex; gap: 40px; width: max-content; animation: marquee 30s linear infinite; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.4rem, 3vw, 2.4rem); color: var(--heading); }
+.marquee-track span { display: inline-flex; gap: 40px; align-items: center; }
+.marquee-track .dot { color: var(--accent); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---- features (editorial numbered grid) -------------------------------- */
+.features .h2 { max-width: 16ch; margin-bottom: 56px; }
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--heading); }
+.feat { padding: 36px 28px 40px; border-bottom: 2px solid var(--heading); }
+.feat + .feat { border-left: 1px solid var(--border); }
+.feat .no { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: 18px; }
+.feat h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--heading); margin-bottom: 12px; letter-spacing: -.01em; }
+.feat p { color: var(--muted); font-size: .98rem; line-height: 1.7; }
+
+/* ---- pull quote --------------------------------------------------------- */
+.quote { background: var(--surface-2); }
+.quote .wrap { max-width: 980px; text-align: center; }
+.quote blockquote { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: clamp(1.8rem, 4.5vw, 3.2rem); line-height: 1.22; color: var(--heading); letter-spacing: -.015em; }
+.quote blockquote b { color: var(--accent); font-weight: 500; }
+.quote .by { margin-top: 28px; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* ---- editorial body / drop cap ----------------------------------------- */
+.essay .wrap { max-width: 740px; }
+.essay .drop > p:first-of-type::first-letter { font-family: var(--font-display); font-weight: 600; float: left; font-size: 4.4rem; line-height: .8; padding: 6px 12px 0 0; color: var(--accent); }
+.essay p { font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.2rem; color: var(--text); }
+
+/* ---- CTA (accent block) ------------------------------------------------- */
+.cta { background: var(--accent); color: var(--on-accent); }
+.cta .wrap { max-width: 900px; text-align: center; }
+.cta .h2 { color: var(--on-accent); margin-bottom: 18px; }
+.cta .lead { color: rgba(255,255,255,.85); max-width: 560px; margin: 0 auto; }
+.cta .btn-row { justify-content: center; }
+.cta .btn-primary { background: var(--on-accent); border-color: var(--on-accent); color: var(--accent); }
+.cta .btn-ghost { border-color: rgba(255,255,255,.6); color: var(--on-accent); }
+.cta .btn-ghost:hover { background: var(--on-accent); color: var(--accent); }
+
+/* ---- footer ------------------------------------------------------------- */
+footer.lumen-foot { background: var(--bg); border-top: 2px solid var(--heading); padding: 60px 24px 34px; }
+.lumen-foot .inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+.lumen-foot .logo { font-family: var(--font-display); font-size: 1.6rem; color: var(--heading); }
+.lumen-foot .blurb { color: var(--muted); max-width: 320px; margin-top: 12px; font-size: .92rem; line-height: 1.7; }
+.lumen-foot h4 { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-2); margin-bottom: 14px; }
+.lumen-foot ul { list-style: none; } .lumen-foot li { margin-bottom: 9px; }
+.lumen-foot a { color: var(--text); font-size: .92rem; border-bottom: 1px solid transparent; transition: border-color var(--t); }
+.lumen-foot a:hover { border-color: var(--accent); }
+.lumen-foot .base { max-width: var(--max-w); margin: 44px auto 0; padding-top: 22px; border-top: 1px solid var(--border); color: var(--muted); font-size: .82rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+/* ---- reveal ------------------------------------------------------------- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---- responsive --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .feat-grid { grid-template-columns: 1fr; }
+  .feat + .feat { border-left: 0; }
+  .hero-foot { grid-template-columns: 1fr; }
+  .lumen-foot .inner { grid-template-columns: 1fr; }
+  .lumen-nav .nav-links { display: none; }
+  :root { --pad: 80px 20px; }
+  .hero { padding: 130px 20px 70px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+}

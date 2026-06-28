@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "BIO Balanced bio layout.",
   "author": "OpenDigitalCC",
-  "themes": ["bio-balanced"],
+  "themes": ["bio-balanced", "bio-balanced-night"],
   "default_theme": "bio-balanced"
 }

@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Dark dashboard layout (app shell).",
   "author": "OpenDigitalCC",
-  "themes": ["portal-dark"],
+  "themes": ["portal-dark", "portal-dark-emerald"],
   "default_theme": "portal-dark"
 }

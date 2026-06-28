@@ -1,0 +1,26 @@
+{
+  "name": "console-amber",
+  "version": "1.0.0",
+  "description": "CONSOLE in classic amber phosphor - the same working terminal, warm amber CRT glow instead of green. For the console layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["console"],
+  "config": {
+    "colours": {
+      "bg": "#120C04",
+      "surface": "#181106",
+      "surface-2": "#1F1608",
+      "text": "#FFC061",
+      "text-muted": "#9A7338",
+      "heading": "#FFE9C6",
+      "accent": "#FFB000",
+      "accent-2": "#FF8A1E",
+      "on-accent": "#1A0F00",
+      "border": "#3A2A0E"
+    },
+    "fonts": {
+      "display": "'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace",
+      "body": "'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

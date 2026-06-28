@@ -1,0 +1,30 @@
+{
+  "name": "atelier-noir",
+  "version": "1.0.0",
+  "description": "Atelier Noir - a dark gallery counterpart to the light Atelier, museum-black walls.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "atelier"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#111110",
+      "surface": "#1A1916",
+      "surface-2": "#232019",
+      "text": "#E9E4DA",
+      "text-muted": "#A39B8D",
+      "heading": "#F6F1E8",
+      "accent": "#C8896B",
+      "on-accent": "#111110",
+      "border": "#2E2A22"
+    },
+    "fonts": {
+      "display": "'Cormorant Garamond', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

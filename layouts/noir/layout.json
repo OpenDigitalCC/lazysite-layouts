@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Noir layout.",
   "author": "OpenDigitalCC",
-  "themes": ["noir"],
+  "themes": ["noir", "noir-steel"],
   "default_theme": "noir"
 }

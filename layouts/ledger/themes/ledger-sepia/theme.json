@@ -1,0 +1,18 @@
+{
+  "name": "ledger-sepia",
+  "version": "1.0.0",
+  "description": "Ledger - sepia variant: a warm newsprint classic. Cream paper, brown ink, muted red links.",
+  "author": "OpenDigitalCC",
+  "layouts": ["ledger"],
+  "config": {
+    "colours": {
+      "bg": "#F4ECDC", "text": "#3B2F22", "text-muted": "#7A6A55", "heading": "#2A2118",
+      "accent": "#9B3024", "accent-2": "#5A4632", "border": "#D8C9AE", "border-soft": "#E8DDC6"
+    },
+    "fonts": {
+      "body": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+      "display": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

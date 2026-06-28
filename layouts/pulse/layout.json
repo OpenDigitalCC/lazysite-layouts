@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "PULSE statement layout: a generative canvas flow-field hero (cursor-reactive), glass nav, full-bleed content, scroll-reveal. Pairs with the pulse theme.",
   "author": "OpenDigitalCC",
-  "themes": ["pulse"],
+  "themes": ["pulse", "pulse-magenta"],
   "default_theme": "pulse"
 }

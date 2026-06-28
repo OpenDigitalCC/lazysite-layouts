@@ -1,0 +1,31 @@
+{
+  "name": "quill-night",
+  "version": "1.0.0",
+  "description": "Quill Night - a dark night-reading counterpart to the warm-paper Quill.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "quill"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#16140F",
+      "surface": "#1E1B15",
+      "surface-2": "#26221B",
+      "text": "#E7E0D4",
+      "text-muted": "#A39A8A",
+      "heading": "#F4EEE2",
+      "accent": "#6FB3A4",
+      "accent-2": "#C8896B",
+      "on-accent": "#16140F",
+      "border": "#322C23"
+    },
+    "fonts": {
+      "display": "'Lora', Georgia, serif",
+      "body": "'Lora', Georgia, serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

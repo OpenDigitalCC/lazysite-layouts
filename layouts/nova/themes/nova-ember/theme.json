@@ -1,0 +1,27 @@
+{
+  "name": "nova-ember",
+  "version": "1.0.0",
+  "description": "NOVA Ember - a warm ember variant of the kinetic dark theme, glowing orange to gold to crimson.",
+  "author": "OpenDigitalCC",
+  "layouts": ["nova"],
+  "config": {
+    "colours": {
+      "bg": "#120A08",
+      "surface": "#1C1210",
+      "surface-2": "#281815",
+      "text": "#F2E8E2",
+      "text-muted": "#B49E94",
+      "heading": "#FFFFFF",
+      "accent": "#FF6A1A",
+      "accent-2": "#FFC247",
+      "accent-3": "#FF3355",
+      "on-accent": "#120A08",
+      "border": "#3A2620"
+    },
+    "fonts": {
+      "display": "'Space Grotesk', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

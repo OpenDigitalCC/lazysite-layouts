@@ -1,0 +1,26 @@
+{
+  "name": "chroma-dusk",
+  "version": "1.0.0",
+  "description": "CHROMA-DUSK - the visitor-controlled palette theme shipped with a twilight default: deep plum stock, soft lilac text, a warm dusk-amber accent and a violet secondary. The live switcher and randomiser still re-skin everything. For the chroma layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["chroma"],
+  "config": {
+    "colours": {
+      "bg": "#1A1426",
+      "surface": "#241B33",
+      "surface-2": "#2E2340",
+      "text": "#E6DDEC",
+      "text-muted": "#9E91B0",
+      "heading": "#FFFFFF",
+      "accent": "#E8956B",
+      "accent-2": "#C77DFF",
+      "on-accent": "#1A1426",
+      "border": "#392C4D"
+    },
+    "fonts": {
+      "display": "'Sora', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

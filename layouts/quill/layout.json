@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Quill layout.",
   "author": "OpenDigitalCC",
-  "themes": ["quill"],
+  "themes": ["quill", "quill-night"],
   "default_theme": "quill"
 }

@@ -1,0 +1,32 @@
+{
+  "name": "bio-bold-ultra",
+  "version": "1.0.0",
+  "description": "BIO - Bold bio, ultra variant: a loud personal site in electric aqua, blue and lime on deep teal-black. For the bio-bold layout.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "bio-bold"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#07111A",
+      "surface": "#0E1C26",
+      "surface-2": "#152A36",
+      "text": "#CFE6E4",
+      "text-muted": "#76A0A2",
+      "heading": "#FFFFFF",
+      "accent": "#00E5C0",
+      "accent-2": "#4D7CFF",
+      "on-accent": "#07111A",
+      "border": "#1E3540",
+      "accent-3": "#B8FF3D"
+    },
+    "fonts": {
+      "display": "'Unbounded', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

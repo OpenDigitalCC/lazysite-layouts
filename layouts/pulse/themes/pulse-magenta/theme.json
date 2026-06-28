@@ -1,0 +1,27 @@
+{
+  "name": "pulse-magenta",
+  "version": "1.0.0",
+  "description": "PULSE-MAGENTA - the generative dark-glass statement theme retuned to a magenta/violet accent: hot-pink to fuchsia to purple gradients over the same live canvas flow-field. For the pulse layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["pulse"],
+  "config": {
+    "colours": {
+      "bg": "#06060B",
+      "surface": "#0F0B17",
+      "surface-2": "#17101F",
+      "text": "#F0E9F5",
+      "text-muted": "#A892B0",
+      "heading": "#FFFFFF",
+      "accent": "#F472B6",
+      "accent-2": "#A855F7",
+      "accent-3": "#D946EF",
+      "on-accent": "#06060B",
+      "border": "#2A1F38"
+    },
+    "fonts": {
+      "display": "'Syne', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

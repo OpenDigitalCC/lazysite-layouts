@@ -1,0 +1,26 @@
+{
+  "name": "lumen-rose",
+  "version": "1.0.0",
+  "description": "LUMEN Rose - a warm rose and amber editorial variant in place of the electric cobalt.",
+  "author": "OpenDigitalCC",
+  "layouts": ["lumen"],
+  "config": {
+    "colours": {
+      "bg": "#FBF4EE",
+      "surface": "#FFFFFF",
+      "surface-2": "#F6E6DC",
+      "text": "#2A201C",
+      "text-muted": "#6F5F58",
+      "heading": "#1A1310",
+      "accent": "#BE4368",
+      "accent-2": "#CF8230",
+      "on-accent": "#FFFFFF",
+      "border": "#ECDBCD"
+    },
+    "fonts": {
+      "display": "'Fraunces', Georgia, serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

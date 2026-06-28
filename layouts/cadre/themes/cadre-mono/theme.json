@@ -1,0 +1,31 @@
+{
+  "name": "cadre-mono",
+  "version": "1.0.0",
+  "description": "Cadre Mono - a stark monochrome editorial variant with a single restrained accent.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "cadre"
+  ],
+  "config": {
+    "colours": {
+      "bg": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "surface-2": "#ECECEC",
+      "text": "#141414",
+      "text-muted": "#6A6A6A",
+      "heading": "#000000",
+      "accent": "#C0392B",
+      "accent-2": "#C0392B",
+      "on-accent": "#FFFFFF",
+      "border": "#E2E2E2"
+    },
+    "fonts": {
+      "display": "'Space Grotesk', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}

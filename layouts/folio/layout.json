@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Folio layout.",
   "author": "OpenDigitalCC",
-  "themes": ["folio"],
+  "themes": ["folio", "folio-dusk"],
   "default_theme": "folio"
 }

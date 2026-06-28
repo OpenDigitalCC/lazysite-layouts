@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Reel layout.",
   "author": "OpenDigitalCC",
-  "themes": ["reel"],
+  "themes": ["reel", "reel-gold"],
   "default_theme": "reel"
 }

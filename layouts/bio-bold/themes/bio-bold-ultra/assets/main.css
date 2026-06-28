@@ -1,0 +1,58 @@
+/* BIO / BOLD - ultra variant: a loud personal site in electric aqua, blue and lime, huge display type. */
+:root {
+  --bg: var(--theme-colours-bg,#07111A); --surface: var(--theme-colours-surface,#0E1C26);
+  --surface-2: var(--theme-colours-surface-2,#152A36); --text: var(--theme-colours-text,#CFE6E4);
+  --muted: var(--theme-colours-text-muted,#76A0A2); --heading: var(--theme-colours-heading,#FFFFFF);
+  --accent: var(--theme-colours-accent,#00E5C0); --accent-2: var(--theme-colours-accent-2,#4D7CFF);
+  --accent-3: var(--theme-colours-accent-3,#B8FF3D); --on-accent: var(--theme-colours-on-accent,#07111A);
+  --border: var(--theme-colours-border,#1E3540);
+  --fd: var(--theme-fonts-display,'Unbounded',system-ui,sans-serif); --fb: var(--theme-fonts-body,'Inter',sans-serif);
+  --grad: linear-gradient(100deg,var(--accent),var(--accent-2) 60%,var(--accent-3)); --max:980px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* nav */
+.bio-nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(7,17,26,.6);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.bio-nav .in{max-width:var(--max);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.bio-nav .me{font-family:var(--fd);font-weight:700;color:var(--heading);font-size:1rem}
+.bio-nav .ex{color:var(--muted);font-size:.85rem;font-weight:500}
+.bio-nav .ex:hover{color:var(--accent)}
+
+/* hero */
+.bio-hero{padding:160px 24px 70px;text-align:center}
+.avatar{width:104px;height:104px;border-radius:50%;margin:0 auto 26px;display:grid;place-items:center;font-family:var(--fd);font-weight:700;font-size:1.9rem;color:var(--on-accent);background:var(--grad);box-shadow:0 0 0 6px rgba(77,124,255,.16),0 20px 50px -16px var(--accent)}
+.role{font-family:var(--fd);font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.name{font-family:var(--fd);font-weight:700;letter-spacing:-.01em;line-height:.98;font-size:clamp(2.8rem,11vw,7rem);color:var(--heading)}
+.name b{font-weight:700}
+.tagline{font-size:clamp(1.1rem,2vw,1.4rem);color:var(--muted);max-width:560px;margin:24px auto 0;line-height:1.5}
+.links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.pill{font-family:var(--fd);font-weight:600;font-size:.85rem;padding:12px 22px;border-radius:100px;border:1px solid var(--border);transition:transform .2s var(--ease),border-color .2s,background .2s}
+.pill:first-child{background:var(--grad);color:var(--on-accent);border-color:transparent}
+.pill:hover{transform:translateY(-2px);border-color:var(--accent)}
+
+/* sections */
+.bio-about{padding:30px 24px 60px}
+.bio-about .wrap{max-width:680px}
+.bio-about p{font-size:1.2rem;line-height:1.75;color:var(--text);margin-bottom:1.1rem}
+.bio-about p b{color:var(--heading)}
+.sec-h{font-family:var(--fd);font-weight:700;font-size:clamp(1.4rem,3vw,2.1rem);color:var(--heading);margin-bottom:30px}
+.bio-work,.bio-contact{padding:60px 24px}
+.bio-work{background:var(--surface);border-block:1px solid var(--border)}
+.work-item{display:grid;grid-template-columns:5rem 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--border)}
+.work-item:last-child{border-bottom:0}
+.w-year{font-family:var(--fd);color:var(--accent);font-weight:600;font-size:.95rem}
+.w-title{font-family:var(--fd);font-weight:700;color:var(--heading);font-size:1.25rem;margin-bottom:6px}
+.w-note{color:var(--muted);font-size:.98rem;line-height:1.65}
+.bio-contact{text-align:center}
+.bio-contact .links{margin-top:24px}
+
+/* footer */
+.bio-foot{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--muted);font-size:.85rem}
+.bio-foot a{color:var(--accent)}
+@media(max-width:640px){.work-item{grid-template-columns:1fr;gap:6px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}

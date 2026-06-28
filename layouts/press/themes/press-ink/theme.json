@@ -1,0 +1,26 @@
+{
+  "name": "press-ink",
+  "version": "1.0.0",
+  "description": "PRESS-INK - a high-contrast ink-newsprint variant: crisp near-white stock, hard ink-black rules and a deep ink-blue accent in place of the news-red, Anton masthead over Newsreader serif. For the press layout.",
+  "author": "OpenDigitalCC",
+  "layouts": ["press"],
+  "config": {
+    "colours": {
+      "bg": "#F6F5F1",
+      "surface": "#FFFFFF",
+      "surface-2": "#E7E5DD",
+      "text": "#14141A",
+      "text-muted": "#4A4954",
+      "heading": "#0B0B12",
+      "accent": "#2F5AE6",
+      "accent-2": "#14141C",
+      "on-accent": "#FFFFFF",
+      "border": "#0B0B12"
+    },
+    "fonts": {
+      "display": "'Anton', Impact, sans-serif",
+      "body": "'Newsreader', Georgia, serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

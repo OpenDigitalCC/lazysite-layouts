@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Cadre layout.",
   "author": "OpenDigitalCC",
-  "themes": ["cadre"],
+  "themes": ["cadre", "cadre-mono"],
   "default_theme": "cadre"
 }

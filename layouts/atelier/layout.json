@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Atelier layout.",
   "author": "OpenDigitalCC",
-  "themes": ["atelier"],
+  "themes": ["atelier", "atelier-noir"],
   "default_theme": "atelier"
 }

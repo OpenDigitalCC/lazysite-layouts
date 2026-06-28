@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "BIO Modest bio layout.",
   "author": "OpenDigitalCC",
-  "themes": ["bio-modest"],
+  "themes": ["bio-modest", "bio-modest-slate"],
   "default_theme": "bio-modest"
 }
