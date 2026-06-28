@@ -49,7 +49,8 @@ All on `claude/statement-themes`:
   ```
 
 - **Layout package** `releases/layouts/<L>.zip` = `layout.tt` + `layout.json` at
-  the zip root, nothing else.
+  the zip root, plus an optional `components/` subtree (D035 content components).
+  No `themes/`.
 - **Theme package** `releases/<L>/<T>.zip` = `theme.json` at root + `assets/`
   subtree (unchanged shape).
 - **`theme.json.layouts[]` must include the layout** the theme sits under. The

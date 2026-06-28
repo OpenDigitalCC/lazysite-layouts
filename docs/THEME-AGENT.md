@@ -22,6 +22,15 @@ If you only need the packaging/processor contract, see
 - **On a site**, the manager "Themes" page is now **Appearance**. You can install
   one layout + its theme(s) on demand, delete a layout, switch the active
   layout/theme, and preview a theme from a different layout (CSS now resolves).
+- **Content components (D035):** a layout can own `components/<name>.tt` partials
+  so authors write Markdown and the layout frames it. Invoked from content via a
+  fenced `::: name` block (inner Markdown -> `content`, `key="value"` -> `attrs`,
+  nested `::: slot` -> `slots.<slot>`) or via a front-matter `sections:` list the
+  layout dispatches. A `[% value | markdown %]` filter renders Markdown fields.
+  `package-layouts.sh` bundles `components/` into the layout zip, and
+  `install_layout` delivers it. Full guide: `creating-layouts.md` ("Content
+  components"). This is how to retire the hand-written hero/grid HTML in the
+  nova/pulse/press demo pages.
 
 ## Developing a theme (in THIS repo)
 

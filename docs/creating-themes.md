@@ -233,7 +233,7 @@ With a lazysite install (0.2.10+):
         cp layouts/default/layout.json /path/to/public_html/lazysite/layouts/default/
 
 2. Upload your theme via the manager UI at
-   `/manager/themes > Upload theme`, or use "Install from
+   `/manager/appearance > Upload theme`, or use "Install from
    Releases" if `layouts_repo` in `lazysite.conf` points at
    your published copy of this repo.
 

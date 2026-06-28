@@ -41,11 +41,15 @@ core installer.
       "name": "default",
       "version": "1.0.0",
       "description": "Default lazysite page layout with header, nav, main, footer",
-      "author": "OpenDigitalCC"
+      "author": "OpenDigitalCC",
+      "default_theme": "default"
     }
 
 **Required:** `name` (must match directory), `version` (semver).
-**Optional:** `description`, `author`.
+**Optional:** `description`, `author`, `default_theme` (the theme installed and
+activated when a user installs the layout from the catalogue without choosing one;
+also seeds `manifest.json`), `themes` (informational forward index - the manifest
+itself is derived from the actual theme dirs, so this never has to be hand-kept).
 
 ## layout.tt - the TT contract
 
@@ -72,6 +76,11 @@ The processor passes these variables into `layout.tt`:
 | `auth_user`, `auth_name`, `auth_groups` | varies | User identity         |
 | `manager`, `manager_path`       | string | Manager UI settings                      |
 | `year`                | string | 4-digit current year                               |
+| `sections`            | array  | D035 front-matter `sections:` (data-driven pages); empty `[]` unless declared |
+
+A `markdown` filter is also available: `[% some_value | markdown %]` renders a
+value that contains Markdown (single-paragraph values render inline). See
+"Content components" below.
 
 ### Minimum layout.tt
 
@@ -126,6 +135,63 @@ references those properties via `var(--theme-GROUP-KEY)`.
 The ordering matters: `theme_css` in `<head>` must come before
 any rule that `var()`s its properties, so `main.css` reliably
 sees them.
+
+## Content components (D035)
+
+A layout may own reusable partials under `layouts/<layout>/components/<name>.tt`,
+so authors write Markdown and the layout supplies the HTML. They are packaged into
+the layout zip automatically (`package-layouts.sh`) and travel with the layout.
+
+There are two ways an author invokes a component:
+
+**Fenced** - a `::: <name>` block whose name matches a component:
+
+    ::: hero eyebrow="Generative"
+    # A site that's *alive*.
+
+    ::: actions
+    [Get started](#start)
+    :::
+    :::
+
+The component receives `content` (the inner Markdown, rendered), `attrs` (the
+`key="value"` pairs on the opening line), and `slots` (each nested `::: <slot>`
+fence, rendered). `components/hero.tt`:
+
+    <section class="hero">
+      [% IF attrs.eyebrow %]<span class="eyebrow">[% attrs.eyebrow %]</span>[% END %]
+      [% content %]
+      [% IF slots.actions %]<div class="cta">[% slots.actions %]</div>[% END %]
+    </section>
+
+A fence whose name has no matching component still becomes a plain
+`<div class="name">` (unchanged), so existing pages are unaffected.
+
+**Front-matter `sections:`** - data-driven whole pages. The page lists sections;
+the layout dispatches each to its component as `data`:
+
+    ---
+    sections:
+      - hero:
+          heading: "A site that's *alive*."
+          actions:
+            - { label: Get started, href: '#start', style: primary }
+      - feature-grid:
+          items:
+            - { title: No framework, body: "Native CSS." }
+    ---
+
+    [%# in layout.tt %]
+    [% FOREACH s IN sections %][% type = s.keys.first %]
+    [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
+
+Use `[% data.heading | markdown %]` for Markdown fields. **Dispatch must use
+`${type}.tt`** (braces) - bare `$type.tt` is read by Template Toolkit as the
+dotted variable `type.tt` and the INCLUDE fails.
+
+Keep colours in CSS tokens (`--theme-colours-*`), never in the component HTML.
+A component may `[% INCLUDE 'components/other.tt' %]` (the layout dir is on
+`INCLUDE_PATH`). `EVAL_PERL` is off; authors never write Template Toolkit.
 
 ## How themes target a layout
 
