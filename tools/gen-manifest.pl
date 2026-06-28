@@ -38,29 +38,28 @@ for my $L ( sort readdir $dh ) {
     my $lj = read_json("$ldir_l/layout.json") || {};
     my $name = ( defined $lj->{name} && length $lj->{name} ) ? $lj->{name} : $L;
 
-    # Theme names: prefer the declared forward index; else walk themes/.
-    my @theme_names;
-    if ( ref $lj->{themes} eq 'ARRAY' && @{ $lj->{themes} } ) {
-        @theme_names = @{ $lj->{themes} };
-    }
-    elsif ( -d "$ldir_l/themes" ) {
+    # Theme list is derived from the theme dirs on disk (never the committed
+    # layout.json.themes[], which is informational and could drift): a theme
+    # counts only if it declares this layout in theme.json.layouts[] - the same
+    # rule the processor enforces at install/activate time.
+    my @themes;
+    if ( -d "$ldir_l/themes" ) {
         opendir my $td, "$ldir_l/themes" or next;
-        @theme_names = sort grep { !/^\./ && -f "$ldir_l/themes/$_/theme.json" }
-            readdir $td;
+        for my $T ( sort grep { !/^\./ } readdir $td ) {
+            my $tj_path = "$ldir_l/themes/$T/theme.json";
+            next unless -f $tj_path;
+            my $tj = read_json($tj_path) || {};
+            next unless ref $tj->{layouts} eq 'ARRAY'
+                && grep { $_ eq $L } @{ $tj->{layouts} };
+            push @themes, {
+                name    => ( defined $tj->{name} && length $tj->{name} ) ? $tj->{name} : $T,
+                version => $tj->{version} // '0.0.0',
+                package => "releases/$L/$T.zip",
+            };
+        }
         closedir $td;
     }
-
-    my @themes;
-    for my $T (@theme_names) {
-        my $tj_path = "$ldir_l/themes/$T/theme.json";
-        next unless -f $tj_path;    # only list themes that actually exist
-        my $tj = read_json($tj_path) || {};
-        push @themes, {
-            name    => ( defined $tj->{name} && length $tj->{name} ) ? $tj->{name} : $T,
-            version => $tj->{version} // '0.0.0',
-            package => "releases/$L/$T.zip",
-        };
-    }
+    my @theme_names = map { $_->{name} } @themes;
 
     push @layouts, {
         name          => $name,
