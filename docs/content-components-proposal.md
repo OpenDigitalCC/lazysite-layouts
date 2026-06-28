@@ -123,7 +123,7 @@ The layout iterates and dispatches each section to its component:
 ```tt
 [% FOREACH s IN sections %]
   [% type = s.keys.first %]
-  [% INCLUDE "components/$type.tt" data = s.$type %]
+  [% INCLUDE "components/${type}.tt" data = s.$type %]
 [% END %]
 [% content %]   [%# any Markdown body still renders below the sections %]
 ```
