@@ -125,6 +125,24 @@ Without the guard, the `<link>` emits an empty `href` and
 browsers follow the page URL as the stylesheet. Harmless but
 produces a noisy 200 in the access log.
 
+**Preview / per-page-layout gotcha.** When a layout is *previewed*
+(or set per-page with `layout:`) and no theme is active for it,
+`theme_assets` is empty, so the guard above emits **no stylesheet**
+and the page renders unstyled. If your layout should still look right
+in that state, give the link a fallback to a theme mirror you ship,
+e.g.:
+
+    [% IF theme_assets %]
+    <link rel="stylesheet" href="[% theme_assets %]/main.css">
+    [% ELSE %]
+    <link rel="stylesheet" href="/lazysite-assets/LAYOUT/DEFAULT_THEME/main.css">
+    [% END %]
+
+(substitute your layout + its `default_theme`). A processor-side fix -
+falling `theme_assets` back to the layout's `default_theme` mirror when
+nothing is active - is on the lazysite backlog; until then this layout-side
+fallback is the robust pattern.
+
 ### How the layout coordinates with theme_css
 
 The `theme_css` variable is a `<style>` block emitted into
@@ -188,6 +206,10 @@ the layout dispatches each to its component as `data`:
 Use `[% data.heading | markdown %]` for Markdown fields. **Dispatch must use
 `${type}.tt`** (braces) - bare `$type.tt` is read by Template Toolkit as the
 dotted variable `type.tt` and the INCLUDE fails.
+
+`sections:` accepts both indented block style and inline flow style
+(`items: [{title: A}, {title: B}]`, `tags: [a, b]`) - mix freely. (Flow style had
+a parser bug through lazysite 0.4.68 that mis-counted list items; fixed after.)
 
 Keep colours in CSS tokens (`--theme-colours-*`), never in the component HTML.
 A component may `[% INCLUDE 'components/other.tt' %]` (the layout dir is on
