@@ -151,6 +151,11 @@
          "package" : "releases/layouts/default.zip",
          "themes" : [
             {
+               "name" : "clarity",
+               "package" : "releases/default/clarity.zip",
+               "version" : "1.0.0"
+            },
+            {
                "name" : "dark",
                "package" : "releases/default/dark.zip",
                "version" : "1.1.0"

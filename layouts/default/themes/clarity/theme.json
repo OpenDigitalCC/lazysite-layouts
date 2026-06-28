@@ -1,0 +1,43 @@
+{
+  "name": "clarity",
+  "version": "1.0.0",
+  "description": "Clarity - a clean, modern, professional light theme for product and documentation sites. Refined sans-serif, generous whitespace, one confident accent.",
+  "author": "OpenDigitalCC",
+  "layouts": ["default"],
+  "config": {
+    "colours": {
+      "primary": "#0F8A5C",
+      "primary-hover": "#0B6E48",
+      "primary-text": "#FFFFFF",
+      "text": "#21282E",
+      "text-muted": "#5B6770",
+      "text-dim": "#8A949C",
+      "heading": "#10171C",
+      "background": "#FFFFFF",
+      "background-alt": "#F5F7F6",
+      "background-accent": "#EAF6F0",
+      "background-dropdown": "#FFFFFF",
+      "border": "#E7EBE9",
+      "border-strong": "#D5DBD8",
+      "success": "#0F8A5C",
+      "error": "#D64545",
+      "mark": "#FFF3CD",
+      "mark-text": "#1A1A1A",
+      "shadow": "rgba(16, 23, 28, 0.10)"
+    },
+    "fonts": {
+      "body": "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "heading": "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "code": "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+    },
+    "spacing": {
+      "measure": "760px",
+      "wrap": "1120px",
+      "radius": "10px"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css"
+  ]
+}
