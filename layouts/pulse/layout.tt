@@ -59,7 +59,20 @@
   var ctx = c.getContext('2d'); var hero = c.parentElement;
   var DPR = Math.min(window.devicePixelRatio || 1, 2);
   var W=0, H=0, parts=[], N=0, t=0, raf=0;
-  var COLORS = ['#5EEAD4','#A78BFA','#38BDF8'];
+  // Runtime palette comes from the active theme's CSS variables (accent /
+  // accent-2 / accent-3), so any pulse theme variant recolours the canvas - not
+  // just the hardcoded default. Falls back to the originals if a var is unset.
+  var COLORS = (function(){
+    var cs = getComputedStyle(document.documentElement);
+    var fb = ['#5EEAD4','#A78BFA','#38BDF8'];
+    var ks = ['--theme-colours-accent','--theme-colours-accent-2','--theme-colours-accent-3'];
+    var out = [];
+    for (var i = 0; i < ks.length; i++) {
+      var v = (cs.getPropertyValue(ks[i]) || '').trim();
+      out.push(v || fb[i]);
+    }
+    return out;
+  })();
   var mouse = { x:-1e9, y:-1e9 };
   function mk(){ return { x:Math.random()*W, y:Math.random()*H, life:0, max:120+Math.random()*200, col:COLORS[(Math.random()*COLORS.length)|0] }; }
   function field(x,y,tt){ return (Math.sin(x*0.0016+tt)+Math.cos(y*0.0016-tt*0.8)+Math.sin((x+y)*0.0011+tt*0.4))*Math.PI; }

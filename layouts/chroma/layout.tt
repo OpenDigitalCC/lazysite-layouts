@@ -41,6 +41,22 @@
     {name:'Mono',     c:['#FAFAFA','#FFFFFF','#EFEFEF','#1A1A1A','#6B6B6B','#000000','#111111','#777777','#FFFFFF','#E2E2E2']},
     {name:'Neon',     c:['#080A12','#0E1120','#14182B','#C7D2FF','#6E76A8','#FFFFFF','#00E5FF','#FF2E97','#05060C','#1E2440']}
   ];
+  // Theme-driven default: read the active theme's colours so a chroma theme
+  // variant controls the starting palette (the layout no longer hardcodes it).
+  // The built-in presets remain as interactive options. Falls back to the
+  // first built-in preset if the theme exposes no colours.
+  (function(){
+    var cs = getComputedStyle(document.documentElement);
+    // var-name order matches K (index 4 is text-muted -> K's "muted").
+    var names = ['bg','surface','surface-2','text','text-muted','heading','accent','accent-2','on-accent','border'];
+    var c = [], ok = true;
+    for (var i = 0; i < names.length; i++) {
+      var v = (cs.getPropertyValue('--theme-colours-' + names[i]) || '').trim();
+      if (!v) { ok = false; break; }
+      c.push(v);
+    }
+    if (ok) presets.unshift({ name: 'Theme default', c: c });
+  })();
   var root = document.documentElement;
   function apply(p){
     for (var i=0;i<K.length;i++) root.style.setProperty('--c-'+K[i], p.c[i]);
