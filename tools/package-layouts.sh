@@ -6,6 +6,7 @@
 #
 #   layout.tt          (required, at zip root)
 #   layout.json        (required, at zip root)
+#   components/         (optional, D035 content components - copied wholesale)
 #
 # It deliberately does NOT include themes/ - themes are packaged separately by
 # package-themes.sh as releases/<L>/<T>.zip. After building the layout zips it
@@ -51,6 +52,8 @@ for LAYOUT_DIR in "$LAYOUTS_DIR"/*/; do
     rm -rf "$TEMP_DIR"; mkdir -p "$TEMP_DIR"
     cp "$LAYOUT_DIR/layout.tt" "$TEMP_DIR/"
     [ -f "$LAYOUT_DIR/layout.json" ] && cp "$LAYOUT_DIR/layout.json" "$TEMP_DIR/"
+    # D035: bundle the components/ subtree if present (excludes themes/).
+    [ -d "$LAYOUT_DIR/components" ] && cp -r "$LAYOUT_DIR/components" "$TEMP_DIR/"
 
     ZIP_FILE="$RELEASES_DIR/layouts/$LAYOUT_NAME.zip"
     rm -f "$ZIP_FILE"
