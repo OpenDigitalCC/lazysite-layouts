@@ -1,0 +1,7 @@
+[%- run = BLOCK -%][% FOREACH w IN data.words %][% w %]&nbsp;<em class="star">&#10038;</em>&nbsp;[% END %][%- END -%]
+<div class="marquee">
+<div class="marquee-track">
+<span>[% run %][% run %]</span>
+<span>[% run %][% run %]</span>
+</div>
+</div>

@@ -1,0 +1,5 @@
+<section class="section statement reveal">
+<div class="wrap">
+<p class="big">[% data.pre %][% IF data.accent %] <em class="grad-text">[% data.accent %]</em>[% END %][% IF data.post %] [% data.post %][% END %]</p>
+</div>
+</section>

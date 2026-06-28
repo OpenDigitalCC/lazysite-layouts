@@ -1,0 +1,7 @@
+<section class="section stats reveal">
+<div class="wrap">
+<div class="stats-grid">
+[% FOREACH s IN data.items %]<div class="stat"><div class="num grad-text">[% s.num %]</div><div class="label">[% s.label %]</div></div>
+[% END %]</div>
+</div>
+</section>
