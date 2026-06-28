@@ -179,6 +179,19 @@
          "version" : "1.0.0"
       },
       {
+         "default_theme" : "explorer",
+         "name" : "explorer",
+         "package" : "releases/layouts/explorer.zip",
+         "themes" : [
+            {
+               "name" : "explorer",
+               "package" : "releases/explorer/explorer.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
          "default_theme" : "flux",
          "name" : "flux",
          "package" : "releases/layouts/flux.zip",

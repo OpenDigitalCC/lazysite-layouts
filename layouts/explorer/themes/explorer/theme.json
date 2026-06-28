@@ -1,0 +1,19 @@
+{
+  "name": "explorer",
+  "version": "1.0.0",
+  "description": "The theme-explorer site's own chrome: modern, clean, elegant. Space Grotesk + Inter.",
+  "author": "OpenDigitalCC",
+  "layouts": ["explorer"],
+  "config": {
+    "colours": {
+      "bg": "#FBFBFC", "surface": "#FFFFFF", "surface-2": "#F4F4F6",
+      "text": "#33363D", "text-muted": "#6B7280", "heading": "#14161A",
+      "accent": "#4F46E5", "accent-2": "#0EA5E9", "on-accent": "#FFFFFF", "border": "#EAEAEE"
+    },
+    "fonts": {
+      "display": "'Space Grotesk', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif"
+    }
+  },
+  "files": ["theme.json", "assets/main.css"]
+}

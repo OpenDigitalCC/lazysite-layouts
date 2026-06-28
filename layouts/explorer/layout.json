@@ -1,0 +1,8 @@
+{
+  "name": "explorer",
+  "version": "1.0.0",
+  "description": "Theme-explorer site chrome: header with lazysite link, hero, content, footer.",
+  "author": "OpenDigitalCC",
+  "default_theme": "explorer",
+  "themes": ["explorer"]
+}

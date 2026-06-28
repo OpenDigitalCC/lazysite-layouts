@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+[% theme_css %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="ex-top">
+  <div class="in">
+    <a class="ex-logo" href="/"><span class="dot"></span>Theme&nbsp;Explorer</a>
+    <nav class="ex-nav">
+      <a href="/"[% IF request_uri == '/' %] class="active"[% END %]>Gallery</a>
+      <a href="/make-a-theme"[% IF request_uri == '/make-a-theme' %] class="active"[% END %]>Make a theme</a>
+      <a href="/for-ai"[% IF request_uri == '/for-ai' %] class="active"[% END %]>For AI</a>
+      <a class="ext" href="https://lazysite.io">lazysite.io &nearr;</a>
+    </nav>
+  </div>
+</header>
+
+<main class="ex-main" id="main">
+  <div class="ex-content">
+    [% IF page_title %]
+    <header class="ex-hero">
+      <h1>[% page_title %]</h1>
+      [% IF page_subtitle %]<p class="sub">[% page_subtitle %]</p>[% END %]
+      [% IF request_uri == '/' %]
+      <p class="ex-lede">lazysite turns Markdown into a fast, themeable static site &mdash; no build step, no database. <a href="https://lazysite.io">lazysite.io &nearr;</a></p>
+      [% END %]
+    </header>
+    [% END %]
+    <div class="prose">
+      [% content %]
+    </div>
+  </div>
+</main>
+
+<footer class="ex-foot">
+  <div class="in">
+    <span class="tag">A gallery of lazysite themes &mdash; built on <a href="https://lazysite.io">lazysite</a>, the no-build static-site builder.</span>
+    <span><a href="/make-a-theme">Make a theme</a> &middot; <a href="/for-ai">For AI</a> &middot; <a href="https://lazysite.io">lazysite.io</a></span>
+  </div>
+</footer>
+</body>
+</html>
