@@ -102,23 +102,81 @@ See the upstream lazysite docs for the full format.
 
 ## Available themes
 
+Each theme declares its compatible layout in `theme.json`'s
+`layouts[]`. The first five share the `default` layout; the rest
+each ship their own layout (one theme per layout).
+
+### On the `default` layout
+
 | Theme    | Description                                       |
 | -------- | ------------------------------------------------- |
 | default  | Clean neutral light theme, no external assets     |
 | dark     | Dark theme, no external assets                    |
 | studio   | Swiss international: grotesk, red accent, square   |
 | warm     | Parchment + sage, serif headings (token-only)     |
-| terminal | Dark technical monospace, signal-green accent      |
+| terminal | Dark technical monospace, signal-green accent     |
 
-All ship under the `default` layout, with no external assets. Theme `config` values
-drive every meaningful colour in `main.css` via CSS custom
-properties - edit `theme.json`, get a recoloured theme, no
-CSS edits needed.
+### Personal / bio
+
+| Theme        | Layout       | Description                                       |
+| ------------ | ------------ | ------------------------------------------------- |
+| bio-modest   | bio-modest   | Understated calling card: quiet serif, lots of air |
+| bio-balanced | bio-balanced | Tidy professional personal site, clean and confident |
+| bio-bold     | bio-bold     | Loud personal site: big type, vivid gradient, photo-forward |
+
+### Blog
+
+| Theme  | Layout | Description                                              |
+| ------ | ------ | ------------------------------------------------------- |
+| ledger | ledger | Classic three-panel blog: plain white, system font, blue links |
+| quill  | quill  | Side-menu blog with a centred serif reading column, warm paper |
+| folio  | folio  | Essayist reading theme: large serif, single column      |
+
+### Gallery / portfolio
+
+| Theme   | Layout  | Description                                            |
+| ------- | ------- | ----------------------------------------------------- |
+| noir    | noir    | Dark mosaic gallery: gold accent, varied tile sizes   |
+| atelier | atelier | Gallery theme                                         |
+| cadre   | cadre   | Editorial portfolio: off-white, marquee + project grid |
+| reel    | reel    | Cinematic reel / showcase theme                       |
+
+### Statement (expressive, single-layout showpieces)
+
+| Theme   | Layout  | Description                                                  |
+| ------- | ------- | ----------------------------------------------------------- |
+| lumen   | lumen   | Light editorial statement: warm paper, cobalt, Fraunces serif |
+| nova    | nova    | Kinetic dark statement: animated aurora, glass panels, glow |
+| press   | press   | Newsprint brutalist: cream stock, black rules, news-red, ticker |
+| pulse   | pulse   | Generative interactive: canvas flow-field hero, dark glass UI |
+| flux    | flux    | Scroll-driven cinema: native CSS scroll animations, zero JS |
+| chroma  | chroma  | Visitor controls the palette: live mood switcher + randomiser |
+| console | console | The site as a working terminal: CRT aesthetic, type to navigate |
+
+### System dashboard
+
+| Theme        | Layout       | Description                |
+| ------------ | ------------ | ------------------------- |
+| portal-light | portal-light | Light system dashboard    |
+| portal-dark  | portal-dark  | Dark system dashboard     |
+
+### Professional services
+
+| Theme        | Layout       | Description                       |
+| ------------ | ------------ | --------------------------------- |
+| consultancy  | consultancy  | Business consultancy theme        |
+| publicsector | publicsector | Public-sector advisory theme      |
+
+Theme `config` values drive every meaningful colour (and often
+the fonts) in `main.css` via CSS custom properties - edit
+`theme.json`, get a recoloured theme, no CSS edits needed.
 
 ## Downloads
 
 Pre-built zip packages mirror the source structure:
 `releases/LAYOUT/THEME.zip`.
+
+On the `default` layout:
 
 - [releases/default/default.zip](releases/default/default.zip) - light theme
 - [releases/default/dark.zip](releases/default/dark.zip) - dark theme
@@ -126,8 +184,32 @@ Pre-built zip packages mirror the source structure:
 - [releases/default/warm.zip](releases/default/warm.zip) - warm minimal theme
 - [releases/default/terminal.zip](releases/default/terminal.zip) - monospace theme
 
-The layout-scoped nesting means future layouts (e.g. `studio`)
-can each ship a `default` theme without collision.
+One theme per layout:
+
+- [releases/bio-modest/bio-modest.zip](releases/bio-modest/bio-modest.zip)
+- [releases/bio-balanced/bio-balanced.zip](releases/bio-balanced/bio-balanced.zip)
+- [releases/bio-bold/bio-bold.zip](releases/bio-bold/bio-bold.zip)
+- [releases/ledger/ledger.zip](releases/ledger/ledger.zip) - classic three-panel blog
+- [releases/quill/quill.zip](releases/quill/quill.zip) - side-menu serif blog
+- [releases/folio/folio.zip](releases/folio/folio.zip) - essayist reading theme
+- [releases/noir/noir.zip](releases/noir/noir.zip) - dark mosaic gallery
+- [releases/atelier/atelier.zip](releases/atelier/atelier.zip) - gallery
+- [releases/cadre/cadre.zip](releases/cadre/cadre.zip) - editorial portfolio
+- [releases/reel/reel.zip](releases/reel/reel.zip) - cinematic showcase
+- [releases/lumen/lumen.zip](releases/lumen/lumen.zip) - light editorial statement
+- [releases/nova/nova.zip](releases/nova/nova.zip) - kinetic dark statement
+- [releases/press/press.zip](releases/press/press.zip) - newsprint brutalist
+- [releases/pulse/pulse.zip](releases/pulse/pulse.zip) - generative interactive
+- [releases/flux/flux.zip](releases/flux/flux.zip) - scroll-driven cinema
+- [releases/chroma/chroma.zip](releases/chroma/chroma.zip) - visitor-controlled palette
+- [releases/console/console.zip](releases/console/console.zip) - terminal-style site
+- [releases/portal-light/portal-light.zip](releases/portal-light/portal-light.zip) - light dashboard
+- [releases/portal-dark/portal-dark.zip](releases/portal-dark/portal-dark.zip) - dark dashboard
+- [releases/consultancy/consultancy.zip](releases/consultancy/consultancy.zip) - business consultancy
+- [releases/publicsector/publicsector.zip](releases/publicsector/publicsector.zip) - public-sector advisory
+
+The layout-scoped nesting means two layouts can each ship a
+`default` theme (or any same-named theme) without collision.
 
 ## Rebuilding the packages
 

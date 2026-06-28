@@ -1,4 +1,4 @@
-/* LEDGER - a classic two-panel blog: plain white, system font, blue links.
+/* LEDGER - a classic three-panel blog: plain white, system font, blue links.
    Modelled on the structure of a TypePad-era personal archive, unshaded. */
 :root{
   --bg:var(--theme-colours-bg,#FFFFFF);--text:var(--theme-colours-text,#222222);

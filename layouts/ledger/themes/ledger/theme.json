@@ -1,7 +1,7 @@
 {
   "name": "ledger",
   "version": "1.0.0",
-  "description": "Ledger - a classic two-panel blog theme. Plain white, system font, blue links.",
+  "description": "Ledger - a classic three-panel blog theme. Plain white, system font, blue links.",
   "author": "OpenDigitalCC",
   "layouts": ["ledger"],
   "config": {
