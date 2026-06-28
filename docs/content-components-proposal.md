@@ -1,7 +1,8 @@
 # Proposal: content components — simple Markdown, theme-owned design
 
-Status: Phase 1 SHIPPED in lazysite 0.4.64 (see "Phase 1 - available now" below);
-fenced components + `sections:` are later phases.
+Status: Phase 1 (0.4.64) + Phase 2 fenced components (0.4.65) SHIPPED - see
+"Phase 1 - available now" and "Phase 2 - available now" below. Only front-matter
+`sections:` (needs nested YAML) remains.
 Audience: lazysite core (processor) maintainer + layout authors
 Problem owner: themes like `nova`, `pulse`, `press` are HTML-heavy
 
@@ -276,3 +277,51 @@ with those; Phase 1 is the layout-author foundation.
 Concrete next step (yours): add `layouts/nova/components/{hero,feature-grid}.tt`,
 move that HTML out of the nova demo page, and have `nova/layout.tt` INCLUDE them -
 so nova is the worked reference the moment fenced components land.
+
+## Phase 2 - available now (lazysite 0.4.65)
+
+Authors can invoke a component straight from Markdown. A `::: <name>` fence whose
+`<name>` matches `layouts/<layout>/components/<name>.tt` is rendered through that
+component:
+
+- the inner Markdown becomes **`content`**,
+- `key="value"` (or `key='value'`) pairs on the opening line become **`attrs`**,
+- direct-child `::: <slot>` fences become **`slots.<slot>`** (rendered Markdown).
+
+Author writes:
+
+    ::: hero eyebrow="Generative · Interactive"
+    # A site that's *alive*.
+
+    The field behind these words is drawn live.
+
+    ::: actions
+    [How it works](#concept)
+    [Get started](#start)
+    :::
+    :::
+
+`layouts/nova/components/hero.tt` supplies the scaffolding:
+
+    <section class="hero">
+      <canvas id="pulse-canvas"></canvas>
+      <div class="hero-inner">
+        [% IF attrs.eyebrow %]<span class="eyebrow">[% attrs.eyebrow %]</span>[% END %]
+        [% content %]
+        [% IF slots.actions %]<div class="cta">[% slots.actions %]</div>[% END %]
+      </div>
+    </section>
+
+Notes and current limits:
+
+- A fence name with **no** matching component is unchanged - it still becomes a
+  `<div class="name">` (the old behaviour), so nothing existing breaks.
+- Nesting is handled (a component can contain slot fences). **Not yet**: a
+  component *inside* another component's content/slot, and `::: include` inside a
+  component - both later. Keep components one level deep for now.
+- Components render with `EVAL_PERL` off and the layout dir on `INCLUDE_PATH`, so
+  a component may `[% INCLUDE 'components/other.tt' %]` and use `[% x | markdown %]`.
+- Local layouts only (a remote/URL layout skips component resolution for now).
+
+What's left: front-matter `sections:` (data-driven whole pages) needs a nested-YAML
+parser - the only remaining engine piece.
