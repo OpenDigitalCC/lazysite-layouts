@@ -1,8 +1,8 @@
 # Proposal: content components — simple Markdown, theme-owned design
 
-Status: Phase 1 (0.4.64) + Phase 2 fenced components (0.4.65) SHIPPED - see
-"Phase 1 - available now" and "Phase 2 - available now" below. Only front-matter
-`sections:` (needs nested YAML) remains.
+Status: COMPLETE. Phase 1 (0.4.64), Phase 2 fenced components (0.4.65), and
+Phase 3 front-matter `sections:` (0.4.66) are all SHIPPED - see the
+"... - available now" sections below.
 Audience: lazysite core (processor) maintainer + layout authors
 Problem owner: themes like `nova`, `pulse`, `press` are HTML-heavy
 
@@ -325,3 +325,45 @@ Notes and current limits:
 
 What's left: front-matter `sections:` (data-driven whole pages) needs a nested-YAML
 parser - the only remaining engine piece.
+
+## Phase 3 - available now (lazysite 0.4.66)
+
+A page can describe itself as data and let the layout compose it:
+
+    ---
+    title: NOVA
+    sections:
+      - hero:
+          eyebrow: Generative
+          heading: "A site that's *alive*."
+          actions:
+            - { label: How it works, href: '#concept', style: primary }
+            - { label: Get started,  href: '#start' }
+      - feature-grid:
+          items:
+            - { title: No framework, body: "Native CSS and a little JS." }
+    ---
+
+The front-matter `sections:` is a sequence of single-key maps (the key is the
+component name) parsed into the `sections` variable. The layout dispatches each:
+
+    [% FOREACH s IN sections %]
+      [% type = s.keys.first %]
+      [% INCLUDE "components/${type}.tt" data = s.$type %]
+    [% END %]
+    [% content %]   [%# any Markdown body still renders below %]
+
+and each component reads from `data` (use the `markdown` filter for Markdown
+fields, e.g. `[% data.heading | markdown %]`).
+
+IMPORTANT - dispatch must use **`${type}.tt`** (braces). Bare `$type.tt` is parsed
+by Template Toolkit as the dotted variable `type.tt` (→ empty) and the INCLUDE
+fails. This is the one gotcha; copy the loop above verbatim.
+
+Supported in `sections:` data: nested maps, nested sequences, inline flow maps
+`{k: v, ...}` and seqs `[a, b]`, quoted and bareword scalars. It is a small
+purpose-built subset, not general YAML - keep to the shapes shown.
+
+Two front doors now exist for the same components: **fenced `::: name`** for
+Markdown-with-occasional-design (Phase 2), and **`sections:`** for fully-composed
+pages (Phase 3). Content components are complete.
