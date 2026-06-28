@@ -1,0 +1,10 @@
+<section class="hero">
+<div class="wrap">
+<div class="kicker"><span class="no">[% data.num %]</span>[% FOREACH k IN data.kickers %]<span>[% k %]</span>[% END %]</div>
+<h1 class="display">[% data.heading %][% IF data.accent %] <em>[% data.accent %]</em>[% END %][% IF data.heading_post %] [% data.heading_post %][% END %]</h1>
+<div class="hero-foot">
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+[% IF data.actions.size %]<div class="btn-row">[% FOREACH a IN data.actions %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>[% END %]</div>[% END %]
+</div>
+</div>
+</section>

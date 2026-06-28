@@ -1,0 +1,6 @@
+<section class="section quote reveal" id="voices">
+<div class="wrap">
+<blockquote>[% data.pre %]<b>[% data.accent %]</b>[% data.post %]</blockquote>
+<div class="by">[% data.by %]</div>
+</div>
+</section>

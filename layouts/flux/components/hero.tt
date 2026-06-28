@@ -1,0 +1,8 @@
+<section class="hero">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h1 class="display">[% data.heading %][% IF data.accent %] <em>[% data.accent %]</em>[% END %][% IF data.heading_post %] [% data.heading_post %][% END %]</h1>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+[% IF data.actions.size %]<div class="btn-row">[% FOREACH a IN data.actions %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>[% END %]</div>[% END %]
+</div>
+</section>

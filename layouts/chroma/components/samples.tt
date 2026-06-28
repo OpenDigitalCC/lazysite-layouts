@@ -1,0 +1,10 @@
+<section class="section samples" id="samples">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2">[% data.heading %]</h2>
+<div class="grid" style="margin-top:44px">
+[% FOREACH c IN data.cards %]<div class="card"><span class="tag">[% c.tag %]</span><h3>[% c.title %]</h3><p>[% c.body %]</p></div>
+[% END %]</div>
+[% IF data.quote %]<div class="sample-quote"><p>[% data.quote %]</p></div>[% END %]
+</div>
+</section>

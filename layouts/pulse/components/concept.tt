@@ -1,0 +1,10 @@
+<section class="section concept reveal" id="concept">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2">[% data.heading %]</h2>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+<div class="card-grid">
+[% FOREACH c IN data.cards %]<div class="card"><div class="k">[% c.k %]</div><h3>[% c.title %]</h3><p>[% c.body %]</p></div>
+[% END %]</div>
+</div>
+</section>

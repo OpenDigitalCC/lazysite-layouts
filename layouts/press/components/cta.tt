@@ -1,0 +1,8 @@
+<section class="section cta reveal">
+<div class="wrap">
+<span class="kicker" style="background:var(--ink)">[% data.kicker %]</span>
+<h2 class="h2" style="margin-top:16px">[% data.heading %]</h2>
+<p class="deck">[% data.deck %]</p>
+<div class="btn-row">[% FOREACH a IN data.actions %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>[% END %]</div>
+</div>
+</section>

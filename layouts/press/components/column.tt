@@ -1,0 +1,8 @@
+<section class="section column reveal" id="column">
+<div class="wrap">
+<div class="head"><span class="kicker">[% data.kicker %]</span><span class="byline">[% data.byline %]</span></div>
+<div class="cols">
+[% FOREACH p IN data.paras %]<p>[% p %]</p>
+[% END %]</div>
+</div>
+</section>

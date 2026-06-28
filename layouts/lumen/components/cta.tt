@@ -1,0 +1,8 @@
+<section class="section cta reveal">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow" style="color:rgba(255,255,255,.85)">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2">[% data.heading %]</h2>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+[% IF data.actions.size %]<div class="btn-row">[% FOREACH a IN data.actions %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>[% END %]</div>[% END %]
+</div>
+</section>

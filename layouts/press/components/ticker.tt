@@ -1,0 +1,9 @@
+[%- run = BLOCK -%][% FOREACH i IN data.items %][% i %] &bull; [% END %][%- END -%]
+[%- tail = BLOCK -%][% FOREACH i IN data.items %][% i %] &bull;[% IF loop.last %]&nbsp;[% ELSE %] [% END %][% END %][%- END -%]
+<div class="ticker">
+<div class="tag">[% data.tag %]</div>
+<div class="track">
+<span>[% run %][% tail %]</span>
+<span>[% run %][% tail %]</span>
+</div>
+</div>

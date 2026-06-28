@@ -1,0 +1,2 @@
+[% FOREACH c IN data.items %]<div data-cmd="[% c.cmd %]" data-desc="[% c.desc %]"><h3>[% c.cmd %]</h3>[% c.body %]</div>
+[% END %]

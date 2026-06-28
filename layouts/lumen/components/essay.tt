@@ -1,0 +1,7 @@
+<section class="section essay reveal" id="essay">
+<div class="wrap drop">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2" style="margin:14px 0 28px">[% data.heading %]</h2>
+[% FOREACH p IN data.paras %]<p>[% p %]</p>
+[% END %]</div>
+</section>

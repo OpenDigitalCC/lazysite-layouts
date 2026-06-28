@@ -1,0 +1,7 @@
+<section class="section" id="how">
+<div class="wrap" style="max-width:760px">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2" style="margin:14px 0 18px">[% data.heading %]</h2>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+</div>
+</section>

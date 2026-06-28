@@ -1,0 +1,9 @@
+<section class="hero">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h1 class="display">[% data.heading %]<br>[% IF data.accent %]<em>[% data.accent %]</em> [% END %][% data.heading_post %]</h1>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+[% IF data.actions.size %]<div class="btn-row">[% FOREACH a IN data.actions %][% IF a.onclick %]<button class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]" onclick="[% a.onclick %]">[% a.label %]</button>[% ELSE %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>[% END %][% END %]</div>[% END %]
+<div class="swatch-strip" id="swatch-strip"></div>
+</div>
+</section>

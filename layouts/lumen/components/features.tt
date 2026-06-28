@@ -1,0 +1,9 @@
+<section class="section features reveal" id="features">
+<div class="wrap">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h2 class="h2">[% data.heading %]</h2>
+<div class="feat-grid">
+[% FOREACH f IN data.feats %]<div class="feat"><div class="no">[% f.num %]</div><h3>[% f.title %]</h3><p>[% f.body %]</p></div>
+[% END %]</div>
+</div>
+</section>

@@ -1,0 +1,9 @@
+<section class="section stories reveal" id="stories">
+<div class="wrap">
+<span class="kicker">[% data.kicker %]</span>
+<h2 class="h2">[% data.heading %]</h2>
+<div class="story-grid" style="border-top:3px solid var(--border);margin-top:22px">
+[% FOREACH s IN data.stories %]<div class="story"><span class="kicker">[% s.kicker %]</span><h3>[% s.title %]</h3><p>[% s.body %]</p><span class="more">[% s.more %]</span></div>
+[% END %]</div>
+</div>
+</section>

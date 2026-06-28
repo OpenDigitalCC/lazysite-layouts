@@ -1,0 +1,12 @@
+<section class="hero">
+<canvas id="pulse-canvas"></canvas>
+<div class="hero-inner">
+[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]
+<h1 class="display">[% data.heading %] <span class="grad-text">[% data.accent %]</span>[% data.heading_post %]</h1>
+[% IF data.lead %]<p class="lead">[% data.lead %]</p>[% END %]
+[% IF data.actions.size %]<div class="btn-row">
+[% FOREACH a IN data.actions %]<a href="[% a.href %]" class="btn [% a.style == 'primary' ? 'btn-primary' : 'btn-ghost' %]">[% a.label %]</a>
+[% END %]</div>[% END %]
+[% IF data.hint %]<div class="hint">[% data.hint %]</div>[% END %]
+</div>
+</section>

@@ -1,0 +1,5 @@
+<section class="numbers reveal">
+<div class="grid">
+[% FOREACH n IN data.items %]<div class="num-box"><div class="n">[% n.n %]</div><div class="l">[% n.l %]</div></div>
+[% END %]</div>
+</section>

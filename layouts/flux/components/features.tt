@@ -1,0 +1,8 @@
+<section class="section"[% IF data.id %] id="[% data.id %]"[% END %]>
+<div class="wrap">
+[% FOREACH f IN data.feats %]<div class="feat fx">
+<div><div class="num">[% f.num %]</div><h3>[% f.heading %]</h3><p>[% f.body %]</p></div>
+<div class="feat-media zoom"><div class="blob"></div></div>
+</div>
+[% END %]</div>
+</section>
