@@ -2,5 +2,7 @@
   "name": "bio-balanced",
   "version": "1.0.0",
   "description": "BIO Balanced bio layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["bio-balanced"],
+  "default_theme": "bio-balanced"
 }

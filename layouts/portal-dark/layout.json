@@ -2,5 +2,7 @@
   "name": "portal-dark",
   "version": "1.0.0",
   "description": "Dark dashboard layout (app shell).",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["portal-dark"],
+  "default_theme": "portal-dark"
 }

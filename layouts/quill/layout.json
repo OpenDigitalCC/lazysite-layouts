@@ -2,5 +2,7 @@
   "name": "quill",
   "version": "1.0.0",
   "description": "Quill layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["quill"],
+  "default_theme": "quill"
 }

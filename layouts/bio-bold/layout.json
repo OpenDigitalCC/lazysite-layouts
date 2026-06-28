@@ -2,5 +2,7 @@
   "name": "bio-bold",
   "version": "1.0.0",
   "description": "BIO Bold bio layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["bio-bold"],
+  "default_theme": "bio-bold"
 }

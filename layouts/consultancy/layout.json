@@ -2,5 +2,7 @@
   "name": "consultancy",
   "version": "1.0.0",
   "description": "Business consultancy layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["consultancy"],
+  "default_theme": "consultancy"
 }

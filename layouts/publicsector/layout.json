@@ -2,5 +2,7 @@
   "name": "publicsector",
   "version": "1.0.0",
   "description": "Public-sector advisory layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["publicsector"],
+  "default_theme": "publicsector"
 }

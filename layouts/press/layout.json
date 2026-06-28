@@ -2,5 +2,7 @@
   "name": "press",
   "version": "1.0.0",
   "description": "PRESS statement layout: newspaper masthead, breaking ticker, full-bleed front-page content, hard rules. Pairs with the press theme.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["press"],
+  "default_theme": "press"
 }

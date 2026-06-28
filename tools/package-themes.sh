@@ -129,3 +129,8 @@ if [ "$THEMES_FAILED" -gt 0 ]; then
 fi
 echo "Output: $RELEASES_DIR"
 find "$RELEASES_DIR" -name '*.zip' -printf '  %p\n' | sort
+
+# Package layouts + regenerate manifest.json in the same pass, so the catalogue
+# the processor downloads always matches the theme zips just built.
+echo ""
+"$REPO_ROOT/tools/package-layouts.sh"

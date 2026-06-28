@@ -2,5 +2,7 @@
   "name": "noir",
   "version": "1.0.0",
   "description": "Noir layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["noir"],
+  "default_theme": "noir"
 }

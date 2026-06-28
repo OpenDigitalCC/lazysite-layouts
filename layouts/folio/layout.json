@@ -2,5 +2,7 @@
   "name": "folio",
   "version": "1.0.0",
   "description": "Folio layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["folio"],
+  "default_theme": "folio"
 }

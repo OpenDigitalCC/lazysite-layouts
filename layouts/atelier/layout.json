@@ -2,5 +2,7 @@
   "name": "atelier",
   "version": "1.0.0",
   "description": "Atelier layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["atelier"],
+  "default_theme": "atelier"
 }

@@ -2,5 +2,7 @@
   "name": "bio-modest",
   "version": "1.0.0",
   "description": "BIO Modest bio layout.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["bio-modest"],
+  "default_theme": "bio-modest"
 }

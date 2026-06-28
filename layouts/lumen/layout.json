@@ -2,5 +2,7 @@
   "name": "lumen",
   "version": "1.0.0",
   "description": "LUMEN statement layout: light editorial chrome, big serif, asymmetric full-bleed content, scroll-reveal. Pairs with the lumen theme.",
-  "author": "OpenDigitalCC"
+  "author": "OpenDigitalCC",
+  "themes": ["lumen"],
+  "default_theme": "lumen"
 }

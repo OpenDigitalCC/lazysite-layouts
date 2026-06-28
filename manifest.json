@@ -1,0 +1,312 @@
+{
+   "generated" : "2026-06-28",
+   "layouts" : [
+      {
+         "default_theme" : "atelier",
+         "name" : "atelier",
+         "package" : "releases/layouts/atelier.zip",
+         "themes" : [
+            {
+               "name" : "atelier",
+               "package" : "releases/atelier/atelier.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "bio-balanced",
+         "name" : "bio-balanced",
+         "package" : "releases/layouts/bio-balanced.zip",
+         "themes" : [
+            {
+               "name" : "bio-balanced",
+               "package" : "releases/bio-balanced/bio-balanced.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "bio-bold",
+         "name" : "bio-bold",
+         "package" : "releases/layouts/bio-bold.zip",
+         "themes" : [
+            {
+               "name" : "bio-bold",
+               "package" : "releases/bio-bold/bio-bold.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "bio-modest",
+         "name" : "bio-modest",
+         "package" : "releases/layouts/bio-modest.zip",
+         "themes" : [
+            {
+               "name" : "bio-modest",
+               "package" : "releases/bio-modest/bio-modest.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "cadre",
+         "name" : "cadre",
+         "package" : "releases/layouts/cadre.zip",
+         "themes" : [
+            {
+               "name" : "cadre",
+               "package" : "releases/cadre/cadre.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "chroma",
+         "name" : "chroma",
+         "package" : "releases/layouts/chroma.zip",
+         "themes" : [
+            {
+               "name" : "chroma",
+               "package" : "releases/chroma/chroma.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "console",
+         "name" : "console",
+         "package" : "releases/layouts/console.zip",
+         "themes" : [
+            {
+               "name" : "console",
+               "package" : "releases/console/console.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "consultancy",
+         "name" : "consultancy",
+         "package" : "releases/layouts/consultancy.zip",
+         "themes" : [
+            {
+               "name" : "consultancy",
+               "package" : "releases/consultancy/consultancy.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "default",
+         "name" : "default",
+         "package" : "releases/layouts/default.zip",
+         "themes" : [
+            {
+               "name" : "dark",
+               "package" : "releases/default/dark.zip",
+               "version" : "1.1.0"
+            },
+            {
+               "name" : "default",
+               "package" : "releases/default/default.zip",
+               "version" : "1.1.0"
+            },
+            {
+               "name" : "studio",
+               "package" : "releases/default/studio.zip",
+               "version" : "1.0.0"
+            },
+            {
+               "name" : "terminal",
+               "package" : "releases/default/terminal.zip",
+               "version" : "1.0.0"
+            },
+            {
+               "name" : "warm",
+               "package" : "releases/default/warm.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "flux",
+         "name" : "flux",
+         "package" : "releases/layouts/flux.zip",
+         "themes" : [
+            {
+               "name" : "flux",
+               "package" : "releases/flux/flux.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "folio",
+         "name" : "folio",
+         "package" : "releases/layouts/folio.zip",
+         "themes" : [
+            {
+               "name" : "folio",
+               "package" : "releases/folio/folio.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "ledger",
+         "name" : "ledger",
+         "package" : "releases/layouts/ledger.zip",
+         "themes" : [
+            {
+               "name" : "ledger",
+               "package" : "releases/ledger/ledger.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "lumen",
+         "name" : "lumen",
+         "package" : "releases/layouts/lumen.zip",
+         "themes" : [
+            {
+               "name" : "lumen",
+               "package" : "releases/lumen/lumen.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "noir",
+         "name" : "noir",
+         "package" : "releases/layouts/noir.zip",
+         "themes" : [
+            {
+               "name" : "noir",
+               "package" : "releases/noir/noir.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "nova",
+         "name" : "nova",
+         "package" : "releases/layouts/nova.zip",
+         "themes" : [
+            {
+               "name" : "nova",
+               "package" : "releases/nova/nova.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "portal-dark",
+         "name" : "portal-dark",
+         "package" : "releases/layouts/portal-dark.zip",
+         "themes" : [
+            {
+               "name" : "portal-dark",
+               "package" : "releases/portal-dark/portal-dark.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "portal-light",
+         "name" : "portal-light",
+         "package" : "releases/layouts/portal-light.zip",
+         "themes" : [
+            {
+               "name" : "portal-light",
+               "package" : "releases/portal-light/portal-light.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "press",
+         "name" : "press",
+         "package" : "releases/layouts/press.zip",
+         "themes" : [
+            {
+               "name" : "press",
+               "package" : "releases/press/press.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "publicsector",
+         "name" : "publicsector",
+         "package" : "releases/layouts/publicsector.zip",
+         "themes" : [
+            {
+               "name" : "publicsector",
+               "package" : "releases/publicsector/publicsector.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "pulse",
+         "name" : "pulse",
+         "package" : "releases/layouts/pulse.zip",
+         "themes" : [
+            {
+               "name" : "pulse",
+               "package" : "releases/pulse/pulse.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "quill",
+         "name" : "quill",
+         "package" : "releases/layouts/quill.zip",
+         "themes" : [
+            {
+               "name" : "quill",
+               "package" : "releases/quill/quill.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      },
+      {
+         "default_theme" : "reel",
+         "name" : "reel",
+         "package" : "releases/layouts/reel.zip",
+         "themes" : [
+            {
+               "name" : "reel",
+               "package" : "releases/reel/reel.zip",
+               "version" : "1.0.0"
+            }
+         ],
+         "version" : "1.0.0"
+      }
+   ],
+   "schema" : 1
+}
