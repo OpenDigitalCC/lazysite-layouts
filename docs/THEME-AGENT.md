@@ -48,6 +48,22 @@ assets/main.css   the web-served stylesheet (+ any other assets/)
 `config` tokens become CSS custom properties the layout/theme reference; copy an
 existing theme (e.g. `nova`, `default/*`) as a starting point.
 
+### Runtime colours must read theme tokens, not hardcode
+
+A layout's `config` colours are emitted as CSS variables named
+`--theme-<group>-<key>` (e.g. `--theme-colours-accent`, `--theme-colours-bg`).
+**If a layout has runtime JS that uses colour** (a canvas animation, a palette
+switcher, generated gradients), it must read those variables at runtime via
+`getComputedStyle(document.documentElement).getPropertyValue('--theme-colours-...')`,
+with a hardcoded fallback - **never bake the palette into a JS array**. Otherwise
+a theme variant can recolour the CSS chrome but not the JS-driven runtime, and the
+variant looks half-applied.
+
+This is the resolution to "the contract forbids editing the layout": you don't
+fork the shared layout per variant - you **parameterise it once** to read theme
+tokens, and then every theme drives it. `pulse` (canvas) and `chroma` (palette
+presets) are the reference implementations.
+
 ## Managing themes/layouts on a LIVE site
 
 Themes are **developed in this repo** and **deployed to a site** by installing
@@ -61,7 +77,7 @@ surfaces, all gated by the partner's capabilities (introspect with `whoami`):
 | `whoami` | your capabilities + the active layout/theme |
 | `list_themes` | installed themes across all layouts (+ which is active) |
 | `list_layout_catalogue` *(new)* | what the repo manifest offers: layouts -> themes, versions, and an `installed` flag |
-| `install_layout` *(new)* | install a layout + its theme(s) on demand (default theme, a specific `theme`, or `all:true`) and activate; mirrors assets, clears cache |
+| `install_layout` *(new)* | install a layout + its theme(s) on demand (default theme, a specific `theme`, or `all:true`) and activate; mirrors assets, clears cache. Pass `update:true` to **redeploy a changed layout** over one already installed (snapshots the old, keeps its themes) - this is how you push a layout fix to a live site |
 | `activate_layout` / `activate_theme` | switch the active layout / theme |
 | `delete_layout` *(new)* | remove a layout AND its themes (never the active one; a snapshot is kept) |
 | `invalidate_cache` | clear the HTML cache |
@@ -94,3 +110,8 @@ the repo, so prefer repo + `install_layout` over writing theme files onto a site
 - `install_layout` only sees what's on `layouts_ref` (default `main`) of
   `layouts_repo` - push/merge repo changes (or set `layouts_ref`) first.
 - After editing themes, re-run `./tools/package-themes.sh` so the manifest matches.
+- Runtime JS colour belongs in theme tokens read via CSS vars, never a hardcoded
+  array (see "Runtime colours" above).
+- To push a *layout* change to a live site, re-package + push the repo, then
+  `install_layout(layout, update:true)` - a plain install refuses to overwrite an
+  existing, differing layout.
