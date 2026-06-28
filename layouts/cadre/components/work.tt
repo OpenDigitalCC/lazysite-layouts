@@ -1,0 +1,1 @@
+<section class="work" id="work"><h2 class="h2">[% data.heading %]</h2><div class="proj-grid">[% FOREACH it IN data.items %]<a class="[% it.cls %]"><div class="cover" style="background:[% it.bg %]"></div><div class="meta"><span class="t">[% it.title %]</span><span class="c">[% it.caption %]</span></div></a>[% END %]</div></section>

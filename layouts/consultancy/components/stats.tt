@@ -1,0 +1,1 @@
+<section class="stats"><div class="wrap"><div class="grid">[% FOREACH s IN data.items %]<div class="stat"><div class="n">[% s.num %]</div><div class="l">[% s.label %]</div></div>[% END %]</div></div></section>

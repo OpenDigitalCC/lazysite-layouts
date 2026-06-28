@@ -1,0 +1,1 @@
+[%- run = BLOCK -%][% FOREACH w IN data.words %]<span>[% w %]</span><span class="o">&#10038;</span>[% END %][%- END -%]<div class="cadre-strip"><div class="row">[% run %][% run %][% run %]</div></div>

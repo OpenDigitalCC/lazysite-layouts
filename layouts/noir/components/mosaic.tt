@@ -1,0 +1,1 @@
+<section class="mosaic">[% FOREACH t IN data.tiles %]<div class="tile[% IF t.cls %] [% t.cls %][% END %]"><div class="art" style="background:[% t.bg %]"></div><span class="num">[% t.num %]</span><div class="cap"><div class="t">[% t.t %]</div><div class="m">[% t.m %]</div></div></div>[% END %]</section>

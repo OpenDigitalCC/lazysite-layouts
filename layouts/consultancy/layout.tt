@@ -9,13 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/consultancy/consultancy/main.css">[% END %]
 </head>
 <body>
 <nav class="ps-nav"><div class="in">
 <a class="logo" href="#top">Meridian &amp; Co</a>
 <ul class="links"><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="/" class="ex">&larr; Explorer</a></li><li><a href="#contact" class="cta">Book a briefing</a></li></ul>
 </div></nav>
+[% FOREACH s IN sections %][% type = s.keys.first %]
+[% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
 [% content %]
 <footer class="ps-foot"><div class="in">
 <div><div class="logo">Meridian &amp; Co</div><p>A management consultancy for ambitious leadership teams - strategy, operating model and transformation.</p></div>

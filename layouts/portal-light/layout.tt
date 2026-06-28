@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/main.css">[% END %]
 </head>
 <body>
 <div class="dash-shell">
@@ -27,7 +27,9 @@
 </aside>
 <div class="dash-main">
 <header class="dash-top"><h1>Overview</h1><div class="seg"><button class="on">Day</button><button>Week</button><button>Month</button></div><input class="search" placeholder="Search metrics..."><div class="who">JV</div></header>
-<main class="dash-content">[% content %]</main>
+<main class="dash-content">[% FOREACH s IN sections %][% type = s.keys.first %]
+[% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
+[% content %]</main>
 </div>
 </div>
 </body>

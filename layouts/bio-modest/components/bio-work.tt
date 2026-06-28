@@ -1,0 +1,6 @@
+<section class="bio-work" id="work">
+<div class="wrap">
+<h2 class="sec-h">[% data.heading %]</h2>
+[% FOREACH w IN data.items %]<div class="work-item"><span class="w-year">[% w.year %]</span><div><h3 class="w-title">[% w.title %]</h3><p class="w-note">[% w.note %]</p></div></div>
+[% END %]</div>
+</section>

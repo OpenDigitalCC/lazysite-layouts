@@ -1,0 +1,5 @@
+<section class="bio-about">
+<div class="wrap">
+[% FOREACH p IN data.paragraphs %]<p>[% p %]</p>
+[% END %]</div>
+</section>

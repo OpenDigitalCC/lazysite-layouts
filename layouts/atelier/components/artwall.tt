@@ -1,0 +1,1 @@
+<section class="art-wall" id="works">[% FOREACH t IN data.tiles %]<div class="art"><div class="canvas" style="aspect-ratio:[% t.ar %];background:[% t.bg %]"></div><div class="cap"><div class="t">[% t.t %]</div><div class="a">[% t.a %]</div><div class="m">[% t.m %]</div></div></div>[% END %]</section>

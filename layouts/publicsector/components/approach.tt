@@ -1,0 +1,1 @@
+<section class="approach" id="approach"><div class="wrap">[% IF data.eyebrow %]<span class="eyebrow">[% data.eyebrow %]</span>[% END %]<h2 class="h2">[% data.heading %]</h2><div class="steps">[% FOREACH s IN data.steps %]<div class="step"><h3>[% s.title %]</h3><p>[% s.body %]</p></div>[% END %]</div></div></section>

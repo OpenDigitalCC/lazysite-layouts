@@ -1,0 +1,1 @@
+<section class="q-lead"><span class="label">[% data.label %]</span><div class="meta">[% data.meta %]</div><h1>[% data.title %]</h1><p class="dek">[% data.dek %]</p><a class="more" href="[% data.href %]">[% data.more %]</a></section>

@@ -1,0 +1,1 @@
+<section class="about" id="about"><div class="wrap"><p>[% data.body %]</p></div></section>

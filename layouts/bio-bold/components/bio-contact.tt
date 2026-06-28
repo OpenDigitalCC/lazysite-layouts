@@ -1,0 +1,6 @@
+<section class="bio-contact" id="contact">
+<div class="wrap">
+<h2 class="sec-h">[% data.heading %]</h2>
+<div class="links">[% FOREACH l IN data.links %]<a class="pill" href="[% l.href %]">[% l.label %]</a>[% END %]</div>
+</div>
+</section>

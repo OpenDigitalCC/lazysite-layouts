@@ -1,0 +1,9 @@
+<section class="bio-hero" id="top">
+<div class="wrap">
+<div class="avatar">[% data.avatar %]</div>
+<p class="role">[% data.role %]</p>
+<h1 class="name">[% data.name %]</h1>
+<p class="tagline">[% data.tagline %]</p>
+<div class="links">[% FOREACH l IN data.links %]<a class="pill" href="[% l.href %]">[% l.label %]</a>[% END %]</div>
+</div>
+</section>

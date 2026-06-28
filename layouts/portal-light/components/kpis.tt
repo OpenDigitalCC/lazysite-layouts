@@ -1,0 +1,1 @@
+<section class="kpis">[% FOREACH k IN data.items %]<div class="kpi"><div class="l">[% k.l %]</div><div class="v">[% k.v %]</div><span class="d up">[% k.d %]</span><svg class="spark" viewBox="0 0 120 34" preserveAspectRatio="none"><path class="area" d="[% k.area %]"/><path class="line" d="[% k.line %]" fill="none"/></svg></div>[% END %]</section>

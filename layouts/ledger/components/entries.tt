@@ -1,0 +1,9 @@
+[% FOREACH item IN data.items %]<article class="entry">
+<h2 class="entry-title"><a href="[% item.href %]">[% item.title %]</a></h2>
+<div class="entry-meta">[% item.meta %]</div>
+<div class="entry-body">
+[% FOREACH p IN item.paragraphs %]<p>[% p %]</p>
+[% END %]<p><a class="read-more" href="[% item.href %]">[% item.more %]</a></p>
+</div>
+</article>
+[% END %]

@@ -1,0 +1,1 @@
+<section class="about" id="about"><div class="wrap"><div class="av">[% data.avatar %]</div><p>[% data.body %]</p></div></section>

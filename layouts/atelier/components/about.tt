@@ -1,0 +1,1 @@
+<section class="about" id="about"><div class="wrap"><p>[% data.quote %]</p><div class="sig">[% data.sig %]</div></div></section>

@@ -6,7 +6,7 @@
 <title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
 [% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/ledger/ledger/main.css">[% END %]
 </head>
 <body>
 <div class="led-wrap">
@@ -37,6 +37,8 @@
 
     <main class="led-main" id="main">
       <div id="content">
+        [% FOREACH s IN sections %][% type = s.keys.first %]
+[% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
         [% content %]
       </div>
     </main>

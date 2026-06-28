@@ -1,0 +1,1 @@
+<section class="q-list"><span class="label">[% data.label %]</span>[% FOREACH item IN data.items %]<article class="post"><div class="when">[% item.when %]</div><h2><a href="[% item.href %]">[% item.title %]</a></h2><p class="dek">[% item.dek %]</p></article>[% END %]</section>
