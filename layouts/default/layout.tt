@@ -67,7 +67,8 @@
           [% END %]
         </header>
         <div class="page-body">
-          [% content %]
+          [% FOREACH s IN sections %][% type = s.keys.first %][% INCLUDE "components/${type}.tt" data = s.$type %]
+          [% END %][% content %]
         </div>
         [% IF page_modified %]
         <time datetime="[% page_modified_iso %]" class="page-modified">Last updated: [% page_modified %]</time>
