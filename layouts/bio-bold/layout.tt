@@ -16,6 +16,6 @@
 [% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
 [% content %]
-<footer class="bio-foot">A personal-site theme for lazysite. <a href="/">Back to the theme explorer</a> &middot; [% year %]</footer>
+<footer class="bio-foot">A personal-site theme for lazysite. <a href="/">Back to the theme explorer</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a> &middot; [% year %]</footer>
 </body>
 </html>

@@ -30,6 +30,7 @@
 <main class="dash-content">[% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
 [% content %]</main>
+<footer class="dash-foot"><a href="https://lazysite.io">This is a Lazysite</a></footer>
 </div>
 </div>
 </body>

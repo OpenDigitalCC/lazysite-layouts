@@ -22,7 +22,7 @@
 <footer class="ps-foot"><div class="in">
 <div><div class="logo">Carrick Advisory</div><p>Independent advisory for the public sector - strategy, assurance and digital, delivered with a duty of care.</p></div>
 <div><h4>Practice</h4><ul><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact</a></li></ul></div>
-<div><h4>lazysite</h4><ul><li><a href="/">Theme explorer</a></li><li><a href="https://lazysite.io">lazysite.io</a></li></ul></div>
+<div><h4>lazysite</h4><ul><li><a href="/">Theme explorer</a></li><li><a href="https://lazysite.io">This is a Lazysite</a></li></ul></div>
 </div><div class="base"><span>&copy; [% year %] Carrick Advisory - a lazysite professional-services theme.</span><span>Demo content</span></div></footer>
 </body>
 </html>

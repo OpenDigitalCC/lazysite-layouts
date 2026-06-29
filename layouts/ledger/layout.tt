@@ -84,7 +84,7 @@
   </div>
 
   <footer class="led-foot">
-    <span>&copy; [% year %] Fieldnotes. Built with <a href="https://lazysite.io">lazysite</a>.</span>
+    <span>&copy; [% year %] Fieldnotes. <a href="https://lazysite.io">This is a Lazysite</a>.</span>
     <span><a href="/">&larr; Theme explorer</a></span>
   </footer>
 

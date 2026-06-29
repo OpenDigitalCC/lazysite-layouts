@@ -27,7 +27,7 @@
 <footer class="flux-foot">
   <div class="inner">
     <span>&copy; [% year %] FLUX &mdash; scroll-driven cinema, native CSS, zero JavaScript.</span>
-    <span><a href="/">Theme Explorer</a> &middot; <a href="https://lazysite.io">lazysite.io</a></span>
+    <span><a href="/">Theme Explorer</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
   </div>
 </footer>
 </body>

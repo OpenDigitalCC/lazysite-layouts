@@ -28,7 +28,7 @@
 <footer class="chroma-foot">
   <div class="inner">
     <span>Chroma &mdash; the theme is the interface. &copy; [% year %]</span>
-    <span><a href="/">Theme Explorer</a> &middot; <a href="https://lazysite.io">lazysite.io</a></span>
+    <span><a href="/">Theme Explorer</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
   </div>
 </footer>
 

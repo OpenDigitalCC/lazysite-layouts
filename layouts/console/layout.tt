@@ -28,6 +28,8 @@
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %][% content %]</div>
 </main>
 
+<footer class="term-foot" style="text-align:center;padding:1rem;font-family:'JetBrains Mono',monospace;opacity:.6;font-size:.85rem"># <a href="https://lazysite.io" style="color:inherit">This is a Lazysite</a></footer>
+
 <script>
 (function(){
   var out = document.getElementById('term-out');

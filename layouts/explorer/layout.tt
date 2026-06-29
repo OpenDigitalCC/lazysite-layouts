@@ -45,7 +45,7 @@
 <footer class="ex-foot">
   <div class="in">
     <span class="tag">A gallery of lazysite themes &mdash; built on <a href="https://lazysite.io">lazysite</a>, the no-build static-site builder.</span>
-    <span><a href="/make-a-theme">Make a theme</a> &middot; <a href="/for-ai">For AI</a> &middot; <a href="https://lazysite.io">lazysite.io</a></span>
+    <span><a href="/make-a-theme">Make a theme</a> &middot; <a href="/for-ai">For AI</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
   </div>
 </footer>
 </body>
