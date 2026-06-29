@@ -77,10 +77,28 @@ The processor passes these variables into `layout.tt`:
 | `manager`, `manager_path`       | string | Manager UI settings                      |
 | `year`                | string | 4-digit current year                               |
 | `sections`            | array  | D035 front-matter `sections:` (data-driven pages); empty `[]` unless declared |
+| `auth_control`        | HTML   | A cache-safe Sign in / Sign out control - drop it in your header |
 
 A `markdown` filter is also available: `[% some_value | markdown %]` renders a
 value that contains Markdown (single-paragraph values render inline). See
 "Content components" below.
+
+### Sign in / out - use `[% auth_control %]`, never `[% IF authenticated %]`
+
+Pages are cached, and the cache is shared by everyone. So `authenticated` reflects
+**render time**, not the viewer: a server-side `[% IF authenticated %]Sign out
+[% ELSE %]Sign in[% END %]` bakes the wrong state into the cached HTML - the
+"shows Sign in while logged in" bug. Instead drop `[% auth_control %]` into your
+header:
+
+    <header> … [% auth_control %] </header>
+
+It emits a Sign in and a Sign out link, both hidden; the auth-sync script lazysite
+injects reveals the correct one from the (non-authoritative) `lzs_session` marker
+cookie, client-side, so it is right whether the page came from cache or not. Style
+them via the `.ls-auth`, `.ls-auth-in`, `.ls-auth-out` classes. The same rule
+applies to any "logged-in only" chrome - gate it client-side, not with
+`authenticated` in the layout.
 
 ### Minimum layout.tt
 
