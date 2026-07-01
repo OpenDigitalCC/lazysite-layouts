@@ -1,10 +1,10 @@
-/* PORTAL (violet/teal) - system dashboard, token-driven variant.
+/* PORTAL - system dashboard, token-driven (light + dark themes share this).
    :root fallbacks are placeholders, substituted per theme by the generator. */
 :root {
   --bg: var(--theme-colours-bg,#EEF1F6); --surface: var(--theme-colours-surface,#FFFFFF);
   --surface-2: var(--theme-colours-surface-2,#F4F6FA); --text: var(--theme-colours-text,#303A46);
   --muted: var(--theme-colours-text-muted,#6B7686); --heading: var(--theme-colours-heading,#141A22);
-  --accent: var(--theme-colours-accent,#7C3AED); --accent-2: var(--theme-colours-accent-2,#14B8A6);
+  --accent: var(--theme-colours-accent,#4F46E5); --accent-2: var(--theme-colours-accent-2,#0EA5E9);
   --pos: var(--theme-colours-pos,#16A34A); --neg: var(--theme-colours-neg,#DC2626);
   --on-accent: var(--theme-colours-on-accent,#FFFFFF); --border: var(--theme-colours-border,#E3E8EF);
   --fd: var(--theme-fonts-display,'Plus Jakarta Sans', system-ui, sans-serif); --fb: var(--theme-fonts-body,'Inter', system-ui, sans-serif);

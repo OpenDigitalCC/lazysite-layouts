@@ -1,23 +1,23 @@
 /* ===========================================================================
-   CONSOLE-AMBER - classic amber phosphor variant of the console theme.
-   Same interactive command line (engine in layout.tt); warm amber CRT glow.
+   CONSOLE - terminal/CRT statement theme for the console layout.
+   The page is an interactive command line (engine in layout.tt).
    ========================================================================= */
 
 :root {
-  --bg:        var(--theme-colours-bg, #120C04);
-  --surface:   var(--theme-colours-surface, #181106);
-  --surface-2: var(--theme-colours-surface-2, #1F1608);
-  --text:      var(--theme-colours-text, #FFC061);
-  --muted:     var(--theme-colours-text-muted, #9A7338);
-  --heading:   var(--theme-colours-heading, #FFE9C6);
-  --accent:    var(--theme-colours-accent, #FFB000);
-  --accent-2:  var(--theme-colours-accent-2, #FF8A1E);
-  --on-accent: var(--theme-colours-on-accent, #1A0F00);
-  --border:    var(--theme-colours-border, #3A2A0E);
+  --bg:        var(--theme-colours-bg, #0A0E0A);
+  --surface:   var(--theme-colours-surface, #0E140E);
+  --surface-2: var(--theme-colours-surface-2, #121A12);
+  --text:      var(--theme-colours-text, #9DF7B0);
+  --muted:     var(--theme-colours-text-muted, #4F7D5C);
+  --heading:   var(--theme-colours-heading, #E4FFEA);
+  --accent:    var(--theme-colours-accent, #39FF6A);
+  --accent-2:  var(--theme-colours-accent-2, #FFB23E);
+  --on-accent: var(--theme-colours-on-accent, #06100A);
+  --border:    var(--theme-colours-border, #1D2C20);
   --mono: var(--theme-fonts-body, 'JetBrains Mono', ui-monospace, monospace);
 }
-/* deeper-amber mode (command: theme amber) */
-:root.amber { --accent: var(--theme-colours-accent-2, #FF8A1E); --text: #FFD79A; --heading: #FFE9C8; --muted: #9a7a45; --border: #3a2c12; }
+/* amber mode (command: theme amber) */
+:root.amber { --accent: var(--theme-colours-accent-2, #FFB23E); --text: #FFD79A; --heading: #FFE9C8; --muted: #9a7a45; --border: #3a2c12; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 /* data blocks are read by JS and printed on command - never shown directly,
@@ -36,14 +36,14 @@ a:hover { background: var(--accent); color: var(--on-accent); }
 
 /* terminal window */
 .crt { height: 100vh; height: 100dvh; padding: clamp(12px, 3vw, 40px); display: flex; }
-.term { flex: 1; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,176,0,.06), 0 30px 80px -20px rgba(0,0,0,.8), 0 0 120px -40px var(--accent); }
+.term { flex: 1; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-colours-accent) 6%, transparent), 0 30px 80px -20px rgba(0,0,0,.8), 0 0 120px -40px var(--accent); }
 .term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
 .term-bar .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--border); }
 .term-bar .dot.g { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
 .term-title { margin-left: 8px; color: var(--muted); font-size: .8rem; letter-spacing: .02em; }
 .term-exit { margin-left: auto; color: var(--muted); font-size: .78rem; border: 0; }
 .term-exit:hover { color: var(--accent); background: transparent; }
-.term-body { flex: 1; overflow-y: auto; padding: 18px clamp(14px, 3vw, 26px); font-size: clamp(.82rem, 1.5vw, .95rem); text-shadow: 0 0 6px rgba(255,176,0,.25); scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+.term-body { flex: 1; overflow-y: auto; padding: 18px clamp(14px, 3vw, 26px); font-size: clamp(.82rem, 1.5vw, .95rem); text-shadow: 0 0 6px color-mix(in srgb, var(--theme-colours-accent) 25%, transparent); scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
 .term-body::-webkit-scrollbar { width: 8px; } .term-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
 /* output */
@@ -53,7 +53,7 @@ a:hover { background: var(--accent); color: var(--on-accent); }
 #term-out .row { margin: 2px 0; }
 #term-out .blk { margin: 6px 0 14px; }
 #term-out h1, #term-out h2, #term-out h3 { color: var(--heading); font-size: 1rem; font-weight: 700; margin: 4px 0; }
-#term-out .banner { color: var(--accent); text-shadow: 0 0 10px rgba(255,176,0,.5); line-height: 1.1; margin-bottom: 8px; }
+#term-out .banner { color: var(--accent); text-shadow: 0 0 10px color-mix(in srgb, var(--theme-colours-accent) 50%, transparent); line-height: 1.1; margin-bottom: 8px; }
 #term-out .muted { color: var(--muted); }
 #term-out ul { list-style: none; margin: 4px 0; }
 #term-out li::before { content: '> '; color: var(--accent); }

@@ -1,10 +1,10 @@
-/* QUILL NIGHT - a classic essayist blog: left side-menu, centred serif reading column. Dark night-reading mode. */
+/* QUILL - a classic essayist blog: left side-menu, centred serif reading column. */
 :root{
-  --bg:var(--theme-colours-bg,#16140F);--surface:var(--theme-colours-surface,#1E1B15);
-  --surface-2:var(--theme-colours-surface-2,#26221B);--text:var(--theme-colours-text,#E7E0D4);
-  --muted:var(--theme-colours-text-muted,#A39A8A);--heading:var(--theme-colours-heading,#F4EEE2);
-  --accent:var(--theme-colours-accent,#6FB3A4);--accent-2:var(--theme-colours-accent-2,#C8896B);
-  --on-accent:var(--theme-colours-on-accent,#16140F);--border:var(--theme-colours-border,#322C23);
+  --bg:var(--theme-colours-bg,#F6F3EC);--surface:var(--theme-colours-surface,#FFFFFF);
+  --surface-2:var(--theme-colours-surface-2,#ECE7DC);--text:var(--theme-colours-text,#2B2722);
+  --muted:var(--theme-colours-text-muted,#7A7064);--heading:var(--theme-colours-heading,#211D18);
+  --accent:var(--theme-colours-accent,#3C6E63);--accent-2:var(--theme-colours-accent-2,#9A5B3F);
+  --on-accent:var(--theme-colours-on-accent,#FFFFFF);--border:var(--theme-colours-border,#E2DBCD);
   --fd:var(--theme-fonts-display,'Lora',Georgia,serif);--fb:var(--theme-fonts-body,'Lora',Georgia,serif);
   --measure:680px;--ease:cubic-bezier(.2,.7,.2,1)
 }

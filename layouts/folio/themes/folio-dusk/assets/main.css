@@ -1,10 +1,10 @@
-/* FOLIO DUSK - a calm literary reading blog: warm dark-sepia dusk, serif, masthead + essays. */
+/* FOLIO - a calm literary reading blog: warm paper, serif, masthead + essays. */
 :root{
-  --bg:var(--theme-colours-bg,#1A1712);--surface:var(--theme-colours-surface,#221E18);
-  --surface-2:var(--theme-colours-surface-2,#2A251D);--text:var(--theme-colours-text,#E8E0D2);
-  --muted:var(--theme-colours-text-muted,#A99E8B);--heading:var(--theme-colours-heading,#F4ECDD);
-  --accent:var(--theme-colours-accent,#79B0A4);--on-accent:var(--theme-colours-on-accent,#1A1712);
-  --border:var(--theme-colours-border,#352F25);
+  --bg:var(--theme-colours-bg,#F7F4EE);--surface:var(--theme-colours-surface,#FFFFFF);
+  --surface-2:var(--theme-colours-surface-2,#EFEAE0);--text:var(--theme-colours-text,#2A2620);
+  --muted:var(--theme-colours-text-muted,#6E665A);--heading:var(--theme-colours-heading,#211D17);
+  --accent:var(--theme-colours-accent,#36655E);--on-accent:var(--theme-colours-on-accent,#FFFFFF);
+  --border:var(--theme-colours-border,#E5DFD3);
   --fd:var(--theme-fonts-display,'Newsreader',Georgia,serif);--fb:var(--theme-fonts-body,'Newsreader',Georgia,serif);
   --measure:680px;--ease:cubic-bezier(.2,.7,.2,1)
 }

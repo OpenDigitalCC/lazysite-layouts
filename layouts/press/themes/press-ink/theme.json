@@ -1,6 +1,6 @@
 {
   "name": "press-ink",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "PRESS-INK - a high-contrast ink-newsprint variant: crisp near-white stock, hard ink-black rules and a deep ink-blue accent in place of the news-red, Anton masthead over Newsreader serif. For the press layout.",
   "author": "OpenDigitalCC",
   "layouts": ["press"],

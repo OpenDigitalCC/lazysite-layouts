@@ -1,6 +1,6 @@
 {
   "name": "ledger-sepia",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ledger - sepia variant: a warm newsprint classic. Cream paper, brown ink, muted red links.",
   "author": "OpenDigitalCC",
   "layouts": ["ledger"],

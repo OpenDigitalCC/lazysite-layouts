@@ -1,4 +1,4 @@
-/* LEDGER - a classic three-panel blog: plain white, system font, blue links.
+/* LEDGER - a classic two-panel blog: plain white, system font, blue links.
    Modelled on the structure of a TypePad-era personal archive, unshaded. */
 :root{
   --bg:var(--theme-colours-bg,#FFFFFF);--text:var(--theme-colours-text,#222222);
@@ -35,7 +35,7 @@ a:hover{text-decoration:none}
 .led-photo .ph{display:block;width:100%;aspect-ratio:1/1;background:linear-gradient(160deg,#eef1f6,#dfe5ee);position:relative}
 .led-photo .ph svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:74%;height:88%;fill:#b9c2d4}
 .led-book{display:flex;gap:12px;align-items:flex-start}
-.led-book .cov{flex:0 0 64px;height:90px;background:linear-gradient(150deg,#3a5fa0,#1b4faa);border:1px solid var(--border);display:grid;place-items:center;color:#fff;font-weight:700;font-size:.7rem;text-align:center;padding:6px;line-height:1.2}
+.led-book .cov{flex:0 0 64px;height:90px;background:linear-gradient(150deg,#3a5fa0,var(--theme-colours-accent));border:1px solid var(--border);display:grid;place-items:center;color:#fff;font-weight:700;font-size:.7rem;text-align:center;padding:6px;line-height:1.2}
 /* main content */
 .led-main #content>*:first-child{margin-top:0}
 .entry{margin-bottom:30px;padding-bottom:28px;border-bottom:1px solid var(--soft)}

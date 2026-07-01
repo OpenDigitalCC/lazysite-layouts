@@ -1,6 +1,6 @@
 {
   "name": "chroma",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CHROMA - the visitor controls the theme. A live palette/mood switcher (and a generative randomiser) re-skins the whole site instantly via CSS custom properties. For the chroma layout.",
   "author": "OpenDigitalCC",
   "layouts": ["chroma"],

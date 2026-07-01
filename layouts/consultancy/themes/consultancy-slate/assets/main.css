@@ -1,10 +1,10 @@
-/* PROFESSIONAL SERVICES (slate) - token-driven stylesheet, deep slate-teal accent
-   variant of the consultancy theme; only theme.json tokens differ from the base. */
+/* PROFESSIONAL SERVICES - shared, token-driven stylesheet (public-sector advisory
+   and business consultancy share this; only theme.json tokens + content differ). */
 :root {
   --bg: var(--theme-colours-bg,#11131A); --surface: var(--theme-colours-surface,#181B24);
   --surface-2: var(--theme-colours-surface-2,#1F2330); --text: var(--theme-colours-text,#C9CDD6);
   --muted: var(--theme-colours-text-muted,#8A91A0); --heading: var(--theme-colours-heading,#FFFFFF);
-  --accent: var(--theme-colours-accent,#4FA8A0); --accent-2: var(--theme-colours-accent-2,#6E8CB0);
+  --accent: var(--theme-colours-accent,#C8A24B); --accent-2: var(--theme-colours-accent-2,#4A6CF7);
   --on-accent: var(--theme-colours-on-accent,#11131A); --border: var(--theme-colours-border,#2A2F3D);
   --foot: var(--theme-colours-footer,#0C0E13);
   --fd: var(--theme-fonts-display,'Fraunces', Georgia, serif); --fb: var(--theme-fonts-body,'Inter', system-ui, sans-serif);

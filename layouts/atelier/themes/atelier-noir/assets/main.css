@@ -1,10 +1,10 @@
-/* ATELIER NOIR - a paintings / art-gallery theme: museum-black walls, serif, framed works. */
+/* ATELIER - a paintings / art-gallery theme: museum white, serif, framed works. */
 :root{
-  --bg:var(--theme-colours-bg,#111110);--surface:var(--theme-colours-surface,#1A1916);
-  --surface-2:var(--theme-colours-surface-2,#232019);--text:var(--theme-colours-text,#E9E4DA);
-  --muted:var(--theme-colours-text-muted,#A39B8D);--heading:var(--theme-colours-heading,#F6F1E8);
-  --accent:var(--theme-colours-accent,#C8896B);--on-accent:var(--theme-colours-on-accent,#111110);
-  --border:var(--theme-colours-border,#2E2A22);
+  --bg:var(--theme-colours-bg,#FBFAF7);--surface:var(--theme-colours-surface,#FFFFFF);
+  --surface-2:var(--theme-colours-surface-2,#F1EDE5);--text:var(--theme-colours-text,#2A2620);
+  --muted:var(--theme-colours-text-muted,#7A736A);--heading:var(--theme-colours-heading,#1A1714);
+  --accent:var(--theme-colours-accent,#9A5B3F);--on-accent:var(--theme-colours-on-accent,#FFFFFF);
+  --border:var(--theme-colours-border,#E7E1D6);
   --fd:var(--theme-fonts-display,'Cormorant Garamond',Georgia,serif);--fb:var(--theme-fonts-body,'Inter',sans-serif);
   --max:1200px;--ease:cubic-bezier(.2,.7,.2,1)
 }
@@ -23,8 +23,8 @@ a{color:inherit;text-decoration:none}
 .hero .dates{margin-top:18px;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .art-wall{max-width:var(--max);margin:0 auto;padding:24px 28px 40px;columns:3;column-gap:36px}
 .art{break-inside:avoid;margin-bottom:44px;display:inline-block;width:100%}
-.art .canvas{width:100%;border:1px solid var(--border);box-shadow:0 2px 0 var(--border),0 26px 50px -30px rgba(0,0,0,.75);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
-.art:hover .canvas{transform:translateY(-5px);box-shadow:0 2px 0 var(--border),0 36px 60px -28px rgba(0,0,0,.8)}
+.art .canvas{width:100%;border:1px solid var(--border);box-shadow:0 2px 0 var(--border),0 26px 50px -30px rgba(0,0,0,.5);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.art:hover .canvas{transform:translateY(-5px);box-shadow:0 2px 0 var(--border),0 36px 60px -28px rgba(0,0,0,.55)}
 .art .cap{padding:14px 2px 0}
 .art .cap .t{font-family:var(--fd);font-style:italic;font-size:1.25rem;color:var(--heading);line-height:1.2}
 .art .cap .a{font-size:.86rem;color:var(--text);margin-top:3px}

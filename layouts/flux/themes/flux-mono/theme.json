@@ -1,6 +1,6 @@
 {
   "name": "flux-mono",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "FLUX-MONO - the scroll-driven cinema in a stark monochrome palette: pure-white stock, ink-black type and accent, a graphite secondary and no hue at all. Native CSS scroll-driven animations, zero JS. For the flux layout.",
   "author": "OpenDigitalCC",
   "layouts": ["flux"],

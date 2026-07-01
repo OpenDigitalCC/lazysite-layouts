@@ -1,6 +1,6 @@
 {
   "name": "console-amber",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CONSOLE in classic amber phosphor - the same working terminal, warm amber CRT glow instead of green. For the console layout.",
   "author": "OpenDigitalCC",
   "layouts": ["console"],

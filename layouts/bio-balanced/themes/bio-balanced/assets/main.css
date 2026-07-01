@@ -14,7 +14,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 
-.bio-nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(251,251,253,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.bio-nav{position:fixed;inset:0 0 auto 0;z-index:50;background:color-mix(in srgb, var(--theme-colours-bg) 85%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .bio-nav .in{max-width:var(--max);margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between}
 .bio-nav .me{font-family:var(--fd);font-weight:800;color:var(--heading);font-size:1.05rem}
 .bio-nav .ex{color:var(--muted);font-size:.88rem;font-weight:600}

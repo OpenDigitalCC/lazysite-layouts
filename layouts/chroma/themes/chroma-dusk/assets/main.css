@@ -1,21 +1,20 @@
 /* ===========================================================================
-   CHROMA-DUSK - live, visitor-controlled palette theme for the chroma layout.
-   Same structure as CHROMA; the shipped default mood is a twilight palette.
+   CHROMA - live, visitor-controlled palette theme for the chroma layout.
    Runtime overrides (--c-*) set by the switcher in layout.tt take priority;
    they fall back to the theme.json tokens, then to literals.
    ========================================================================= */
 
 :root {
-  --bg:        var(--c-bg, var(--theme-colours-bg, #1A1426));
-  --surface:   var(--c-surface, var(--theme-colours-surface, #241B33));
-  --surface-2: var(--c-surface-2, var(--theme-colours-surface-2, #2E2340));
-  --text:      var(--c-text, var(--theme-colours-text, #E6DDEC));
-  --muted:     var(--c-muted, var(--theme-colours-text-muted, #9E91B0));
+  --bg:        var(--c-bg, var(--theme-colours-bg, #0E1016));
+  --surface:   var(--c-surface, var(--theme-colours-surface, #171A22));
+  --surface-2: var(--c-surface-2, var(--theme-colours-surface-2, #1F2330));
+  --text:      var(--c-text, var(--theme-colours-text, #D7DBE6));
+  --muted:     var(--c-muted, var(--theme-colours-text-muted, #8A90A2));
   --heading:   var(--c-heading, var(--theme-colours-heading, #FFFFFF));
-  --accent:    var(--c-accent, var(--theme-colours-accent, #E8956B));
-  --accent-2:  var(--c-accent-2, var(--theme-colours-accent-2, #C77DFF));
-  --on-accent: var(--c-on-accent, var(--theme-colours-on-accent, #1A1426));
-  --border:    var(--c-border, var(--theme-colours-border, #392C4D));
+  --accent:    var(--c-accent, var(--theme-colours-accent, #6D8BFF));
+  --accent-2:  var(--c-accent-2, var(--theme-colours-accent-2, #FF7AB6));
+  --on-accent: var(--c-on-accent, var(--theme-colours-on-accent, #0E1016));
+  --border:    var(--c-border, var(--theme-colours-border, #2A2F3D));
   --font-display: var(--theme-fonts-display, 'Sora', system-ui, sans-serif);
   --font-body:    var(--theme-fonts-body, 'Inter', system-ui, sans-serif);
   --max-w: 1140px; --ease: cubic-bezier(.2,.7,.2,1);

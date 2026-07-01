@@ -27,7 +27,7 @@
   --ease: cubic-bezier(.2,.7,.2,1);
   --t: .25s var(--ease);
   --grad: linear-gradient(100deg, var(--accent), var(--accent-2) 60%, var(--accent-3));
-  --glow: 0 0 0 1px var(--border), 0 24px 60px -20px rgba(124,92,255,.45);
+  --glow: 0 0 0 1px var(--border), 0 24px 60px -20px color-mix(in srgb, var(--theme-colours-accent) 45%, transparent);
 }
 
 * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -86,8 +86,8 @@ a { color: inherit; text-decoration: none; }
   transition: transform var(--t), box-shadow var(--t), background var(--t);
   border: 1px solid transparent; cursor: pointer;
 }
-.btn-primary { background: var(--grad); color: var(--on-accent); box-shadow: 0 10px 30px -8px rgba(124,92,255,.6); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px rgba(124,92,255,.8); }
+.btn-primary { background: var(--grad); color: var(--on-accent); box-shadow: 0 10px 30px -8px color-mix(in srgb, var(--theme-colours-accent) 60%, transparent); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px color-mix(in srgb, var(--theme-colours-accent) 80%, transparent); }
 .btn-ghost { border-color: var(--border); color: var(--text); }
 .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
@@ -95,7 +95,7 @@ a { color: inherit; text-decoration: none; }
 /* ---- nav ---------------------------------------------------------------- */
 nav.nova-nav {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
-  background: rgba(10,10,18,.6);
+  background: color-mix(in srgb, var(--theme-colours-on-accent) 60%, transparent);
   backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--border);
 }
@@ -111,7 +111,7 @@ nav.nova-nav {
 .nova-nav .nav-cta {
   background: var(--grad); color: var(--on-accent) !important;
   padding: 9px 18px; border-radius: 100px; font-weight: 600; font-size: .82rem !important;
-  box-shadow: 0 8px 24px -8px rgba(124,92,255,.7);
+  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--theme-colours-accent) 70%, transparent);
 }
 
 /* ---- hero (animated aurora) -------------------------------------------- */
@@ -122,9 +122,9 @@ nav.nova-nav {
 .hero::before {
   content: ''; position: absolute; inset: -30% -10% auto -10%; height: 130%; z-index: -2;
   background:
-    radial-gradient(40% 50% at 20% 30%, rgba(124,92,255,.55), transparent 70%),
-    radial-gradient(45% 45% at 80% 20%, rgba(25,227,196,.40), transparent 70%),
-    radial-gradient(50% 50% at 60% 80%, rgba(255,77,141,.40), transparent 70%);
+    radial-gradient(40% 50% at 20% 30%, color-mix(in srgb, var(--theme-colours-accent) 55%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 80% 20%, color-mix(in srgb, var(--theme-colours-accent-2) 40%, transparent), transparent 70%),
+    radial-gradient(50% 50% at 60% 80%, color-mix(in srgb, var(--theme-colours-accent-3) 40%, transparent), transparent 70%);
   filter: blur(30px);
   animation: aurora 18s var(--ease) infinite alternate;
 }
@@ -189,7 +189,7 @@ nav.nova-nav {
 .card:hover::before { opacity: 1; }
 .card .ico {
   width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center;
-  background: rgba(124,92,255,.12); color: var(--accent-2); margin-bottom: 22px;
+  background: color-mix(in srgb, var(--theme-colours-accent) 12%, transparent); color: var(--accent-2); margin-bottom: 22px;
   font-family: var(--font-display); font-weight: 700; font-size: 1.3rem;
 }
 .card h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--heading); margin-bottom: 10px; letter-spacing: -.01em; }
@@ -214,9 +214,9 @@ nav.nova-nav {
 .mock .bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--border); display: block; }
 .mock .orb {
   position: absolute; inset: 38px 0 0 0;
-  background: radial-gradient(60% 60% at 35% 30%, rgba(124,92,255,.7), transparent 60%),
-              radial-gradient(50% 50% at 75% 75%, rgba(25,227,196,.6), transparent 60%),
-              radial-gradient(60% 60% at 80% 20%, rgba(255,77,141,.5), transparent 60%);
+  background: radial-gradient(60% 60% at 35% 30%, color-mix(in srgb, var(--theme-colours-accent) 70%, transparent), transparent 60%),
+              radial-gradient(50% 50% at 75% 75%, color-mix(in srgb, var(--theme-colours-accent-2) 60%, transparent), transparent 60%),
+              radial-gradient(60% 60% at 80% 20%, color-mix(in srgb, var(--theme-colours-accent-3) 50%, transparent), transparent 60%);
   filter: blur(8px);
 }
 
@@ -224,7 +224,7 @@ nav.nova-nav {
 .cta { text-align: center; position: relative; overflow: hidden; isolation: isolate; }
 .cta::before {
   content: ''; position: absolute; inset: 0; z-index: -1; opacity: .5; filter: blur(40px);
-  background: radial-gradient(40% 60% at 50% 50%, rgba(124,92,255,.6), transparent 70%);
+  background: radial-gradient(40% 60% at 50% 50%, color-mix(in srgb, var(--theme-colours-accent) 60%, transparent), transparent 70%);
 }
 .cta .h2 { max-width: 720px; margin: 0 auto 18px; }
 .cta .lead { max-width: 560px; margin: 0 auto; }

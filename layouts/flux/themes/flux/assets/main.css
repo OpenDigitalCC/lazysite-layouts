@@ -77,10 +77,10 @@ nav.flux-nav { position: fixed; inset: 0 0 auto 0; z-index: 100; mix-blend-mode:
 /* CTA + footer */
 .cta { background: var(--accent); color: var(--on-accent); text-align: center; }
 .cta .h2 { color: var(--on-accent); margin: 0 auto 16px; max-width: 16ch; }
-.cta .lead { color: rgba(255,255,255,.85); max-width: 520px; margin: 0 auto; }
+.cta .lead { color: color-mix(in srgb, var(--theme-colours-on-accent) 85%, transparent); max-width: 520px; margin: 0 auto; }
 .cta .btn-row { justify-content: center; }
 .cta .btn-primary { background: var(--on-accent); color: var(--accent); border-color: var(--on-accent); }
-.cta .btn-ghost { color: var(--on-accent); border-color: rgba(255,255,255,.6); }
+.cta .btn-ghost { color: var(--on-accent); border-color: color-mix(in srgb, var(--theme-colours-on-accent) 60%, transparent); }
 footer.flux-foot { background: var(--bg); border-top: 1px solid var(--border); padding: 50px 24px 32px; }
 .flux-foot .inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .9rem; }
 .flux-foot a { color: var(--accent); }

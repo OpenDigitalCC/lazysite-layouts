@@ -1,10 +1,10 @@
-/* PORTAL (emerald) - dark system dashboard, token-driven variant.
+/* PORTAL - system dashboard, token-driven (light + dark themes share this).
    :root fallbacks are placeholders, substituted per theme by the generator. */
 :root {
   --bg: var(--theme-colours-bg,#0B0F17); --surface: var(--theme-colours-surface,#131925);
   --surface-2: var(--theme-colours-surface-2,#1A2130); --text: var(--theme-colours-text,#C4CCD8);
   --muted: var(--theme-colours-text-muted,#7E8A9C); --heading: var(--theme-colours-heading,#FFFFFF);
-  --accent: var(--theme-colours-accent,#10B981); --accent-2: var(--theme-colours-accent-2,#5EEAD4);
+  --accent: var(--theme-colours-accent,#6366F1); --accent-2: var(--theme-colours-accent-2,#22D3EE);
   --pos: var(--theme-colours-pos,#34D399); --neg: var(--theme-colours-neg,#F87171);
   --on-accent: var(--theme-colours-on-accent,#0B0F17); --border: var(--theme-colours-border,#232C3B);
   --fd: var(--theme-fonts-display,'Plus Jakarta Sans', system-ui, sans-serif); --fb: var(--theme-fonts-body,'Inter', system-ui, sans-serif);

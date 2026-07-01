@@ -1,6 +1,6 @@
 {
   "name": "pulse-magenta",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "PULSE-MAGENTA - the generative dark-glass statement theme retuned to a magenta/violet accent: hot-pink to fuchsia to purple gradients over the same live canvas flow-field. For the pulse layout.",
   "author": "OpenDigitalCC",
   "layouts": ["pulse"],

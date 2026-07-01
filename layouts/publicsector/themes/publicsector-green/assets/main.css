@@ -1,12 +1,12 @@
-/* PROFESSIONAL SERVICES (green) - token-driven stylesheet, official green accent
-   variant of the publicsector theme; only theme.json tokens differ from the base. */
+/* PROFESSIONAL SERVICES - shared, token-driven stylesheet (public-sector advisory
+   and business consultancy share this; only theme.json tokens + content differ). */
 :root {
-  --bg: var(--theme-colours-bg,#FFFFFF); --surface: var(--theme-colours-surface,#F4FAF6);
-  --surface-2: var(--theme-colours-surface-2,#E6F2EA); --text: var(--theme-colours-text,#243430);
-  --muted: var(--theme-colours-text-muted,#5A6E64); --heading: var(--theme-colours-heading,#0B3D2E);
-  --accent: var(--theme-colours-accent,#00703C); --accent-2: var(--theme-colours-accent-2,#1C6B5A);
-  --on-accent: var(--theme-colours-on-accent,#FFFFFF); --border: var(--theme-colours-border,#D2E5D9);
-  --foot: var(--theme-colours-footer,#0B3D2E);
+  --bg: var(--theme-colours-bg,#FFFFFF); --surface: var(--theme-colours-surface,#F5F8FB);
+  --surface-2: var(--theme-colours-surface-2,#E9F1F6); --text: var(--theme-colours-text,#2A3744);
+  --muted: var(--theme-colours-text-muted,#5E6E7D); --heading: var(--theme-colours-heading,#08294D);
+  --accent: var(--theme-colours-accent,#137A8C); --accent-2: var(--theme-colours-accent-2,#1E5BA8);
+  --on-accent: var(--theme-colours-on-accent,#FFFFFF); --border: var(--theme-colours-border,#D4E0EB);
+  --foot: var(--theme-colours-footer,#08294D);
   --fd: var(--theme-fonts-display,'Public Sans', system-ui, sans-serif); --fb: var(--theme-fonts-body,'Public Sans', system-ui, sans-serif);
   --max:1140px; --pad:96px 24px; --ease:cubic-bezier(.2,.7,.2,1); --t:.2s var(--ease); --r:10px;
 }

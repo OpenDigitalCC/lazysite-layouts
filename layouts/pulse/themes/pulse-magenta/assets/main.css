@@ -1,22 +1,21 @@
 /* ===========================================================================
-   PULSE-MAGENTA - generative/interactive statement theme for the pulse layout.
-   Same structure as PULSE; the dark-glass UI is retuned to a magenta/violet
-   accent. The hero is a live <canvas> flow-field (see the script in layout.tt).
+   PULSE - generative/interactive statement theme for the pulse layout.
+   The hero is a live <canvas> flow-field (see the script in layout.tt).
    Brand colours/fonts from theme.json (--theme-*-*), aliased below.
    ========================================================================= */
 
 :root {
   --bg:        var(--theme-colours-bg, #06060B);
-  --surface:   var(--theme-colours-surface, #0F0B17);
-  --surface-2: var(--theme-colours-surface-2, #17101F);
-  --text:      var(--theme-colours-text, #F0E9F5);
-  --muted:     var(--theme-colours-text-muted, #A892B0);
+  --surface:   var(--theme-colours-surface, #0E0E17);
+  --surface-2: var(--theme-colours-surface-2, #15151F);
+  --text:      var(--theme-colours-text, #E9E9F2);
+  --muted:     var(--theme-colours-text-muted, #9090A8);
   --heading:   var(--theme-colours-heading, #FFFFFF);
-  --accent:    var(--theme-colours-accent, #F472B6);
-  --accent-2:  var(--theme-colours-accent-2, #A855F7);
-  --accent-3:  var(--theme-colours-accent-3, #D946EF);
+  --accent:    var(--theme-colours-accent, #5EEAD4);
+  --accent-2:  var(--theme-colours-accent-2, #A78BFA);
+  --accent-3:  var(--theme-colours-accent-3, #38BDF8);
   --on-accent: var(--theme-colours-on-accent, #06060B);
-  --border:    var(--theme-colours-border, #2A1F38);
+  --border:    var(--theme-colours-border, #20202F);
   --font-display: var(--theme-fonts-display, 'Syne', system-ui, sans-serif);
   --font-body:    var(--theme-fonts-body, 'Inter', system-ui, sans-serif);
 
@@ -48,12 +47,12 @@ img { max-width: 100%; display: block; }
 .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: .85rem; padding: 14px 28px; border-radius: 100px; transition: transform var(--t), box-shadow var(--t); border: 1px solid transparent; }
 .btn-primary { background: var(--grad); color: var(--on-accent); box-shadow: 0 10px 32px -10px var(--accent); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -10px var(--accent); }
-.btn-ghost { border-color: var(--border); color: var(--text); background: rgba(255,255,255,.02); }
+.btn-ghost { border-color: var(--border); color: var(--text); background: color-mix(in srgb, var(--theme-colours-heading) 2%, transparent); }
 .btn-ghost:hover { border-color: var(--accent); transform: translateY(-2px); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
 
 /* ---- nav ---------------------------------------------------------------- */
-nav.pulse-nav { position: fixed; inset: 0 0 auto 0; z-index: 100; background: rgba(6,6,11,.55); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav.pulse-nav { position: fixed; inset: 0 0 auto 0; z-index: 100; background: color-mix(in srgb, var(--theme-colours-on-accent) 55%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
 .pulse-nav .nav-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
 .pulse-logo { display: flex; align-items: center; gap: 11px; font-family: var(--font-display); font-weight: 700; color: var(--heading); letter-spacing: -.01em; }
 .pulse-logo .dot { width: 13px; height: 13px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 16px var(--accent); }

@@ -1,10 +1,10 @@
-/* CADRE MONO - a stark monochrome editorial studio portfolio with one restrained accent. */
+/* CADRE - a bold editorial studio portfolio: off-white, big grotesk, project grid. */
 :root{
-  --bg:var(--theme-colours-bg,#FAFAFA);--surface:var(--theme-colours-surface,#FFFFFF);
-  --surface-2:var(--theme-colours-surface-2,#ECECEC);--text:var(--theme-colours-text,#141414);
-  --muted:var(--theme-colours-text-muted,#6A6A6A);--heading:var(--theme-colours-heading,#000000);
-  --accent:var(--theme-colours-accent,#C0392B);--accent-2:var(--theme-colours-accent-2,#C0392B);
-  --on-accent:var(--theme-colours-on-accent,#FFFFFF);--border:var(--theme-colours-border,#E2E2E2);
+  --bg:var(--theme-colours-bg,#F2F0EA);--surface:var(--theme-colours-surface,#FFFFFF);
+  --surface-2:var(--theme-colours-surface-2,#E6E3DA);--text:var(--theme-colours-text,#1A1815);
+  --muted:var(--theme-colours-text-muted,#6B6660);--heading:var(--theme-colours-heading,#0E0D0B);
+  --accent:var(--theme-colours-accent,#2B3BFF);--accent-2:var(--theme-colours-accent-2,#FF5E3A);
+  --on-accent:var(--theme-colours-on-accent,#FFFFFF);--border:var(--theme-colours-border,#DED9CD);
   --fd:var(--theme-fonts-display,'Space Grotesk',system-ui,sans-serif);--fb:var(--theme-fonts-body,'Inter',sans-serif);
   --max:1200px;--ease:cubic-bezier(.2,.7,.2,1)
 }

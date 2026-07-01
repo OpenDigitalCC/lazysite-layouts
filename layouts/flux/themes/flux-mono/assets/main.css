@@ -1,22 +1,21 @@
 /* ===========================================================================
-   FLUX-MONO - scroll-driven cinema for the flux layout, in stark monochrome.
-   Same structure as FLUX; hue is stripped to a pure white/ink/graphite palette.
+   FLUX - scroll-driven cinema for the flux layout.
    The motion is native CSS (scroll-driven animations). Base styles keep all
    content visible/static, so browsers without support get a clean layout;
    the @supports block layers the cinema on top. No JavaScript.
    ========================================================================= */
 
 :root {
-  --bg:        var(--theme-colours-bg, #FAFAFA);
+  --bg:        var(--theme-colours-bg, #F4F3EF);
   --surface:   var(--theme-colours-surface, #FFFFFF);
-  --surface-2: var(--theme-colours-surface-2, #EFEFEF);
-  --text:      var(--theme-colours-text, #141414);
-  --muted:     var(--theme-colours-text-muted, #6B6B6B);
-  --heading:   var(--theme-colours-heading, #000000);
-  --accent:    var(--theme-colours-accent, #141414);
-  --accent-2:  var(--theme-colours-accent-2, #8A8A8A);
+  --surface-2: var(--theme-colours-surface-2, #ECEAE2);
+  --text:      var(--theme-colours-text, #1A1A1B);
+  --muted:     var(--theme-colours-text-muted, #6A6A64);
+  --heading:   var(--theme-colours-heading, #0B0B0C);
+  --accent:    var(--theme-colours-accent, #2C2BFF);
+  --accent-2:  var(--theme-colours-accent-2, #FF4D2E);
   --on-accent: var(--theme-colours-on-accent, #FFFFFF);
-  --border:    var(--theme-colours-border, #E0E0E0);
+  --border:    var(--theme-colours-border, #E2E0D7);
   --font-display: var(--theme-fonts-display, 'Bricolage Grotesque', system-ui, sans-serif);
   --font-body:    var(--theme-fonts-body, 'Inter', system-ui, sans-serif);
   --max-w: 1180px; --pad: 120px 24px; --ease: cubic-bezier(.2,.7,.2,1);
@@ -78,10 +77,10 @@ nav.flux-nav { position: fixed; inset: 0 0 auto 0; z-index: 100; mix-blend-mode:
 /* CTA + footer */
 .cta { background: var(--accent); color: var(--on-accent); text-align: center; }
 .cta .h2 { color: var(--on-accent); margin: 0 auto 16px; max-width: 16ch; }
-.cta .lead { color: rgba(255,255,255,.85); max-width: 520px; margin: 0 auto; }
+.cta .lead { color: color-mix(in srgb, var(--theme-colours-on-accent) 85%, transparent); max-width: 520px; margin: 0 auto; }
 .cta .btn-row { justify-content: center; }
 .cta .btn-primary { background: var(--on-accent); color: var(--accent); border-color: var(--on-accent); }
-.cta .btn-ghost { color: var(--on-accent); border-color: rgba(255,255,255,.6); }
+.cta .btn-ghost { color: var(--on-accent); border-color: color-mix(in srgb, var(--theme-colours-on-accent) 60%, transparent); }
 footer.flux-foot { background: var(--bg); border-top: 1px solid var(--border); padding: 50px 24px 32px; }
 .flux-foot .inner { max-width: var(--max-w); margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .9rem; }
 .flux-foot a { color: var(--accent); }
