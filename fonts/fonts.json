@@ -1,0 +1,352 @@
+{
+   "anton" : {
+      "faces" : [
+         {
+            "file" : "anton-400.woff2",
+            "style" : "normal",
+            "weight" : 400
+         }
+      ],
+      "family" : "Anton"
+   },
+   "bricolage-grotesque" : {
+      "faces" : [
+         {
+            "file" : "bricolage-grotesque-600-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "bricolage-grotesque-600-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Bricolage Grotesque"
+   },
+   "cormorant-garamond" : {
+      "faces" : [
+         {
+            "file" : "cormorant-garamond-500-600.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "cormorant-garamond-500-600.woff2",
+            "style" : "normal",
+            "weight" : 600
+         }
+      ],
+      "family" : "Cormorant Garamond"
+   },
+   "fraunces" : {
+      "faces" : [
+         {
+            "file" : "fraunces-500-600-italic.woff2",
+            "style" : "italic",
+            "weight" : 500
+         },
+         {
+            "file" : "fraunces-500-600-italic.woff2",
+            "style" : "italic",
+            "weight" : 600
+         },
+         {
+            "file" : "fraunces-500-800.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "fraunces-500-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "fraunces-500-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Fraunces"
+   },
+   "inter" : {
+      "faces" : [
+         {
+            "file" : "inter-400-800.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "inter-400-800.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "inter-400-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "inter-400-800.woff2",
+            "style" : "normal",
+            "weight" : 700
+         },
+         {
+            "file" : "inter-400-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Inter"
+   },
+   "jetbrains-mono" : {
+      "faces" : [
+         {
+            "file" : "jetbrains-mono-400-700.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "jetbrains-mono-400-700.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "jetbrains-mono-400-700.woff2",
+            "style" : "normal",
+            "weight" : 700
+         }
+      ],
+      "family" : "JetBrains Mono"
+   },
+   "jost" : {
+      "faces" : [
+         {
+            "file" : "jost-400-600.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "jost-400-600.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "jost-400-600.woff2",
+            "style" : "normal",
+            "weight" : 600
+         }
+      ],
+      "family" : "Jost"
+   },
+   "lora" : {
+      "faces" : [
+         {
+            "file" : "lora-400-500-italic.woff2",
+            "style" : "italic",
+            "weight" : 400
+         },
+         {
+            "file" : "lora-400-500-italic.woff2",
+            "style" : "italic",
+            "weight" : 500
+         },
+         {
+            "file" : "lora-400-600.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "lora-400-600.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "lora-400-600.woff2",
+            "style" : "normal",
+            "weight" : 600
+         }
+      ],
+      "family" : "Lora"
+   },
+   "newsreader" : {
+      "faces" : [
+         {
+            "file" : "newsreader-400-500-italic.woff2",
+            "style" : "italic",
+            "weight" : 400
+         },
+         {
+            "file" : "newsreader-400-500-italic.woff2",
+            "style" : "italic",
+            "weight" : 500
+         },
+         {
+            "file" : "newsreader-400-700.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "newsreader-400-700.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "newsreader-400-700.woff2",
+            "style" : "normal",
+            "weight" : 700
+         }
+      ],
+      "family" : "Newsreader"
+   },
+   "plus-jakarta-sans" : {
+      "faces" : [
+         {
+            "file" : "plus-jakarta-sans-600-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "plus-jakarta-sans-600-800.woff2",
+            "style" : "normal",
+            "weight" : 700
+         },
+         {
+            "file" : "plus-jakarta-sans-600-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Plus Jakarta Sans"
+   },
+   "public-sans" : {
+      "faces" : [
+         {
+            "file" : "public-sans-400-800.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "public-sans-400-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "public-sans-400-800.woff2",
+            "style" : "normal",
+            "weight" : 700
+         },
+         {
+            "file" : "public-sans-400-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Public Sans"
+   },
+   "sora" : {
+      "faces" : [
+         {
+            "file" : "sora-400-800.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "sora-400-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "sora-400-800.woff2",
+            "style" : "normal",
+            "weight" : 700
+         },
+         {
+            "file" : "sora-400-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Sora"
+   },
+   "space-grotesk" : {
+      "faces" : [
+         {
+            "file" : "space-grotesk-400-700.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "space-grotesk-400-700.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "space-grotesk-400-700.woff2",
+            "style" : "normal",
+            "weight" : 700
+         }
+      ],
+      "family" : "Space Grotesk"
+   },
+   "spectral" : {
+      "faces" : [
+         {
+            "file" : "spectral-400-italic.woff2",
+            "style" : "italic",
+            "weight" : 400
+         },
+         {
+            "file" : "spectral-500-italic.woff2",
+            "style" : "italic",
+            "weight" : 500
+         },
+         {
+            "file" : "spectral-400.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "spectral-500.woff2",
+            "style" : "normal",
+            "weight" : 500
+         }
+      ],
+      "family" : "Spectral"
+   },
+   "syne" : {
+      "faces" : [
+         {
+            "file" : "syne-600-800.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "syne-600-800.woff2",
+            "style" : "normal",
+            "weight" : 700
+         },
+         {
+            "file" : "syne-600-800.woff2",
+            "style" : "normal",
+            "weight" : 800
+         }
+      ],
+      "family" : "Syne"
+   },
+   "unbounded" : {
+      "faces" : [
+         {
+            "file" : "unbounded-600-700.woff2",
+            "style" : "normal",
+            "weight" : 600
+         },
+         {
+            "file" : "unbounded-600-700.woff2",
+            "style" : "normal",
+            "weight" : 700
+         }
+      ],
+      "family" : "Unbounded"
+   }
+}

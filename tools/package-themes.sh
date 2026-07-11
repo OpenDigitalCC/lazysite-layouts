@@ -85,6 +85,19 @@ for LAYOUT_DIR in "$LAYOUTS_DIR"/*/; do
             cp -r "$THEME_DIR/assets/." "$TEMP_DIR/assets/"
         fi
 
+        # Self-hosted fonts (no-CDN policy): a theme-level fonts.list wins,
+        # else the layout-level one applies to all its themes. When present,
+        # generate assets/fonts.css and copy the woff2 files + licences from
+        # the repo-level fonts/ store into assets/fonts/. Fonts are injected
+        # here at packaging time so git carries each font exactly once.
+        FONTS_LIST="$THEME_DIR/fonts.list"
+        [ -f "$FONTS_LIST" ] || FONTS_LIST="$LAYOUT_DIR/fonts.list"
+        if [ -f "$FONTS_LIST" ]; then
+            mkdir -p "$TEMP_DIR/assets"
+            perl "$REPO_ROOT/tools/gen-fonts-css.pl" \
+                "$FONTS_LIST" "$REPO_ROOT/fonts" "$TEMP_DIR/assets"
+        fi
+
         # Build the zip. Excludes .DS_Store etc. Intentionally does
         # NOT include layout.tt, layout.json, or nav.conf - those
         # don't belong in a theme package.
