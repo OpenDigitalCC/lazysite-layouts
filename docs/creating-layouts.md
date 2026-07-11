@@ -31,6 +31,15 @@ walks through authoring a new one.
   layout stays brand-neutral.
 - **nav.conf contents.** Nav is user content, parsed by the
   processor from `{DOCROOT}/lazysite/nav.conf`.
+- **CDN / external resource links.** Standing rule: nothing a
+  visitor's browser fetches may come from an external host - no
+  `fonts.googleapis.com`, no CDN scripts. Webfonts are declared
+  in `layouts/<L>/fonts.list` (OFL/Apache families from the
+  repo-level `fonts/` store, see `fonts/README.md`) and linked as
+  `[% theme_assets %]/fonts.css` **before** `main.css`, next to
+  the same fallback pattern main.css uses. The packaging build
+  runs `tools/check-no-cdn.sh` and refuses to package a layout
+  that violates this.
 
 ## layout.json
 

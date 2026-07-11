@@ -24,6 +24,9 @@ RELEASES_DIR="$REPO_ROOT/releases"
 
 [ -d "$LAYOUTS_DIR" ] || { echo "ERROR: $LAYOUTS_DIR missing" >&2; exit 1; }
 
+# Standing no-CDN policy gate (also runs when invoked standalone).
+"$REPO_ROOT/tools/check-no-cdn.sh"
+
 if command -v zip >/dev/null 2>&1; then
     ZIPPER=zip
 elif command -v python3 >/dev/null 2>&1; then

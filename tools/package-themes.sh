@@ -26,6 +26,10 @@ if [ ! -d "$LAYOUTS_DIR" ]; then
     exit 1
 fi
 
+# Standing no-CDN policy gate: refuse to package anything that loads an
+# external resource. See tools/check-no-cdn.sh.
+"$REPO_ROOT/tools/check-no-cdn.sh"
+
 if command -v zip >/dev/null 2>&1; then
     ZIPPER=zip
 elif command -v python3 >/dev/null 2>&1; then

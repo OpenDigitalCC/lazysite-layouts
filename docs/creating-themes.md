@@ -200,6 +200,32 @@ for lazysite-layouts themes the layout template is fixed and
 doesn't know about per-theme assets - keep asset references in
 `main.css`.
 
+### Fonts - standing no-CDN rule
+
+Themes must never load anything from an external host - no
+`fonts.googleapis.com`, no CDN scripts, nothing. Fonts must be
+freely licensed (OFL/Apache), bundled with the theme, and served
+from the site itself. `tools/check-no-cdn.sh` runs as part of the
+packaging build and fails on any external resource reference
+(plain hyperlinks like the footer credit are fine).
+
+Don't hand-copy woff2 files into your theme. Declare the faces in
+the layout's `fonts.list` (or a theme-level
+`layouts/<L>/themes/<T>/fonts.list`, which overrides it):
+
+    Sora:400,600,700
+    Inter:400,500
+    Spectral:400,400i,500,500i     # "i" = italic
+
+At packaging time the build resolves those lines against the
+repo-level `fonts/` store (see `fonts/README.md`), generates
+`assets/fonts.css` (`@font-face` rules, `font-display: swap`) and
+copies the woff2 files + OFL licences into `assets/fonts/`. The
+layout links `[% theme_assets %]/fonts.css` before `main.css`, so
+your `main.css` can simply use the family names. If a family or
+weight you need isn't in the store yet, add it there first
+(instructions in `fonts/README.md`).
+
 ## Packaging
 
 The `tools/package-themes.sh` script walks every theme directory

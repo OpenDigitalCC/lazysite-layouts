@@ -222,6 +222,33 @@ theme at `releases/LAYOUT/THEME.zip`. Each zip has the D013
 upload shape: `theme.json` at root, `assets/` subtree for
 web-served files.
 
+## Fonts - standing no-CDN rule
+
+**No CDN anywhere in lazysite themes.** Fonts must be freely
+licensed (OFL/Apache), bundled with the theme, and served from
+the site itself. Never link `fonts.googleapis.com` or any other
+external host from a layout or theme.
+
+How it works here:
+
+- Font files (latin-subset woff2) live once in the repo-level
+  [`fonts/`](fonts/README.md) store, each family with its
+  verbatim `OFL.txt`.
+- A layout declares what it needs in `layouts/<L>/fonts.list`
+  (`Family Name:400,500i,700`); a theme can carry its own
+  `fonts.list` to override.
+- `tools/package-themes.sh` generates `assets/fonts.css` and
+  copies the woff2 + licences into `assets/fonts/` of every
+  theme zip at packaging time - git carries each font exactly
+  once, every shipped theme is self-contained.
+- `layout.tt` links `[% theme_assets %]/fonts.css` before
+  `main.css`.
+- `tools/check-no-cdn.sh` gates the packaging build: any
+  external resource reference under `layouts/` (stylesheet,
+  script, `url()`, `@import`, preconnect, known CDN hosts)
+  fails the build. Plain hyperlinks such as the footer credit
+  are fine.
+
 ## Contributing
 
 ### A new theme
