@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Self-hosted Inter (no-CDN policy): fonts.css + fonts/ are generated
+   into this assets dir at packaging time from this theme's fonts.list. */
+@import url('fonts.css');
 
 /* Clarity - clean, modern, professional light theme for the default layout. */
 :root {
