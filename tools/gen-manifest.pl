@@ -61,6 +61,14 @@ for my $L ( sort readdir $dh ) {
     }
     my @theme_names = map { $_->{name} } @themes;
 
+    # Catalogue guidance (SM206): pass the layout's client-facing description
+    # and tags through so list_layout_catalogue can surface them.
+    my %guidance;
+    $guidance{description} = $lj->{description}
+        if defined $lj->{description} && length $lj->{description};
+    $guidance{tags} = $lj->{tags}
+        if ref $lj->{tags} eq 'ARRAY' && @{ $lj->{tags} };
+
     push @layouts, {
         name          => $name,
         version       => $lj->{version} // '0.0.0',
@@ -68,6 +76,7 @@ for my $L ( sort readdir $dh ) {
         default_theme => $lj->{default_theme}
             // ( @theme_names ? $theme_names[0] : '' ),
         themes        => \@themes,
+        %guidance,
     };
 }
 closedir $dh;

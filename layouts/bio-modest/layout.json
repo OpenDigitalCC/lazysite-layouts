@@ -1,8 +1,9 @@
 {
   "name": "bio-modest",
   "version": "1.0.0",
-  "description": "BIO Modest bio layout.",
+  "description": "An understated personal calling card - quiet serif, warm paper, plenty of breathing room.",
   "author": "OpenDigitalCC",
+  "tags": ["personal", "bio", "minimal", "serif", "understated"],
   "themes": ["bio-modest", "bio-modest-slate"],
   "default_theme": "bio-modest",
   "tokens": {

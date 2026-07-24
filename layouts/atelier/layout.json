@@ -1,8 +1,9 @@
 {
   "name": "atelier",
   "version": "1.0.0",
-  "description": "Atelier layout.",
+  "description": "A museum-quiet gallery for paintings and artwork - white walls, framed pieces, refined serif type.",
   "author": "OpenDigitalCC",
+  "tags": ["gallery", "art", "portfolio", "serif", "minimal"],
   "themes": ["atelier", "atelier-noir"],
   "default_theme": "atelier",
   "tokens": {

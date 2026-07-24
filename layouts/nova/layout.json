@@ -1,8 +1,9 @@
 {
   "name": "nova",
   "version": "1.0.0",
-  "description": "NOVA statement layout: glass nav, full-bleed kinetic content, footer, scroll-reveal. Pairs with the nova theme.",
+  "description": "A kinetic dark showpiece - aurora glow, glass panels and big display type for launches.",
   "author": "OpenDigitalCC",
+  "tags": ["statement", "dark", "product", "launch", "kinetic"],
   "themes": ["nova", "nova-ember"],
   "default_theme": "nova",
   "tokens": {

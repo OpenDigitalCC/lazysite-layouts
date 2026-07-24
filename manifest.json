@@ -1,10 +1,18 @@
 {
-   "generated" : "2026-07-11",
+   "generated" : "2026-07-24",
    "layouts" : [
       {
          "default_theme" : "atelier",
+         "description" : "A museum-quiet gallery for paintings and artwork - white walls, framed pieces, refined serif type.",
          "name" : "atelier",
          "package" : "releases/layouts/atelier.zip",
+         "tags" : [
+            "gallery",
+            "art",
+            "portfolio",
+            "serif",
+            "minimal"
+         ],
          "themes" : [
             {
                "name" : "atelier",
@@ -21,8 +29,16 @@
       },
       {
          "default_theme" : "bio-balanced",
+         "description" : "A clean, confident one-page personal site - your work, story and contact, professionally presented.",
          "name" : "bio-balanced",
          "package" : "releases/layouts/bio-balanced.zip",
+         "tags" : [
+            "personal",
+            "bio",
+            "portfolio",
+            "clean",
+            "professional"
+         ],
          "themes" : [
             {
                "name" : "bio-balanced",
@@ -39,8 +55,16 @@
       },
       {
          "default_theme" : "bio-bold",
+         "description" : "A loud, unmissable personal page - huge type and vivid gradients that make you the headline.",
          "name" : "bio-bold",
          "package" : "releases/layouts/bio-bold.zip",
+         "tags" : [
+            "personal",
+            "bio",
+            "bold",
+            "dark",
+            "gradient"
+         ],
          "themes" : [
             {
                "name" : "bio-bold",
@@ -57,8 +81,16 @@
       },
       {
          "default_theme" : "bio-modest",
+         "description" : "An understated personal calling card - quiet serif, warm paper, plenty of breathing room.",
          "name" : "bio-modest",
          "package" : "releases/layouts/bio-modest.zip",
+         "tags" : [
+            "personal",
+            "bio",
+            "minimal",
+            "serif",
+            "understated"
+         ],
          "themes" : [
             {
                "name" : "bio-modest",
@@ -75,8 +107,16 @@
       },
       {
          "default_theme" : "cadre",
+         "description" : "A bold studio portfolio - big grotesk type and a confident project grid for agencies and makers.",
          "name" : "cadre",
          "package" : "releases/layouts/cadre.zip",
+         "tags" : [
+            "portfolio",
+            "studio",
+            "agency",
+            "bold",
+            "editorial"
+         ],
          "themes" : [
             {
                "name" : "cadre",
@@ -93,8 +133,16 @@
       },
       {
          "default_theme" : "chroma",
+         "description" : "An interactive statement site where visitors restyle the palette live - playful, generative, memorable.",
          "name" : "chroma",
          "package" : "releases/layouts/chroma.zip",
+         "tags" : [
+            "interactive",
+            "statement",
+            "colour",
+            "playful",
+            "generative"
+         ],
          "themes" : [
             {
                "name" : "chroma",
@@ -111,8 +159,16 @@
       },
       {
          "default_theme" : "console",
+         "description" : "Your site as a working retro terminal - type commands to explore; built for engineers.",
          "name" : "console",
          "package" : "releases/layouts/console.zip",
+         "tags" : [
+            "terminal",
+            "developer",
+            "dark",
+            "monospace",
+            "interactive"
+         ],
          "themes" : [
             {
                "name" : "console",
@@ -129,8 +185,16 @@
       },
       {
          "default_theme" : "consultancy",
+         "description" : "A premium consultancy one-pager - dark, gold-accented and serif-led, built to win briefings.",
          "name" : "consultancy",
          "package" : "releases/layouts/consultancy.zip",
+         "tags" : [
+            "business",
+            "consultancy",
+            "professional",
+            "dark",
+            "premium"
+         ],
          "themes" : [
             {
                "name" : "consultancy",
@@ -147,8 +211,16 @@
       },
       {
          "default_theme" : "default",
+         "description" : "The versatile all-purpose layout - clean structure with six ready-made looks from warm to terminal.",
          "name" : "default",
          "package" : "releases/layouts/default.zip",
+         "tags" : [
+            "general",
+            "blog",
+            "versatile",
+            "neutral",
+            "multi-theme"
+         ],
          "themes" : [
             {
                "name" : "clarity",
@@ -185,8 +257,15 @@
       },
       {
          "default_theme" : "explorer",
+         "description" : "The theme gallery's own clean, modern chrome - a simple hero-and-content shell.",
          "name" : "explorer",
          "package" : "releases/layouts/explorer.zip",
+         "tags" : [
+            "internal",
+            "showcase",
+            "clean",
+            "modern"
+         ],
          "themes" : [
             {
                "name" : "explorer",
@@ -198,8 +277,16 @@
       },
       {
          "default_theme" : "flux",
+         "description" : "Scroll-driven cinema with zero JavaScript - the page animates as you move through it.",
          "name" : "flux",
          "package" : "releases/layouts/flux.zip",
+         "tags" : [
+            "statement",
+            "motion",
+            "scroll",
+            "modern",
+            "no-js"
+         ],
          "themes" : [
             {
                "name" : "flux",
@@ -216,8 +303,16 @@
       },
       {
          "default_theme" : "folio",
+         "description" : "A calm literary blog - warm paper, graceful serif and a centred masthead for essays.",
          "name" : "folio",
          "package" : "releases/layouts/folio.zip",
+         "tags" : [
+            "blog",
+            "writing",
+            "serif",
+            "literary",
+            "minimal"
+         ],
          "themes" : [
             {
                "name" : "folio",
@@ -234,8 +329,16 @@
       },
       {
          "default_theme" : "ledger",
+         "description" : "A nostalgic classic blog - banner, sidebar modules and blue links, just like the old web.",
          "name" : "ledger",
          "package" : "releases/layouts/ledger.zip",
+         "tags" : [
+            "blog",
+            "retro",
+            "classic",
+            "sidebar",
+            "nostalgic"
+         ],
          "themes" : [
             {
                "name" : "ledger",
@@ -252,8 +355,16 @@
       },
       {
          "default_theme" : "lumen",
+         "description" : "A light editorial statement - big serif, drop caps and electric accents on warm paper.",
          "name" : "lumen",
          "package" : "releases/layouts/lumen.zip",
+         "tags" : [
+            "editorial",
+            "statement",
+            "serif",
+            "light",
+            "magazine"
+         ],
          "themes" : [
             {
                "name" : "lumen",
@@ -270,8 +381,16 @@
       },
       {
          "default_theme" : "noir",
+         "description" : "A dark, immersive photo mosaic - edge-to-edge tiles with captions that appear on hover.",
          "name" : "noir",
          "package" : "releases/layouts/noir.zip",
+         "tags" : [
+            "gallery",
+            "photography",
+            "dark",
+            "portfolio",
+            "immersive"
+         ],
          "themes" : [
             {
                "name" : "noir",
@@ -288,8 +407,16 @@
       },
       {
          "default_theme" : "nova",
+         "description" : "A kinetic dark showpiece - aurora glow, glass panels and big display type for launches.",
          "name" : "nova",
          "package" : "releases/layouts/nova.zip",
+         "tags" : [
+            "statement",
+            "dark",
+            "product",
+            "launch",
+            "kinetic"
+         ],
          "themes" : [
             {
                "name" : "nova",
@@ -306,8 +433,16 @@
       },
       {
          "default_theme" : "portal-dark",
+         "description" : "A dark dashboard shell - sidebar, KPIs and cards for admin panels and status pages.",
          "name" : "portal-dark",
          "package" : "releases/layouts/portal-dark.zip",
+         "tags" : [
+            "dashboard",
+            "admin",
+            "dark",
+            "app",
+            "saas"
+         ],
          "themes" : [
             {
                "name" : "portal-dark",
@@ -324,8 +459,16 @@
       },
       {
          "default_theme" : "portal-light",
+         "description" : "A crisp light dashboard shell - sidebar navigation, KPIs and cards for product or admin UIs.",
          "name" : "portal-light",
          "package" : "releases/layouts/portal-light.zip",
+         "tags" : [
+            "dashboard",
+            "admin",
+            "light",
+            "app",
+            "saas"
+         ],
          "themes" : [
             {
                "name" : "portal-light",
@@ -342,8 +485,16 @@
       },
       {
          "default_theme" : "press",
+         "description" : "A bold front-page newspaper - masthead, breaking ticker and hard black rules on cream newsprint.",
          "name" : "press",
          "package" : "releases/layouts/press.zip",
+         "tags" : [
+            "news",
+            "editorial",
+            "brutalist",
+            "magazine",
+            "bold"
+         ],
          "themes" : [
             {
                "name" : "press",
@@ -360,8 +511,16 @@
       },
       {
          "default_theme" : "publicsector",
+         "description" : "A trustworthy public-sector advisory site - plain-spoken, accessible and official in tone.",
          "name" : "publicsector",
          "package" : "releases/layouts/publicsector.zip",
+         "tags" : [
+            "government",
+            "advisory",
+            "professional",
+            "light",
+            "institutional"
+         ],
          "themes" : [
             {
                "name" : "publicsector",
@@ -378,8 +537,16 @@
       },
       {
          "default_theme" : "pulse",
+         "description" : "A generative showpiece - a living, cursor-reactive canvas hero on refined dark glass.",
          "name" : "pulse",
          "package" : "releases/layouts/pulse.zip",
+         "tags" : [
+            "statement",
+            "generative",
+            "interactive",
+            "dark",
+            "creative"
+         ],
          "themes" : [
             {
                "name" : "pulse",
@@ -396,8 +563,16 @@
       },
       {
          "default_theme" : "quill",
+         "description" : "A classic essayist's blog - sticky side menu beside a warm, serif reading column.",
          "name" : "quill",
          "package" : "releases/layouts/quill.zip",
+         "tags" : [
+            "blog",
+            "writing",
+            "serif",
+            "sidebar",
+            "classic"
+         ],
          "themes" : [
             {
                "name" : "quill",
@@ -414,8 +589,16 @@
       },
       {
          "default_theme" : "reel",
+         "description" : "A cinematic portfolio for film and visual work - clean white chrome framing big media on black.",
          "name" : "reel",
          "package" : "releases/layouts/reel.zip",
+         "tags" : [
+            "portfolio",
+            "video",
+            "cinematic",
+            "creative",
+            "showcase"
+         ],
          "themes" : [
             {
                "name" : "reel",

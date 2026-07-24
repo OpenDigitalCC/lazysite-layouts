@@ -1,8 +1,9 @@
 {
   "name": "publicsector",
   "version": "1.0.0",
-  "description": "Public-sector advisory layout.",
+  "description": "A trustworthy public-sector advisory site - plain-spoken, accessible and official in tone.",
   "author": "OpenDigitalCC",
+  "tags": ["government", "advisory", "professional", "light", "institutional"],
   "themes": ["publicsector", "publicsector-green"],
   "default_theme": "publicsector",
   "tokens": {

@@ -1,8 +1,9 @@
 {
   "name": "console",
   "version": "1.0.0",
-  "description": "CONSOLE statement layout: an interactive terminal shell. Commands are driven by the page's data-cmd blocks; CRT phosphor aesthetic. Pairs with the console theme.",
+  "description": "Your site as a working retro terminal - type commands to explore; built for engineers.",
   "author": "OpenDigitalCC",
+  "tags": ["terminal", "developer", "dark", "monospace", "interactive"],
   "themes": ["console", "console-amber"],
   "default_theme": "console",
   "tokens": {

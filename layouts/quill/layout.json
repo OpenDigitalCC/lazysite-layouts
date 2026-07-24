@@ -1,8 +1,9 @@
 {
   "name": "quill",
   "version": "1.0.0",
-  "description": "Quill layout.",
+  "description": "A classic essayist's blog - sticky side menu beside a warm, serif reading column.",
   "author": "OpenDigitalCC",
+  "tags": ["blog", "writing", "serif", "sidebar", "classic"],
   "themes": ["quill", "quill-night"],
   "default_theme": "quill",
   "tokens": {

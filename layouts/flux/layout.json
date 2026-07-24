@@ -1,8 +1,9 @@
 {
   "name": "flux",
   "version": "1.0.0",
-  "description": "FLUX statement layout: a scroll progress meter, full-bleed content and a footer. The motion lives in the theme CSS (native scroll-driven animations). No JavaScript. Pairs with the flux theme.",
+  "description": "Scroll-driven cinema with zero JavaScript - the page animates as you move through it.",
   "author": "OpenDigitalCC",
+  "tags": ["statement", "motion", "scroll", "modern", "no-js"],
   "themes": ["flux", "flux-mono"],
   "default_theme": "flux",
   "tokens": {

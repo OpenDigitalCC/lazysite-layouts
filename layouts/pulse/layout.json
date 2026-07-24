@@ -1,8 +1,9 @@
 {
   "name": "pulse",
   "version": "1.0.0",
-  "description": "PULSE statement layout: a generative canvas flow-field hero (cursor-reactive), glass nav, full-bleed content, scroll-reveal. Pairs with the pulse theme.",
+  "description": "A generative showpiece - a living, cursor-reactive canvas hero on refined dark glass.",
   "author": "OpenDigitalCC",
+  "tags": ["statement", "generative", "interactive", "dark", "creative"],
   "themes": ["pulse", "pulse-magenta"],
   "default_theme": "pulse",
   "tokens": {

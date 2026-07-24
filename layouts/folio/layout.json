@@ -1,8 +1,9 @@
 {
   "name": "folio",
   "version": "1.0.0",
-  "description": "Folio layout.",
+  "description": "A calm literary blog - warm paper, graceful serif and a centred masthead for essays.",
   "author": "OpenDigitalCC",
+  "tags": ["blog", "writing", "serif", "literary", "minimal"],
   "themes": ["folio", "folio-dusk"],
   "default_theme": "folio",
   "tokens": {

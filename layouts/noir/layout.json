@@ -1,8 +1,9 @@
 {
   "name": "noir",
   "version": "1.0.0",
-  "description": "Noir layout.",
+  "description": "A dark, immersive photo mosaic - edge-to-edge tiles with captions that appear on hover.",
   "author": "OpenDigitalCC",
+  "tags": ["gallery", "photography", "dark", "portfolio", "immersive"],
   "themes": ["noir", "noir-steel"],
   "default_theme": "noir",
   "tokens": {

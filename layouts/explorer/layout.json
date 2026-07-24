@@ -1,8 +1,9 @@
 {
   "name": "explorer",
   "version": "1.0.0",
-  "description": "Theme-explorer site chrome: header with lazysite link, hero, content, footer.",
+  "description": "The theme gallery's own clean, modern chrome - a simple hero-and-content shell.",
   "author": "OpenDigitalCC",
+  "tags": ["internal", "showcase", "clean", "modern"],
   "default_theme": "explorer",
   "themes": ["explorer"],
   "tokens": {

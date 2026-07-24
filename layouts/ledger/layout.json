@@ -1,8 +1,9 @@
 {
   "name": "ledger",
   "version": "1.0.0",
-  "description": "Classic two-panel blog: banner, left sidebar of modules, content. Plain white, system font.",
+  "description": "A nostalgic classic blog - banner, sidebar modules and blue links, just like the old web.",
   "author": "OpenDigitalCC",
+  "tags": ["blog", "retro", "classic", "sidebar", "nostalgic"],
   "themes": ["ledger", "ledger-sepia"],
   "default_theme": "ledger",
   "tokens": {

@@ -1,8 +1,9 @@
 {
   "name": "portal-light",
   "version": "1.0.0",
-  "description": "Light dashboard layout (app shell).",
+  "description": "A crisp light dashboard shell - sidebar navigation, KPIs and cards for product or admin UIs.",
   "author": "OpenDigitalCC",
+  "tags": ["dashboard", "admin", "light", "app", "saas"],
   "themes": ["portal-light", "portal-light-violet"],
   "default_theme": "portal-light",
   "tokens": {

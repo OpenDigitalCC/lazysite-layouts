@@ -1,8 +1,9 @@
 {
   "name": "bio-balanced",
   "version": "1.0.0",
-  "description": "BIO Balanced bio layout.",
+  "description": "A clean, confident one-page personal site - your work, story and contact, professionally presented.",
   "author": "OpenDigitalCC",
+  "tags": ["personal", "bio", "portfolio", "clean", "professional"],
   "themes": ["bio-balanced", "bio-balanced-night"],
   "default_theme": "bio-balanced",
   "tokens": {

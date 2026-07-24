@@ -1,8 +1,9 @@
 {
   "name": "cadre",
   "version": "1.0.0",
-  "description": "Cadre layout.",
+  "description": "A bold studio portfolio - big grotesk type and a confident project grid for agencies and makers.",
   "author": "OpenDigitalCC",
+  "tags": ["portfolio", "studio", "agency", "bold", "editorial"],
   "themes": ["cadre", "cadre-mono"],
   "default_theme": "cadre",
   "tokens": {

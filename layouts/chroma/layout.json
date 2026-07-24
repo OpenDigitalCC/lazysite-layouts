@@ -1,8 +1,9 @@
 {
   "name": "chroma",
   "version": "1.0.0",
-  "description": "CHROMA statement layout: a live palette control bar (presets + generative randomiser) that re-skins the page via CSS custom properties, persisted to localStorage. Pairs with the chroma theme.",
+  "description": "An interactive statement site where visitors restyle the palette live - playful, generative, memorable.",
   "author": "OpenDigitalCC",
+  "tags": ["interactive", "statement", "colour", "playful", "generative"],
   "themes": ["chroma", "chroma-dusk"],
   "default_theme": "chroma",
   "tokens": {

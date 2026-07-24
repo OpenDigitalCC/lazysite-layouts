@@ -1,8 +1,9 @@
 {
   "name": "portal-dark",
   "version": "1.0.0",
-  "description": "Dark dashboard layout (app shell).",
+  "description": "A dark dashboard shell - sidebar, KPIs and cards for admin panels and status pages.",
   "author": "OpenDigitalCC",
+  "tags": ["dashboard", "admin", "dark", "app", "saas"],
   "themes": ["portal-dark", "portal-dark-emerald"],
   "default_theme": "portal-dark",
   "tokens": {
