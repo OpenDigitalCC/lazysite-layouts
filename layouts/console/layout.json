@@ -4,5 +4,9 @@
   "description": "CONSOLE statement layout: an interactive terminal shell. Commands are driven by the page's data-cmd blocks; CRT phosphor aesthetic. Pairs with the console theme.",
   "author": "OpenDigitalCC",
   "themes": ["console", "console-amber"],
-  "default_theme": "console"
+  "default_theme": "console",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body"]
+  }
 }

@@ -4,5 +4,9 @@
   "description": "Light dashboard layout (app shell).",
   "author": "OpenDigitalCC",
   "themes": ["portal-light", "portal-light-violet"],
-  "default_theme": "portal-light"
+  "default_theme": "portal-light",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "neg", "on-accent", "pos", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

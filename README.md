@@ -222,6 +222,20 @@ theme at `releases/LAYOUT/THEME.zip`. Each zip has the D013
 upload shape: `theme.json` at root, `assets/` subtree for
 web-served files.
 
+## Declared token vocabulary + repo lint
+
+Every `layouts/<L>/layout.json` carries a declarative `tokens`
+block - the `--theme-GROUP-KEY` vocabulary its reference CSS
+consumes, derived from the layout's default theme `main.css`
+(see `docs/creating-layouts.md`). After changing a default
+theme's CSS, regenerate:
+
+    perl tools/gen-tokens.pl
+
+and lint the repo (the declaration must match a fresh scan):
+
+    prove t/
+
 ## Fonts - standing no-CDN rule
 
 **No CDN anywhere in lazysite themes.** Fonts must be freely

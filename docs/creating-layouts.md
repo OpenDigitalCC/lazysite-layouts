@@ -55,10 +55,36 @@ core installer.
     }
 
 **Required:** `name` (must match directory), `version` (semver).
-**Optional:** `description`, `author`, `default_theme` (the theme installed and
+**Optional:** `description` (one client-facing sentence - what the layout is
+for and its personality; surfaced by the catalogue, so keep it useful),
+`author`, `tags` (a few style/audience keywords, also surfaced by the
+catalogue), `default_theme` (the theme installed and
 activated when a user installs the layout from the catalogue without choosing one;
 also seeds `manifest.json`), `themes` (informational forward index - the manifest
-itself is derived from the actual theme dirs, so this never has to be hand-kept).
+itself is derived from the actual theme dirs, so this never has to be hand-kept),
+`tokens` (the declared token vocabulary - see below).
+
+### The `tokens` block (declared vocabulary)
+
+`tokens` declares which `--theme-GROUP-KEY` custom properties the layout's
+reference CSS consumes, grouped as the theme config is:
+
+    "tokens": {
+      "colours": ["accent", "bg", "border", "heading", "text", "text-muted"],
+      "fonts":   ["body", "display"]
+    }
+
+It is **declarative only** - documentation-as-data derived from the layout's
+default theme `main.css`. The engine never enforces it at render; a theme may
+supply extra tokens or omit declared ones (the CSS `var(--theme-*, fallback)`
+chain covers gaps), and activating a theme that does not supply the full
+vocabulary produces a non-fatal manager warning at most. Only identity groups
+(colours, fonts) are declared - rhythm/scale stays in CSS, so spacing tokens
+are never listed.
+
+Do not hand-edit the block: regenerate it with `perl tools/gen-tokens.pl`
+after changing a default theme's CSS. `prove t/` lints that the declaration
+matches a fresh scan, so drift fails the check.
 
 ## layout.tt - the TT contract
 

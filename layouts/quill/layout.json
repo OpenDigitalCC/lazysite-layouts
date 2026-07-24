@@ -4,5 +4,9 @@
   "description": "Quill layout.",
   "author": "OpenDigitalCC",
   "themes": ["quill", "quill-night"],
-  "default_theme": "quill"
+  "default_theme": "quill",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

@@ -4,5 +4,9 @@
   "description": "Classic two-panel blog: banner, left sidebar of modules, content. Plain white, system font.",
   "author": "OpenDigitalCC",
   "themes": ["ledger", "ledger-sepia"],
-  "default_theme": "ledger"
+  "default_theme": "ledger",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "border-soft", "heading", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

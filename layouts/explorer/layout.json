@@ -4,5 +4,9 @@
   "description": "Theme-explorer site chrome: header with lazysite link, hero, content, footer.",
   "author": "OpenDigitalCC",
   "default_theme": "explorer",
-  "themes": ["explorer"]
+  "themes": ["explorer"],
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

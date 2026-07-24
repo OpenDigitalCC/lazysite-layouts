@@ -4,5 +4,9 @@
   "description": "Dark dashboard layout (app shell).",
   "author": "OpenDigitalCC",
   "themes": ["portal-dark", "portal-dark-emerald"],
-  "default_theme": "portal-dark"
+  "default_theme": "portal-dark",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "neg", "on-accent", "pos", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

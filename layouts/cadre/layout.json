@@ -4,5 +4,9 @@
   "description": "Cadre layout.",
   "author": "OpenDigitalCC",
   "themes": ["cadre", "cadre-mono"],
-  "default_theme": "cadre"
+  "default_theme": "cadre",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

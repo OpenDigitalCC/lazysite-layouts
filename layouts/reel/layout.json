@@ -4,5 +4,9 @@
   "description": "Reel layout.",
   "author": "OpenDigitalCC",
   "themes": ["reel", "reel-gold"],
-  "default_theme": "reel"
+  "default_theme": "reel",
+  "tokens": {
+    "colours": ["accent", "bg", "border", "heading", "on-accent", "surface", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

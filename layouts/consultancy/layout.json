@@ -4,5 +4,9 @@
   "description": "Business consultancy layout.",
   "author": "OpenDigitalCC",
   "themes": ["consultancy", "consultancy-slate"],
-  "default_theme": "consultancy"
+  "default_theme": "consultancy",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "footer", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

@@ -4,5 +4,9 @@
   "description": "Folio layout.",
   "author": "OpenDigitalCC",
   "themes": ["folio", "folio-dusk"],
-  "default_theme": "folio"
+  "default_theme": "folio",
+  "tokens": {
+    "colours": ["accent", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

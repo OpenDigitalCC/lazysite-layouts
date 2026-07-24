@@ -4,5 +4,9 @@
   "description": "NOVA statement layout: glass nav, full-bleed kinetic content, footer, scroll-reveal. Pairs with the nova theme.",
   "author": "OpenDigitalCC",
   "themes": ["nova", "nova-ember"],
-  "default_theme": "nova"
+  "default_theme": "nova",
+  "tokens": {
+    "colours": ["accent", "accent-2", "accent-3", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

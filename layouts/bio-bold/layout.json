@@ -4,5 +4,9 @@
   "description": "BIO Bold bio layout.",
   "author": "OpenDigitalCC",
   "themes": ["bio-bold", "bio-bold-ultra"],
-  "default_theme": "bio-bold"
+  "default_theme": "bio-bold",
+  "tokens": {
+    "colours": ["accent", "accent-2", "accent-3", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

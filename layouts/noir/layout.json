@@ -4,5 +4,9 @@
   "description": "Noir layout.",
   "author": "OpenDigitalCC",
   "themes": ["noir", "noir-steel"],
-  "default_theme": "noir"
+  "default_theme": "noir",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

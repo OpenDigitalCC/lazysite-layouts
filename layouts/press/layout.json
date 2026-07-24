@@ -4,5 +4,9 @@
   "description": "PRESS statement layout: newspaper masthead, breaking ticker, full-bleed front-page content, hard rules. Pairs with the press theme.",
   "author": "OpenDigitalCC",
   "themes": ["press", "press-ink"],
-  "default_theme": "press"
+  "default_theme": "press",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

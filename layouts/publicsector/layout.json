@@ -4,5 +4,9 @@
   "description": "Public-sector advisory layout.",
   "author": "OpenDigitalCC",
   "themes": ["publicsector", "publicsector-green"],
-  "default_theme": "publicsector"
+  "default_theme": "publicsector",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "footer", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

@@ -4,5 +4,9 @@
   "description": "BIO Balanced bio layout.",
   "author": "OpenDigitalCC",
   "themes": ["bio-balanced", "bio-balanced-night"],
-  "default_theme": "bio-balanced"
+  "default_theme": "bio-balanced",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

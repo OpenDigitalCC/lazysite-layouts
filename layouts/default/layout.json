@@ -4,5 +4,9 @@
   "description": "Default lazysite page layout: SEO/OG head, site-bar, nav, main, footer. Structural only; colours and fonts come from the active theme's config tokens.",
   "author": "OpenDigitalCC",
   "themes": ["clarity", "dark", "default", "studio", "terminal", "warm"],
-  "default_theme": "default"
+  "default_theme": "default",
+  "tokens": {
+    "colours": ["background", "background-accent", "background-alt", "background-dropdown", "border", "error", "heading", "mark", "mark-text", "primary", "primary-hover", "primary-text", "shadow", "success", "text", "text-dim", "text-muted"],
+    "fonts": ["body", "code", "heading"]
+  }
 }

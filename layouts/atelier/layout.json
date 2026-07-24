@@ -4,5 +4,9 @@
   "description": "Atelier layout.",
   "author": "OpenDigitalCC",
   "themes": ["atelier", "atelier-noir"],
-  "default_theme": "atelier"
+  "default_theme": "atelier",
+  "tokens": {
+    "colours": ["accent", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }

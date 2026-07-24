@@ -4,5 +4,9 @@
   "description": "LUMEN statement layout: light editorial chrome, big serif, asymmetric full-bleed content, scroll-reveal. Pairs with the lumen theme.",
   "author": "OpenDigitalCC",
   "themes": ["lumen", "lumen-rose"],
-  "default_theme": "lumen"
+  "default_theme": "lumen",
+  "tokens": {
+    "colours": ["accent", "accent-2", "bg", "border", "heading", "on-accent", "surface", "surface-2", "text", "text-muted"],
+    "fonts": ["body", "display"]
+  }
 }
