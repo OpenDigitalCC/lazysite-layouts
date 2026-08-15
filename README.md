@@ -4,6 +4,22 @@ Layouts and themes for [lazysite](https://lazysite.io) under
 the D013 architecture. Requires lazysite **0.2.10 or later** -
 earlier versions use a different (incompatible) theme format.
 
+## Current state of the catalogue (15 August 2026)
+
+**Twenty-two of the twenty-three layouts are gallery demonstrations and are
+not yet usable for a real site.** They render their own in-page anchors instead
+of the site's navigation, and lack share cards, a canonical link, the
+cache-safe auth indicator and a mobile navigation control. `default` is the
+only complete one and is the reference for bringing the rest up.
+
+- `docs/BRINGING-THE-CATALOGUE-UP-TO-DATE.md` - what each layout needs below
+  `</head>`, in what order, and the one fixture that verifies all of it.
+- `docs/proposals/2026-08-15-head-meta-contract.md` - the `<head>` half:
+  `page_meta_title`, `page_meta_desc`, and the double-escaped description that
+  ships today on any copy containing an apostrophe.
+
+Read both before starting work on any layout in this repository.
+
 ## What's here
 
     lazysite-layouts/
