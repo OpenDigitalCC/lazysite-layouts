@@ -1,53 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="[% page_lang || site_lang || 'en' %]">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
-[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+[%# The <head> contract: page_meta_title / page_meta_desc arrive from the engine
+    already resolved (meta_title // title, meta_desc // subtitle) and
+    HTML-escaped - emit them WITHOUT | html, and never repeat the fallback here.
+    og:site_name carries the site name, so og:title is the page title alone. %]
+<title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:type" content="website">
+[% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
+<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
 [% theme_css %]
 [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/pulse/pulse/fonts.css"><link rel="stylesheet" href="/lazysite-assets/pulse/pulse/main.css">[% END %]
 </head>
 <body>
 <nav class="pulse-nav">
   <div class="nav-inner">
-    <a href="/" class="pulse-logo"><span class="dot"></span>PULSE</a>
-    <ul class="nav-links">
-      <li><a href="#concept">Concept</a></li>
-      <li><a href="#start">Start</a></li>
-      <li><a href="/" class="nav-cta">Theme Explorer</a></li>
+    <a href="/" class="pulse-logo"><span class="dot"></span>[% site_name %]</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="pulse-links">&#9776;</button>
+    <ul class="nav-links" id="pulse-links">
+[% FOREACH item IN nav %]
+[% IF item.children.size %]
+      <li class="nav-group">
+[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
+        <ul class="nav-children">
+[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
+        </ul>
+      </li>
+[% ELSE %]
+      <li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+[% END %]
+[% END %]
+      <li class="auth">[% auth_control %]</li>
     </ul>
   </div>
 </nav>
 
 [% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
+[% IF content %]<div class="pulse-page"><div class="wrap">
+[% IF page_title %]<h1 class="page-title">[% page_title %]</h1>[% END %]
+[% IF page_subtitle %]<p class="standfirst">[% page_subtitle %]</p>[% END %]
 [% content %]
+</div></div>[% END %]
 
 <footer class="pulse-foot">
   <div class="inner">
     <div>
-      <a href="/" class="pulse-logo"><span class="dot"></span>PULSE</a>
-      <p class="blurb">A generative, interactive statement theme for lazysite. The hero is a live flow-field that responds to your cursor - no two visits the same, no framework in sight.</p>
+      <a href="/" class="pulse-logo"><span class="dot"></span>[% site_name %]</a>
     </div>
     <div>
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#concept">The concept</a></li>
-        <li><a href="#start">Get started</a></li>
-      </ul>
+      <h4>Menu</h4>
+      <ul>[% FOREACH item IN nav %][% IF item.url %]<li><a href="[% item.url %]">[% item.label %]</a></li>[% END %][% END %]</ul>
     </div>
     <div>
-      <h4>lazysite</h4>
+      <h4>Site</h4>
       <ul>
-        <li><a href="/">Theme Explorer</a></li>
-        <li><a href="https://lazysite.io" target="_blank" rel="noopener">This is a Lazysite</a></li>
+        <li><a href="https://lazysite.io">This is a Lazysite</a></li>
       </ul>
     </div>
   </div>
   <div class="base">
-    <span>&copy; [% year %] PULSE - a generative lazysite statement theme.</span>
-    <span>Canvas flow-field, ~60 lines of vanilla JS</span>
+    <span>&copy; [% year %] [% site_name %]</span>
+    <span>[% IF page_modified %]<time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</span>
   </div>
 </footer>
 
@@ -109,6 +132,9 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(function(e){io.observe(e);});
 })();
+</script>
+<script>
+(function(){var b=document.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
 </script>
 </body>
 </html>

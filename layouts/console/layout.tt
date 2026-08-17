@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="[% page_lang || site_lang || 'en' %]">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
-[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+[%# The <head> contract: page_meta_title / page_meta_desc arrive from the engine
+    already resolved (meta_title // title, meta_desc // subtitle) and
+    HTML-escaped - emit them WITHOUT | html, and never repeat the fallback here.
+    og:site_name carries the site name, so og:title is the page title alone. %]
+<title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:type" content="website">
+[% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
+<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
 [% theme_css %]
 [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/console/console/fonts.css"><link rel="stylesheet" href="/lazysite-assets/console/console/main.css">[% END %]
 </head>
@@ -12,9 +25,33 @@
 <div class="scanlines"></div>
 <main class="crt">
   <div class="term" id="term">
-    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot g"></span><span class="term-title">guest@lazysite: ~/explorer</span><a href="/" class="term-exit">[ exit to explorer ]</a></div>
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot g"></span><span class="term-title">guest@[% site_name %]</span><button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="term-links">&#9776;</button></div>
+    <nav class="term-nav" aria-label="Site">
+      <span class="ps1">nav$</span>
+      <ul class="links" id="term-links">
+[% FOREACH item IN nav %]
+[% IF item.children.size %]
+        <li class="nav-group">
+[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
+          <ul class="nav-children">
+[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
+          </ul>
+        </li>
+[% ELSE %]
+        <li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+[% END %]
+[% END %]
+        <li class="auth">[% auth_control %]</li>
+      </ul>
+    </nav>
     <div class="term-body" id="term-body">
-      <div id="term-out"></div>
+[% IF content %]      <div class="term-page">
+        <div class="cat-line"><span class="ps1">guest@lazysite:~$</span> cat [% request_uri | html %]</div>
+[% IF page_title %]<h1 class="page-title">[% page_title %]</h1>[% END %]
+[% IF page_subtitle %]<p class="standfirst">[% page_subtitle %]</p>[% END %]
+[% content %]
+      </div>
+[% END %]      <div id="term-out"></div>
       <div class="prompt-line" id="prompt-line">
         <span class="ps1">guest@lazysite:~$</span>
         <input id="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="terminal input">
@@ -22,10 +59,10 @@
     </div>
   </div>
   <div class="term-data" hidden>[% FOREACH s IN sections %][% type = s.keys.first %]
-[% INCLUDE "components/${type}.tt" data = s.$type %][% END %][% content %]</div>
+[% INCLUDE "components/${type}.tt" data = s.$type %][% END %]</div>
 </main>
 
-<footer class="term-foot" style="text-align:center;padding:1rem;font-family:'JetBrains Mono',monospace;opacity:.6;font-size:.85rem"># <a href="https://lazysite.io" style="color:inherit">This is a Lazysite</a></footer>
+<footer class="term-foot"># &copy; [% year %] [% site_name %] &middot; <a href="https://lazysite.io">This is a Lazysite</a>[% IF page_modified %] &middot; <time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</footer>
 
 <script>
 (function(){
@@ -42,7 +79,10 @@
 
   function print(html, cls){ var d = document.createElement('div'); d.className = 'blk' + (cls ? ' ' + cls : ''); d.innerHTML = html; out.appendChild(d); scroll(); return d; }
   function line(html, cls){ var d = document.createElement('div'); d.className = 'row' + (cls ? ' ' + cls : ''); d.innerHTML = html; out.appendChild(d); scroll(); return d; }
-  function scroll(){ bodyEl.scrollTop = bodyEl.scrollHeight; }
+  // On a markdown page the reader starts at the top of the catted content;
+  // autoscroll only kicks in once a command is typed (demo pages scroll live).
+  var autoscroll = !document.querySelector('.term-page');
+  function scroll(){ if (autoscroll) bodyEl.scrollTop = bodyEl.scrollHeight; }
 
   var builtins = {
     help: 'list commands',
@@ -50,12 +90,13 @@
     clear: 'clear the screen',
     theme: 'switch palette: theme amber | theme green',
     whoami: 'who you are',
-    exit: 'back to the theme explorer'
+    exit: 'go to the site home'
   };
   function cmdList(){ var k = Object.keys(builtins).concat(Object.keys(pages)); return k.filter(function(v,i){return k.indexOf(v)===i;}).sort(); }
 
   function run(raw){
     var cmd = raw.trim(); if (!cmd) return;
+    autoscroll = true;
     line('<span class="echo"><b>guest@lazysite:~$</b> ' + cmd.replace(/</g,'&lt;') + '</span>');
     var parts = cmd.split(/\s+/); var name = parts[0].toLowerCase();
     if (name === 'clear') { out.innerHTML = ''; return; }
@@ -65,8 +106,8 @@
       rows += '</table>'; print(rows); return;
     }
     if (name === 'ls') { print('<span>' + cmdList().join('&nbsp;&nbsp;') + '</span>'); return; }
-    if (name === 'whoami') { print('guest &mdash; a curious visitor exploring what a static site can be.'); return; }
-    if (name === 'exit' || name === 'home' || name === 'explorer') { print('<span class="muted">returning to the theme explorer ...</span>'); setTimeout(function(){ window.location.href = '/'; }, 250); return; }
+    if (name === 'whoami') { print('guest &mdash; a curious visitor.'); return; }
+    if (name === 'exit' || name === 'home') { print('<span class="muted">going home ...</span>'); setTimeout(function(){ window.location.href = '/'; }, 250); return; }
     if (name === 'theme') { var m = (parts[1]||'').toLowerCase(); if (m==='amber'){document.documentElement.classList.add('amber');print('<span class="muted">palette &rarr; amber</span>');} else if (m==='green'){document.documentElement.classList.remove('amber');print('<span class="muted">palette &rarr; green</span>');} else {print('<span class="err">usage: theme amber | theme green</span>');} return; }
     if (pages[name]) { print(pages[name].html); return; }
     print('command not found: ' + name.replace(/</g,'&lt;') + ". type 'help'.", 'err');
@@ -80,22 +121,25 @@
     else if (e.key === 'ArrowDown') { if (hi < hist.length-1) { hi++; input.value = hist[hi] || ''; } else { hi = hist.length; input.value = ''; } e.preventDefault(); }
     else if (e.key === 'l' && e.ctrlKey) { out.innerHTML = ''; e.preventDefault(); }
   });
-  document.getElementById('term').addEventListener('click', function(){ input.focus(); });
+  document.getElementById('term').addEventListener('click', function(e){ if (e.target.closest('a, button, input, nav')) return; input.focus(); });
 
   // boot
   function boot(){
     if (bannerEl) print(bannerEl.innerHTML, 'banner');
     var seq = [
-      '<span class="muted">lazysite console v1.0 &mdash; (c) ' + (new Date().getFullYear ? '' : '') + 'OpenDigitalCC</span>',
-      '<span class="muted">booting explorer shell ... ok</span>',
-      "<span>type <b style='color:var(--accent)'>help</b> to list commands, or try <b style='color:var(--accent)'>about</b>.</span>"
+      '<span class="muted">lazysite console v1.0</span>',
+      '<span class="muted">booting shell ... ok</span>',
+      "<span>type <b style='color:var(--accent)'>help</b> to list commands.</span>"
     ];
     var i = 0;
-    function next(){ if (i >= seq.length) { input.focus(); return; } line(seq[i]); i++; setTimeout(next, reduce ? 0 : 320); }
+    function next(){ if (i >= seq.length) { if (!document.querySelector('.term-page')) input.focus(); return; } line(seq[i]); i++; setTimeout(next, reduce ? 0 : 320); }
     next();
   }
   boot();
 })();
+</script>
+<script>
+(function(){var b=document.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
 </script>
 </body>
 </html>
