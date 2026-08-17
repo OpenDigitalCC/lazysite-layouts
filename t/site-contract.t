@@ -126,6 +126,9 @@ for my $L (@layouts) {
 
         return if $demo;
 
+        # -- a markdown page's heading renders (demo pages use sections) --
+        like( $out, qr{>Fixture Page Title<}, 'page title renders as the page heading' );
+
         # -- navigation from [% nav %] --
         like( $out, qr{<a[^>]*href="/"[^>]*>Home</a>}, 'top-level nav item renders' );
         like( $out, qr{>Docs<},                        'parent group label renders' );
