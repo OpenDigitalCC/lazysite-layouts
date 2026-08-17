@@ -43,3 +43,39 @@ a{color:inherit;text-decoration:none}
 .post .dek{color:var(--muted);font-size:1rem;line-height:1.6}
 @media(max-width:880px){.q-shell{grid-template-columns:1fr}.q-side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}.q-main{padding:40px 24px 60px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* site chrome - navigation from nav.conf, mobile toggle, auth, page body */
+.q-side .pub a{color:inherit}
+.q-side .pub a:hover{color:var(--accent)}
+.q-side .nav-toggle{display:none;background:none;border:1px solid var(--border);border-radius:3px;color:var(--heading);font-size:1.05rem;line-height:1;padding:4px 12px;cursor:pointer;margin-top:14px}
+.q-menu h4 a{color:inherit;border-bottom:1px solid transparent;letter-spacing:inherit;text-transform:inherit}
+.q-menu h4 a:hover,.q-menu h4 a.active{color:var(--accent);border-color:var(--accent)}
+.q-menu h4 .nav-group-label{cursor:default}
+.q-auth{margin-top:36px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.ls-auth{font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--border)}
+.ls-auth:hover{color:var(--accent);border-color:var(--accent)}
+.q-page .page-title{font-family:var(--fd);font-weight:600;font-size:clamp(2rem,4.5vw,3rem);line-height:1.15;color:var(--heading);letter-spacing:-.01em;margin-bottom:14px}
+.q-page .standfirst{font-size:1.2rem;font-style:italic;line-height:1.6;color:var(--muted);margin-bottom:30px;padding-bottom:26px;border-bottom:1px solid var(--border)}
+.q-page h2{font-family:var(--fd);font-weight:600;font-size:1.6rem;line-height:1.25;color:var(--heading);margin:36px 0 12px}
+.q-page h3{font-family:var(--fd);font-weight:600;font-size:1.25rem;color:var(--heading);margin:28px 0 10px}
+.q-page p,.q-page li{color:var(--text);font-size:1.02rem;line-height:1.75}
+.q-page p{margin-bottom:16px}
+.q-page ul,.q-page ol{margin:0 0 16px 24px}
+.q-page a{color:var(--accent);border-bottom:1px solid var(--accent)}
+.q-page a:hover{color:var(--accent-2);border-color:var(--accent-2)}
+.q-page blockquote{font-style:italic;color:var(--muted);border-left:2px solid var(--accent);padding-left:20px;margin:24px 0}
+.q-page code{background:var(--surface-2);border:1px solid var(--border);border-radius:3px;padding:2px 6px;font-size:.85em;font-family:monospace}
+.q-page pre{background:var(--surface-2);border:1px solid var(--border);border-radius:3px;padding:16px 18px;overflow-x:auto;margin-bottom:16px}
+.q-page pre code{background:none;border:0;padding:0}
+.q-page img{max-width:100%;height:auto}
+.q-page table{border-collapse:collapse;width:100%;margin-bottom:18px}
+.q-page th,.q-page td{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:.95rem}
+.q-page th{color:var(--heading);background:var(--surface-2)}
+.q-foot{max-width:var(--measure);margin:48px auto 0;padding-top:22px;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
+.q-foot a{color:var(--accent);border-bottom:1px solid var(--accent)}
+.q-foot time{color:inherit}
+@media(max-width:880px){
+  .q-side .nav-toggle{display:inline-block}
+  .q-side .q-nav{display:none}
+  body.nav-open .q-side .q-nav{display:block}
+  .q-side{padding:32px 24px}
+}

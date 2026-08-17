@@ -1,3 +1,58 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %][% theme_css %][% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/folio/folio/fonts.css"><link rel="stylesheet" href="/lazysite-assets/folio/folio/main.css">[% END %]</head><body><header class="folio-head"><div class="pub">The Folio</div><div class="tag">Essays on craft, attention and the long view</div><nav class="nav"><a href="#lead">Latest</a><a href="#essays">Essays</a><a href="#about">About</a><a href="/">Explorer</a></nav></header>[% FOREACH s IN sections %][% type = s.keys.first %]
+<!DOCTYPE html>
+<html lang="[% page_lang || site_lang || 'en' %]">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+[%# The <head> contract: page_meta_title / page_meta_desc arrive from the engine
+    already resolved (meta_title // title, meta_desc // subtitle) and
+    HTML-escaped - emit them WITHOUT | html, and never repeat the fallback here.
+    og:site_name carries the site name, so og:title is the page title alone. %]
+<title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:type" content="website">
+[% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
+<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+[% theme_css %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/folio/folio/fonts.css"><link rel="stylesheet" href="/lazysite-assets/folio/folio/main.css">[% END %]
+</head>
+<body>
+<header class="folio-head">
+<div class="pub"><a href="/">[% site_name %]</a></div>
+<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="folio-links">&#9776;</button>
+<nav class="nav">
+<ul class="nav-links" id="folio-links">
+[% FOREACH item IN nav %]
+[% IF item.children.size %]
+<li class="nav-group">
+[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
+<ul class="nav-children">
+[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
+</ul>
+</li>
+[% ELSE %]
+<li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+[% END %]
+[% END %]
+<li class="auth">[% auth_control %]</li>
+</ul>
+</nav>
+</header>
+[% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
-[% content %]<footer class="folio-foot">The Source - a lazysite reading theme. <a href="/">Back to the theme explorer</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a> &middot; [% year %]</footer></body></html>
+[% IF content %]<div class="folio-page"><div class="wrap">
+[% IF page_title %]<h1 class="page-title">[% page_title %]</h1>[% END %]
+[% IF page_subtitle %]<p class="standfirst">[% page_subtitle %]</p>[% END %]
+[% content %]
+</div></div>[% END %]
+<footer class="folio-foot">&copy; [% year %] [% site_name %] &middot; <a href="https://lazysite.io">This is a Lazysite</a>[% IF page_modified %] &middot; <time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</footer>
+<script>
+(function(){var b=document.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
+</script>
+</body>
+</html>

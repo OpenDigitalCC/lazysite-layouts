@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="[% page_lang || site_lang || 'en' %]">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[% page_title %][% IF site_name %] - [% site_name %][% END %]</title>
-[% IF page_subtitle %]<meta name="description" content="[% page_subtitle | html %]">[% END %]
+[%# The <head> contract: page_meta_title / page_meta_desc arrive from the engine
+    already resolved (meta_title // title, meta_desc // subtitle) and
+    HTML-escaped - emit them WITHOUT | html, and never repeat the fallback here.
+    og:site_name carries the site name, so og:title is the page title alone. %]
+<title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+[% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+<meta property="og:type" content="website">
+[% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
+<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[% page_meta_title %]">
+[% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
 [% theme_css %]
 [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/ledger/ledger/main.css">[% END %]
 </head>
@@ -12,26 +25,37 @@
 <div class="led-wrap">
 
   <header class="led-banner">
-    <h1 class="title"><a href="/">Fieldnotes: essays, notes &amp; work in progress</a></h1>
-    <p class="desc">A working archive on craft, ideas and attention.</p>
+    <h1 class="title"><a href="/">[% site_name %]</a></h1>
     <div class="led-util">
-      <input class="led-search" type="search" placeholder="Search articles&hellip;" aria-label="Search">
-      <nav class="led-nav"><a href="/">Home</a><a href="#">Essays</a><a href="#">Notes</a><a href="#">About</a></nav>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="led-links">&#9776;</button>
+      <nav class="led-nav">
+        <ul class="nav-links" id="led-links">
+[% FOREACH item IN nav %]
+[% IF item.children.size %]
+          <li class="nav-group">
+[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
+            <ul class="nav-children">
+[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
+            </ul>
+          </li>
+[% ELSE %]
+          <li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+[% END %]
+[% END %]
+          <li class="auth">[% auth_control %]</li>
+        </ul>
+      </nav>
     </div>
   </header>
 
   <div class="led-body">
-    <aside class="led-side" aria-label="About">
-      <div class="led-mod led-photo">
-        <span class="ph"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 16a17 17 0 1 1 0 34 17 17 0 0 1 0-34zM16 96c0-19 15-32 34-32s34 13 34 32z"/></svg></span>
-      </div>
+    <aside class="led-side" aria-label="Menu">
       <div class="led-mod">
-        <p>An independent writer and designer. I keep notes here on craft, the work of making things, and the ideas I want to come back to.</p>
-        <p><a href="#">Email me</a></p>
-      </div>
-      <div class="led-mod">
-        <h3>In print</h3>
-        <div class="led-book"><span class="cov">FIELD NOTES</span><div><strong>Field Notes</strong><br><span class="d">A short book of essays. Out now.</span></div></div>
+        <h3>Menu</h3>
+        <ul>
+[% FOREACH item IN nav %][% IF item.url %]          <li><a href="[% item.url %]">[% item.label %]</a></li>
+[% END %][% END %]
+        </ul>
       </div>
     </aside>
 
@@ -39,55 +63,35 @@
       <div id="content">
         [% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
-        [% content %]
+        [% IF content %]<div class="led-page">
+[% IF page_title %]<h1 class="page-title">[% page_title %]</h1>[% END %]
+[% IF page_subtitle %]<p class="standfirst">[% page_subtitle %]</p>[% END %]
+[% content %]
+        </div>[% END %]
       </div>
     </main>
 
     <aside class="led-side2" aria-label="More">
+[% FOREACH item IN nav %][% IF item.children.size %]
       <div class="led-mod">
-        <h3>Recent writing</h3>
+        <h3>[% IF item.url %]<a href="[% item.url %]">[% item.label %]</a>[% ELSE %][% item.label %][% END %]</h3>
         <ul>
-          <li><a href="#">What the margins are for</a></li>
-          <li><a href="#">On keeping a notebook</a></li>
-          <li><a href="#">The shape of a good question</a></li>
-          <li><a href="#">Reading twice</a></li>
-          <li><a href="#">Small things, done daily</a></li>
+[% FOREACH child IN item.children %]          <li><a href="[% child.url %]">[% child.label %]</a></li>
+[% END %]
         </ul>
       </div>
-      <div class="led-mod">
-        <h3>Topics</h3>
-        <ul>
-          <li><a href="#">Essays</a> <span class="d">(14)</span></li>
-          <li><a href="#">Notes</a> <span class="d">(22)</span></li>
-          <li><a href="#">Reading</a> <span class="d">(9)</span></li>
-          <li><a href="#">Workshops &amp; talks</a> <span class="d">(5)</span></li>
-        </ul>
-      </div>
-      <div class="led-mod">
-        <h3>Elsewhere</h3>
-        <ul>
-          <li><a href="#">Newsletter</a></li>
-          <li><a href="#">Talks &amp; recordings</a></li>
-          <li><a href="#">Reading list</a></li>
-        </ul>
-      </div>
-      <div class="led-mod">
-        <h3>Archives</h3>
-        <ul>
-          <li><a href="#">June 2026</a></li>
-          <li><a href="#">May 2026</a></li>
-          <li><a href="#">April 2026</a></li>
-          <li><a href="#">March 2026</a></li>
-        </ul>
-      </div>
+[% END %][% END %]
     </aside>
   </div>
 
   <footer class="led-foot">
-    <span>&copy; [% year %] Fieldnotes. <a href="https://lazysite.io">This is a Lazysite</a>.</span>
-    <span><a href="/">&larr; Theme explorer</a></span>
+    <span>&copy; [% year %] [% site_name %]. <a href="https://lazysite.io">This is a Lazysite</a>.</span>
+    <span>[% IF page_modified %]<time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</span>
   </footer>
 
 </div>
+<script>
+(function(){var b=document.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
+</script>
 </body>
 </html>
