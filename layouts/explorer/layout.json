@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The theme gallery's own clean, modern chrome - a simple hero-and-content shell.",
   "author": "OpenDigitalCC",
+  "kind": "demonstration",
   "tags": ["internal", "showcase", "clean", "modern"],
   "default_theme": "explorer",
   "themes": ["explorer"],

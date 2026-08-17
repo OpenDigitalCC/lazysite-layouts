@@ -86,6 +86,57 @@ Do not hand-edit the block: regenerate it with `perl tools/gen-tokens.pl`
 after changing a default theme's CSS. `prove t/` lints that the declaration
 matches a fresh scan, so drift fails the check.
 
+### `kind`
+
+A layout that exists to demonstrate something rather than to carry a real
+site declares `"kind": "demonstration"` (the `explorer` gallery chrome is
+one). The manifest passes it through so a caller choosing a base layout can
+filter; `t/site-contract.t` exempts such layouts from the site items but
+still holds them to the `<head>` contract.
+
+## The site contract
+
+Every non-demonstration layout in this catalogue must be able to carry a
+real site, and `t/site-contract.t` renders each one against an
+engine-shaped stash to prove it. The contract, with `default` and
+`consultancy` as reference implementations:
+
+- **`<head>`**: `<title>` and the meta description from the resolved
+  `page_meta_title` / `page_meta_desc` - see "The `<head>` contract" below.
+  Share cards (`og:title`, `og:description`, `og:type`, `og:site_name`,
+  `og:url`, `twitter:*`) and a canonical link, taken from `default`
+  verbatim.
+- **Navigation** renders from `[% nav %]`: one level of children as a
+  nested list, `class="active"` when `request_uri` matches, a group label
+  for a parent with children and no URL. Restyle it per design; never
+  restructure it.
+- **Mobile**: every nav item reachable at 390px wide - in practice a
+  `.nav-toggle` button with `aria-expanded`/`aria-controls`.
+- **Auth**: drop `[% auth_control %]` into the header. Both links ship
+  hidden and the injected auth-sync script reveals the right one - a
+  server-side `[% IF authenticated %]` bakes one visitor's state into the
+  cached HTML everyone shares.
+- **Page body**: markdown pages render `page_title`, `page_subtitle` and
+  `[% content %]` in a styled reading container with body typography.
+  Sections-driven pages carry their own hero, so guard the container with
+  `[% IF content %]`.
+- **Last updated**: `page_modified` / `page_modified_iso` in a `<time>`
+  element.
+- **No demo identity in chrome**: the header/footer carry `[% site_name %]`,
+  never a fictional brand, and the footer links
+  `<a href="https://lazysite.io">This is a Lazysite</a>`.
+
+### The `<head>` contract
+
+`page_title`, `page_subtitle`, `page_meta_title`, `page_meta_desc` and
+`page_author` arrive HTML-escaped from the processor - emit them **without**
+`| html` (filtering again turns an apostrophe into `&amp;#39;` in the served
+tag). `page_meta_title` / `page_meta_desc` already carry the engine's
+`meta_title // title` and `meta_desc // subtitle` resolution; repeating that
+fallback in a template drifts from the registries (sitemap.xml, llms.txt,
+feeds), which use the same resolved values. `site_name` arrives raw, so it
+does take `| html` in attribute contexts such as `og:site_name`.
+
 ## layout.tt - the TT contract
 
 The processor passes these variables into `layout.tt`:

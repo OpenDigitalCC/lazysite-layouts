@@ -252,6 +252,13 @@ and lint the repo (the declaration must match a fresh scan):
 
     prove t/
 
+`prove t/` also runs `t/site-contract.t`, which renders every layout
+against an engine-shaped stash and asserts it can carry a real site:
+navigation from `[% nav %]`, a mobile control, share cards + canonical,
+the resolved `page_meta_*` head values, the cache-safe auth control and
+the last-updated stamp. See "The site contract" in
+`docs/creating-layouts.md`.
+
 ## Fonts - standing no-CDN rule
 
 **No CDN anywhere in lazysite themes.** Fonts must be freely

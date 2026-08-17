@@ -69,6 +69,12 @@ for my $L ( sort readdir $dh ) {
     $guidance{tags} = $lj->{tags}
         if ref $lj->{tags} eq 'ARRAY' && @{ $lj->{tags} };
 
+    # A layout marked "kind": "demonstration" (e.g. the explorer gallery's own
+    # chrome) is exempt from the site contract - surface that so a caller can
+    # filter it out when choosing a base for a real site.
+    $guidance{kind} = $lj->{kind}
+        if defined $lj->{kind} && length $lj->{kind};
+
     push @layouts, {
         name          => $name,
         version       => $lj->{version} // '0.0.0',
