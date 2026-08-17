@@ -123,6 +123,11 @@ for my $L (@layouts) {
         );
         unlike( $out, qr{&amp;#39;|&amp;amp;}, 'nothing double-escapes' );
         like( $out, qr{UNIQUE-BODY-MARKER-93157}, 'page body renders' );
+        like(
+            $out,
+            qr{<link rel="icon" href="/lazysite-assets/fixture/fixture/favicon\.svg"},
+            'default favicon declared from theme assets'
+        );
 
         return if $demo;
 

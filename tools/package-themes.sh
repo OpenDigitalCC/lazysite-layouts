@@ -102,6 +102,17 @@ for LAYOUT_DIR in "$LAYOUTS_DIR"/*/; do
                 "$FONTS_LIST" "$REPO_ROOT/fonts" "$TEMP_DIR/assets"
         fi
 
+        # Default favicon: every layout declares [% theme_assets %]/favicon.svg,
+        # so every theme zip must ship one ("ship an icon and declare it" - a
+        # declaration pointing at a 404 is worse than none). The lazysite-derived
+        # assets/favicon.svg is injected here at packaging time so git carries it
+        # once; a theme that commits its own assets/favicon.svg wins, the same
+        # override rule as fonts.list.
+        if [ ! -f "$THEME_DIR/assets/favicon.svg" ]; then
+            mkdir -p "$TEMP_DIR/assets"
+            cp "$REPO_ROOT/assets/favicon.svg" "$TEMP_DIR/assets/favicon.svg"
+        fi
+
         # Build the zip. Excludes .DS_Store etc. Intentionally does
         # NOT include layout.tt, layout.json, or nav.conf - those
         # don't belong in a theme package.

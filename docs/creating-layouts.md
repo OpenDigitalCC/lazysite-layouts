@@ -125,6 +125,11 @@ engine-shaped stash to prove it. The contract, with `default` and
 - **No demo identity in chrome**: the header/footer carry `[% site_name %]`,
   never a fictional brand, and the footer links
   `<a href="https://lazysite.io">This is a Lazysite</a>`.
+- **Favicon**: declare `[% theme_assets %]/favicon.svg`. The packaging build
+  injects the lazysite-derived default from the repo-level `assets/` store
+  into every theme zip, so the declaration always resolves; a theme commits
+  its own `assets/favicon.svg` to override (see `assets/README.md`). Ship an
+  icon and declare it - a declaration pointing at a 404 is worse than none.
 
 ### The `<head>` contract
 

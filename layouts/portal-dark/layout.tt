@@ -18,6 +18,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[% page_meta_title %]">
 [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+<link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
 [% theme_css %]
 [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-dark/portal-dark/fonts.css"><link rel="stylesheet" href="/lazysite-assets/portal-dark/portal-dark/main.css">[% END %]
 </head>

@@ -23,6 +23,7 @@
   [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
   <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
   [%# D013: theme_css emits <style>:root { --theme-*-*: ...; } %]
+  <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
   [% theme_css %]
   [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
   <style>
