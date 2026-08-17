@@ -1,6 +1,6 @@
 {
   "name": "console",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "CONSOLE - the site as a working terminal. Type commands to navigate; CRT phosphor aesthetic. Content comes from the page's data blocks. For the console layout.",
   "author": "OpenDigitalCC",
   "layouts": ["console"],

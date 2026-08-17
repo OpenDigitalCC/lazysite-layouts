@@ -1,6 +1,6 @@
 {
   "name": "press",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "PRESS - a newsprint brutalist statement theme: cream stock, hard black rules, news-red accent, Anton masthead over Newsreader serif, a breaking ticker. For the press layout.",
   "author": "OpenDigitalCC",
   "layouts": ["press"],

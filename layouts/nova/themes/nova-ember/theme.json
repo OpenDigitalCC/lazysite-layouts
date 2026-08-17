@@ -1,6 +1,6 @@
 {
   "name": "nova-ember",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "NOVA Ember - a warm ember variant of the kinetic dark theme, glowing orange to gold to crimson.",
   "author": "OpenDigitalCC",
   "layouts": ["nova"],

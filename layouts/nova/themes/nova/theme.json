@@ -1,6 +1,6 @@
 {
   "name": "nova",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "NOVA - a kinetic dark statement theme: animated aurora, glass panels, glow, big grotesk display. For the nova layout.",
   "author": "OpenDigitalCC",
   "layouts": ["nova"],

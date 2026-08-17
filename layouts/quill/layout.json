@@ -1,6 +1,6 @@
 {
   "name": "quill",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A classic essayist's blog - sticky side menu beside a warm, serif reading column.",
   "author": "OpenDigitalCC",
   "tags": ["blog", "writing", "serif", "sidebar", "classic"],

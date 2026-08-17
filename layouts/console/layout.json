@@ -1,6 +1,6 @@
 {
   "name": "console",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Your site as a working retro terminal - type commands to explore; built for engineers.",
   "author": "OpenDigitalCC",
   "tags": ["terminal", "developer", "dark", "monospace", "interactive"],

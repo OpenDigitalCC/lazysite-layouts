@@ -1,6 +1,6 @@
 {
   "name": "pulse",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A generative showpiece - a living, cursor-reactive canvas hero on refined dark glass.",
   "author": "OpenDigitalCC",
   "tags": ["statement", "generative", "interactive", "dark", "creative"],

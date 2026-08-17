@@ -1,6 +1,6 @@
 {
   "name": "flux",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Scroll-driven cinema with zero JavaScript - the page animates as you move through it.",
   "author": "OpenDigitalCC",
   "tags": ["statement", "motion", "scroll", "modern", "no-js"],

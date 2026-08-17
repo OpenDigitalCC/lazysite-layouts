@@ -1,5 +1,5 @@
 {
-   "generated" : "2026-07-24",
+   "generated" : "2026-08-17",
    "layouts" : [
       {
          "default_theme" : "atelier",
@@ -17,15 +17,15 @@
             {
                "name" : "atelier",
                "package" : "releases/atelier/atelier.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "atelier-noir",
                "package" : "releases/atelier/atelier-noir.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "bio-balanced",
@@ -43,15 +43,15 @@
             {
                "name" : "bio-balanced",
                "package" : "releases/bio-balanced/bio-balanced.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "bio-balanced-night",
                "package" : "releases/bio-balanced/bio-balanced-night.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "bio-bold",
@@ -69,15 +69,15 @@
             {
                "name" : "bio-bold",
                "package" : "releases/bio-bold/bio-bold.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "bio-bold-ultra",
                "package" : "releases/bio-bold/bio-bold-ultra.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "bio-modest",
@@ -95,15 +95,15 @@
             {
                "name" : "bio-modest",
                "package" : "releases/bio-modest/bio-modest.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "bio-modest-slate",
                "package" : "releases/bio-modest/bio-modest-slate.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "cadre",
@@ -121,15 +121,15 @@
             {
                "name" : "cadre",
                "package" : "releases/cadre/cadre.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "cadre-mono",
                "package" : "releases/cadre/cadre-mono.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "chroma",
@@ -147,15 +147,15 @@
             {
                "name" : "chroma",
                "package" : "releases/chroma/chroma.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "chroma-dusk",
                "package" : "releases/chroma/chroma-dusk.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "console",
@@ -173,15 +173,15 @@
             {
                "name" : "console",
                "package" : "releases/console/console.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "console-amber",
                "package" : "releases/console/console-amber.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "consultancy",
@@ -199,15 +199,15 @@
             {
                "name" : "consultancy",
                "package" : "releases/consultancy/consultancy.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "consultancy-slate",
                "package" : "releases/consultancy/consultancy-slate.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "default",
@@ -253,11 +253,12 @@
                "version" : "1.0.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "explorer",
          "description" : "The theme gallery's own clean, modern chrome - a simple hero-and-content shell.",
+         "kind" : "demonstration",
          "name" : "explorer",
          "package" : "releases/layouts/explorer.zip",
          "tags" : [
@@ -273,7 +274,7 @@
                "version" : "1.0.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "flux",
@@ -291,15 +292,15 @@
             {
                "name" : "flux",
                "package" : "releases/flux/flux.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "flux-mono",
                "package" : "releases/flux/flux-mono.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "folio",
@@ -317,15 +318,15 @@
             {
                "name" : "folio",
                "package" : "releases/folio/folio.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "folio-dusk",
                "package" : "releases/folio/folio-dusk.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "ledger",
@@ -343,15 +344,15 @@
             {
                "name" : "ledger",
                "package" : "releases/ledger/ledger.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "ledger-sepia",
                "package" : "releases/ledger/ledger-sepia.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "lumen",
@@ -369,15 +370,15 @@
             {
                "name" : "lumen",
                "package" : "releases/lumen/lumen.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "lumen-rose",
                "package" : "releases/lumen/lumen-rose.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "noir",
@@ -395,15 +396,15 @@
             {
                "name" : "noir",
                "package" : "releases/noir/noir.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "noir-steel",
                "package" : "releases/noir/noir-steel.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "nova",
@@ -421,15 +422,15 @@
             {
                "name" : "nova",
                "package" : "releases/nova/nova.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "nova-ember",
                "package" : "releases/nova/nova-ember.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "portal-dark",
@@ -447,15 +448,15 @@
             {
                "name" : "portal-dark",
                "package" : "releases/portal-dark/portal-dark.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "portal-dark-emerald",
                "package" : "releases/portal-dark/portal-dark-emerald.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "portal-light",
@@ -473,15 +474,15 @@
             {
                "name" : "portal-light",
                "package" : "releases/portal-light/portal-light.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "portal-light-violet",
                "package" : "releases/portal-light/portal-light-violet.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "press",
@@ -499,15 +500,15 @@
             {
                "name" : "press",
                "package" : "releases/press/press.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "press-ink",
                "package" : "releases/press/press-ink.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "publicsector",
@@ -525,15 +526,15 @@
             {
                "name" : "publicsector",
                "package" : "releases/publicsector/publicsector.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "publicsector-green",
                "package" : "releases/publicsector/publicsector-green.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "pulse",
@@ -551,15 +552,15 @@
             {
                "name" : "pulse",
                "package" : "releases/pulse/pulse.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "pulse-magenta",
                "package" : "releases/pulse/pulse-magenta.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "quill",
@@ -577,15 +578,15 @@
             {
                "name" : "quill",
                "package" : "releases/quill/quill.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "quill-night",
                "package" : "releases/quill/quill-night.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       },
       {
          "default_theme" : "reel",
@@ -603,15 +604,15 @@
             {
                "name" : "reel",
                "package" : "releases/reel/reel.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             },
             {
                "name" : "reel-gold",
                "package" : "releases/reel/reel-gold.zip",
-               "version" : "1.1.0"
+               "version" : "1.2.0"
             }
          ],
-         "version" : "1.0.0"
+         "version" : "1.1.0"
       }
    ],
    "schema" : 1

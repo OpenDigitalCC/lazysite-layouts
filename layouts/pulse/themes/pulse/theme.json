@@ -1,6 +1,6 @@
 {
   "name": "pulse",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "PULSE - a generative, interactive statement theme: a live canvas flow-field hero that reacts to the cursor, on a refined dark glass UI. For the pulse layout.",
   "author": "OpenDigitalCC",
   "layouts": ["pulse"],
