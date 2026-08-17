@@ -3,27 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  [%# Share-card + SEO metadata. meta_title / meta_desc (page front-matter
-      tt_page_var) override the title / description used for the <title> tag, the
-      meta description and the social cards - so share copy can be tuned without
-      changing the on-page text. page_title / page_subtitle are engine-escaped
-      already; the raw meta_* overrides get | html here, so share_title / card_desc
-      are uniformly single-escaped and render below without a further filter.
+  [%# The <head> contract. page_meta_title / page_meta_desc arrive from the
+      engine already resolved (meta_title // title, meta_desc // subtitle) and
+      HTML-escaped, so they are emitted WITHOUT | html - filtering again turns
+      an apostrophe into &amp;#39; in the served tag. Do not repeat the fallback
+      here: the registries (sitemap.xml, llms.txt, the feeds) use the same
+      resolved values, and a layout that duplicates the resolution drifts.
       og:site_name carries the site name, so og:title is JUST the page title - no
       redundant " - site" (that suffix belongs only in the <title> tag). %]
-  [% share_title = page_title; IF meta_title; share_title = meta_title | html; END;
-     card_desc = page_subtitle; IF meta_desc; card_desc = meta_desc | html; END %]
-  [% IF card_desc %]<meta name="description" content="[% card_desc %]">[% END %]
-  <meta property="og:title" content="[% share_title %]">
-  [% IF card_desc %]<meta property="og:description" content="[% card_desc %]">[% END %]
+  [% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+  <meta property="og:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
   <meta property="og:type" content="website">
   [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
   [% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">[% END %]
   [% IF site_url %]<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[% share_title %]">
-  [% IF card_desc %]<meta name="twitter:description" content="[% card_desc %]">[% END %]
-  <title>[% share_title %][% IF site_name %] - [% site_name %][% END %]</title>
+  <meta name="twitter:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+  <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
   [%# D013: theme_css emits <style>:root { --theme-*-*: ...; } %]
   [% theme_css %]
   [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
