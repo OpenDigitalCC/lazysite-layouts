@@ -333,3 +333,15 @@ th.num, td.num { text-align: right; }
 
 /* An always-dark theme: there is no light scheme to switch to, so the switch is not drawn. */
 .po-theme { display: none; }
+
+/* long words and addresses wrap inside the column, never widen the page */
+.po-main, .po-foot { overflow-wrap: anywhere; }
+.po-main :is(p, li, dd, dt, td, th, a, h1, h2, h3, h4, figcaption, blockquote) { overflow-wrap: anywhere; }
+/* code blocks, plain tables and media scroll or shrink inside their own box */
+pre { max-width: 100%; overflow-x: auto; background: var(--sunken); padding: var(--s-3) var(--s-4); border-radius: var(--radius); }
+pre code { background: none; padding: 0; overflow-wrap: normal; }
+img, video, svg, iframe { max-width: 100%; height: auto; }
+.po-main table:not(.po-table) { display: block; max-width: 100%; overflow-x: auto; }
+/* the quantity box beside a checklist option keeps its own small width */
+.lazysite-form .form-field input.form-option-qty { width: 5rem; flex: none; }
+.lazysite-form .form-option { flex-wrap: wrap; }
