@@ -1,6 +1,6 @@
 {
   "name": "lab",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "tags": ["pwa", "app", "offline"],
   "description": "Warm neutrals, a deep teal accent and Inter: the app working surface for operatives on phone, tablet and PC. Light and dark, following the device unless the person chooses.",
   "author": "OpenDigitalCC",

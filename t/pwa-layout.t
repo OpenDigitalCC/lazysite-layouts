@@ -193,6 +193,35 @@ for my $T (@themes) {
     };
 }
 
+# -- KPI tiles and state chips: in every theme's sheet, and documented --
+{
+    my $pdoc = slurp("$root/docs/layouts/pocket-ops.md") // '';
+    for my $th (@themes) {
+        my $pc = slurp("$ldir/themes/$th/assets/patterns.css") // '';
+        for my $c (qw(po-tiles po-tile po-figure po-trend)) {
+            like( $pc, qr/\.\Q$c\E\b/, "$th patterns.css styles .$c" );
+        }
+        like( $pc, qr/\.po-figure\s*\{[^}]*font-family:\s*var\(--figure-font\)/, "$th: .po-figure is set in the figure font" );
+        like( $pc, qr/\@media \(max-width: 30rem\) \{ \.po-tiles \{ grid-template-columns: repeat\(2,/, "$th: tiles go two to a row on a phone" );
+        like( $pc, qr/a\.po-tile[^{]*\{|\.po-tile\s*\{[^}]*min-height:\s*var\(--touch/, "$th: a tile that is a link is a touch target" );
+        for my $s (qw(ok attention pending off)) {
+            like( $pc, qr/\.po-state\[data-state="\Q$s\E"\]\s*\{/,          "$th patterns.css colours data-state=$s" );
+            like( $pc, qr/\.po-state\[data-state="\Q$s\E"\]::before\s*\{ content:/, "$th patterns.css gives data-state=$s its own mark" );
+        }
+        unlike( $pc, qr/\.po-(?:tile|state)[^{]*\{[^}]*#[0-9a-fA-F]{3,8}\b/, "$th: tiles and states use short names, no colour value" );
+    }
+    my %cp;
+    for my $th (@themes) { $cp{ slurp("$ldir/themes/$th/assets/patterns.css") // '' }++ }
+    is( scalar keys %cp, 1, 'the four patterns.css copies are identical' );
+    for my $c (qw(po-tiles po-tile po-label po-figure po-trend)) {
+        like( $pdoc, qr/`\.\Q$c\E`/, "docs name .$c" );
+    }
+    for my $s (qw(ok attention pending off)) {
+        like( $pdoc, qr/^`\Q$s\E` \|/m, "docs describe data-state=$s" );
+    }
+    like( $pdoc, qr/data-state/, 'docs show the data-state attribute' );
+}
+
 # -- the worker is the engine's --
 my @sw = grep {m{lazysite-sw|\.tmpl$}} @files;
 is( scalar @sw, 0, 'no worker template shipped (the engine keeps the pages, SM1197)' ) or diag("@sw");

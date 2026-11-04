@@ -1,6 +1,6 @@
 {
   "name": "meadow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "tags": ["pwa", "app", "offline"],
   "description": "A clean, bright working surface: white panels on pale green-grey, one confident green accent, Inter. Colours from the Clarity palette; the dark scheme keeps its green on charcoal neutrals. Follows the device unless the person chooses.",
   "author": "OpenDigitalCC",

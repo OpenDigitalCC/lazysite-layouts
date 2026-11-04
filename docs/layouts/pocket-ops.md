@@ -203,7 +203,8 @@ bold: 1
 tone: light
 ---
 `.po-note` (`.ok .warn .bad .info`), `.po-signed-out`, `.po-msg` | Notes
-`.po-badge`, `.po-state` | StatusBadge
+`.po-badge`, `.po-state` (`data-state` `ok` `attention` `pending` `off`) | StatusBadge
+`.po-tiles`, `.po-tile`, `.po-label`, `.po-figure`, `.po-trend` | KPI tiles (below)
 `.po-chips` | FilterChips (scrolls inside its own row)
 `.po-table-wrap` and `.po-table` (`.po-stack` for cards on a phone) | DataTable
 `.po-form`, `.po-row`, `.po-fieldset`, `.po-check`, `.po-filter` | FormField, ChoiceField
@@ -213,6 +214,47 @@ tone: light
 `[data-ls-odoo-prompt]` | SignInDialog (the Odoo helper's markup)
 `.lazysite-form`, `.form-status`, `.lsf-*`, `details` | The engine's forms and disclosures
 ```
+
+### KPI tiles
+
+A row of figures: a label, the figure in the theme's figure font (`--figure-font`,
+so a mono face in `control`), and, if wanted, a trend line. The row fills the width
+in tiles at least 11rem wide and keeps two to a row under 30rem. A tile that is a
+link (`a.po-tile`) is at least 44px high and takes the hover well; a plain `div`
+or `li` tile does not.
+
+    <ul class="po-tiles">
+      <li class="po-tile"><span class="po-label">Open counts</span><span class="po-figure">14</span><span class="po-trend" data-trend="down">3 fewer than last week</span></li>
+      <li><a class="po-tile" href="/counts/"><span class="po-label">Kits ready</span><span class="po-figure">9 of 12</span></a></li>
+    </ul>
+
+`data-trend="up"` colours the trend line with `--ok` and `"down"` with `--bad`;
+without it the line is muted. The trend says the direction in words, so colour is
+never alone, and which direction is good is the author's call, so say it.
+
+### State chips
+
+`.po-state` is a word with a mark. Without `data-state` it is neutral with a dot.
+`data-state` gives it a tone from the theme's status names and a mark of its own
+shape, so the states differ without colour as well as by word, in both schemes:
+
+```datatable
+columns: data-state | Colour | Mark | Use for
+widths: 3cm | 3cm | 2cm | X
+bold: 1
+tone: light
+---
+`ok` | `--ok` | tick | Done, settled, in order
+`attention` | `--warn` | triangle | Held, late, needs a person
+`pending` | `--info` | ring | In hand, waiting to send, in progress
+`off` | `--muted` | dash | Not started, paused, switched off
+```
+
+    <span class="po-state" data-state="ok">Done</span>
+    <span class="po-state" data-state="attention">Held</span>
+
+The four names are the layout's own (no filing names a set of statuses), so a
+site maps its words to the four; an unknown value stays neutral.
 
 An example page, to see every pattern drawn by the live theme (the lab's own
 style guide page is not shipped; this is the shape of one):

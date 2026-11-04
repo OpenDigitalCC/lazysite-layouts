@@ -60,10 +60,34 @@
 .po-fieldset { display: grid; gap: 0; }
 .po-check { display: flex !important; gap: var(--s-3); align-items: center; min-height: var(--control); font-weight: 400 !important; }
 
-/* StatusBadge: a word with a dot, tone by meaning */
+/* StatusBadge: a word with a mark, tone by meaning. Without data-state the chip is neutral
+   with a dot. With data-state the colour comes from the theme's status names and the mark
+   changes shape as well (tick, triangle, ring, dash), so the state reads without colour. */
 .po-state { display: inline-flex; align-items: center; gap: 6px; padding: 2px var(--s-2); border-radius: var(--radius-pill); font-size: var(--t-xs); font-weight: 500;
   letter-spacing: .02em; white-space: nowrap; background: var(--sunken); color: var(--ink); }
 .po-state::before { content: ""; width: 6px; height: 6px; border-radius: var(--dot-radius); background: currentColor; }
+.po-state[data-state]::before { width: auto; height: auto; border-radius: 0; background: none; font-weight: 700; line-height: 1; }
+.po-state[data-state="ok"] { background: var(--ok-soft); color: var(--ok); }
+.po-state[data-state="ok"]::before { content: "\2713"; }
+.po-state[data-state="attention"] { background: var(--warn-soft); color: var(--warn); }
+.po-state[data-state="attention"]::before { content: "\25B2"; font-size: .75em; }
+.po-state[data-state="pending"] { background: var(--info-soft); color: var(--info); }
+.po-state[data-state="pending"]::before { content: "\25CB"; }
+.po-state[data-state="off"] { background: var(--sunken); color: var(--muted); }
+.po-state[data-state="off"]::before { content: "\2013"; }
+
+/* KPI tiles: a row of figures, each with its label and, if wanted, a trend line.
+   Two to a row on a phone. A tile that is a link (a.po-tile) is a 44px target. */
+.po-tiles { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: var(--s-4); }
+@media (max-width: 30rem) { .po-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); } }
+.po-tile { display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; min-height: var(--touch, 44px); padding: var(--s-4); background: var(--surface);
+  border: 1px solid var(--line); border-top: var(--panel-rule, 1px solid var(--line)); border-radius: var(--radius-lg); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; }
+a.po-tile:hover { background: var(--sunken); color: var(--ink); }
+.po-tile .po-label { order: -1; color: var(--muted); font-size: var(--t-xs); font-weight: 600; text-transform: var(--label-case); letter-spacing: var(--label-track); }
+.po-figure { font-family: var(--figure-font); font-size: var(--t-2xl); font-weight: 600; line-height: 1.2; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.po-trend { color: var(--muted); font-size: var(--t-sm); }
+.po-trend[data-trend="up"] { color: var(--ok); }
+.po-trend[data-trend="down"] { color: var(--bad); }
 
 /* AppCards: the whole card is the link */
 .po-apps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--s-4); }
