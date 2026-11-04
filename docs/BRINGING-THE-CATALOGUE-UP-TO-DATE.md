@@ -7,6 +7,9 @@ standard-margins: true
 
 # Status
 
+> Update, 4 November 2026: the work this document specifies landed by 4 November 2026. The proof is the render rig's after-measurement, `docs/measurements/2026-11-04-after-wave2.md`, and `t/site-contract.t`; the account of the waves is `docs/WORK-PLAN-2026-11-04.md`. The status below is the position on 15 August.
+
+
 A work specification, written 15 August 2026 after a site was built on this
 catalogue and the layouts could not carry it. Nothing here is started.
 
