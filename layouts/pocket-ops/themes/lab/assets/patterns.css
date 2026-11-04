@@ -78,7 +78,7 @@
 
 /* KPI tiles: a row of figures, each with its label and, if wanted, a trend line.
    Two to a row on a phone. A tile that is a link (a.po-tile) is a 44px target. */
-.po-tiles { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: var(--s-4); }
+.po-tiles { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: var(--s-4); }
 @media (max-width: 30rem) { .po-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); } }
 .po-tile { display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; min-height: var(--touch, 44px); padding: var(--s-4); background: var(--surface);
   border: 1px solid var(--line); border-top: var(--panel-rule, 1px solid var(--line)); border-radius: var(--radius-lg); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; }
