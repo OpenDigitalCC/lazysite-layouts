@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The theme-explorer site's own chrome: modern, clean, elegant. Space Grotesk + Inter.",
   "author": "OpenDigitalCC",
   "layouts": ["explorer"],

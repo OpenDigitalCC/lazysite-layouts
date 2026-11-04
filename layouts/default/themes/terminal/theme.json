@@ -1,6 +1,6 @@
 {
   "name": "terminal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Technical monospace theme: dark, mono everywhere, signal-green accent, square corners. No external dependencies.",
   "author": "OpenDigitalCC",
   "layouts": ["default"],

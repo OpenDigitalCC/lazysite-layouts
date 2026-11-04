@@ -1,6 +1,6 @@
 {
   "name": "studio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Swiss international-style theme: neutral grid, grotesk type, one red accent, square corners. No external dependencies.",
   "author": "OpenDigitalCC",
   "layouts": ["default"],

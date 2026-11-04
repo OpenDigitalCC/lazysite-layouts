@@ -1,6 +1,6 @@
 {
   "name": "warm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Warm minimal theme: parchment background, sage accent, serif headings. Token-only (shares the base stylesheet). No external dependencies.",
   "author": "OpenDigitalCC",
   "layouts": ["default"],
