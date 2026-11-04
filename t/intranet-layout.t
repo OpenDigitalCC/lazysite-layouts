@@ -248,6 +248,31 @@ unlike( $css, qr/tr:hover|tbody tr:hover/, 'no hover highlight on table rows' );
     }
 }
 
+# the current checklist item: a bar down the row's own left edge to its rule, with the box clear of it
+{
+    my ($cur)  = $css =~ /(\.in-checklist li\.in-is-current\s*\{[^}]*\})/;
+    my ($li)   = $css =~ /(\.in-checklist li\s*\{[^}]*\})/;
+    my ($box)  = $css =~ /(\.in-checklist li::before\s*\{[^}]*\})/;
+    like( $cur // '', qr/background:\s*linear-gradient\(.*?\)\s+left top\s*\/\s*3px 100%\s+no-repeat/, 'the current item draws its 3px bar as a background across the full row' );
+    unlike( $cur // '', qr/box-shadow/, 'the current item has no inset shadow (it stops above the rule)' );
+    my ($pad) = ( $li // '' ) =~ /padding:\s*\S+\s+\S+\s+\S+\s+([\d.]+)rem/;
+    my ($left) = ( $box // '' ) =~ /left:\s*([\d.]+)rem/;
+    ok( defined $pad && defined $left && $left >= 0.2 && $left + 1 <= $pad, 'the checklist box starts clear of the 3px bar and inside the padding' )
+        or diag("padding-left=" . ( $pad // 'undef' ) . " box left=" . ( $left // 'undef' ));
+}
+
+# the action bar: danger first and far left, the primary last, the same order at every width
+{
+    like( $css, qr/\.in-actions \.in-button-danger \{ margin-right: auto; \}/, 'the danger button is pushed to the far left of the bar' );
+    my ($narrow) = $css =~ /\@media \(max-width: 30em\) \{(.*?)\n\}/s;
+    $narrow //= '';
+    like( $narrow, qr/\.in-actions \.in-button-danger \{ flex: 0 0 100%;/, 'on a phone the danger button has the first row to itself' );
+    unlike( $narrow, qr/\.in-actions \.in-button-danger \{ margin-right: 0;/, 'the phone rule no longer sends the danger button to the right' );
+    unlike( $css, qr/\.in-actions[^{]*\{[^}]*order:/, 'the bar keeps source order (no order: that would split the order from the markup)' );
+    my $doc = slurp("$root/docs/layouts/intranet.md") // '';
+    like( $doc, qr/danger first and the primary last|destructive `in-button-danger` first and the primary last/, 'the document says danger first, primary last' );
+}
+
 # -- fonts: a fonts.list whose every family is in the store with a licence --
 my $store = read_json("$root/fonts/fonts.json") || {};
 my $fl    = slurp("$tdir/fonts.list");

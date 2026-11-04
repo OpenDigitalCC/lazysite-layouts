@@ -75,7 +75,7 @@ tone: medium
 `in-sticky` | On a table: a long list keeps its header row in view.
 `in-files` | On a table: a file list, with the name column in monospace and the size column on the right.
 `in-checklist` | On a list: a box before each item, a tick and a strike on the settled ones.
-`in-actions` | An action bar, right-aligned with a hairline above; a `in-button-danger` in it is pushed to the far left.
+`in-actions` | An action bar, right-aligned with a hairline above. Write the destructive `in-button-danger` first and the primary last: at any width the danger button is first (far left on a wide screen, a row of its own under 30em) and the primary is last.
 `in-button` | A quiet outline button on a link or a `div`; a `button` element already has it.
 `in-button-primary`, `in-button-danger` | The one primary action, and the destructive one (warm, never in the run of ordinary choices).
 `in-empty` | An empty state: a sentence a person would say, never "0 records".
@@ -93,7 +93,7 @@ neutral | No class. A grey chip: not started, nothing to say.
 `in-is-active` | Accent on a pale tint: yours, current, selected.
 `in-is-attention` | Warm: held by somebody else, over-allocated, a problem.
 `in-is-settled` | Green: answered, complete, matched.
-`in-is-current` | A 3px accent bar on the first cell of a row, or at the left of a checklist item: the one being looked at.
+`in-is-current` | A 3px accent bar on the first cell of a row, or along the left edge of a checklist item, full height of the row and down to its rule: the one being looked at. A checklist item's box starts clear of the bar.
 ```
 
 ### Markup

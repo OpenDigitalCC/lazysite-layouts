@@ -385,7 +385,7 @@
             {
                "name" : "intranet",
                "package" : "releases/intranet/intranet.zip",
-               "version" : "1.0.2"
+               "version" : "1.0.3"
             }
          ],
          "version" : "1.0.0"
@@ -532,7 +532,7 @@
                   "app",
                   "offline"
                ],
-               "version" : "1.0.0"
+               "version" : "1.0.1"
             },
             {
                "name" : "lab",
@@ -542,7 +542,7 @@
                   "app",
                   "offline"
                ],
-               "version" : "1.0.0"
+               "version" : "1.0.1"
             },
             {
                "name" : "meadow",
@@ -552,7 +552,7 @@
                   "app",
                   "offline"
                ],
-               "version" : "1.0.0"
+               "version" : "1.0.1"
             },
             {
                "name" : "midnight",
@@ -562,7 +562,7 @@
                   "app",
                   "offline"
                ],
-               "version" : "1.0.0"
+               "version" : "1.0.1"
             }
          ],
          "version" : "1.0.0"

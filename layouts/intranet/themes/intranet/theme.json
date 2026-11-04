@@ -1,6 +1,6 @@
 {
   "name": "intranet",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A working surface, not a shop window: a dark gate bar, quiet rules, dense rows, and one treatment for tables, forms, checklists and file lists. Inter with JetBrains Mono for identifiers and quantities. Light and dark designed together.",
   "author": "OpenDigitalCC",
   "layouts": ["intranet"],

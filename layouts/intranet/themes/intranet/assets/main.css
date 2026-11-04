@@ -226,20 +226,23 @@ ul:has(> li > input[type="checkbox"]) { list-style: none; padding-left: 0; }
 li > input[type="checkbox"] { margin-right: .5rem; accent-color: var(--accent); }
 /* A checklist drawn in CSS, for plain list items: a box before each, a tick on
  * the settled ones. The state is in the tick and in the strike, not colour alone. */
-.in-checklist li { position: relative; padding: .15rem 0 .15rem 1.75rem; margin: 0; border-bottom: 1px solid var(--line); }
+.in-checklist li { position: relative; padding: .15rem 0 .15rem 2.25rem; margin: 0; border-bottom: 1px solid var(--line); }
 .in-checklist li::before {
-  content: ""; position: absolute; left: 0; top: .42rem; width: 1rem; height: 1rem;
+  content: ""; position: absolute; left: .5rem; top: .42rem; width: 1rem; height: 1rem;
   border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface);
 }
 .in-checklist li.in-is-settled { color: var(--muted); text-decoration: line-through; }
 .in-checklist li.in-is-settled::before { background: var(--ok); border-color: var(--ok); }
 .in-checklist li.in-is-settled::after {
-  content: ""; position: absolute; left: .36rem; top: .55rem; width: .3rem; height: .55rem;
+  content: ""; position: absolute; left: .86rem; top: .55rem; width: .3rem; height: .55rem;
   border: solid var(--surface); border-width: 0 2px 2px 0; transform: rotate(45deg);
 }
 .in-checklist li.in-is-attention::before { border-color: var(--warn); background: var(--warn-soft); }
 .in-checklist li.in-is-active::before { border-color: var(--accent); background: var(--accent-soft); }
-.in-checklist li.in-is-current { box-shadow: inset 3px 0 0 var(--accent); }
+/* The bar is the row's own left edge, painted under its rule (background, not an inset
+ * shadow, which stops at the padding box and left a 1px gap above the rule), and the box
+ * starts clear of it. */
+.in-checklist li.in-is-current { background: linear-gradient(var(--accent), var(--accent)) left top / 3px 100% no-repeat; }
 dl { margin-bottom: 1.2em; }
 dt { font-weight: 600; margin-top: .8em; }
 dd { margin: .15em 0 0; padding-left: 1em; border-left: 2px solid var(--line); color: var(--muted); }
@@ -293,7 +296,8 @@ button:disabled, button[disabled], input:disabled, select:disabled, textarea:dis
 .in-button-danger:visited { color: var(--warn); }
 .in-button-danger:hover { background: var(--warn-soft); color: var(--warn); }
 .in-main button:focus-visible, .in-button:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
-/* Action bar: right-aligned, a hairline above; the destructive one pushed away. */
+/* Action bar: right-aligned, a hairline above; the destructive one first and far left, the primary last; on a phone the destructive one
+ * has the first row to itself. */
 .in-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .5rem; padding-top: .75rem; margin-top: 1rem; border-top: 1px solid var(--line); }
 .in-actions .in-button-danger { margin-right: auto; }
 
@@ -398,7 +402,7 @@ a.footnote:hover, a.reversefootnote:hover { text-decoration: underline; }
 }
 @media (max-width: 30em) {
   .in-tools { gap: .6rem; }
-  .in-actions .in-button-danger { margin-right: 0; }
+  .in-actions .in-button-danger { flex: 0 0 100%; justify-content: center; }
 }
 
 /* ---- page-wide conditions ---------------------------------------------------------- */
