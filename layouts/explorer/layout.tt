@@ -7,9 +7,13 @@
     engine - emitted without | html (filtering again double-escapes). %]
 <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
 [% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+[% IF page_url %]<meta property="og:url" content="[% page_url %]">
+<link rel="canonical" href="[% page_url %]">[% END %]
+<link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+<link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
 <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% END %]
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -22,6 +26,7 @@
       <a href="/for-ai"[% IF request_uri == '/for-ai' %] class="active"[% END %]>For AI</a>
       <a class="ext" href="https://lazysite.io">lazysite.io &nearr;</a>
     </nav>
+    [% IF odoo_signin_banner %]<div class="ex-auth">[% odoo_signin_banner %]</div>[% END %]
   </div>
 </header>
 
@@ -45,7 +50,7 @@
 <footer class="ex-foot">
   <div class="in">
     <span class="tag">A gallery of lazysite themes &mdash; built on <a href="https://lazysite.io">lazysite</a>, the no-build static-site builder.</span>
-    <span><a href="/make-a-theme">Make a theme</a> &middot; <a href="/for-ai">For AI</a> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
+    <span><a href="/make-a-theme">Make a theme</a> &middot; <a href="/for-ai">For AI</a> &middot; <span class="feed-links"><a href="/feed.rss">RSS</a> &middot; <a href="/feed.atom">Atom</a></span> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
   </div>
 </footer>
 </body>

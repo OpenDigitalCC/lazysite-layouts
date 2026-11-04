@@ -13,14 +13,16 @@
 [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
 <meta property="og:type" content="website">
 [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
-[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
-<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+[% IF page_url %]<meta property="og:url" content="[% page_url %]">
+<link rel="canonical" href="[% page_url %]">[% END %]
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[% page_meta_title %]">
 [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+<link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+<link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
 <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/fonts.css"><link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/fonts.css"><link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/main.css">[% END %]
 </head>
 <body>
 <div class="dash-shell">
@@ -46,7 +48,7 @@
 <div class="spacer"></div>
 </aside>
 <div class="dash-main">
-<header class="dash-top">[% UNLESS content %]<h1>[% page_title %]</h1>[% END %]<span class="top-auth">[% auth_control %]</span></header>
+<header class="dash-top">[% UNLESS content %]<h1>[% page_title %]</h1>[% END %]<span class="top-auth">[% IF odoo_signin_banner %][% odoo_signin_banner %][% ELSE %][% auth_control %][% END %]</span></header>
 <main class="dash-content">[% FOREACH s IN sections %][% type = s.keys.first %]
 [% INCLUDE "components/${type}.tt" data = s.$type %][% END %]
 [% IF content %]<div class="dash-page"><div class="wrap">
@@ -54,7 +56,7 @@
 [% IF page_subtitle %]<p class="standfirst">[% page_subtitle %]</p>[% END %]
 [% content %]
 </div></div>[% END %]</main>
-<footer class="dash-foot"><span>&copy; [% year %] [% site_name %]</span><a href="https://lazysite.io">This is a Lazysite</a>[% IF page_modified %]<time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</footer>
+<footer class="dash-foot"><span>&copy; [% year %] [% site_name %]</span><span class="feed-links"><a href="/feed.rss">RSS</a> &middot; <a href="/feed.atom">Atom</a></span> &middot; <a href="https://lazysite.io">This is a Lazysite</a>[% IF page_modified %]<time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</footer>
 </div>
 </div>
 <script>

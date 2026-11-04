@@ -16,16 +16,18 @@
   [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
   <meta property="og:type" content="website">
   [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
-  [% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">[% END %]
-  [% IF site_url %]<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+  [% IF page_url %]<meta property="og:url" content="[% page_url %]">[% END %]
+  [% IF page_url %]<link rel="canonical" href="[% page_url %]">[% END %]
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="[% page_meta_title %]">
   [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
   <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
   [%# D013: theme_css emits <style>:root { --theme-*-*: ...; } %]
+  <link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+  <link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
   <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
   [% theme_css %]
-  [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css">[% END %]
+  [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% END %]
   <style>
   .nav-toggle { display: none; background: none; border: 1px solid currentColor; border-radius: 6px; font-size: 1.2rem; line-height: 1; cursor: pointer; color: inherit; padding: 3px 11px; }
   @media (max-width: 720px) {
@@ -46,10 +48,11 @@
             IF-authenticated check would bake the wrong state into the cached HTML.
             Both links ship hidden; the injected auth-sync script reveals the right
             one from the lzs_session cookie, client-side. %]
+        [% IF odoo_signin_banner %][% odoo_signin_banner %][% ELSE %]
         <span class="auth-indicator" data-ls-auth-out style="display:none">
           <a href="/cgi-bin/lazysite-auth.pl?action=logout" class="auth-link auth-logout">Sign out</a>
         </span>
-        <a href="/login" data-ls-auth-in class="auth-link auth-signin" style="display:none">Sign in</a>
+        <a href="/login" data-ls-auth-in class="auth-link auth-signin" style="display:none">Sign in</a>[% END %]
       </div>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">&#9776;</button>
       <nav class="site-nav" id="site-nav">
@@ -103,7 +106,7 @@
   <footer class="site-footer">
     <div class="wrapper">
       <span>&copy; [% site_name %]</span>
-      <span><a href="https://lazysite.io">This is a Lazysite</a></span>
+      <span><span class="feed-links"><a href="/feed.rss">RSS</a> &middot; <a href="/feed.atom">Atom</a></span> &middot; <a href="https://lazysite.io">This is a Lazysite</a></span>
     </div>
   </footer>
 

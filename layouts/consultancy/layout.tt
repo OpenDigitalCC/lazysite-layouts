@@ -13,14 +13,16 @@
 [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
 <meta property="og:type" content="website">
 [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
-[% IF site_url %]<meta property="og:url" content="[% site_url | html %][% request_uri | html %]">
-<link rel="canonical" href="[% site_url | html %][% request_uri | html %]">[% END %]
+[% IF page_url %]<meta property="og:url" content="[% page_url %]">
+<link rel="canonical" href="[% page_url %]">[% END %]
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[% page_meta_title %]">
 [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+<link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+<link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
 <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css"><link rel="stylesheet" href="[% theme_assets %]/main.css">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/consultancy/consultancy/fonts.css"><link rel="stylesheet" href="/lazysite-assets/consultancy/consultancy/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/consultancy/consultancy/fonts.css"><link rel="stylesheet" href="/lazysite-assets/consultancy/consultancy/main.css">[% END %]
 </head>
 <body>
 <nav class="ps-nav"><div class="in">
@@ -39,7 +41,7 @@
 <li><a href="[% item.url | url_safe %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
 [% END %]
 [% END %]
-<li class="auth">[% auth_control %]</li>
+<li class="auth">[% IF odoo_signin_banner %][% odoo_signin_banner %][% ELSE %][% auth_control %][% END %]</li>
 </ul>
 </div></nav>
 [% FOREACH s IN sections %][% type = s.keys.first %]
@@ -52,7 +54,7 @@
 <footer class="ps-foot"><div class="in">
 <div><div class="logo">[% site_name %]</div></div>
 <div><h4>Menu</h4><ul>[% FOREACH item IN nav %][% IF item.url %]<li><a href="[% item.url | url_safe %]">[% item.label %]</a></li>[% END %][% END %]</ul></div>
-<div><h4>Site</h4><ul><li><a href="https://lazysite.io">This is a Lazysite</a></li></ul></div>
+<div><h4>Site</h4><ul><li><a href="/feed.rss">RSS feed</a></li><li><a href="/feed.atom">Atom feed</a></li><li><a href="https://lazysite.io">This is a Lazysite</a></li></ul></div>
 </div><div class="base"><span>&copy; [% year %] [% site_name %]</span><span>[% IF page_modified %]<time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time>[% END %]</span></div></footer>
 <script>
 (function(){var b=document.querySelector('.nav-toggle');if(!b)return;b.addEventListener('click',function(){var o=document.body.classList.toggle('nav-open');b.setAttribute('aria-expanded',o?'true':'false');});})();
