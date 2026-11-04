@@ -1,0 +1,77 @@
+{
+  "name": "intranet",
+  "version": "1.0.0",
+  "description": "A working surface, not a shop window: a dark gate bar, quiet rules, dense rows, and one treatment for tables, forms, checklists and file lists. Inter with JetBrains Mono for identifiers and quantities. Light and dark designed together.",
+  "author": "OpenDigitalCC",
+  "layouts": ["intranet"],
+  "requires": { "lazysite": "0.15.11" },
+  "config": {
+    "colours": {
+      "canvas": "#eef1f4",
+      "surface": "#ffffff",
+      "sunken": "#e6eaee",
+      "ink": "#1b2027",
+      "muted": "#4a545f",
+      "faint": "#626c77",
+      "line": "#d9dee4",
+      "line-strong": "#8a949e",
+      "band": "#253040",
+      "band-ink": "#ffffff",
+      "band-muted": "#c3ccd6",
+      "accent": "#0f6fa8",
+      "accent-hover": "#0a5784",
+      "accent-ink": "#ffffff",
+      "accent-soft": "#e3f0f8",
+      "focus-ring": "#0f6fa8",
+      "ok": "#1f7a4d",
+      "ok-soft": "#e2f3ea",
+      "warn": "#a8500f",
+      "warn-soft": "#fdf1e4",
+      "bad": "#b3261e",
+      "bad-soft": "#fbe6e3",
+      "scrim": "rgba(27,32,39,0.5)"
+    },
+    "dark": {
+      "canvas": "#12161b",
+      "surface": "#181d23",
+      "sunken": "#202730",
+      "ink": "#e4e8ec",
+      "muted": "#aab3bc",
+      "faint": "#8d97a1",
+      "line": "#2c343d",
+      "line-strong": "#66717c",
+      "band": "#07090c",
+      "band-ink": "#f2f5f8",
+      "band-muted": "#aab3bc",
+      "accent": "#5cb4ee",
+      "accent-hover": "#8acaf5",
+      "accent-ink": "#04121c",
+      "accent-soft": "#14304a",
+      "focus-ring": "#5cb4ee",
+      "ok": "#5cc98f",
+      "ok-soft": "#10291c",
+      "warn": "#f0a060",
+      "warn-soft": "#34210f",
+      "bad": "#f58a82",
+      "bad-soft": "#3a1815",
+      "scrim": "rgba(0,0,0,0.65)"
+    },
+    "fonts": {
+      "body": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "shape": {
+      "radius": "4px",
+      "radius-sm": "3px",
+      "page-width": "min(1400px, calc(100vw - 2rem))",
+      "prose-width": "62rem",
+      "bar-height": "46px",
+      "side-width": "15rem"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css",
+    "assets/intranet.js"
+  ]
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  [%# Intranet: a working surface for a private section, not a shop window. Dense,
+      quiet, built around tables, forms, checklists and file lists. Meant to be
+      served from its own domain record (an intranet subdomain), which carries
+      this layout and its theme, so the dark bar always says which side of the
+      gate you are on.
+
+      The <head> contract. page_meta_title / page_meta_desc arrive from the
+      engine already resolved and HTML-escaped, so they are emitted WITHOUT
+      | html. page_url is the page's address (canonical domain plus path, no
+      query), already escaped once. site_name arrives raw, so it takes | html.
+
+      A page may set a custom front-matter key `width` (it arrives as
+      page_width): `narrow` keeps the whole column to a reading measure, `full`
+      removes the cap. The default is wide, for tables. %]
+  [% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+  <meta property="og:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+  <meta property="og:type" content="website">
+  [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+  [% IF page_url %]<meta property="og:url" content="[% page_url %]">[% END %]
+  [% IF page_url %]<link rel="canonical" href="[% page_url %]">[% END %]
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+  <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+  <link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+  <link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
+  <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
+  [% theme_css %]
+  [% IF theme_assets %]
+  <link rel="stylesheet" href="[% theme_assets %]/base.css?v=[% theme_version %]">
+  <link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]">
+  <link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">
+  <script src="[% theme_assets %]/intranet.js?v=[% theme_version %]"></script>
+  [% END %]
+</head>
+[%# The path without its query, for the current-page tests. -%]
+[% path = request_uri.replace('\?.*', '') %]
+<body[% IF page_width == 'narrow' %] class="in-narrow"[% ELSIF page_width == 'full' %] class="in-full"[% END %]>
+<a class="in-skip" href="#main">Skip to content</a>
+
+[%# The gate bar: dark, full width, the same on every page. It says which side of
+    the gate you are on without a label. Left: the menu button (narrow screens)
+    and the site name; right: the sign-in. Cache-safe: pages are cached and shared,
+    so a server-side IF-authenticated check would bake one visitor's state into
+    the cached HTML. On a site that signs in with Odoo the engine supplies the
+    banner (filled by lazysite-odoo.js) and the layout shows no sign-out of its
+    own beside it; otherwise auth_control ships both links hidden and the injected
+    auth-sync script reveals the right one from the lzs_session cookie. %]
+<header class="in-bar">
+  <div class="in-wrap in-bar-row">
+    <button type="button" class="in-menu" data-in-menu aria-expanded="false" aria-controls="in-side">Menu</button>
+    <a class="in-home" href="/">[% site_name | html %]</a>
+    <div class="in-tools">
+      [% IF odoo_signin_banner %][% odoo_signin_banner %][% ELSE %][% auth_control %][% END %]
+    </div>
+  </div>
+</header>
+
+[%# Breadcrumbs, built from the request path so every page in the section has one
+    without carrying anything in its front matter. A segment that is a nav address
+    takes the nav label; any other is the segment with its dashes read as spaces.
+    The last crumb is the page itself and is not a link. %]
+[% labels = {} %]
+[% FOREACH item IN nav %]
+  [% IF item.url %][% labels.${item.url} = item.label %][% END %]
+  [% FOREACH child IN item.children %][% IF child.url %][% labels.${child.url} = child.label %][% END %][% END %]
+[% END %]
+[% crumbs = [] %]
+[% acc = '' %]
+[% FOREACH seg IN path.split('/') %]
+  [% NEXT UNLESS seg %]
+  [% acc = acc _ '/' _ seg %]
+  [% crumbs.push({ seg => seg, path => acc, url => acc _ '/' }) %]
+[% END %]
+<nav class="in-crumbs" aria-label="Breadcrumb">
+  <div class="in-wrap">
+    <ol>
+    [% IF crumbs.size %]
+      <li><a href="/">Home</a></li>
+      [% FOREACH c IN crumbs %]
+        [% IF loop.last %]
+      <li aria-current="page">[% page_title %]</li>
+        [% ELSE %]
+      <li><a href="[% c.url | url_safe %]">[% IF labels.${c.path} %][% labels.${c.path} %][% ELSE %][% c.seg.replace('-', ' ').ucfirst | html %][% END %]</a></li>
+        [% END %]
+      [% END %]
+    [% ELSE %]
+      <li aria-current="page">Home</li>
+    [% END %]
+    </ol>
+  </div>
+</nav>
+
+<div class="in-wrap in-shell">
+  [%# Section navigation, from nav.conf: a sidebar of groups and their pages. A
+      parent with no address of its own is a group label. On a narrow screen it
+      opens from the Menu button; without scripts it is simply listed first. %]
+  <nav class="in-side" id="in-side" aria-label="Section">
+    <ul class="in-nav">
+    [% FOREACH item IN nav %]
+      [% IF item.children.size %]
+      <li class="in-group">
+        [% IF item.url %]
+        <a href="[% item.url | url_safe %]"[% IF path == item.url %] class="active" aria-current="page"[% END %]>[% item.label %]</a>
+        [% ELSE %]
+        <span class="in-group-label">[% item.label %]</span>
+        [% END %]
+        <ul class="in-nav-children">
+        [% FOREACH child IN item.children %]
+          <li><a href="[% child.url | url_safe %]"[% IF path == child.url %] class="active" aria-current="page"[% END %]>[% child.label %]</a></li>
+        [% END %]
+        </ul>
+      </li>
+      [% ELSE %]
+      <li><a href="[% item.url | url_safe %]"[% IF path == item.url %] class="active" aria-current="page"[% END %]>[% item.label %]</a></li>
+      [% END %]
+    [% END %]
+    </ul>
+  </nav>
+
+  <main class="in-main" id="main">
+    <header class="in-head">
+      <h1>[% page_title %]</h1>
+      [% IF page_subtitle %]<p class="in-sub">[% page_subtitle %]</p>[% END %]
+    </header>
+    <div class="in-body">
+      [% content %]
+    </div>
+  </main>
+</div>
+
+<footer class="in-foot">
+  <div class="in-wrap in-foot-row">
+    <small>&copy; [% site_name | html %]</small>
+    [% IF page_modified %]<small><time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time></small>[% END %]
+    <span class="feed-links"><a href="/feed.rss" title="[% site_name | html %] (RSS)">RSS</a> <a href="/feed.atom" title="[% site_name | html %] (Atom)">Atom</a></span>
+    [% IF manager == 'enabled' %][% mp = manager_path || '/manager/' %]<a href="[% mp | url_safe %]">Site manager</a>[% END %]
+    <a href="https://lazysite.io">This is a Lazysite</a>
+  </div>
+</footer>
+</body>
+</html>

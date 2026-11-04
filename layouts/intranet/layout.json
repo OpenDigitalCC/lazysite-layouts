@@ -1,0 +1,14 @@
+{
+  "name": "intranet",
+  "version": "1.0.0",
+  "requires": {"lazysite": "0.15.11"},
+  "description": "A working surface for a private section, not a shop window: a dark gate bar, breadcrumbs, a section sidebar with nested groups, a wide measure for tables, and one class vocabulary for task tables, checklists, file lists and status marks. Light and dark.",
+  "author": "OpenDigitalCC",
+  "tags": ["intranet", "private", "working-surface", "tables", "forms", "dense", "dark-mode"],
+  "themes": ["intranet"],
+  "default_theme": "intranet",
+  "tokens": {
+    "colours": ["accent", "accent-hover", "accent-ink", "accent-soft", "bad", "bad-soft", "band", "band-ink", "band-muted", "canvas", "faint", "focus-ring", "ink", "line", "line-strong", "muted", "ok", "ok-soft", "scrim", "sunken", "surface", "warn", "warn-soft"],
+    "fonts": ["body", "mono"]
+  }
+}
