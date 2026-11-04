@@ -94,6 +94,30 @@ one). The manifest passes it through so a caller choosing a base layout can
 filter; `t/site-contract.t` exempts such layouts from the site items but
 still holds them to the `<head>` contract.
 
+### `requires`
+
+A layout states the engine it was written for:
+
+```json
+"requires": { "lazysite": "0.15.11" }
+```
+
+The value is the lowest lazysite release whose template variables and filters
+the layout uses. The engine does not read or enforce it yet: a layout on an
+older engine installs and then fails or degrades at render time (an unknown
+filter is a template error). `tools/gen-manifest.pl` carries it into
+`manifest.json` so a caller can compare it with the engine before offering the
+layout, and `t/site-contract.t` checks it is present and at least `0.15.11`.
+
+Set it to the highest release any variable in the layout needs:
+
+| Variable or filter | Needs |
+| --- | --- |
+| `theme_version` (`?v=` on theme-asset links) | 0.13.13 |
+| `url_safe` (on every whole-value link target) | 0.15.3 |
+| `odoo_signin_banner` | 0.15.10 |
+| `page_url` (canonical and `og:url`) | 0.15.11 |
+
 ## The site contract
 
 Every non-demonstration layout in this catalogue must be able to carry a

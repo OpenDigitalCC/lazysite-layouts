@@ -300,8 +300,34 @@ See [docs/creating-layouts.md](docs/creating-layouts.md).
 Currently this repo ships one layout; new layouts are rare
 additions since themes are scoped per layout.
 
+## `requires`
+
+A layout states the engine it was written for:
+
+```json
+"requires": { "lazysite": "0.15.11" }
+```
+
+The value is the lowest lazysite release whose template variables and filters
+the layout uses. The engine does not read or enforce it yet: a layout on an
+older engine installs and then fails or degrades at render time (an unknown
+filter is a template error). `tools/gen-manifest.pl` carries it into
+`manifest.json` so a caller can compare it with the engine before offering the
+layout, and `t/site-contract.t` checks it is present and at least `0.15.11`.
+
+Set it to the highest release any variable in the layout needs:
+
+| Variable or filter | Needs |
+| --- | --- |
+| `theme_version` (`?v=` on theme-asset links) | 0.13.13 |
+| `url_safe` (on every whole-value link target) | 0.15.3 |
+| `odoo_signin_banner` | 0.15.10 |
+| `page_url` (canonical and `og:url`) | 0.15.11 |
+
 ## Compatibility
 
+- Each layout names the lowest lazysite it needs in `layout.json`
+  (`requires.lazysite`, currently 0.15.11); see above.
 - lazysite 0.2.10+ - required. Earlier lazysite versions use a
   pre-D013 theme format with `view.tt` and no `layouts[]`/
   `config{}` in `theme.json`. Themes from this repo won't install
