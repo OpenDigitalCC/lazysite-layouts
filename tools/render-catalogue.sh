@@ -11,6 +11,14 @@
 # 390 and 1280 in light and dark, runs `lzs-design-kit.sh check` on each theme
 # folder, and writes the report. Stops the server and the browser at the end.
 #
+# Environment:
+#   RIG_PORT  port for the dev server (default 8097)
+#   RIG_CDP   port for Chromium's remote debugging (default 9333)
+# Each port must be free when the script starts; if either already answers,
+# the script stops with an error rather than measure whoever is listening.
+# Use other values to run beside another rig, for example
+#   RIG_PORT=8297 RIG_CDP=9633 bash tools/render-catalogue.sh
+#
 # Defaults: --rig tmp/rig (gitignored), --out tmp/rig/report.md. The committed
 # baseline is written with
 #   tools/render-catalogue.sh --out docs/measurements/2026-11-04-catalogue-baseline.md
@@ -49,6 +57,21 @@ stop_all() {
 trap stop_all EXIT
 stop_all
 sleep 1
+
+# Fail loudly if either port is taken; never measure whoever answers.
+python3 -I - "$PORT" "$CDP" <<'PY'
+import socket, sys
+busy = []
+for p in map(int, sys.argv[1:]):
+    s = socket.socket()
+    s.settimeout(1)
+    if s.connect_ex(('127.0.0.1', p)) == 0:
+        busy.append(p)
+    s.close()
+if busy:
+    sys.exit('port(s) already in use: %s; set RIG_PORT and RIG_CDP to free ports' % ', '.join(map(str, busy)))
+PY
+[ $? -eq 0 ] || exit 1
 
 set -e
 bash "$REPO/tools/rig-build.sh" "$RIG"

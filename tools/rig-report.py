@@ -181,7 +181,7 @@ w('')
 w('## States left unstyled')
 w('')
 w('`lzs-design-kit.sh check <theme-folder>` on the pack as built. Run without a site, so the comparison with '
-  'a site\'s kit tokens is skipped; everything else in the check runs. The check reads `assets/main.css` only, '
+  'a site\'s kit tokens is skipped; everything else in the check runs. The check reads `assets/main.css` and `assets/base.css`, '
   'so a state the layout styles in its own head still counts as unstyled here.')
 w('')
 w('| State group | Themes without a style |')
