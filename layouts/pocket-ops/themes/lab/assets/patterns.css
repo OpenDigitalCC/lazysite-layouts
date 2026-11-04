@@ -96,7 +96,7 @@
 }
 
 /* ConnectionBanner (design-system/components/ConnectionBanner): one line saying
-   whether work has reached the server, drawn by offline-kit.js */
+   whether work has reached the server, filled by the engine's app-offline extension */
 .po-banner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); padding: var(--s-2) var(--s-4);
   border-radius: var(--radius); margin: 0 0 var(--s-4); font-size: var(--t-sm); font-weight: 500; }
 .po-banner-warning { background: var(--warn-soft); color: var(--warn); }
@@ -106,7 +106,7 @@
   font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .po-banner-action:hover { background: transparent; color: inherit; }
 
-/* Changes saved on the device and not sent yet (the offline kit's waiting list, Notes pattern) */
+/* Changes saved on the device and not sent yet (an extension's waiting list, Notes pattern) */
 .po-waiting { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: grid; gap: var(--s-2); }
 .po-wait { padding: var(--s-3) var(--s-4); border-radius: var(--radius); background: var(--info-soft); }
 .po-wait.refused { background: var(--bad-soft); }
@@ -116,7 +116,7 @@
 .po-wait.refused .po-wait-sub { color: var(--bad); }
 .po-wait-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-2); }
 
-/* The app's state in the footer (offline-kit.js): a tick or cross and a few
+/* The app's state in the footer (the extension fills it): a tick or cross and a few
    words, with a popup of the details and the install button. Words carry the
    state as well as the mark, so colour is never alone. */
 .po-app-status { position: relative; }
@@ -131,7 +131,7 @@
   border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-raised); font-size: var(--t-sm); }
 .po-app-pop p { margin: 0; overflow-wrap: anywhere; }
 .po-banner-acts { display: flex; flex-wrap: wrap; gap: var(--s-2); flex: none; }
-/* offline: a submit that cannot wait for the connection is dimmed (offline-kit.js
+/* offline: a submit that cannot wait for the connection is dimmed (an extension
    sets data-po-offline; a queued action's button carries data-po-queues) */
 html[data-po-offline="1"] .po-app button[type="submit"]:not([data-po-queues]) { opacity: .5; }
 

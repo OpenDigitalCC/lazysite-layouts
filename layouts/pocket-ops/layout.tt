@@ -100,11 +100,11 @@
     [% IF page_subtitle %]<p class="po-lede">[% page_subtitle %]</p>[% END %]
   </header>
   [%# Slots: the banner is one line under the page heading on every page (offline,
-      changes waiting, a new version ready); the offline kit fills it. The signed-out
+      changes waiting, a new version ready); the engine's app-offline extension fills it. The signed-out
       notice shows only on a page whose content is wrapped in <div class="po-app">,
       for a visitor who is not signed in. %]
-  <div class="po-banner" data-po-banner hidden></div>
-  <div class="po-signed-out" data-po-show-out role="status">
+  <div class="po-banner" data-ls-app-banner data-po-banner hidden></div>
+  <div class="po-signed-out" data-ls-app-show-out data-po-show-out role="status">
     <p><strong>Sign in to use this page.</strong> What you can see and change here depends on your account.</p>
   </div>
   [% content %]
@@ -115,7 +115,7 @@
 
 <footer class="po-foot">
   <div class="po-foot-links">
-    <details class="po-app-status" data-po-app-status hidden><summary></summary><div class="po-app-pop"></div></details>
+    <details class="po-app-status" data-ls-app-status data-po-app-status hidden><summary></summary><div class="po-app-pop"></div></details>
     <small>&copy; [% site_name | html %]</small>
     <a href="/feed.rss" title="[% site_name | html %] (RSS)">RSS</a>
     <a href="/feed.atom" title="[% site_name | html %] (Atom)">Atom</a>
@@ -123,8 +123,5 @@
     <span><a href="https://lazysite.io">This is a Lazysite</a></span>
   </div>
 </footer>
-[%# The offline kit, last in <body>, after the page's own scripts: kept reads, the
-    banner and the app's state (theme_assets/offline-kit.js). %]
-<script src="[% theme_assets %]/offline-kit.js?v=[% theme_version %]"></script>
 </body>
 </html>

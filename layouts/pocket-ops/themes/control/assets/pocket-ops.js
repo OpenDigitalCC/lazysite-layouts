@@ -43,11 +43,11 @@
   }
 
   /* PocketOps._read / _write are the calls themselves; PocketOps.read / .write
-   * choose, at call time, the offline kit's versions (PocketOps._offlineRead /
-   * _offlineWrite, set by offline-kit.js, which keep answers and know when there
-   * is no connection) when the kit is on the page. The choice is made after the
+   * choose, at call time, an offline extension's versions (PocketOps._offlineRead /
+   * _offlineWrite, set by that extension, which keep answers and know when there
+   * is no connection) when it is on the page. The choice is made after the
    * helper has loaded - lazysite's helper loads deferred, after the page and the
-   * kit - so an app that reads at once still goes through the kit.
+   * extension - so an app that reads at once still goes through it.
    * A read never opens the sign-in dialog by itself: a page that needs a sign-in
    * says so once (the layout's notice) and the header's sign-in is the one way
    * in. A write still asks, since the person is in the middle of something and

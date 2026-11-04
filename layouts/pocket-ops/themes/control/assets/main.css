@@ -195,8 +195,8 @@ button, a, input, select, textarea, label, summary { touch-action: manipulation;
 }
 
 /* ---- signed in or not: pocket-ops.js sets data-po-signed-in on <html> -------- */
-html:not([data-po-signed-in="1"]) [data-po-show-in],
-html:not([data-po-signed-in="0"]) [data-po-show-out] { display: none !important; }
+html:not([data-po-signed-in="1"]) [data-po-show-in], html:not([data-po-signed-in="1"]) [data-ls-app-show-in],
+html:not([data-po-signed-in="0"]) [data-po-show-out], html:not([data-po-signed-in="0"]) [data-ls-app-show-out] { display: none !important; }
 .po-signed-out { display: none; }
 html[data-po-signed-in="0"] .po-main:has(.po-app:not([data-po-public])) .po-signed-out { display: block; }
 html[data-po-signed-in="0"] .po-app:not([data-po-public]) { display: none; }
@@ -336,3 +336,19 @@ td.num::before { font-family: var(--font); }
 .po-main details > summary { cursor: pointer; min-height: var(--control); display: flex; align-items: center; font-weight: 500; }
 .po-main details[open] > summary { border-bottom: 1px solid var(--line); margin-bottom: var(--s-3); }
 .po-main details > summary:hover { color: var(--accent-strong); }
+
+/* ---- the three app slots, by the engine's generic names -------------------------
+   An extension (the engine's app-offline) fills them; the layout also carries the
+   data-po-* names, so these rules cover both. Words carry every state, colour
+   only adds to it. */
+[data-ls-app-banner] { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  padding: var(--s-2) var(--s-4); margin: 0 0 var(--s-4); border-radius: var(--radius);
+  background: var(--info-soft); color: var(--info); font-size: var(--t-sm); font-weight: 500; }
+[data-ls-app-banner][role="alert"] { background: var(--bad-soft); color: var(--bad); }
+[data-ls-app-banner] a, [data-ls-app-banner] button { color: inherit; }
+[data-ls-app-show-out] { background: var(--accent-soft); color: var(--accent-strong); }
+[data-ls-app-show-out] a { color: inherit; }
+[data-ls-app-status] { position: relative; color: var(--muted); font-size: var(--t-sm); }
+[data-ls-app-status] summary { cursor: pointer; }
+[data-ls-app-status] summary:hover { color: var(--ink); }
+[data-ls-app-status] summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }

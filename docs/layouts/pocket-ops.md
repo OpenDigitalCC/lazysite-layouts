@@ -47,26 +47,26 @@ Colour-scheme switch | header | `[data-po-theme]`: Auto, Light, Dark. The choice
 Sign-in area | header | `[% odoo_signin_banner %]` when the site signs in with Odoo (the engine's `data-ls-odoo-signin` and `data-ls-odoo-signout` controls, which `lazysite-odoo.js` fills); otherwise `[% auth_control %]`, which the auth-sync script reveals from the session cookie. Never both.
 Skip link | top of body | `.po-skip`, to `#main`.
 Page head | `<main>` | `page_title` and `page_subtitle`.
-Banner | under the page head | `<div data-po-banner hidden>`: one line saying offline (and how old the shown data is), changes waiting, sending, refused (with "Try again"), the sign-out question, another person's waiting changes, or a new version ready (with "Reload"). The offline kit fills it; it is `role="status"`, or `role="alert"` when something was refused.
-Signed-out notice | under the banner | `[data-po-show-out]`. It shows only on a page whose content is wrapped in `<div class="po-app">`, for a visitor who is not signed in; the wrapped content is then hidden. Mark a public page with `data-po-public`.
+Banner | under the page head | `<div data-ls-app-banner data-po-banner hidden>`: one line saying offline (and how old the shown data is), changes waiting, sending, refused (with "Try again"), the sign-out question, another person's waiting changes, or a new version ready (with "Reload"). The engine's `app-offline` extension fills it, when it ships; it is `role="status"`, or `role="alert"` when something was refused.
+Signed-out notice | under the banner | `[data-ls-app-show-out]` (also `[data-po-show-out]`). It shows only on a page whose content is wrapped in `<div class="po-app">`, for a visitor who is not signed in; the wrapped content is then hidden. Mark a public page with `data-po-public`.
 Last updated | end of `<main>` | `page_modified` in a `<time>`.
 Footer | footer | The copyright line, RSS and Atom links (distinct titles), the Site manager link when the manager is enabled, the "This is a Lazysite" credit, and the app status.
-App status | footer | `<details data-po-app-status hidden>`: a tick or a cross and a few words ("Installed app", "Can be installed" with the browser's Install button, "Works offline" with the steps for browsers without an install dialog, or "App needs https"). Words carry the state as well as the mark. It stays hidden on a site that has no manifest.
+App status | footer | `<details data-ls-app-status data-po-app-status hidden>`: a tick or a cross and a few words ("Installed app", "Can be installed" with the browser's Install button, "Works offline" with the steps for browsers without an install dialog, or "App needs https"). Words carry the state as well as the mark. It stays hidden on a site that has no manifest.
 Head | `<head>` | Share cards, `page_url` for `og:url` and the canonical link, feed autodiscovery, the favicon, `viewport-fit=cover`, every theme-asset link with `?v=[% theme_version %]`. The layout adds no manifest link: the engine does, for pages inside the app's scope.
 ```
 
 The signed-out notice has a one-line default text. A site that wants its own
 wording edits `layout.tt` in its own copy of the layout.
 
-## The kit, and why it is in each theme
+## The layout's behaviour, and why it is in each theme
 
 The engine serves a theme's `assets/` from `/lazysite-assets/<layout>/<theme>/`
 and serves nothing from a layout folder (`lib/Lazysite/Manager/Themes.pm`,
 `_mirror_theme_assets`; the layout package is `layout.tt`, `layout.json` and
-`components/` only). So the kit ships inside each theme's `assets/` and the
-layout links it through `[% theme_assets %]`. That repeats the same four files in
-`lab` and `control`. If the engine ever serves layout assets, or a packaging step
-injects a shared kit (as the fonts and the favicon are), the copies can go.
+`components/` only). So the layout's scripts ship inside each theme's `assets/`
+and the layout links them through `[% theme_assets %]`. That repeats the same
+files in every theme. If the engine ever serves layout assets, or a packaging
+step injects them (as the fonts and the favicon are), the copies can go.
 
 ```datatable
 columns: File (in each theme's assets/) | What it does
@@ -76,58 +76,47 @@ tone: medium
 ---
 `theme-early.js` | In `<head>`, without defer: sets `data-po-js` on `<html>` and applies a stored colour scheme before the first paint. A file, not an inline script, so the page needs no inline code under the site's script policy.
 `pocket-ops.js` | After the header: the scheme switch, the Menu button, the signed-in state (`data-po-signed-in` on `<html>`), the Odoo helper's `read` and `write` timed, stacked-table labels. Exposes `window.PocketOps`.
-`offline-kit.js` | Last in `<body>`: kept reads, the write guard, the opt-in queue, the banner, the install status, sign-out. Exposes `window.PocketOpsOffline`. It needs `pocket-ops.js` and the Odoo helper, and does nothing on a page without them.
 `patterns.css` | The shared patterns, in the theme's short names, and the menu panel. Loaded after `main.css`.
 `icons/` | `app-64.png`, `app-192.png`, `app-512.png`, `app-maskable.png`: a neutral mark a site can use for its `app_icon_*` settings while it has none of its own.
 ```
 
 Renamed from the lab: `lab-*` classes are `po-*`, `data-lab-*` attributes are
-`data-po-*`, `Lab` is `PocketOps`, `LabOffline` is `PocketOpsOffline`, the storage
-keys are `pocket-ops.*` and the IndexedDB name is `pocket-ops-offline`. The lab's
+`data-po-*`, `Lab` is `PocketOps`, the storage keys are `pocket-ops.*`. The lab's
 per-app sheets and its `core-me` identity read are not part of the catalogue: who
 is signed in comes from the Odoo helper (`LazysiteOdoo.who()`, a name only), or
-from the session marker on a site without Odoo. Messages say "Not sent yet" and
-"the server", not "Odoo".
+from the session marker on a site without Odoo.
 
-### What the kit does, and what an app opts into
+### Offline: the engine's extension fills the slots
 
-Every read through `PocketOps.read(binding, params)` keeps its answer on the
-device with the time, keyed by the call and its parameters; answers over 512 KB
-are not kept. With no connection the kept answer comes back, marked `r.kept`;
-with none kept, an answer that says so. The choice between the plain call and
-the kit's is made at call time, after the helper has loaded, so an app that
-reads at once is kept too.
+The layout ships no offline kit. Keeping reads on the device, the write guard,
+the queue of changes not yet sent and the install and update messages belong to
+the engine's `app-offline` extension, when it ships. The layout provides the
+places it writes to, under the generic names the engine filing proposes, with
+the layout's own `data-po-*` names beside them so `pocket-ops.js` keeps working:
 
-`PocketOps.write` needs a connection. With none it answers "This needs a
-connection. Nothing was sent" at once; a connection lost mid-request answers that
-it is not known whether the change was received. A submit button is dimmed while
-offline unless it carries `data-po-queues`.
+```datatable
+columns: Slot | Generic name | Layout name
+widths: 4.4cm | 5cm | X
+bold: 1
+tone: light
+---
+Banner | `data-ls-app-banner` | `data-po-banner`
+Signed-out notice | `data-ls-app-show-out` | `data-po-show-out`
+Signed-in-only content | `data-ls-app-show-in` | `data-po-show-in`
+Install and update status | `data-ls-app-status` | `data-po-app-status`
+```
 
-`PocketOpsOffline.send({ key, binding, params, label })` keeps a change and sends
-it now, on reconnect, on return to the page and every 30 s while waiting. It is
-opt-in per action and only for an operation that looks for the key before
-acting, so a send that was cut off and made again makes nothing twice. A refusal
-keeps the values and shows the server's reason; a 401 waits for the person to
-sign in again. `waitingList(el, binding, describe)` draws the "Not sent yet" list
-with Discard for refused changes.
+Every theme styles all of them in `main.css` (the banner as a line under the
+page head, `role="alert"` for a refusal; the notice; the status in the footer).
+Until the extension ships, the banner and the status stay hidden, and the
+scheme, the sign-in state, the timed Odoo calls and the app patterns work on
+their own. `pocket-ops.js` uses an extension's `PocketOps._offlineRead` and
+`_offlineWrite` when one sets them and its own calls otherwise.
 
-### Data rules
-
-These are the rules from the 19 October spec; the kit enforces them and an app
-should not work round them.
-
-- The data on the device belongs to the person signed in. Each queued change
-  records who made it and is sent only while that person is signed in; another
-  person's waiting changes are named in the banner and left alone. Kept answers
-  are cleared on a 401, when a different person is signed in, and on sign-out.
-- Signing out asks first when the person has changes not yet sent: the banner
-  says how many, that signing out deletes them, and offers "Stay signed in" and
-  "Delete and sign out". With none, the kept answers are cleared and the person
-  is signed out.
-- While anything on the device is not on the server, the banner says so on every
-  page of the app.
-- A page the worker keeps must be the same for every visitor. A person's own
-  data comes from the endpoint when the page runs, never from the kept page.
+What does not depend on the extension is the engine's worker: from 0.15.13 it
+keeps the pages of an installed app (below). A page the worker keeps must be the
+same for every visitor; a person's own data comes from the endpoint when the page
+runs, never from the kept page.
 
 ## The worker: the engine's
 
@@ -251,6 +240,4 @@ style guide page is not shipped; this is the shape of one):
 `t/site-contract.t` and `t/pwa-layout.t` render the layout and check its slots,
 links, fonts, licences and declared requirements; `tools/check-no-cdn.sh` passes.
 The two themes were drawn in headless Chromium at 390 and 1280 pixels for this
-catalogue entry. The offline kit, in its genericised form, has not been run here
-against a live Odoo site; the lab's own tests (Chromium and Firefox ESR 153, two
-sites, six apps) were of the lab's original files.
+catalogue entry. The layout has not been run here against a live Odoo site.

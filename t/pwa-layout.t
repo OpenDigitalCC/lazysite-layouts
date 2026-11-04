@@ -6,7 +6,8 @@
 #
 #   - the slots a page needs are in layout.tt (banner, signed-out notice, scheme
 #     switch, menu button, skip link, footer status, the Odoo sign-in banner)
-#   - the kit is linked through theme_assets and every theme ships the files
+#   - the layout's scripts are linked through theme_assets and every theme ships
+#     them; no offline kit is shipped (the engine's app-offline extension fills the slots)
 #   - nothing is OOM Lab specific, and no file names an external address
 #   - each theme's fonts are bundled with a licence (fonts.list -> the store)
 #   - both themes declare the layout; layout.json and theme.json state requires
@@ -22,7 +23,7 @@ use JSON::PP ();
 
 my $root   = "$FindBin::Bin/..";
 my $ldir   = "$root/layouts/pocket-ops";
-my @themes = qw(lab control);
+my @themes = qw(lab control);  # extended in the variants below
 
 sub slurp {
     my ($path) = @_;
@@ -76,6 +77,9 @@ for my $slot (
     [ 'data-po-theme',         'colour-scheme switch' ],
     [ 'data-po-menu-toggle',   'menu button' ],
     [ 'data-po-app-status',    'footer app status' ],
+    [ 'data-ls-app-banner',    'generic banner slot' ],
+    [ 'data-ls-app-show-out',  'generic signed-out notice slot' ],
+    [ 'data-ls-app-status',    'generic install and update status slot' ],
     [ 'class="po-skip"',       'skip link' ],
     [ 'class="po-page-head"',  'page head' ],
     [ 'class="po-subnav"',     'second-row nav' ],
@@ -91,14 +95,15 @@ like( $tt, qr/<time[^>]*datetime=/,     'last-updated <time>' );
 unlike( $tt, qr/rel="manifest"/, 'layout adds no manifest link (the engine does)' );
 
 # -- the kit, linked through theme_assets with the theme version --
-my @kit = qw(theme-early.js pocket-ops.js offline-kit.js);
+my @kit = qw(theme-early.js pocket-ops.js);
 for my $f ( @kit, 'patterns.css', 'main.css', 'fonts.css' ) {
     like( $tt, qr{\[%\s*theme_assets\s*%\]/\Q$f\E\?v=\[%\s*theme_version\s*%\]},
         "layout.tt links $f through theme_assets with ?v=theme_version" );
 }
 unlike( $tt, qr{<link rel="stylesheet"[^>]*href="/|<script[^>]*src="/}, 'no site-absolute script or stylesheet path' );
 like( $tt, qr{theme-early\.js.*?</head>}s, 'theme-early.js is in <head>' );
-like( $tt, qr{offline-kit\.js[^\n]*\n</body>}, 'offline-kit.js is the last thing in <body>' );
+unlike( $tt, qr/offline-kit/, 'the offline kit is not linked (the engine extension owns it)' );
+like( $tt, qr{pocket-ops\.js.*</body>}s, 'pocket-ops.js is linked before the end of <body>' );
 
 # -- no lab-specific names, no external address --
 my @files = tree($ldir);
@@ -154,6 +159,11 @@ for my $T (@themes) {
         }
         for my $f ( keys %listed ) {
             ok( -f "$td/$f", "listed file $f exists" );
+        }
+        ok( !-e "$td/assets/offline-kit.js", 'theme ships no offline-kit.js' );
+        my $mcss = slurp("$td/assets/main.css") // '';
+        for my $slot (qw(data-ls-app-banner data-ls-app-show-out data-ls-app-status)) {
+            like( $mcss, qr/\[\Q$slot\E\]/, "main.css styles [$slot]" );
         }
         for my $icon (qw(app-64 app-192 app-512 app-maskable)) {
             ok( -f "$td/assets/icons/$icon.png", "icon $icon.png shipped" );
