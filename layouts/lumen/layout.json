@@ -1,6 +1,7 @@
 {
   "name": "lumen",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "requires": {"lazysite": "0.15.11"},
   "description": "A light editorial statement - big serif, drop caps and electric accents on warm paper.",
   "author": "OpenDigitalCC",
   "tags": ["editorial", "statement", "serif", "light", "magazine"],

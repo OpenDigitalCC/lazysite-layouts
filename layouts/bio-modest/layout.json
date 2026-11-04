@@ -1,6 +1,7 @@
 {
   "name": "bio-modest",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "requires": {"lazysite": "0.15.11"},
   "description": "An understated personal calling card - quiet serif, warm paper, plenty of breathing room.",
   "author": "OpenDigitalCC",
   "tags": ["personal", "bio", "minimal", "serif", "understated"],

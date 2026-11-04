@@ -1,6 +1,7 @@
 {
   "name": "portal-dark",
-  "version": "1.1.0",
+  "version": "1.2.0",
+  "requires": {"lazysite": "0.15.11"},
   "description": "A dark dashboard shell - sidebar, KPIs and cards for admin panels and status pages.",
   "author": "OpenDigitalCC",
   "tags": ["dashboard", "admin", "dark", "app", "saas"],

@@ -18,6 +18,16 @@
 #   - the last-updated <time> stamp renders
 #   - the page body renders
 #
+# and the template contract of docs/WORK-PLAN-2026-11-04.md (W1-A), from the
+# 2026-09-11, 2026-10-01, 2026-10-12, 2026-10-18 and 2026-10-19 filings:
+#
+#   - every whole-value link target (layout and components) ends in | url_safe
+#   - every stylesheet or script link into theme_assets carries ?v=theme_version
+#   - canonical and og:url come from page_url, not site_url + request_uri
+#   - RSS and Atom autodiscovery in <head> with distinct titles, plus a footer link
+#   - odoo_signin_banner renders, and replaces the layout's own sign-out link
+#   - layout.json states requires.lazysite (at least 0.15.11)
+#
 # A layout whose layout.json declares "kind": "demonstration" is exempt from
 # the site items (nav, toggle, cards, canonical, auth, time) but must still
 # render the body and satisfy the head-meta contract.
@@ -58,6 +68,9 @@ my %stash        = (
     page_modified_iso => '2026-08-17',
     theme_css         => "<style>:root { --theme-colours-text: #000; }</style>",
     theme_assets      => '/lazysite-assets/fixture/fixture',
+    theme_version     => 'fp12345',
+    page_url          => 'https://canonical.example/docs/guide',
+    odoo_signin_banner => '',
     auth_control      =>
         '<a href="/login" data-ls-auth-in class="ls-auth ls-auth-in" style="display:none">Sign in</a>'
         . '<a href="/cgi-bin/lazysite-auth.pl?action=logout" data-ls-auth-out class="ls-auth ls-auth-out" style="display:none">Sign out</a>',
@@ -79,6 +92,33 @@ my %stash        = (
     search_enabled => 0,
     editor         => 0,
 );
+
+# The engine registers url_safe on every Template object (0.15.3): a value with
+# no scheme, or http/https/mailto/tel, passes; any other scheme becomes '#'.
+sub url_safe_filter {
+    my ($v) = @_;
+    return $v unless $v =~ m{^\s*[a-z][a-z0-9+.-]*:}i;
+    return $v if $v =~ m{^\s*(?:https?|mailto|tel):}i;
+    return '#';
+}
+
+sub slurp {
+    my ($path) = @_;
+    open my $fh, '<:utf8', $path or die "read $path: $!";
+    local $/;
+    return scalar <$fh>;
+}
+
+sub version_ge {
+    my ( $have, $want ) = @_;
+    my @h = split /\./, $have;
+    my @w = split /\./, $want;
+    for my $i ( 0 .. 2 ) {
+        return 1 if ($h[$i] // 0) > ($w[$i] // 0);
+        return 0 if ($h[$i] // 0) < ($w[$i] // 0);
+    }
+    return 1;
+}
 
 sub read_json {
     my ($path) = @_;
@@ -109,7 +149,8 @@ for my $L (@layouts) {
             'no | html on the engine-escaped page_* variables'
         );
 
-        my $tt = Template->new( { INCLUDE_PATH => "$ldir/$L" } );
+        my $tt = Template->new(
+            { INCLUDE_PATH => "$ldir/$L", FILTERS => { url_safe => sub { url_safe_filter($_[0]) } } } );
         my $out = '';
         my $ok = $tt->process( 'layout.tt', {%stash}, \$out );
         (ok( $ok, 'template renders' )) or diag( $tt->error ), return;
@@ -129,6 +170,61 @@ for my $L (@layouts) {
             'default favicon declared from theme assets'
         );
 
+        # -- template contract (all layouts, demonstration included) --
+        my @tt_files = ("$ldir/$L/layout.tt");
+        if ( opendir my $cd, "$ldir/$L/components" ) {
+            push @tt_files, map {"$ldir/$L/components/$_"} sort grep { /\.tt$/ } readdir $cd;
+            closedir $cd;
+        }
+        for my $tf (@tt_files) {
+            my $text = slurp($tf);
+            ( my $short = $tf ) =~ s{^\Q$ldir\E/}{};
+            my @bad = $text =~ m{((?:href|src|action|formaction|poster)="\[%(?![^%]*\|\s*url_safe)[^%]*%\]")}g;
+            @bad = grep { $_ !~ m{"\[%\s*(?:l\.url|languages\.0\.url|site_url|page_url)\s*%\]"} } @bad;
+            is( scalar @bad, 0, "$short: every whole-value link target has | url_safe" )
+                or diag( join "\n", @bad );
+        }
+        like( $src, qr{\[%\s*page_url\s*%\]}, 'page_url used' );
+        unlike( $src, qr{site_url\s*\|\s*html\s*%\]\[%\s*request_uri}, 'no site_url + request_uri address' );
+        unlike( $src, qr{<(?:link|script)[^>]*\[%\s*theme_assets\s*%\]/[\w.-]+\.(?:css|js)"}, 'no unversioned theme-asset link' );
+
+        my ($head) = $out =~ m{^(.*?)</head>}s;
+        my @assets = $head =~ m{(?:href|src)="(/lazysite-assets/fixture/fixture/[\w.-]+\.(?:css|js)[^"]*)"}g;
+        ok( scalar @assets, 'head links theme assets' );
+        is( scalar( grep { !/\?v=fp12345$/ } @assets ), 0, 'every theme-asset stylesheet/script carries ?v=theme_version' )
+            or diag("@assets");
+        like( $head, qr{<link rel="canonical" href="https://canonical\.example/docs/guide">}, 'canonical from page_url' );
+        like( $head, qr{<meta property="og:url" content="https://canonical\.example/docs/guide">}, 'og:url from page_url' );
+        unlike( $head, qr{fixture\.example/docs/guide}, 'site_url + request_uri not used for the address' );
+        like(
+            $head,
+            qr{<link rel="alternate" type="application/rss\+xml" title="Fixture Site \(RSS\)" href="/feed\.rss">},
+            'RSS autodiscovery in head'
+        );
+        like(
+            $head,
+            qr{<link rel="alternate" type="application/atom\+xml" title="Fixture Site \(Atom\)" href="/feed\.atom">},
+            'Atom autodiscovery in head'
+        );
+        my ($foot) = $out =~ m{(<footer.*?</footer>)}s;
+        ok( defined $foot && $foot =~ m{href="/feed\.rss"} && $foot =~ m{href="/feed\.atom"}, 'footer links to both feeds' );
+
+        # -- Odoo sign-in banner: rendered, and the layout's own sign-out yields --
+        {
+            my $banner = '<span data-fixture-odoo-banner>Signed in as Fixture</span>';
+            my $bout   = '';
+            $tt->process( 'layout.tt', { %stash, odoo_signin_banner => $banner }, \$bout )
+                or diag( $tt->error );
+            like( $bout, qr{\Q$banner\E}, 'odoo_signin_banner renders when set' );
+            unlike( $bout, qr{action=logout|data-ls-auth-out}, 'own sign-out link not shown beside the banner' );
+            unlike( $out, qr{data-fixture-odoo-banner}, 'no banner markup when the variable is empty' );
+        }
+
+        # -- engine compatibility declared --
+        my $req = ref $lj->{requires} eq 'HASH' ? $lj->{requires}{lazysite} : undef;
+        ok( defined $req && $req =~ /^\d+\.\d+\.\d+$/ && version_ge( $req, '0.15.11' ),
+            'layout.json requires.lazysite is 0.15.11 or later' );
+
         return if $demo;
 
         # -- a markdown page's heading renders (demo pages use sections) --
@@ -146,7 +242,7 @@ for my $L (@layouts) {
         like( $out, qr{aria-expanded=}, 'mobile navigation control present' );
 
         # -- share cards + canonical --
-        like( $out, qr{<link rel="canonical" href="https://fixture\.example/docs/guide">},
+        like( $out, qr{<link rel="canonical" href="https://canonical\.example/docs/guide">},
             'canonical link' );
         like( $out, qr{property="og:title" content="Fixture Meta Title"}, 'og:title' );
         like( $out, qr{property="og:description" content="\Q$ESC_SUBTITLE\E"},

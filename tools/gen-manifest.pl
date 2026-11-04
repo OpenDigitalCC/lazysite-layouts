@@ -75,6 +75,10 @@ for my $L ( sort readdir $dh ) {
     $guidance{kind} = $lj->{kind}
         if defined $lj->{kind} && length $lj->{kind};
 
+    # Engine compatibility (informational; the engine does not read it yet).
+    $guidance{requires} = $lj->{requires}
+        if ref $lj->{requires} eq 'HASH' && %{ $lj->{requires} };
+
     push @layouts, {
         name          => $name,
         version       => $lj->{version} // '0.0.0',
