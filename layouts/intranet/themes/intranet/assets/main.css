@@ -177,7 +177,7 @@ button, a, input, select, textarea, label, summary { touch-action: manipulation;
 /* ---- tables: the thing a private section is mostly made of --------------- */
 /* Scrolls inside itself when the screen is too narrow, never the page. */
 table { display: block; width: max-content; min-width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: .9rem; }
-th, td { text-align: left; padding: .5rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th, td { overflow-wrap: normal; text-align: left; padding: .5rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 thead th, th {
   background: var(--canvas); color: var(--muted); font-size: .72rem; font-weight: 600;
   text-transform: uppercase; letter-spacing: .08em; border-bottom: 2px solid var(--line-strong);
