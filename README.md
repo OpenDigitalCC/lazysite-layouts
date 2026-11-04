@@ -4,21 +4,53 @@ Layouts and themes for [lazysite](https://lazysite.io) under
 the D013 architecture. Requires lazysite **0.2.10 or later** -
 earlier versions use a different (incompatible) theme format.
 
-## Current state of the catalogue (15 August 2026)
+## Current state of the catalogue (4 November 2026)
 
-**Twenty-two of the twenty-three layouts are gallery demonstrations and are
-not yet usable for a real site.** They render their own in-page anchors instead
-of the site's navigation, and lack share cards, a canonical link, the
-cache-safe auth indicator and a mobile navigation control. `default` is the
-only complete one and is the reference for bringing the rest up.
+**Twenty-five layouts and fifty-four themes**, each layout and theme shipped as a zip
+under `releases/` and listed in `manifest.json`.
 
-- `docs/BRINGING-THE-CATALOGUE-UP-TO-DATE.md` - what each layout needs below
-  `</head>`, in what order, and the one fixture that verifies all of it.
-- `docs/proposals/2026-08-15-head-meta-contract.md` - the `<head>` half:
-  `page_meta_title`, `page_meta_desc`, and the double-escaped description that
-  ships today on any copy containing an apostrophe.
+- **The site contract.** All 25 layouts render a site: navigation from
+  `[% nav %]`, a mobile control, share cards, `page_url` for the canonical and
+  `og:url`, `url_safe` on every whole link target, `?v=[% theme_version %]` on
+  theme-asset links, feed autodiscovery, the cache-safe auth control and the
+  Odoo sign-in banner. `explorer` is the one demonstration layout and is
+  exempt from the navigation rule. `t/site-contract.t` asserts it.
+- **The engine requirement.** Every `layout.json` states `requires.lazysite`
+  (0.15.11 for the contract; `pocket-ops` 0.15.13) and `manifest.json` carries
+  it. The engine does not enforce the key yet; see `requires` below.
+- **One shared sheet.** `assets/base.css` holds the nested navigation, `.form-*`,
+  states and overflow rules. Every layout links it before `main.css`, and
+  `tools/package-themes.sh` injects it into every theme zip, so git carries it
+  once. A theme that commits its own `assets/base.css` wins.
+- **Two working-surface layouts.** `pocket-ops` (installable, works offline;
+  themes `lab`, `control`, `meadow`, `midnight`; `docs/layouts/pocket-ops.md`) and
+  `intranet` (gate bar, breadcrumbs, sidebar navigation; theme `intranet`;
+  `docs/layouts/intranet.md`). Page-supplied counters in the intranet bar and a
+  locked-item navigation mark are not provided: the engine has no field for them.
+- **The measurement rig.** `tools/render-catalogue.sh` renders every layout and
+  theme against the design-kit specimen and the form in steps at 390 and 1280,
+  light and dark, on the engine's dev server and headless Chromium. Today's
+  figures, `docs/measurements/2026-11-04-after-wave2.md`, against the baseline
+  of the same morning (`docs/measurements/2026-11-04-catalogue-baseline.md`):
 
-Read both before starting work on any layout in this repository.
+| Measure | Baseline (49 themes) | After wave 2 (54 themes) |
+|---|---|---|
+| Scroll sideways on the specimen | 47 | 0 |
+| Style `.form-*` classes in the theme sheet | 6 | 54 |
+| Unstyled option signature | 5 | 0 |
+| Every STATES.md group styled | 0 | 54 |
+| Unstyled state groups, total | 603 | 0 |
+| Favicon resolves as SVG | 49 | 54 |
+
+  Still showing: the five `default`-layout themes open no menu at 390 in the
+  rig's toggle test (0 of 8 links visible; the baseline had the same), and the
+  four `pocket-ops` themes show 3 of 8 links on the desktop bar. Neither is
+  confirmed as a fault; both are for the edge check.
+- **Where the docs are.** `docs/WORK-PLAN-2026-11-04.md` (the waves and what each
+  did), `docs/creating-layouts.md`, `docs/creating-themes.md`,
+  `docs/BRINGING-THE-CATALOGUE-UP-TO-DATE.md` (the 15 August specification, now
+  landed), `docs/layouts/`, `docs/measurements/`. Not yet done: verification on
+  a live edge host and the gallery redeploy.
 
 ## What's here
 
@@ -35,15 +67,27 @@ Read both before starting work on any layout in this repository.
             studio/            <- Swiss grid, red accent, square corners
             warm/              <- parchment + sage, serif headings (token-only)
             terminal/          <- dark monospace, green accent
+        ...                    <- 25 layouts in all, 54 themes
+      assets/
+        base.css               <- shared sheet, injected into every theme zip
+        favicon.svg            <- default favicon, injected likewise
+      fonts/                   <- self-hosted woff2 store with licences
       docs/
         creating-layouts.md
         creating-themes.md
+        layouts/               <- pocket-ops, intranet
+        measurements/          <- rig reports
+        WORK-PLAN-2026-11-04.md
+      t/                       <- prove t/
       tools/
-        package-themes.sh      <- rebuilds releases/*.zip from layouts/
+        package-themes.sh      <- rebuilds releases/ themes, then layouts and manifest
+        package-layouts.sh     <- layout zips and manifest.json
+        render-catalogue.sh    <- the measurement rig
+      manifest.json            <- the catalogue: layouts, themes, requires
       releases/
-        default/              <- layout-scoped; mirrors source structure
-          default.zip  dark.zip  studio.zip
-          warm.zip     terminal.zip
+        layouts/               <- one zip per layout
+        default/              <- theme zips, layout-scoped
+          default.zip  dark.zip  studio.zip ...
 
 ## The three-layer model
 
@@ -67,8 +111,8 @@ properties at `:root` via the `[% theme_css %]` TT variable.
 
 ### Layout (one-time, manual)
 
-Layouts are not currently shipped in release zips (themes are).
-Copy manually:
+Layouts ship as zips at `releases/layouts/LAYOUT.zip`, listed in
+`manifest.json` with their `requires`. To copy one by hand:
 
     mkdir -p /path/to/public_html/lazysite/layouts/default
     cp layouts/default/layout.tt   /path/to/public_html/lazysite/layouts/default/
@@ -187,16 +231,25 @@ each ship their own layout (one theme per layout).
 
 | Theme   | Layout     | Description                                                       |
 | ------- | ---------- | ----------------------------------------------------------------- |
-| lab     | pocket-ops | Warm neutrals, deep teal, Inter; light and dark                    |
-| control | pocket-ops | Operations-room look: square panels, cyan signal, Archivo + Mono   |
+| lab      | pocket-ops | Warm neutrals, deep teal, Inter; light and dark                   |
+| control  | pocket-ops | Operations-room look: square panels, cyan signal, Archivo + Mono  |
+| meadow   | pocket-ops | Light, from clarity's palette                                     |
+| midnight | pocket-ops | Always dark, from dark's palette                                  |
 
 `pocket-ops` is the layout for a site that installs as an app on phone, tablet
 and PC and keeps working with no connection: apps and their pages from
 `nav.conf` in one header, a Menu button on a narrow screen, a banner slot, a
-signed-out notice, the Odoo sign-in banner, and a small kit (colour-scheme
-switch, kept reads, a change queue) linked from the theme's assets. It needs
-lazysite 0.15.11 (0.15.13 for pages that open offline). See
-`docs/layouts/pocket-ops.md`.
+signed-out notice and the Odoo sign-in banner. It ships slots only: the offline
+kit is the engine's. It needs lazysite 0.15.13. Four themes: `lab`, `control`,
+`meadow` (light) and `midnight` (dark). See `docs/layouts/pocket-ops.md`.
+
+### Intranet
+
+| Theme    | Layout   | Description                                                  |
+| -------- | -------- | ------------------------------------------------------------ |
+| intranet | intranet | Gate bar, breadcrumbs, sidebar navigation; Inter and JetBrains Mono |
+
+See `docs/layouts/intranet.md`.
 
 Theme `config` values drive every meaningful colour (and often
 the fonts) in `main.css` via CSS custom properties - edit
@@ -238,6 +291,10 @@ One theme per layout:
 - [releases/portal-dark/portal-dark.zip](releases/portal-dark/portal-dark.zip) - dark dashboard
 - [releases/consultancy/consultancy.zip](releases/consultancy/consultancy.zip) - business consultancy
 - [releases/publicsector/publicsector.zip](releases/publicsector/publicsector.zip) - public-sector advisory
+- [releases/intranet/intranet.zip](releases/intranet/intranet.zip) - intranet
+- [releases/pocket-ops/lab.zip](releases/pocket-ops/lab.zip), `control.zip`, `meadow.zip`, `midnight.zip` - the app working surface
+
+Layout zips are at `releases/layouts/LAYOUT.zip`.
 
 The layout-scoped nesting means two layouts can each ship a
 `default` theme (or any same-named theme) without collision.
@@ -247,6 +304,10 @@ The layout-scoped nesting means two layouts can each ship a
 After editing a theme (or adding a new one), rebuild:
 
     tools/package-themes.sh
+
+It also runs `tools/package-layouts.sh` and regenerates `manifest.json`.
+To re-measure, `bash tools/render-catalogue.sh --out FILE.md` (set `RIG_PORT`
+and `RIG_CDP` if the defaults 8097 and 9333 are taken; it stops if they are).
 
 The script walks `layouts/*/themes/*/` and produces one zip per
 theme at `releases/LAYOUT/THEME.zip`. Each zip has the D013
@@ -312,8 +373,8 @@ repackage.
 ### A new layout
 
 See [docs/creating-layouts.md](docs/creating-layouts.md).
-Currently this repo ships one layout; new layouts are rare
-additions since themes are scoped per layout.
+The repository ships 25 layouts; new layouts are rare additions
+since themes are scoped per layout.
 
 ## `requires`
 
@@ -342,7 +403,7 @@ Set it to the highest release any variable in the layout needs:
 ## Compatibility
 
 - Each layout names the lowest lazysite it needs in `layout.json`
-  (`requires.lazysite`, currently 0.15.11); see above.
+  (`requires.lazysite`, 0.15.11 to 0.15.13); see above.
 - lazysite 0.2.10+ - required. Earlier lazysite versions use a
   pre-D013 theme format with `view.tt` and no `layouts[]`/
   `config{}` in `theme.json`. Themes from this repo won't install
