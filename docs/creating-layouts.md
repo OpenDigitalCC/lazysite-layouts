@@ -348,6 +348,40 @@ Keep colours in CSS tokens (`--theme-colours-*`), never in the component HTML.
 A component may `[% INCLUDE 'components/other.tt' %]` (the layout dir is on
 `INCLUDE_PATH`). `EVAL_PERL` is off; authors never write Template Toolkit.
 
+## Structured data
+
+The bio family (`bio-modest`, `bio-balanced`, `bio-bold`) emits a schema.org
+`Person` block in `<head>`, built by `components/schema-person.tt` from the page's
+`bio-hero` section. The author types nothing extra; each value is already on the
+page:
+
+| JSON-LD | From |
+| --- | --- |
+| `name` (required; no name, no block) | `bio-hero.name` |
+| `jobTitle` | `bio-hero.role` |
+| `description` | `bio-hero.tagline` |
+| `url` | `page_url` |
+| `worksFor` (`Organization`) | optional `bio-hero.worksFor: {name, url}` |
+| `sameAs` | optional `bio-hero.sameAs: [address, ...]` |
+
+The hero's `links:` are not read: a list of label and address pairs cannot say
+which link is an employer and which a profile, and guessing would be invention.
+`worksFor` and `sameAs` are the two optional keys that carry that meaning, and
+only this block reads them. Only `http` and `https` addresses that pass
+`| url_safe` are emitted. Empty or blank fields are left out, the first
+`bio-hero` on a page is the one used, and a page with no `bio-hero` emits no
+block.
+
+Pattern for any layout that emits JSON-LD: `sections` reaches the layout raw, so
+encode each string with the engine's `| json` filter (lazysite 0.15.2), which
+escapes quotes, backslashes, newlines and control characters and writes `<`, `>`
+and `&` as `\uXXXX` so a value holding the closing script tag cannot end the
+element. Never concatenate a value into the block unfiltered. The `page_*` meta
+variables arrive HTML-escaped; use their `_raw` twins inside `| json`.
+`page_url` has no twin, so the component decodes it before encoding. A generic
+site-level `WebSite` or `WebPage` block is the engine's, not a layout's.
+`t/json-ld.t` renders the three layouts with hostile values and parses the result.
+
 ## How themes target a layout
 
 Each theme declares its compatible layouts in `theme.json`:
