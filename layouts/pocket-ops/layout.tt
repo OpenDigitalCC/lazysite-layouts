@@ -29,7 +29,7 @@
   [% theme_css %]
   [% IF theme_assets %]
   <link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]">
-  <link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">
+  <link rel="stylesheet" href="[% theme_assets %]/base.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">
   <link rel="stylesheet" href="[% theme_assets %]/patterns.css?v=[% theme_version %]">
   [% END %]
 </head>

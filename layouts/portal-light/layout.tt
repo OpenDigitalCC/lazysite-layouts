@@ -22,7 +22,7 @@
 <link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
 <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
 [% theme_css %]
-[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/fonts.css"><link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/main.css">[% END %]
+[% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/base.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/fonts.css"><link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/base.css"><link rel="stylesheet" href="/lazysite-assets/portal-light/portal-light/main.css">[% END %]
 </head>
 <body>
 <div class="dash-shell">

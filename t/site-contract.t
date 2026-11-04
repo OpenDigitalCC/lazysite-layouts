@@ -27,6 +27,7 @@
 #   - RSS and Atom autodiscovery in <head> with distinct titles, plus a footer link
 #   - odoo_signin_banner renders, and replaces the layout's own sign-out link
 #   - layout.json states requires.lazysite (at least 0.15.11)
+#   - the shared assets/base.css is linked before main.css (W2-A)
 #
 # A layout whose layout.json declares "kind": "demonstration" is exempt from
 # the site items (nav, toggle, cards, canonical, auth, time) but must still
@@ -193,6 +194,11 @@ for my $L (@layouts) {
         ok( scalar @assets, 'head links theme assets' );
         is( scalar( grep { !/\?v=fp12345$/ } @assets ), 0, 'every theme-asset stylesheet/script carries ?v=theme_version' )
             or diag("@assets");
+        {
+            my $bi = index( $head, '/lazysite-assets/fixture/fixture/base.css?v=fp12345' );
+            my $mi = index( $head, '/lazysite-assets/fixture/fixture/main.css?v=fp12345' );
+            ok( $bi >= 0 && $mi >= 0 && $bi < $mi, 'head links the shared base.css before main.css' );
+        }
         like( $head, qr{<link rel="canonical" href="https://canonical\.example/docs/guide">}, 'canonical from page_url' );
         like( $head, qr{<meta property="og:url" content="https://canonical\.example/docs/guide">}, 'og:url from page_url' );
         unlike( $head, qr{fixture\.example/docs/guide}, 'site_url + request_uri not used for the address' );
