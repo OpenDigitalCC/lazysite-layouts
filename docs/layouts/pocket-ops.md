@@ -20,12 +20,12 @@ chooses.
 
 Engine versions:
 
-- 0.15.11 or later for the layout (`page_url`, `theme_version`, the Odoo sign-in
-  banner, `url_safe`). The layout's `layout.json` says so under `requires`.
-- 0.15.10 or later for the themes (`app_*` settings, SM1155; the Odoo sign-in,
-  SM1160). The themes' `theme.json` says so.
-- 0.15.13 or later for an installed app that opens offline (`app_offline_pages`
-  and `app_update`, SM1197). On 0.15.11 and 0.15.12 the layout renders and the
+- 0.15.13 or later. The layout's `layout.json` and both themes' `theme.json`
+  say so under `requires`, because the point of this layout is an installed app
+  that opens offline (`app_offline_pages` and `app_update`, SM1197, 0.15.13).
+  The template variables it uses arrived earlier (`page_url` 0.15.11; the
+  `app_*` settings and the Odoo sign-in banner 0.15.10; `url_safe` 0.15.3;
+  `theme_version` 0.13.13): on 0.15.11 and 0.15.12 the layout renders and the
   app installs, but the engine's worker keeps no page.
 
 The theme and layout the site is serving are read-only on every engine surface:

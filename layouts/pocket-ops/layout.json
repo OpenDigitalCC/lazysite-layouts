@@ -1,7 +1,7 @@
 {
   "name": "pocket-ops",
   "version": "1.0.0",
-  "requires": {"lazysite": "0.15.11"},
+  "requires": {"lazysite": "0.15.13"},
   "description": "An app-style working surface for operatives on phone, tablet and PC: one header with the apps and the sign-in, installable as an app, light and dark.",
   "author": "OpenDigitalCC",
   "tags": ["app", "pwa", "operations", "mobile", "offline", "odoo", "multi-theme"],
