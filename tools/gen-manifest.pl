@@ -55,6 +55,9 @@ for my $L ( sort readdir $dh ) {
                 name    => ( defined $tj->{name} && length $tj->{name} ) ? $tj->{name} : $T,
                 version => $tj->{version} // '0.0.0',
                 package => "releases/$L/$T.zip",
+                # A theme's own tags (e.g. "pwa" on a theme that styles the app
+                # slots of an installable layout) travel with it.
+                ( ref $tj->{tags} eq 'ARRAY' && @{ $tj->{tags} } ? ( tags => $tj->{tags} ) : () ),
             };
         }
         closedir $td;

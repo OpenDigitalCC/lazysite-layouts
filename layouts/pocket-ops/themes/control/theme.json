@@ -1,6 +1,7 @@
 {
   "name": "control",
   "version": "1.0.0",
+  "tags": ["pwa", "app", "offline"],
   "description": "A sharp, industrial operations look: square panels on hairline rules, an electric cyan signal, Archivo with JetBrains Mono figures. Light and dark designed together.",
   "author": "OpenDigitalCC",
   "layouts": ["pocket-ops"],

@@ -227,14 +227,21 @@ each ship their own layout (one theme per layout).
 | consultancy  | consultancy  | Business consultancy theme        |
 | publicsector | publicsector | Public-sector advisory theme      |
 
-### App working surface (installable, works offline)
+### App working surface, PWA capable (installable, works offline)
 
-| Theme   | Layout     | Description                                                       |
-| ------- | ---------- | ----------------------------------------------------------------- |
-| lab      | pocket-ops | Warm neutrals, deep teal, Inter; light and dark                   |
-| control  | pocket-ops | Operations-room look: square panels, cyan signal, Archivo + Mono  |
-| meadow   | pocket-ops | Light, from clarity's palette                                     |
-| midnight | pocket-ops | Always dark, from dark's palette                                  |
+| Theme    | Layout     | PWA | Description                                                       |
+| -------- | ---------- | --- | ----------------------------------------------------------------- |
+| lab      | pocket-ops | yes | Warm neutrals, deep teal, Inter; light and dark                   |
+| control  | pocket-ops | yes | Operations-room look: square panels, cyan signal, Archivo + Mono  |
+| meadow   | pocket-ops | yes | Light, from clarity's palette                                     |
+| midnight | pocket-ops | yes | Always dark, from dark's palette                                  |
+
+A PWA-capable theme is one for an installable layout that styles the three app
+slots (`[data-ls-app-banner]`, `[data-ls-app-show-out]`, `[data-ls-app-status]`)
+in both schemes. Each carries `"tags": ["pwa", ...]` in its `theme.json`, and
+`manifest.json` carries the tag with the theme, so a catalogue listing can
+filter on it. The four above are the PWA-capable themes today; no theme of a
+public layout is, because those layouts render no app slots.
 
 `pocket-ops` is the layout for a site that installs as an app on phone, tablet
 and PC and keeps working with no connection: apps and their pages from

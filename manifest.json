@@ -527,21 +527,41 @@
             {
                "name" : "control",
                "package" : "releases/pocket-ops/control.zip",
+               "tags" : [
+                  "pwa",
+                  "app",
+                  "offline"
+               ],
                "version" : "1.0.0"
             },
             {
                "name" : "lab",
                "package" : "releases/pocket-ops/lab.zip",
+               "tags" : [
+                  "pwa",
+                  "app",
+                  "offline"
+               ],
                "version" : "1.0.0"
             },
             {
                "name" : "meadow",
                "package" : "releases/pocket-ops/meadow.zip",
+               "tags" : [
+                  "pwa",
+                  "app",
+                  "offline"
+               ],
                "version" : "1.0.0"
             },
             {
                "name" : "midnight",
                "package" : "releases/pocket-ops/midnight.zip",
+               "tags" : [
+                  "pwa",
+                  "app",
+                  "offline"
+               ],
                "version" : "1.0.0"
             }
          ],

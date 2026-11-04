@@ -1,6 +1,7 @@
 {
   "name": "midnight",
   "version": "1.0.0",
+  "tags": ["pwa", "app", "offline"],
   "description": "An always-dark working surface: charcoal panels, a soft blue accent, Inter. Colours from the catalogue theme dark (layouts/default), mapped to the pocket-ops short names. It stays dark whatever the device asks.",
   "author": "OpenDigitalCC",
   "layouts": [
