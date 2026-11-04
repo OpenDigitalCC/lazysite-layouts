@@ -107,7 +107,6 @@ for key, r in themes.items():
     c['scroll_steps'] += st
     c['nav_' + nv] += 1
     c['form_' + fv] += 1
-    c['form_styled'] += fv == 'styled'
     c['icon_ok'] += icon_ok
     c['states_clean'] += not s['states']
     c['states_total'] += len(s['states'])
@@ -125,7 +124,7 @@ for key, r in themes.items():
 n = len(rows)
 L = []
 w = L.append
-w('# Catalogue baseline, %s' % date)
+w('# Catalogue measurement, %s' % date)
 w('')
 w('One row per layout and theme, measured by `tools/render-catalogue.sh` against the design-kit specimen '
   'and the form in steps. Re-run the same command for the after measurement.')
