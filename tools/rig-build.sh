@@ -20,9 +20,9 @@ rm -rf "$RIG/docroot" "$RIG/check"
 mkdir -p "$DOC/lazysite/layouts" "$DOC/lazysite-assets" "$DOC/s" "$DOC/f" "$RIG/check"
 
 
-cat > "$DOC/lazysite/lazysite.conf" <<'CONF'
+cat > "$DOC/lazysite/lazysite.conf" <<CONF
 site_name: Catalogue rig
-site_url: http://127.0.0.1:8097
+site_url: http://127.0.0.1:${RIG_PORT:-8097}
 manager: disabled
 CONF
 
@@ -74,6 +74,9 @@ for LDIR in "$REPO"/layouts/*/; do
         fi
         if [ ! -f "$TDIR/assets/favicon.svg" ]; then
             cp "$REPO/assets/favicon.svg" "$PK/assets/favicon.svg"
+        fi
+        if [ ! -f "$TDIR/assets/base.css" ]; then
+            cp "$REPO/assets/base.css" "$PK/assets/base.css"
         fi
 
         # The served mirror is the pack's assets/.

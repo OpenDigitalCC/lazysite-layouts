@@ -113,6 +113,14 @@ for LAYOUT_DIR in "$LAYOUTS_DIR"/*/; do
             cp "$REPO_ROOT/assets/favicon.svg" "$TEMP_DIR/assets/favicon.svg"
         fi
 
+        # Shared base sheet: every layout links [% theme_assets %]/base.css before its
+        # main.css. assets/base.css is injected here so git carries it once; a theme
+        # that commits its own assets/base.css wins, the same override rule as favicon.
+        if [ ! -f "$THEME_DIR/assets/base.css" ]; then
+            mkdir -p "$TEMP_DIR/assets"
+            cp "$REPO_ROOT/assets/base.css" "$TEMP_DIR/assets/base.css"
+        fi
+
         # Build the zip. Excludes .DS_Store etc. Intentionally does
         # NOT include layout.tt, layout.json, or nav.conf - those
         # don't belong in a theme package.

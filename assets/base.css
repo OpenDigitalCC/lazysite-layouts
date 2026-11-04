@@ -1,0 +1,275 @@
+/* base.css - the catalogue's shared base sheet.
+ *
+ * Injected into every theme pack at packaging (tools/package-themes.sh) and
+ * linked by every layout BEFORE its main.css, so a theme's own rules win on
+ * order and, wherever a block below uses a heavier selector, that block says so.
+ * A theme that commits its own assets/base.css replaces this file (the same
+ * override rule as favicon.svg).
+ *
+ * Token-agnostic: the layouts name their tokens differently, so colours come
+ * from currentColor, inherit, system colours, or the optional hooks --ls-accent
+ * and --ls-danger (a theme may set them; unset they fall back to currentColor)
+ * - never the theme token names, which the design-kit check would demand of theme.json,
+ * and each with a fallback that holds on its own. No external URL anywhere.
+ *
+ * Baseline figures are from docs/measurements/2026-11-04-catalogue-baseline.md
+ * (49 themes in 23 layouts at the time; pocket-ops makes 51 in 24).
+ */
+
+/* ---------------------------------------------------------------------------
+ * 1. Nothing pushes the page sideways.
+ * Fixes: 47 of 49 themes scrolled sideways on the specimen at 390 or 1280; the
+ * first culprit was the unbroken long link in 43 themes, h3 in ledger and
+ * div.pub in quill (see also inbox/2026-10-28-clarity-sideways-scroll.md).
+ * overflow-wrap is inherited, so one declaration on html and body covers every
+ * layout's wrapper; "anywhere" (unlike "break-word") also lowers the min-content
+ * width, so a long word inside a flex or grid item can shrink instead of
+ * widening its track.
+ * ------------------------------------------------------------------------- */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { overflow-wrap: break-word; }
+/* "anywhere" also shrinks min-content, which is right for page content but
+ * would squeeze words out of flex navigation, so it is scoped to content. */
+:where(main, article, [role="main"], .content, #content) :where(a, p, li, dt, dd, td, th, h1, h2, h3, h4, h5, h6, blockquote, figcaption, summary, label, code, kbd, samp) {
+    overflow-wrap: anywhere;
+}
+/* Flex and grid children default to min-width:auto and refuse to shrink below
+ * their content; the page wrappers and the common cell classes may. */
+:where(main, article, section, form, fieldset, details, figure, .form-field, .form-options) {
+    min-width: 0;
+    max-width: 100%;
+}
+/* Embeds and media never exceed the column. */
+:where(img, svg, video, canvas, picture, embed, object, iframe, audio) { max-width: 100%; }
+:where(img, video, canvas, picture) { height: auto; }
+.oembed, .oembed iframe, .oembed video { max-width: 100%; }
+.oembed iframe { box-sizing: border-box; }
+/* Code scrolls inside its own box instead of widening the page. */
+:where(pre) { max-width: 100%; overflow-x: auto; overflow-wrap: normal; }
+:where(pre code) { overflow-wrap: normal; }
+/* Wide tables scroll inside themselves on narrow screens. */
+@media (max-width: 48rem) {
+    :where(table) {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+ * 2. The renderer's form classes (inbox/2026-09-08-shipped-themes-do-not-style-
+ * the-form-classes.md). Baseline: 0 of 49 styled .form-option or .form-options;
+ * 5 showed each option as a full-width bordered row.
+ * The engine emits (lazysite-processor/forms.pm):
+ *   div.form-field > label (+ span.required) + input | select | textarea
+ *   div.form-options > label.form-option > input + text (+ input.form-option-qty)
+ *   div.form-field.form-submit > button
+ *   div.form-status, p.form-status.form-status-ok | .form-status-error, p.form-success
+ * The option rule is deliberately three classes deep: themes that style
+ * ".form-field label" as a block with a border would otherwise win.
+ * ------------------------------------------------------------------------- */
+.form-field { margin-block: 0 1rem; }
+.form-field .form-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    align-items: center;
+    border: 0;
+    padding: 0;
+    background: none;
+}
+.form-field .form-options .form-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    font-weight: inherit;
+    cursor: pointer;
+}
+.form-field .form-options .form-option input[type="checkbox"],
+.form-field .form-options .form-option input[type="radio"] {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    flex: none;
+}
+.form-option-qty { width: 4.5em; flex: none; }
+.form-field .required { font-weight: 700; }
+.form-field :is(input, select, textarea) { max-width: 100%; box-sizing: border-box; }
+.form-field textarea { resize: vertical; }
+/* An empty status line takes no space; a filled one reads as a message and
+ * differs from the sent state by more than colour (a word-length marker). */
+.form-status:empty { display: none; }
+.form-status { margin-block: 0.75rem 0; }
+.form-status-ok::before { content: "\2713\00a0"; font-weight: 700; }
+.form-status-error::before { content: "!\00a0"; font-weight: 700; }
+.form-status-error { border-inline-start: 0.25rem solid var(--ls-danger, currentColor); padding-inline-start: 0.6rem; }
+.form-status-ok { border-inline-start: 0.25rem double currentColor; padding-inline-start: 0.6rem; }
+.lazysite-form > .form-success { margin-block: 0.75rem; }
+.lazysite-form > .form-success::before { content: "\2713\00a0"; font-weight: 700; }
+
+/* ---------------------------------------------------------------------------
+ * 3. Forms in steps (--- step: Title --- in a form). The engine's own
+ * /assets/lazysite-chrome.css hides the other steps once the script adds
+ * .lsf-js; this gives each step, its legend, the counter and the Back/Next
+ * row a shape. Baseline: form steps unstyled in 49 of 49.
+ * ------------------------------------------------------------------------- */
+.lazysite-form[data-multistep] .lsf-step {
+    border: 0;
+    margin: 0 0 1rem;
+    padding: 0;
+    min-width: 0;
+}
+.lazysite-form[data-multistep] .lsf-step > legend {
+    padding: 0;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+.lazysite-form[data-multistep] .lsf-progress { margin-bottom: 0.75rem; font-size: 0.9em; }
+.lazysite-form[data-multistep] .lsf-progress .lsf-cur { font-weight: 700; }
+.lazysite-form.lsf-js[data-multistep] .lsf-step.lsf-active { display: block; }
+.lazysite-form[data-multistep] .lsf-nav { flex-wrap: wrap; gap: 0.5rem; }
+.lazysite-form[data-multistep] .lsf-nav button { cursor: pointer; }
+
+/* ---------------------------------------------------------------------------
+ * 4. States every theme lacked (docs/measurements baseline, "States left
+ * unstyled"): visited links 49 of 49, button keyboard focus 49, invalid fields
+ * 49, placeholder 49, checked boxes and radios 49, form steps 49, disabled
+ * button 44, field focus 43, link focus 43, button hover 43, form messages 43.
+ * Selectors are kept at one class or less so a theme's own rule wins.
+ * ------------------------------------------------------------------------- */
+/* Visited: browsers allow only colour-like properties here, and a colour of our
+ * own would override every theme's link colour, so only the underline colour
+ * changes: a quieter underline on a link already followed. */
+a:visited { text-decoration-color: color-mix(in srgb, currentColor 55%, transparent); }
+a:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid var(--ls-accent, currentColor);
+    outline-offset: 2px;
+}
+a:active { opacity: 0.85; }
+/* Button keyboard focus, hover, pressed, disabled. */
+button:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible,
+.form-submit button:focus-visible {
+    outline: 2px solid var(--ls-accent, currentColor);
+    outline-offset: 2px;
+}
+button:hover:not(:disabled),
+input[type="submit"]:hover:not(:disabled) { filter: brightness(1.08); }
+button:active:not(:disabled) { transform: translateY(1px); }
+button:disabled,
+button[disabled],
+input:disabled,
+select:disabled,
+textarea:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+/* Field focus and hover. */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--ls-accent, currentColor);
+    outline-offset: 1px;
+}
+/* Invalid, after the visitor has interacted (:user-invalid), and for any
+ * script that sets aria-invalid. The engine sets no error class on a field. */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid,
+[aria-invalid="true"] {
+    outline: 2px solid var(--ls-danger, currentColor);
+    outline-offset: 1px;
+    border-style: dashed;
+}
+/* Placeholder: secondary to a typed value, still readable. */
+::placeholder { color: inherit; opacity: 0.6; }
+/* Checked boxes and radios take the theme accent where it exists. */
+input[type="checkbox"],
+input[type="radio"],
+progress { accent-color: var(--ls-accent, auto); }
+.form-option:has(input:checked) { font-weight: 600; }
+input[type="file"]::file-selector-button { cursor: pointer; font: inherit; }
+/* Disclosures. */
+summary { cursor: pointer; }
+details:not([open]) > summary { list-style-position: outside; }
+/* Selection stays legible on any palette. */
+::selection { background: Highlight; color: HighlightText; }
+
+/* Reduced motion: nothing animates for a visitor who asked for none.
+ * Baseline: missing in 3 of 49. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* Forced colours: borders where a background alone carried the shape. */
+@media (forced-colors: active) {
+    button, input, select, textarea { border: 1px solid ButtonText; }
+    :focus-visible { outline: 2px solid Highlight; }
+}
+
+/* ---------------------------------------------------------------------------
+ * 5. Hooks that had no CSS anywhere (W1-A, docs/WORK-PLAN-2026-11-04.md).
+ * ------------------------------------------------------------------------- */
+/* Odoo sign-in banner: the engine's span.ls-odoo-banner (SM1160) carries an
+ * inline "margin-left:auto" and font-size; it sits inline with the account
+ * links and wraps with them. [hidden] must hold against a theme's display rule. */
+.ls-odoo-banner {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25em 0.6em;
+    vertical-align: baseline;
+    white-space: normal;
+}
+.ls-odoo-banner [hidden] { display: none !important; }
+.ls-odoo-banner > span { display: inline-flex; flex-wrap: wrap; gap: 0 0.5em; align-items: baseline; }
+.ls-odoo-banner strong { font-weight: 600; }
+/* Explorer's wrapper around the banner. */
+.ex-auth { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 0.25rem 0.75rem; }
+/* The footer feed links span (RSS and Atom). */
+.feed-links { display: inline; white-space: normal; }
+.feed-links a { text-decoration-thickness: from-font; }
+
+/* ---------------------------------------------------------------------------
+ * 6. App slots, so any theme can be checked for them: a connection banner, a
+ * signed-out notice and an install/update status. Generic names; a theme
+ * restyles them, and an element carrying [hidden] stays hidden.
+ * ------------------------------------------------------------------------- */
+[data-ls-app-banner],
+[data-ls-app-show-out],
+[data-ls-app-status] {
+    box-sizing: border-box;
+    max-width: 100%;
+    margin-block: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    border-radius: 0.35rem;
+    background: color-mix(in srgb, currentColor 6%, transparent);
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+[data-ls-app-banner][hidden],
+[data-ls-app-show-out][hidden],
+[data-ls-app-status][hidden],
+[data-ls-app-status]:empty { display: none; }
+[data-ls-app-banner] { border-inline-start-width: 0.3rem; }
+[data-ls-app-status] { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.75rem; }
+[data-ls-app-status][hidden] { display: none; }
+
+/* Link hover where a theme gave none (baseline: flux and flux-mono): a thicker
+ * underline, no colour change, so it cannot fight a theme's link colour. */
+a:hover { text-decoration-thickness: 0.12em; }

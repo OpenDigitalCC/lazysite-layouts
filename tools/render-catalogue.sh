@@ -36,8 +36,8 @@ done
 case "$OUT" in /*) ;; *) OUT="$REPO/$OUT" ;; esac
 case "$RIG" in /*) ;; *) RIG="$REPO/$RIG" ;; esac
 
-PORT=8097
-CDP=9333
+PORT="${RIG_PORT:-8097}"
+CDP="${RIG_CDP:-9333}"
 PROF="$REPO/tmp/chrome-prof"
 mkdir -p "$RIG" "$REPO/tmp"
 
