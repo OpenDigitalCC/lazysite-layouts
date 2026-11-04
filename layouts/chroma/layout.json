@@ -1,6 +1,6 @@
 {
   "name": "chroma",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "requires": {"lazysite": "0.15.11"},
   "description": "An interactive statement site where visitors restyle the palette live - playful, generative, memorable.",
   "author": "OpenDigitalCC",

@@ -119,6 +119,9 @@
   var sw = document.getElementById('swatches');
   presets.forEach(function(p){ var b=document.createElement('button'); b.className='swatch'; b.dataset.name=p.name; b.title=p.name; b.setAttribute('aria-pressed','false'); b.style.background='linear-gradient(135deg, '+p.c[6]+' 0 50%, '+p.c[0]+' 50% 100%)'; b.addEventListener('click',function(){apply(p);}); sw.appendChild(b); });
   document.getElementById('randomise').addEventListener('click', randomise);
+  // Hero buttons name an action (data-do); only the listed actions exist, so page front matter never supplies script.
+  var actions = { randomise: randomise };
+  document.querySelectorAll('[data-do]').forEach(function(b){ var f = actions[b.getAttribute('data-do')]; if (f) b.addEventListener('click', f); });
   // init
   var saved; try { saved = JSON.parse(localStorage.getItem('chroma')); } catch(e){}
   apply(saved && saved.c && saved.c.length===10 ? saved : presets[0]);
