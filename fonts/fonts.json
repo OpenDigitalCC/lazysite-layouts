@@ -9,6 +9,26 @@
       ],
       "family" : "Anton"
    },
+   "archivo" : {
+      "faces" : [
+         {
+            "file" : "archivo-400.woff2",
+            "style" : "normal",
+            "weight" : 400
+         },
+         {
+            "file" : "archivo-500.woff2",
+            "style" : "normal",
+            "weight" : 500
+         },
+         {
+            "file" : "archivo-600.woff2",
+            "style" : "normal",
+            "weight" : 600
+         }
+      ],
+      "family" : "Archivo"
+   },
    "bricolage-grotesque" : {
       "faces" : [
          {

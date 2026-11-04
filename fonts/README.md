@@ -25,7 +25,7 @@ theme's `assets/` subtree is mirrored to
 Most files are variable fonts covering a weight span (Google Fonts
 serves one variable file per family/style); the filename records the
 span, e.g. `inter/inter-400-800.woff2`. Static-only families (e.g.
-Spectral) have one file per weight. `fonts.json` maps each
+Spectral, Archivo) have one file per weight. `fonts.json` maps each
 (family, style, weight) a theme may request to the file that serves
 it - `tools/gen-fonts-css.pl` reads it to emit `@font-face` rules.
 
@@ -41,6 +41,7 @@ woff2 files, so every shipped theme zip satisfies it.
 | Family              | Copyright                                        |
 | ------------------- | ------------------------------------------------ |
 | Anton               | 2020 The Anton Project Authors                   |
+| Archivo             | 2020 The Archivo Project Authors                 |
 | Bricolage Grotesque | 2022 The Bricolage Grotesque Project Authors     |
 | Cormorant Garamond  | 2015 the Cormorant Project Authors               |
 | Fraunces            | 2018 The Fraunces Project Authors                |
