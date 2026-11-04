@@ -387,7 +387,7 @@ a.footnote:hover, a.reversefootnote:hover { text-decoration: underline; }
 /* ---- narrow screens: the sidebar becomes the Menu panel ---------------------------- */
 @media (max-width: 52em) {
   .in-shell { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-block: .75rem 2rem; }
-  .in-main { padding: 1.1rem 1rem 1.5rem; border-left: 0; border-right: 0; border-radius: 0; margin-inline: -1rem; }
+  .in-main { padding: 1.1rem 1rem 1.5rem; border-left: 0; border-right: 0; border-radius: 0; margin-inline: -1rem; max-width: none; }
   .in-menu { display: none; }
   .in-js .in-menu { display: inline-flex; }
   .in-js .in-side { display: none; }
