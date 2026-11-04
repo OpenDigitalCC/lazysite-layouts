@@ -37,7 +37,7 @@
       <h1>[% page_title %]</h1>
       [% IF page_subtitle %]<p class="sub">[% page_subtitle %]</p>[% END %]
       [% IF request_uri == '/' %]
-      <p class="ex-lede">lazysite turns Markdown into a fast, themeable static site &mdash; no build step, no database. <a href="https://lazysite.io">lazysite.io &nearr;</a></p>
+      <p class="ex-lede">lazysite turns Markdown files into fast, themeable websites, with no build step and no database server. <a href="https://lazysite.io">lazysite.io &nearr;</a></p>
       [% END %]
     </header>
     [% END %]

@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "requires": {"lazysite": "0.15.11"},
   "description": "The theme gallery's own clean, modern chrome - a simple hero-and-content shell.",
   "author": "OpenDigitalCC",
