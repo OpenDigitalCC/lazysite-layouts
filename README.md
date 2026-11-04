@@ -183,6 +183,21 @@ each ship their own layout (one theme per layout).
 | consultancy  | consultancy  | Business consultancy theme        |
 | publicsector | publicsector | Public-sector advisory theme      |
 
+### App working surface (installable, works offline)
+
+| Theme   | Layout     | Description                                                       |
+| ------- | ---------- | ----------------------------------------------------------------- |
+| lab     | pocket-ops | Warm neutrals, deep teal, Inter; light and dark                    |
+| control | pocket-ops | Operations-room look: square panels, cyan signal, Archivo + Mono   |
+
+`pocket-ops` is the layout for a site that installs as an app on phone, tablet
+and PC and keeps working with no connection: apps and their pages from
+`nav.conf` in one header, a Menu button on a narrow screen, a banner slot, a
+signed-out notice, the Odoo sign-in banner, and a small kit (colour-scheme
+switch, kept reads, a change queue) linked from the theme's assets. It needs
+lazysite 0.15.11 (0.15.13 for pages that open offline). See
+`docs/layouts/pocket-ops.md`.
+
 Theme `config` values drive every meaningful colour (and often
 the fonts) in `main.css` via CSS custom properties - edit
 `theme.json`, get a recoloured theme, no CSS edits needed.
