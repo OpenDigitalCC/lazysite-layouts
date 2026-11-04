@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  [%# Pocket Ops: an app-style working surface. Sets data-po-js and a stored colour
+      scheme before the first paint; a file, not an inline script, so the page needs
+      no inline code under the site's script policy. The manifest link is the
+      engine's (app_* in lazysite.conf); the layout adds none. %]
+  <script src="[% theme_assets %]/theme-early.js?v=[% theme_version %]"></script>
+  [%# The <head> contract. page_meta_title / page_meta_desc arrive from the
+      engine already resolved and HTML-escaped, so they are emitted WITHOUT
+      | html. page_url is the page's address (canonical domain plus path, no
+      query), already escaped once. site_name arrives raw, so it takes | html. %]
+  [% IF page_meta_desc %]<meta name="description" content="[% page_meta_desc %]">[% END %]
+  <meta property="og:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta property="og:description" content="[% page_meta_desc %]">[% END %]
+  <meta property="og:type" content="website">
+  [% IF site_name %]<meta property="og:site_name" content="[% site_name | html %]">[% END %]
+  [% IF page_url %]<meta property="og:url" content="[% page_url %]">[% END %]
+  [% IF page_url %]<link rel="canonical" href="[% page_url %]">[% END %]
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[% page_meta_title %]">
+  [% IF page_meta_desc %]<meta name="twitter:description" content="[% page_meta_desc %]">[% END %]
+  <title>[% page_meta_title %][% IF site_name %] - [% site_name %][% END %]</title>
+  <link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
+  <link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
+  <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
+  [% theme_css %]
+  [% IF theme_assets %]
+  <link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]">
+  <link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">
+  <link rel="stylesheet" href="[% theme_assets %]/patterns.css?v=[% theme_version %]">
+  [% END %]
+</head>
+[%# One header: the brand (the site name, linking home), the apps from nav.conf,
+    the colour-scheme switch and the sign-in. The current app's own pages are the
+    second row. On a narrow screen the apps open in a panel from the Menu button.
+    A nav parent with no address of its own links to its first child. Signed in or
+    not is set on <html> by pocket-ops.js (data-po-signed-in), and the theme's CSS
+    shows one of the two states; until the script knows, neither shows. -%]
+[% path = request_uri.replace('\?.*', '') %]
+<body>
+<a class="po-skip" href="#main">Skip to content</a>
+<header class="po-top">
+  <div class="po-top-row">
+    <a class="po-brand" href="/"[% IF path == '/' %] aria-current="page"[% END %]><span class="po-brand-mark" aria-hidden="true"></span>[% site_name | html %]</a>
+    <nav class="po-nav" id="po-nav" aria-label="Apps">
+      <ul>
+      [% current = '' %]
+      [% FOREACH item IN nav %]
+        [% href = item.url || (item.children.size ? item.children.0.url : '') %]
+        [% prefix = href.replace('[^/]*$', '') %]
+        [% here = (href && path == href) || (prefix.length > 1 && path.substr(0, prefix.length) == prefix) %]
+        [% FOREACH child IN item.children %][% IF path == child.url %][% here = 1 %][% END %][% END %]
+        [% IF here && !current %][% current = item %][% END %]
+        <li>
+          [% IF href %]
+          <a href="[% href | url_safe %]"[% IF here %] class="active" aria-current="[% path == href ? 'page' : 'true' %]"[% END %]>[% item.label %]</a>
+          [% ELSE %]
+          <span class="po-nav-label">[% item.label %]</span>
+          [% END %]
+          [% IF item.children.size %]
+          <ul class="po-nav-children">
+            [% FOREACH child IN item.children %]
+            <li><a href="[% child.url | url_safe %]"[% IF path == child.url %] class="active" aria-current="page"[% END %]>[% child.label %]</a></li>
+            [% END %]
+          </ul>
+          [% END %]
+        </li>
+      [% END %]
+      </ul>
+    </nav>
+    <div class="po-who">
+      <button type="button" class="po-quiet po-theme" data-po-theme>Auto</button>
+      [%# Cache-safe sign in/out: pages are cached and shared, so a server-side
+          IF-authenticated check would bake one visitor's state into the cached
+          HTML. On a site that signs in with Odoo the engine supplies the banner
+          (its data-ls-odoo-signin / data-ls-odoo-signout controls are filled by
+          lazysite-odoo.js) and the layout shows no sign-out of its own beside it;
+          otherwise auth_control ships both links hidden and the injected auth-sync
+          script reveals the right one from the lzs_session cookie. %]
+      [% IF odoo_signin_banner %][% odoo_signin_banner %][% ELSE %][% auth_control %][% END %]
+    </div>
+    <button type="button" class="po-quiet po-menu-toggle" data-po-menu-toggle aria-expanded="false" aria-controls="po-nav">Menu</button>
+  </div>
+  [% IF current && current.children.size > 1 %]
+  <nav class="po-subnav" aria-label="[% current.label %]">
+    [% FOREACH child IN current.children %]
+    <a href="[% child.url | url_safe %]"[% IF path == child.url %] class="active" aria-current="page"[% END %]>[% child.label %]</a>
+    [% END %]
+  </nav>
+  [% END %]
+</header>
+<script src="[% theme_assets %]/pocket-ops.js?v=[% theme_version %]"></script>
+
+<main class="po-main" id="main">
+  <header class="po-page-head">
+    <h1>[% page_title %]</h1>
+    [% IF page_subtitle %]<p class="po-lede">[% page_subtitle %]</p>[% END %]
+  </header>
+  [%# Slots: the banner is one line under the page heading on every page (offline,
+      changes waiting, a new version ready); the offline kit fills it. The signed-out
+      notice shows only on a page whose content is wrapped in <div class="po-app">,
+      for a visitor who is not signed in. %]
+  <div class="po-banner" data-po-banner hidden></div>
+  <div class="po-signed-out" data-po-show-out role="status">
+    <p><strong>Sign in to use this page.</strong> What you can see and change here depends on your account.</p>
+  </div>
+  [% content %]
+  [% IF page_modified %]
+  <p class="po-modified"><time datetime="[% page_modified_iso %]">Last updated: [% page_modified %]</time></p>
+  [% END %]
+</main>
+
+<footer class="po-foot">
+  <div class="po-foot-links">
+    <details class="po-app-status" data-po-app-status hidden><summary></summary><div class="po-app-pop"></div></details>
+    <small>&copy; [% site_name | html %]</small>
+    <a href="/feed.rss" title="[% site_name | html %] (RSS)">RSS</a>
+    <a href="/feed.atom" title="[% site_name | html %] (Atom)">Atom</a>
+    [% IF manager == 'enabled' %][% mp = manager_path || '/manager/' %]<a href="[% mp | url_safe %]">Site manager</a>[% END %]
+    <span><a href="https://lazysite.io">This is a Lazysite</a></span>
+  </div>
+</footer>
+[%# The offline kit, last in <body>, after the page's own scripts: kept reads, the
+    banner and the app's state (theme_assets/offline-kit.js). %]
+<script src="[% theme_assets %]/offline-kit.js?v=[% theme_version %]"></script>
+</body>
+</html>

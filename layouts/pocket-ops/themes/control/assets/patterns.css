@@ -1,0 +1,169 @@
+/* Pocket Ops: the patterns pages and app sheets share, drawn with the theme's
+ * short names only (never a colour value), so every theme of the layout restyles
+ * them. Each block names the design-system pattern it follows. Class names take
+ * the po- prefix; the layout's own frame (header, nav, footer) is in main.css.
+ * Linked by the layout after main.css, from the theme's assets. */
+
+/* Notes: one line of feedback under a form or list */
+.po-msg { min-height: 1.25rem; margin: var(--s-2) 0 0; font-size: var(--t-sm); font-weight: 500; color: var(--muted); }
+.po-msg.ok { color: var(--ok); } .po-msg.warn { color: var(--bad); }
+
+/* FilterChips: one row above the list; scrolls sideways on a phone; a tick when on */
+.po-chips { display: flex; gap: var(--s-2); overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--s-1) * -1) var(--s-3); padding: var(--s-1); }
+.po-chips::-webkit-scrollbar { display: none; }
+.po-chips button { flex: none; min-height: 36px; padding: 0 var(--s-3); border-radius: var(--radius-pill); font-size: var(--t-sm); font-weight: 500; gap: 6px; }
+.po-chips button b { font-weight: 500; color: var(--muted); }
+.po-chips button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-strong); }
+.po-chips button[aria-pressed="true"]::before { content: "\2713"; }
+.po-chips button[aria-pressed="true"] b { color: var(--accent-strong); }
+
+/* the search row above a list */
+.po-filter { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; margin: 0 0 var(--s-4); }
+.po-filter input[type=search] { flex: 1 1 16rem; min-width: 0; max-width: 32rem; }
+
+/* DataTable, scrolling variant: sideways on a narrow screen, rows never coloured */
+.po-table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.po-table { margin: 0; font-size: var(--t-sm); min-width: 36rem; }
+.po-table th { background: var(--sunken); color: var(--muted); font-size: var(--t-sm); font-weight: 500; text-transform: var(--label-case); letter-spacing: var(--label-track); padding: var(--s-3) var(--s-4); }
+.po-table td { padding: var(--s-3) var(--s-4); vertical-align: middle; }
+.po-table tr:last-child td { border-bottom: 0; }
+.po-table .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* RecordDetails: fields, totals, notes on a record, stars */
+.po-stars { color: var(--star); letter-spacing: .1em; line-height: 1; white-space: nowrap; }
+.po-split { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s-5); }
+.po-split > section { background: var(--surface); border: 1px solid var(--line); border-top: var(--panel-rule, 1px solid var(--line)); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--s-4); }
+.po-split > section > h3:first-child { margin-top: 0; }
+@media (max-width: 52rem) { .po-split { grid-template-columns: 1fr; } }
+.po-fields { display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: var(--s-2) var(--s-5); margin: 0 0 var(--s-4); }
+.po-fields dt { color: var(--muted); font-size: var(--t-sm); font-weight: 500; line-height: 1.5rem; }
+.po-fields dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 30rem) { .po-fields { grid-template-columns: 1fr; gap: 0; } .po-fields dd { margin-bottom: var(--s-3); } }
+.po-pre { white-space: pre-wrap; }
+.po-notes { list-style: none; padding: 0; margin: var(--s-4) 0 0; display: grid; gap: var(--s-4); }
+.po-notes li { padding-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
+.po-notes li:last-child { border-bottom: 0; padding-bottom: 0; }
+.po-meta { font-size: var(--t-xs); font-weight: 500; color: var(--muted); margin-bottom: var(--s-1); }
+.po-meta + .po-pre, .po-notes .po-pre { font-size: var(--t-md); }
+.po-totals { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2) var(--s-5); margin: var(--s-4) 0 var(--s-4) auto; max-width: 22rem; font-variant-numeric: tabular-nums; }
+.po-totals dt { color: var(--muted); } .po-totals dd { margin: 0; text-align: right; font-family: var(--figure-font); }
+.po-totals dt:last-of-type, .po-totals dd:last-of-type { padding-top: var(--s-2); border-top: 1px solid var(--line-strong); font-weight: 600; color: var(--ink); font-size: var(--t-lg); }
+
+/* FormField: label above, fields stacked one column, space-4 apart */
+.po-form { display: grid; gap: var(--s-4); max-width: 36rem; }
+.po-form label:not(:has(> input[type=checkbox])):not(:has(> input[type=radio])) { display: grid; gap: var(--s-2); }
+.po-form > div { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+/* FormField and ChoiceField: two fields to a row, a fieldset, a tick box */
+.po-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+@media (max-width: 30rem) { .po-row { grid-template-columns: 1fr; } }
+.po-fieldset { display: grid; gap: 0; }
+.po-check { display: flex !important; gap: var(--s-3); align-items: center; min-height: var(--control); font-weight: 400 !important; }
+
+/* StatusBadge: a word with a dot, tone by meaning */
+.po-state { display: inline-flex; align-items: center; gap: 6px; padding: 2px var(--s-2); border-radius: var(--radius-pill); font-size: var(--t-xs); font-weight: 500;
+  letter-spacing: .02em; white-space: nowrap; background: var(--sunken); color: var(--ink); }
+.po-state::before { content: ""; width: 6px; height: 6px; border-radius: var(--dot-radius); background: currentColor; }
+
+/* AppCards: the whole card is the link */
+.po-apps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--s-4); }
+.po-apps a { display: flex; flex-direction: column; gap: var(--s-1); height: 100%; padding: var(--s-4) var(--s-5); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); color: var(--ink); text-decoration: none; }
+.po-apps a:hover { background: var(--sunken); color: var(--ink); }
+.po-apps b { color: var(--accent); font-size: var(--t-lg); font-weight: 600; }
+.po-apps span { color: var(--muted); font-size: var(--t-sm); }
+
+/* DataTable, stacked variant (design-system DataTable): add class po-stack to a
+   .po-table inside .po-table-wrap. Under 560px of its container each row is a
+   card: the first column (the record's name) as its heading, the others as
+   label - value lines; pocket-ops.js labels the cells from the column headings. */
+.po-table-wrap:has(> .po-stack) { container-type: inline-size; }
+@container (max-width: 35rem) {
+  .po-stack { min-width: 0; }
+  .po-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .po-stack, .po-stack tbody, .po-stack tr, .po-stack td { display: block; }
+  .po-stack tbody tr { padding: var(--s-3) var(--s-4); border-top: 1px solid var(--line); }
+  .po-stack tbody tr:first-child { border-top: 0; }
+  .po-stack tbody tr:hover td { background: transparent; }
+  .po-stack td { border: 0; padding: 2px 0; display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); text-align: right; min-width: 0; }
+  .po-stack td > * { min-width: 0; overflow-wrap: anywhere; }
+  .po-table.po-stack td { white-space: normal; }  /* over an app sheet's nowrap */
+  .po-stack td::before { content: attr(data-label); flex: none; color: var(--muted); font-weight: 500; text-align: left; }
+  .po-stack td:first-child { display: block; padding-bottom: var(--s-1); font-size: var(--t-md); font-weight: 600; text-align: left; }
+  .po-stack td:first-child::before, .po-stack td[colspan]::before { content: none; }
+  .po-stack td[colspan] { display: block; text-align: left; font-weight: 400; }
+  .po-stack td:empty { display: none; }
+}
+
+/* ConnectionBanner (design-system/components/ConnectionBanner): one line saying
+   whether work has reached the server, drawn by offline-kit.js */
+.po-banner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); padding: var(--s-2) var(--s-4);
+  border-radius: var(--radius); margin: 0 0 var(--s-4); font-size: var(--t-sm); font-weight: 500; }
+.po-banner-warning { background: var(--warn-soft); color: var(--warn); }
+.po-banner-info { background: var(--info-soft); color: var(--info); }
+.po-banner-danger { background: var(--bad-soft); color: var(--bad); }
+.po-banner-action { flex: none; min-height: var(--control); padding: 0 var(--s-2); border: 0; background: transparent; color: inherit;
+  font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.po-banner-action:hover { background: transparent; color: inherit; }
+
+/* Changes saved on the device and not sent yet (the offline kit's waiting list, Notes pattern) */
+.po-waiting { list-style: none; padding: 0; margin: 0 0 var(--s-4); display: grid; gap: var(--s-2); }
+.po-wait { padding: var(--s-3) var(--s-4); border-radius: var(--radius); background: var(--info-soft); }
+.po-wait.refused { background: var(--bad-soft); }
+.po-wait-head { display: flex; justify-content: space-between; gap: var(--s-3); }
+.po-wait-amount { font-family: var(--figure-font); font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.po-wait-sub { font-size: var(--t-sm); color: var(--muted); margin-top: var(--s-1); }
+.po-wait.refused .po-wait-sub { color: var(--bad); }
+.po-wait-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-2); }
+
+/* The app's state in the footer (offline-kit.js): a tick or cross and a few
+   words, with a popup of the details and the install button. Words carry the
+   state as well as the mark, so colour is never alone. */
+.po-app-status { position: relative; }
+.po-app-status summary { cursor: pointer; list-style: none; color: var(--muted); }
+.po-app-status summary::-webkit-details-marker { display: none; }
+.po-app-status summary:hover { color: var(--ink); }
+.po-app-status .po-app-mark { font-weight: 700; }
+.po-app-status.ok .po-app-mark { color: var(--ok); }
+.po-app-status.no .po-app-mark { color: var(--bad); }
+.po-app-pop { position: absolute; bottom: calc(100% + var(--s-2)); left: 0; z-index: 20; width: min(22rem, calc(100vw - 2rem));
+  display: grid; gap: var(--s-2); justify-items: start; padding: var(--s-3) var(--s-4); background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-raised); font-size: var(--t-sm); }
+.po-app-pop p { margin: 0; overflow-wrap: anywhere; }
+.po-banner-acts { display: flex; flex-wrap: wrap; gap: var(--s-2); flex: none; }
+/* offline: a submit that cannot wait for the connection is dimmed (offline-kit.js
+   sets data-po-offline; a queued action's button carries data-po-queues) */
+html[data-po-offline="1"] .po-app button[type="submit"]:not([data-po-queues]) { opacity: .5; }
+
+/* The menu button and the nested nav. pocket-ops.js sets data-po-js on <html>
+   before the first paint; without it the apps row scrolls sideways instead.
+   Above 44rem the nav is one row of apps (the current app's pages are the
+   sub-nav row); below it the apps, and under each its pages, open in a panel. */
+.po-menu-toggle { display: none; }
+.po-nav ul { list-style: none; margin: 0; padding: 0; }
+.po-nav > ul, .po-nav > ul > li { display: contents; }
+.po-nav-children { display: none !important; }
+@media (max-width: 44rem) {
+  html[data-po-js] .po-who { order: 2; }
+  html[data-po-js] .po-menu-toggle { display: inline-flex; order: 3; }
+  html[data-po-js] .po-nav { display: none; order: 4; flex-basis: 100%; overflow: visible; margin: 0; padding: var(--s-2) 0 var(--s-3);
+    border-top: 1px solid var(--line); }
+  html[data-po-js] .po-top[data-po-menu="open"] .po-nav { display: block; }
+  html[data-po-js] .po-nav > ul, html[data-po-js] .po-nav > ul > li { display: block; }
+  html[data-po-js] .po-nav a { display: flex; }
+  html[data-po-js] .po-nav-children { display: block !important; margin: 0 0 var(--s-1) var(--s-4); }
+}
+
+/* The group label of a nav parent with no address of its own (the layout links such a parent to its first page) */
+.po-nav-label { display: inline-flex; align-items: center; min-height: var(--control); padding: 0 var(--s-3); color: var(--muted); font-size: var(--t-sm); font-weight: 500; }
+
+/* The last-updated stamp under the page */
+.po-modified { margin: var(--s-6) 0 0; color: var(--muted); font-size: var(--t-sm); }
+
+
+/* On a phone the scheme switch keeps its icon and drops its word (the button's
+   aria-label, set by pocket-ops.js, still names the scheme), so the brand, the
+   switch, the sign-in and the Menu button stay on one row. */
+@media (max-width: 30rem) {
+  html[data-po-js] .po-theme { font-size: 0; gap: 0; padding: 0; min-width: var(--control); }
+}
