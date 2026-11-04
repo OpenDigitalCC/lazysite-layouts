@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# pwa-layout.t - the pocket-ops layout and its themes (lab, control).
+# pwa-layout.t - the pocket-ops layout and its themes (lab, control, meadow, midnight).
 #
 # t/site-contract.t renders pocket-ops with every other layout. This file holds
 # what is particular to an installable-app layout (docs/layouts/pocket-ops.md):
@@ -23,7 +23,7 @@ use JSON::PP ();
 
 my $root   = "$FindBin::Bin/..";
 my $ldir   = "$root/layouts/pocket-ops";
-my @themes = qw(lab control);  # extended in the variants below
+my @themes = qw(lab control meadow midnight);
 
 sub slurp {
     my ($path) = @_;
@@ -124,7 +124,7 @@ for my $p (@files) {
 is( $lj->{name}, 'pocket-ops', 'layout.json name' );
 like( $lj->{version} // '', qr/^\d+\.\d+\.\d+$/, 'layout.json version is semver' );
 is( $lj->{author}, 'OpenDigitalCC', 'layout.json author' );
-is_deeply( $lj->{themes}, [@themes], 'layout.json lists lab and control' );
+is_deeply( $lj->{themes}, [@themes], 'layout.json lists the four themes' );
 is( $lj->{default_theme}, 'lab', 'default theme is lab' );
 my $lreq = ref $lj->{requires} eq 'HASH' ? $lj->{requires}{lazysite} : undef;
 ok( defined $lreq && version_ge( $lreq, '0.15.11' ), 'layout.json requires lazysite 0.15.11 or later (page_url)' );

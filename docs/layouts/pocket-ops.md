@@ -8,10 +8,13 @@ install as an app and keep working with no connection. It came from the OOM Lab
 site's name, the apps are the site's `nav.conf`, and nothing in it belongs to
 one site.
 
-Themes: `lab` (the default; warm neutrals, deep teal, Inter) and `control` (an
+Themes: `lab` (the default; warm neutrals, deep teal, Inter), `control` (an
 operations-room look: square panels, a cyan signal line, Archivo with JetBrains
-Mono figures). Each is light and dark; both follow the device unless the person
-chooses.
+Mono figures), `meadow` (white panels on pale green-grey, a green accent, Inter;
+the palette of the `clarity` theme) and `midnight` (charcoal panels, a soft blue
+accent, Inter; the palette of the `dark` theme). `lab`, `control` and `meadow`
+are light and dark and follow the device unless the person chooses. `midnight` is
+dark whatever the device asks, so it does not draw the scheme switch.
 
 ## Installing
 
@@ -20,7 +23,7 @@ chooses.
 
 Engine versions:
 
-- 0.15.13 or later. The layout's `layout.json` and both themes' `theme.json`
+- 0.15.13 or later. The layout's `layout.json` and every theme's `theme.json`
   say so under `requires`, because the point of this layout is an installed app
   that opens offline (`app_offline_pages` and `app_update`, SM1197, 0.15.13).
   The template variables it uses arrived earlier (`page_url` 0.15.11; the
@@ -177,6 +180,12 @@ tone: medium
 `--panel-rule` | undefined | 2px accent | The top edge of a panel; used as `border-top: var(--panel-rule, 1px solid var(--line))` after the panel's own border. Leave it undefined to keep the plain edge; `none` removes the edge.
 ```
 
+`meadow` and `midnight` keep the lab's shape names (`--radius-pill` 999px,
+`--dot-radius` and `--avatar-radius` 50%, no label case, `--figure-font` the body
+font, `--signal` the accent, `--panel-rule` undefined); their corners are 6, 10,
+16px and 4, 6, 10px. Their `line-strong` is darker than the source palettes'
+border colour, so that field edges meet 3:1.
+
 App sheets load after `main.css`, so a theme cannot restyle an app pattern by
 overriding it: a theme changes the shape and lettering of a pattern through the
 short names above. A further theme of this layout copies a theme, changes
@@ -239,5 +248,5 @@ style guide page is not shipped; this is the shape of one):
 
 `t/site-contract.t` and `t/pwa-layout.t` render the layout and check its slots,
 links, fonts, licences and declared requirements; `tools/check-no-cdn.sh` passes.
-The two themes were drawn in headless Chromium at 390 and 1280 pixels for this
+The four themes were drawn in headless Chromium at 390 and 1280 pixels for this
 catalogue entry. The layout has not been run here against a live Odoo site.

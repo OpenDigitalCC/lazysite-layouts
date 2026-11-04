@@ -5,7 +5,7 @@
   "description": "An app-style working surface for operatives on phone, tablet and PC: one header with the apps and the sign-in, installable as an app, light and dark.",
   "author": "OpenDigitalCC",
   "tags": ["app", "pwa", "operations", "mobile", "offline", "odoo", "multi-theme"],
-  "themes": ["lab", "control"],
+  "themes": ["lab", "control", "meadow", "midnight"],
   "default_theme": "lab",
   "tokens": {
     "colours": ["accent", "accent-hover", "accent-ink", "accent-soft", "accent-strong", "bad", "bad-ink", "bad-soft", "canvas", "data-1", "data-2", "data-3", "data-4", "focus-ring", "info", "info-soft", "ink", "line", "line-strong", "muted", "ok", "ok-soft", "scrim", "shadow", "shadow-raised", "star", "sunken", "surface", "warn", "warn-soft"],

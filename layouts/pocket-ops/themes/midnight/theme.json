@@ -1,0 +1,103 @@
+{
+  "name": "midnight",
+  "version": "1.0.0",
+  "description": "An always-dark working surface: charcoal panels, a soft blue accent, Inter. Colours from the catalogue theme dark (layouts/default), mapped to the pocket-ops short names. It stays dark whatever the device asks.",
+  "author": "OpenDigitalCC",
+  "layouts": [
+    "pocket-ops"
+  ],
+  "requires": {
+    "lazysite": "0.15.13"
+  },
+  "config": {
+    "colours": {
+      "canvas": "#1a1a1a",
+      "surface": "#232323",
+      "sunken": "#2a2a2a",
+      "ink": "#f0f0f0",
+      "muted": "#aaaaaa",
+      "line": "#333333",
+      "line-strong": "#7d7d7d",
+      "accent": "#6db3f2",
+      "accent-hover": "#8ac7ff",
+      "accent-ink": "#11212f",
+      "accent-soft": "#1e2d3d",
+      "accent-strong": "#b5d9fa",
+      "focus-ring": "#8ac7ff",
+      "ok": "#5ad17a",
+      "ok-soft": "#1c3324",
+      "warn": "#f0c06a",
+      "warn-soft": "#4a3f00",
+      "bad": "#ff6b6b",
+      "bad-soft": "#402020",
+      "bad-ink": "#1f0808",
+      "info": "#93bfec",
+      "info-soft": "#1c2b3c",
+      "star": "#f2c14e",
+      "scrim": "rgba(0,0,0,0.6)",
+      "data-1": "#4e9fe6",
+      "data-2": "#e08a3c",
+      "data-3": "#8f7bdc",
+      "data-4": "#d86aa6",
+      "shadow": "0 1px 2px rgba(0,0,0,0.6)",
+      "shadow-raised": "0 6px 20px rgba(0,0,0,0.6)"
+    },
+    "dark": {
+      "canvas": "#1a1a1a",
+      "surface": "#232323",
+      "sunken": "#2a2a2a",
+      "ink": "#f0f0f0",
+      "muted": "#aaaaaa",
+      "line": "#333333",
+      "line-strong": "#7d7d7d",
+      "accent": "#6db3f2",
+      "accent-hover": "#8ac7ff",
+      "accent-ink": "#11212f",
+      "accent-soft": "#1e2d3d",
+      "accent-strong": "#b5d9fa",
+      "focus-ring": "#8ac7ff",
+      "ok": "#5ad17a",
+      "ok-soft": "#1c3324",
+      "warn": "#f0c06a",
+      "warn-soft": "#4a3f00",
+      "bad": "#ff6b6b",
+      "bad-soft": "#402020",
+      "bad-ink": "#1f0808",
+      "info": "#93bfec",
+      "info-soft": "#1c2b3c",
+      "star": "#f2c14e",
+      "scrim": "rgba(0,0,0,0.6)",
+      "data-1": "#4e9fe6",
+      "data-2": "#e08a3c",
+      "data-3": "#8f7bdc",
+      "data-4": "#d86aa6",
+      "shadow": "0 1px 2px rgba(0,0,0,0.6)",
+      "shadow-raised": "0 6px 20px rgba(0,0,0,0.6)"
+    },
+    "fonts": {
+      "body": "Inter, Segoe UI, Roboto, system-ui, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace"
+    },
+    "shape": {
+      "radius-sm": "4px",
+      "radius": "6px",
+      "radius-lg": "10px",
+      "control-height": "44px",
+      "touch-height": "44px",
+      "scan-height": "56px",
+      "header-height": "56px",
+      "page-width": "75rem"
+    }
+  },
+  "files": [
+    "theme.json",
+    "assets/main.css",
+    "assets/patterns.css",
+    "assets/pocket-ops.js",
+    "assets/theme-early.js",
+    "assets/icons/app-64.png",
+    "assets/icons/app-192.png",
+    "assets/icons/app-512.png",
+    "assets/icons/app-maskable.png"
+  ]
+}
