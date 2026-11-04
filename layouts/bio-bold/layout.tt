@@ -21,6 +21,8 @@
 <link rel="alternate" type="application/rss+xml" title="[% IF site_name %][% site_name | html %] [% END %](RSS)" href="/feed.rss">
 <link rel="alternate" type="application/atom+xml" title="[% IF site_name %][% site_name | html %] [% END %](Atom)" href="/feed.atom">
 <link rel="icon" href="[% theme_assets %]/favicon.svg" type="image/svg+xml">
+[%# schema.org Person from the bio-hero section data (first hero only). `sections` reaches the stash raw; the component encodes each value with | json. %]
+[% jsonld_done = 0 %][% FOREACH s IN sections %][% hero = s.item('bio-hero') %][% IF hero && !jsonld_done %][% jsonld_done = 1 %][% INCLUDE "components/schema-person.tt" data = hero %][% END %][% END %]
 [% theme_css %]
 [% IF theme_assets %]<link rel="stylesheet" href="[% theme_assets %]/fonts.css?v=[% theme_version %]"><link rel="stylesheet" href="[% theme_assets %]/main.css?v=[% theme_version %]">[% ELSE %]<link rel="stylesheet" href="/lazysite-assets/bio-bold/bio-bold/fonts.css"><link rel="stylesheet" href="/lazysite-assets/bio-bold/bio-bold/main.css">[% END %]
 </head>

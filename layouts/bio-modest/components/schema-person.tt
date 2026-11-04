@@ -1,0 +1,32 @@
+[%# schema.org Person, emitted into <head> from the bio-hero section data.
+    Nothing here is retyped by the author: every value is already on the page.
+
+    Only facts the hero actually carries are emitted. A block with no name is
+    not emitted at all, and an empty or whitespace-only field is left out
+    rather than written as "". The untyped hero `links:` are NOT read (a profile,
+    an employer and a contact route look identical there); the two optional keys
+    `worksFor:` ({name, url}) and `sameAs:` (a list of profile addresses) carry
+    that meaning for this block alone.
+
+    Escaping: `sections` reaches the layout raw, so each string goes through the
+    engine's `| json` filter (lazysite 0.15.2): it quotes, escapes backslash,
+    quote and the control characters, and writes < > & as \uXXXX so a value
+    holding the closing script tag cannot end the element. page_url is the one
+    value that arrives HTML-escaped, so it is decoded (ampersand last) before it
+    is encoded. A link is emitted only when it passes | url_safe and is http(s).
+-%]
+[%- IF data.name.search('\S') -%]
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":[% data.name | json %]
+[%- IF data.role.search('\S') %],"jobTitle":[% data.role | json %][% END -%]
+[%- IF data.tagline.search('\S') %],"description":[% data.tagline | json %][% END -%]
+[%- IF page_url.search('\S') %],"url":[% page_url | replace('&#39;', "'") | replace('&quot;', '"') | replace('&lt;', '<') | replace('&gt;', '>') | replace('&amp;', '&') | json %][% END -%]
+[%- IF data.worksFor.name.search('\S') %],"worksFor":{"@type":"Organization","name":[% data.worksFor.name | json %]
+[%- wf = BLOCK %][% data.worksFor.url | url_safe %][% END -%]
+[%- IF wf.match('^\s*https?://') %],"url":[% wf | json %][% END %]}[% END -%]
+[%- sa = [] -%]
+[%- FOREACH u IN data.sameAs -%][%- su = BLOCK %][% u | url_safe %][% END -%][%- IF su.match('^\s*https?://') -%][%- sa.push(su) -%][%- END -%][%- END -%]
+[%- IF sa.size %],"sameAs":[[% FOREACH su IN sa %][% UNLESS loop.first %],[% END %][% su | json %][% END %]][% END -%]
+}
+</script>
+[% END -%]
