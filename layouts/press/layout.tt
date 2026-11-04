@@ -31,13 +31,13 @@
 [% FOREACH item IN nav %]
 [% IF item.children.size %]
       <li class="nav-group">
-[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
+[% IF item.url %]<a href="[% item.url | url_safe %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]
         <ul class="nav-children">
-[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
+[% FOREACH child IN item.children %]<li><a href="[% child.url | url_safe %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>[% END %]
         </ul>
       </li>
 [% ELSE %]
-      <li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+      <li><a href="[% item.url | url_safe %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
 [% END %]
 [% END %]
       <li class="auth">[% auth_control %]</li>
@@ -61,7 +61,7 @@
     <div>
       <h4>Menu</h4>
       <ul>
-[% FOREACH item IN nav %][% IF item.url %]        <li><a href="[% item.url %]">[% item.label %]</a></li>
+[% FOREACH item IN nav %][% IF item.url %]        <li><a href="[% item.url | url_safe %]">[% item.label %]</a></li>
 [% END %][% END %]
       </ul>
     </div>

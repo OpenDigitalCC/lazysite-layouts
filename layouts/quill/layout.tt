@@ -34,16 +34,16 @@
 <div class="q-menu">
 <h4>Menu</h4>
 <ul>
-[% FOREACH item IN nav %][% UNLESS item.children.size %]<li><a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
+[% FOREACH item IN nav %][% UNLESS item.children.size %]<li><a href="[% item.url | url_safe %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a></li>
 [% END %][% END %]
 </ul>
 </div>
 [% END %]
 [% FOREACH item IN nav %][% IF item.children.size %]
 <div class="q-menu nav-group">
-<h4>[% IF item.url %]<a href="[% item.url %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]</h4>
+<h4>[% IF item.url %]<a href="[% item.url | url_safe %]"[% IF request_uri == item.url %] class="active"[% END %]>[% item.label %]</a>[% ELSE %]<span class="nav-group-label">[% item.label %]</span>[% END %]</h4>
 <ul class="nav-children">
-[% FOREACH child IN item.children %]<li><a href="[% child.url %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>
+[% FOREACH child IN item.children %]<li><a href="[% child.url | url_safe %]"[% IF request_uri == child.url %] class="active"[% END %]>[% child.label %]</a></li>
 [% END %]
 </ul>
 </div>
