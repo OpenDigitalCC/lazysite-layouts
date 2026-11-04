@@ -30,7 +30,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body { overflow-wrap: break-word; }
 /* "anywhere" also shrinks min-content, which is right for page content but
  * would squeeze words out of flex navigation, so it is scoped to content. */
-:where(main, article, [role="main"], .content, #content) :where(a, p, li, dt, dd, td, th, h1, h2, h3, h4, h5, h6, blockquote, figcaption, summary, label, code, kbd, samp) {
+:where(main, article, [role="main"], .content, #content) :where(a, p, li, dt, dd, h1, h2, h3, h4, h5, h6, blockquote, figcaption, summary, label, code, kbd, samp) {
     overflow-wrap: anywhere;
 }
 /* Flex and grid children default to min-width:auto and refuse to shrink below
@@ -47,10 +47,23 @@ body { overflow-wrap: break-word; }
 /* Code scrolls inside its own box instead of widening the page. */
 :where(pre) { max-width: 100%; overflow-x: auto; overflow-wrap: normal; }
 :where(pre code) { overflow-wrap: normal; }
-/* Wide tables scroll inside themselves on narrow screens. */
+/* Table cells keep whole words: with "anywhere" the columns of a wide table
+ * shrank to one or two characters at 390 and nothing scrolled (edge check,
+ * 4 November). A cell has a floor of 6rem; links and code inside a cell may
+ * still break, being the only thing that can otherwise widen it past reason. */
+:where(td, th) { overflow-wrap: normal; min-width: 6rem; }
+:where(td, th) :where(a, code, kbd, samp) { overflow-wrap: anywhere; }
+/* Wide tables scroll inside themselves on narrow screens. display:block with
+ * overflow-x:auto on the table itself needs no wrapper element and the rows
+ * stay a table inside the block (an anonymous table box), so the Markdown the
+ * engine emits is unchanged. width:max-content lets the columns take the room
+ * their words need; min-width:100% keeps a short table full width; max-width
+ * caps the box so the overflow scrolls inside it. */
 @media (max-width: 48rem) {
     :where(table) {
         display: block;
+        width: max-content;
+        min-width: 100%;
         max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
