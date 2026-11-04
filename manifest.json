@@ -385,7 +385,7 @@
             {
                "name" : "intranet",
                "package" : "releases/intranet/intranet.zip",
-               "version" : "1.0.1"
+               "version" : "1.0.2"
             }
          ],
          "version" : "1.0.0"
